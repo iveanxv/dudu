@@ -187,7 +187,8 @@
 
         /* API页面 */
         #api-page { z-index: 600; display: none; flex-direction: column; }
-        .api-block { padding: 20px; display: flex; flex-direction: column; gap: 16px; min-height: 100%; }
+        #api-page .app-content-body { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
+        .api-block { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
         .api-section {
             background: #fff; border-radius: 14px; padding: 16px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.04);
@@ -204,7 +205,13 @@
         .preset-row { display: flex; gap: 10px; align-items: center; }
         .preset-actions { display: flex; gap: 10px; }
         .preset-actions .api-btn-small { flex: 1; }
-        .api-footer { margin-top: auto; padding-top: 4px; }
+        .api-footer {
+            padding: 12px 20px calc(16px + env(safe-area-inset-bottom));
+            background: rgba(237, 237, 237, 0.96);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-top: 0.5px solid #dcdcdc;
+        }
         .input-inline-action { display: flex; gap: 10px; align-items: center; }
         .input-inline-action .settings-input { flex: 1; }
         .input-inline-action .api-btn-small { white-space: nowrap; }
@@ -498,11 +505,10 @@
                     </select>
                     <div class="api-btn" id="btn-fetch-models">拉取模型列表</div>
                 </div>
-
-                <div class="api-footer">
-                    <div class="api-btn" id="btn-save-api-settings" style="background: #34c759;">保存当前设置</div>
-                </div>
             </div>
+        </div>
+        <div class="api-footer">
+            <div class="api-btn" id="btn-save-api-settings" style="background: #34c759;">保存当前设置</div>
         </div>
     </div>
 
