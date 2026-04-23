@@ -190,6 +190,9 @@
             display: flex;
             gap: 12px;
             align-items: center;
+            min-height: 92px;
+            height: 92px;
+            box-sizing: border-box;
             border-bottom: 0.5px solid #ececec;
         }
         .persona-card:last-child { border-bottom: none; }
@@ -208,9 +211,33 @@
             font-size: 16px;
             font-weight: 600;
         }
-        .persona-info { flex: 1; min-width: 0; }
-        .persona-name { font-size: 16px; font-weight: 600; color: #111; margin-bottom: 3px; }
-        .persona-desc { font-size: 12px; line-height: 1.45; color: #8a8a8a; white-space: pre-wrap; word-break: break-word; }
+        .persona-info {
+            flex: 1;
+            min-width: 0;
+            min-height: 0;
+            overflow: hidden;
+        }
+        .persona-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .persona-desc {
+            font-size: 12px;
+            line-height: 1.45;
+            color: #8a8a8a;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            word-break: break-word;
+        }
         .persona-actions {
             display: flex;
             align-items: center;
@@ -360,9 +387,12 @@
 
         /* ================= 设置APP样式 ================= */
         .settings-group { margin-top: 16px; background: #fff; border-top: 0.5px solid #e5e5e5; border-bottom: 0.5px solid #e5e5e5; }
+        .settings-group + .settings-group { margin-top: 12px; }
         .settings-item { padding: 14px 16px; border-bottom: 0.5px solid #e5e5e5; display: flex; justify-content: space-between; align-items: center; font-size: 16px; color: #111; cursor: pointer; }
         .settings-item:last-child { border-bottom: none; }
         .settings-item:active { background: #f5f5f5; }
+        .settings-item.center-label { justify-content: center; }
+        .settings-item.center-label span { width: 100%; text-align: center; }
         .settings-arrow { width: 16px; height: 16px; fill: #b2b2b2; }
         
         /* 拨动开关 */
@@ -412,6 +442,91 @@
         .input-inline-action { display: flex; gap: 10px; align-items: center; }
         .input-inline-action .settings-input { flex: 1; }
         .input-inline-action .api-btn-small { white-space: nowrap; }
+
+        #role-settings-page { z-index: 620; background-color: #ededed; }
+        #role-settings-page .app-content-body {
+            padding: 16px 16px calc(110px + env(safe-area-inset-bottom));
+            padding: 16px 16px calc(110px + constant(safe-area-inset-bottom));
+        }
+        .role-settings-block {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .role-settings-section {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 0.5px solid #e8e8e8;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .role-settings-avatar-wrap {
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .role-settings-avatar {
+            width: 76px;
+            height: 76px;
+            border-radius: 20px;
+            background: #111;
+            color: #fff;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .role-settings-avatar-tip { font-size: 12px; color: #8a8a8a; }
+        .role-settings-row {
+            padding: 14px 16px;
+            border-bottom: 0.5px solid #ececec;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .role-settings-row:last-child { border-bottom: none; }
+        .role-settings-label { font-size: 14px; color: #555; font-weight: 600; }
+        .role-settings-hint { font-size: 12px; line-height: 1.5; color: #8a8a8a; }
+        .role-settings-placeholder {
+            min-height: 84px;
+            border-radius: 12px;
+            background: #f7f7f7;
+            border: 1px dashed #d9d9d9;
+            color: #999;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 14px;
+            line-height: 1.6;
+        }
+        .role-settings-range {
+            display: grid;
+            grid-template-columns: 1fr 20px 1fr;
+            gap: 8px;
+            align-items: center;
+        }
+        .role-settings-range-sep {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+        }
+        .role-settings-footer {
+            padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
+            padding: 12px 16px calc(16px + constant(safe-area-inset-bottom));
+            background: rgba(237, 237, 237, 0.96);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-top: 0.5px solid #dcdcdc;
+            flex-shrink: 0;
+        }
 
         /* ================= 模态框(添加朋友) ================= */
         .modal-overlay {
@@ -678,18 +793,80 @@
             <div class="app-btn-icon" id="chat-settings-back-btn">
                 <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
             </div>
-            <div class="app-title-text">聊天设置</div>
+            <div class="app-title-text" id="chat-settings-title">聊天设置</div>
             <div class="app-btn-icon"></div>
         </div>
         <div class="app-content-body">
             <div class="settings-group">
-                <div class="settings-item"><span>角色设置</span><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
-                <div class="settings-item"><span>线下模式</span><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
+                <div class="settings-item" id="btn-open-role-settings"><span>角色设置</span><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
+                <div class="settings-item"><span>线下模式</span></div>
                 <div class="settings-item"><span>查找聊天记录</span><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
-                <div class="settings-item"><span>清空聊天记录</span><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
-                <div class="settings-item"><span>加入黑名单</span><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
-                <div class="settings-item"><span style="color: #ff3b30;">删除好友</span><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
+                <div class="settings-item"><span>清空聊天记录</span></div>
+                <div class="settings-item"><span>加入黑名单</span></div>
             </div>
+            <div class="settings-group">
+                <div class="settings-item center-label"><span id="chat-settings-delete-label" style="color: #ff3b30;">删除好友</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-app" id="role-settings-page">
+        <div class="app-header-bar">
+            <div class="app-btn-icon" id="role-settings-back-btn">
+                <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+            </div>
+            <div class="app-title-text">角色设置</div>
+            <div class="app-btn-icon"></div>
+        </div>
+        <div class="app-content-body">
+            <div class="role-settings-block">
+                <div class="role-settings-section">
+                    <div class="role-settings-avatar-wrap">
+                        <input type="file" id="role-settings-avatar-upload" accept="image/*" style="display: none;">
+                        <div class="role-settings-avatar" id="role-settings-avatar-preview" onclick="document.getElementById('role-settings-avatar-upload').click()">角</div>
+                        <div class="role-settings-avatar-tip">点击更换角色头像</div>
+                    </div>
+                </div>
+
+                <div class="role-settings-section">
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">角色姓名</div>
+                        <input type="text" class="settings-input" id="role-settings-name" placeholder="请输入角色姓名" autocomplete="off">
+                    </div>
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">角色人设</div>
+                        <textarea class="modal-input" id="role-settings-persona" placeholder="请输入角色的人设、性格、经历等" autocomplete="off"></textarea>
+                    </div>
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">世界书</div>
+                        <div class="role-settings-placeholder">暂时留空，后续再接入世界书内容。</div>
+                    </div>
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">我的人设</div>
+                        <select class="settings-select" id="role-settings-user-persona-select">
+                            <option value="">不绑定</option>
+                        </select>
+                        <div class="role-settings-hint">绑定后，发送给 AI 的用户身份将使用该人设。</div>
+                    </div>
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">上下文记忆条数</div>
+                        <input type="number" class="settings-input" id="role-settings-context-limit" min="1" max="100" inputmode="numeric" placeholder="例如 12">
+                        <div class="role-settings-hint">发送给 AI 的最近对话条数。超出部分不会一并发送。</div>
+                    </div>
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">回复条数区间</div>
+                        <div class="role-settings-range">
+                            <input type="number" class="settings-input" id="role-settings-reply-min" min="1" max="20" inputmode="numeric" placeholder="最少条数">
+                            <div class="role-settings-range-sep">至</div>
+                            <input type="number" class="settings-input" id="role-settings-reply-max" min="1" max="20" inputmode="numeric" placeholder="最多条数">
+                        </div>
+                        <div class="role-settings-hint">这个区间会写入提示词，指导 AI 一次回复拆成几条微信消息。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="role-settings-footer">
+            <div class="api-btn" id="btn-save-role-settings" style="background: #34c759;">保存角色设置</div>
         </div>
     </div>
 
@@ -1238,8 +1415,17 @@
         const userPersonaNameInput = document.getElementById('user-persona-name');
         const userPersonaDescInput = document.getElementById('user-persona-desc');
         const userPersonaAvatarPreview = document.getElementById('user-persona-avatar-preview');
+        const roleSettingsPage = document.getElementById('role-settings-page');
+        const roleSettingsAvatarPreview = document.getElementById('role-settings-avatar-preview');
+        const roleSettingsNameInput = document.getElementById('role-settings-name');
+        const roleSettingsPersonaInput = document.getElementById('role-settings-persona');
+        const roleSettingsUserPersonaSelect = document.getElementById('role-settings-user-persona-select');
+        const roleSettingsContextLimitInput = document.getElementById('role-settings-context-limit');
+        const roleSettingsReplyMinInput = document.getElementById('role-settings-reply-min');
+        const roleSettingsReplyMaxInput = document.getElementById('role-settings-reply-max');
         let tempAvatarData = '';
         let tempUserPersonaAvatarData = '';
+        let tempRoleSettingsAvatarData = '';
         let editingUserPersonaIndex = -1;
 
         function persistChatDatabase() {
@@ -1248,6 +1434,75 @@
 
         function persistFriendList() {
             localStorage.setItem('friend_list', JSON.stringify(friendList));
+        }
+
+        function getFriendByName(friendName) {
+            return friendList.find(friend => friend.name === friendName) || null;
+        }
+
+        function getDefaultRoleConfig(friend = {}) {
+            return {
+                personaPrompt: friend.personaPrompt || '',
+                boundUserPersonaId: friend.boundUserPersonaId || '',
+                contextLimit: Number(friend.contextLimit) > 0 ? Number(friend.contextLimit) : 12,
+                replyMin: Number(friend.replyMin) > 0 ? Number(friend.replyMin) : 2,
+                replyMax: Number(friend.replyMax) > 0 ? Number(friend.replyMax) : 4
+            };
+        }
+
+        function renderRoleSettingsUserPersonaOptions(selectedId = '') {
+            roleSettingsUserPersonaSelect.innerHTML = '<option value="">不绑定</option>';
+            userPersonas.forEach(persona => {
+                const option = document.createElement('option');
+                option.value = persona.id;
+                option.textContent = persona.name || '未命名人设';
+                roleSettingsUserPersonaSelect.appendChild(option);
+            });
+            roleSettingsUserPersonaSelect.value = selectedId || '';
+        }
+
+        function fillRoleSettingsAvatar(friend) {
+            const displayName = friend?.name || '角';
+            if (tempRoleSettingsAvatarData) {
+                roleSettingsAvatarPreview.style.backgroundImage = `url(${tempRoleSettingsAvatarData})`;
+                roleSettingsAvatarPreview.textContent = '';
+                return;
+            }
+
+            roleSettingsAvatarPreview.style.backgroundImage = 'none';
+            roleSettingsAvatarPreview.textContent = displayName.charAt(0) || '角';
+        }
+
+        function openRoleSettingsPage() {
+            const friend = getFriendByName(currentChatFriend);
+            if (!friend || friend.type === 'group') return;
+
+            const config = getDefaultRoleConfig(friend);
+            tempRoleSettingsAvatarData = friend.avatar || '';
+            roleSettingsNameInput.value = friend.name || '';
+            roleSettingsPersonaInput.value = config.personaPrompt;
+            roleSettingsContextLimitInput.value = config.contextLimit;
+            roleSettingsReplyMinInput.value = config.replyMin;
+            roleSettingsReplyMaxInput.value = config.replyMax;
+            renderRoleSettingsUserPersonaOptions(config.boundUserPersonaId);
+            fillRoleSettingsAvatar(friend);
+            roleSettingsPage.style.display = 'flex';
+        }
+
+        function renameChatHistory(oldName, newName) {
+            if (oldName === newName) return;
+            if (chatDatabase[oldName] && !chatDatabase[newName]) {
+                chatDatabase[newName] = chatDatabase[oldName];
+                delete chatDatabase[oldName];
+                persistChatDatabase();
+            }
+
+            const settingsMap = parseStoredJson('friend_settings', {});
+            if (Object.prototype.hasOwnProperty.call(settingsMap, oldName) && !Object.prototype.hasOwnProperty.call(settingsMap, newName)) {
+                settingsMap[newName] = settingsMap[oldName];
+                delete settingsMap[oldName];
+                localStorage.setItem('friend_settings', JSON.stringify(settingsMap));
+            }
         }
 
         function ensureFriendChatHistory(friendName) {
@@ -1307,11 +1562,90 @@
             });
         }
 
+        function getFriendPreviewText(friend) {
+            if (friend.type === 'group') {
+                return friend.desc || '群聊已创建，开始聊天吧';
+            }
+
+            const history = chatDatabase[friend.name] || [];
+            const lastMessage = [...history].reverse().find(message => message && String(message.content || '').trim());
+            if (lastMessage) {
+                const preview = String(lastMessage.content || '').trim().replace(/\s+/g, ' ');
+                return preview.length > 28 ? `${preview.slice(0, 28)}...` : preview;
+            }
+
+            return friend.desc || '你们已经是好友了，开始聊天吧';
+        }
+
+        async function clearCurrentChatHistory() {
+            if (!currentChatFriend) return;
+
+            const ok = await showAppDialog({
+                title: '清空聊天记录',
+                message: `确定要清空「${currentChatFriend}」的全部聊天记录吗？`,
+                mode: 'confirm',
+                confirmText: '清空',
+                cancelText: '取消'
+            });
+            if (!ok) return;
+
+            chatDatabase[currentChatFriend] = [];
+            persistChatDatabase();
+            renderChatHistory();
+            renderFriendList();
+            chatSettingsPage.style.display = 'none';
+            await showAppDialog({ title: '已清空', message: '当前聊天记录已删除。' });
+        }
+
+        async function deleteCurrentFriend() {
+            if (!currentChatFriend) return;
+
+            const friend = getFriendByName(currentChatFriend);
+            if (!friend) return;
+
+            const ok = await showAppDialog({
+                title: '删除好友',
+                message: `确定要删除「${currentChatFriend}」吗？删除后聊天记录也会一起移除。`,
+                mode: 'confirm',
+                confirmText: '删除',
+                cancelText: '取消'
+            });
+            if (!ok) return;
+
+            const friendIndex = friendList.findIndex(item => item.id === friend.id);
+            if (friendIndex >= 0) {
+                friendList.splice(friendIndex, 1);
+            }
+
+            delete chatDatabase[currentChatFriend];
+
+            const settingsMap = parseStoredJson('friend_settings', {});
+            if (Object.prototype.hasOwnProperty.call(settingsMap, currentChatFriend)) {
+                delete settingsMap[currentChatFriend];
+                localStorage.setItem('friend_settings', JSON.stringify(settingsMap));
+            }
+
+            persistFriendList();
+            persistChatDatabase();
+            renderFriendList();
+
+            chatSettingsPage.style.display = 'none';
+            chatRoom.style.display = 'none';
+            currentChatFriend = '';
+            await showAppDialog({ title: '已删除', message: '好友已删除。' });
+        }
+
         function renderFriendList() {
             chatListContainer.innerHTML = '';
 
             friendList.forEach(friend => {
                 ensureFriendChatHistory(friend.name);
+
+                if (friend.type !== 'group' && friend.desc !== '你们已经是好友了，开始聊天吧') {
+                    friend.personaPrompt = friend.personaPrompt || friend.desc || '';
+                    friend.desc = '你们已经是好友了，开始聊天吧';
+                    persistFriendList();
+                }
 
                 let avatarStyle = '';
                 let avatarContent = '';
@@ -1327,11 +1661,12 @@
 
                 const chatItem = document.createElement('div');
                 chatItem.className = 'wc-chat-item';
+                const previewText = getFriendPreviewText(friend);
                 chatItem.innerHTML = `
                     <div class="wc-chat-avatar" style="${avatarStyle}">${avatarContent}</div>
                     <div class="wc-chat-info">
                         <div class="wc-chat-header"><span class="wc-chat-name">${friend.name}</span><span class="wc-chat-time">${friend.time || ''}</span></div>
-                        <div class="wc-chat-desc">${friend.desc || '你们已经是好友了，开始聊天吧'}</div>
+                        <div class="wc-chat-desc">${previewText}</div>
                     </div>
                 `;
                 chatItem.addEventListener('click', () => { openChatRoom(friend.name); });
@@ -1401,7 +1736,14 @@
                                 cancelText: '取消'
                             });
                             if (!ok) return;
+                            const removedPersonaId = userPersonas[index]?.id;
                             userPersonas.splice(index, 1);
+                            friendList.forEach(friend => {
+                                if (friend.boundUserPersonaId === removedPersonaId) {
+                                    friend.boundUserPersonaId = '';
+                                }
+                            });
+                            persistFriendList();
                             persistUserPersonas();
                             renderUserPersonas();
                         }
@@ -1443,6 +1785,88 @@
             renderUserPersonas();
             userPersonasPage.style.display = 'flex';
         }
+
+        document.getElementById('btn-open-role-settings').addEventListener('click', openRoleSettingsPage);
+        document.getElementById('role-settings-back-btn').addEventListener('click', () => {
+            roleSettingsPage.style.display = 'none';
+        });
+
+        document.getElementById('role-settings-avatar-upload').addEventListener('change', function(e) {
+            if (e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    tempRoleSettingsAvatarData = event.target.result;
+                    fillRoleSettingsAvatar({ name: roleSettingsNameInput.value.trim() || currentChatFriend || '角' });
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        roleSettingsNameInput.addEventListener('input', () => {
+            if (!tempRoleSettingsAvatarData) {
+                fillRoleSettingsAvatar({ name: roleSettingsNameInput.value.trim() || currentChatFriend || '角' });
+            }
+        });
+
+        document.getElementById('btn-save-role-settings').addEventListener('click', async () => {
+            const friend = getFriendByName(currentChatFriend);
+            if (!friend || friend.type === 'group') return;
+
+            const newName = roleSettingsNameInput.value.trim();
+            const personaPrompt = roleSettingsPersonaInput.value.trim();
+            const boundUserPersonaId = roleSettingsUserPersonaSelect.value;
+            const contextLimit = Number(roleSettingsContextLimitInput.value) || 12;
+            const replyMin = Number(roleSettingsReplyMinInput.value) || 2;
+            const replyMax = Number(roleSettingsReplyMaxInput.value) || 4;
+
+            if (!newName) {
+                await showAppDialog({ title: '无法保存', message: '请先填写角色姓名。' });
+                return;
+            }
+
+            if (!personaPrompt) {
+                await showAppDialog({ title: '无法保存', message: '请先填写角色人设。' });
+                return;
+            }
+
+            if (contextLimit < 1) {
+                await showAppDialog({ title: '无法保存', message: '上下文记忆条数至少要为 1。' });
+                return;
+            }
+
+            if (replyMin < 1 || replyMax < 1 || replyMin > replyMax) {
+                await showAppDialog({ title: '无法保存', message: '回复条数区间不合法，请重新输入。' });
+                return;
+            }
+
+            const duplicateFriend = friendList.find(item => item.name === newName && item.id !== friend.id);
+            if (duplicateFriend) {
+                await showAppDialog({ title: '无法保存', message: '已经存在同名角色，请换一个名字。' });
+                return;
+            }
+
+            const oldName = friend.name;
+            friend.name = newName;
+            friend.avatar = tempRoleSettingsAvatarData;
+            friend.personaPrompt = personaPrompt;
+            friend.boundUserPersonaId = boundUserPersonaId;
+            friend.contextLimit = contextLimit;
+            friend.replyMin = replyMin;
+            friend.replyMax = replyMax;
+            friend.desc = '你们已经是好友了，开始聊天吧';
+
+            renameChatHistory(oldName, newName);
+            const settingsMap = parseStoredJson('friend_settings', {});
+            settingsMap[newName] = personaPrompt;
+            localStorage.setItem('friend_settings', JSON.stringify(settingsMap));
+
+            currentChatFriend = newName;
+            document.getElementById('chat-title-name').textContent = newName;
+            persistFriendList();
+            renderFriendList();
+            roleSettingsPage.style.display = 'none';
+            await showAppDialog({ title: '保存成功', message: '角色设置已更新。' });
+        });
 
         document.getElementById('btn-open-user-personas').addEventListener('click', openUserPersonasPage);
         document.getElementById('user-personas-back-btn').addEventListener('click', () => {
@@ -1530,12 +1954,12 @@
         // 确认添加好友
         document.getElementById('btn-confirm-friend').addEventListener('click', () => {
             const name = document.getElementById('friend-name').value.trim() || '未命名朋友';
-            const desc = document.getElementById('friend-desc').value.trim() || '你们已经是好友了，开始聊天吧';
+            const personaPrompt = document.getElementById('friend-desc').value.trim();
             const existingFriendIndex = friendList.findIndex(friend => friend.name === name);
             
             // 存储系统设定，供后续 API 对话使用
             const settingsMap = parseStoredJson('friend_settings', {});
-            settingsMap[name] = desc;
+            settingsMap[name] = personaPrompt || '你是一个好用的AI助手。';
             localStorage.setItem('friend_settings', JSON.stringify(settingsMap));
 
             const now = new Date();
@@ -1544,7 +1968,8 @@
             const friendData = {
                 id: existingFriendIndex >= 0 ? friendList[existingFriendIndex].id : `friend-${Date.now()}`,
                 name,
-                desc,
+                desc: '你们已经是好友了，开始聊天吧',
+                personaPrompt,
                 avatar: tempAvatarData,
                 time: timeStr
             };
@@ -1633,11 +2058,33 @@
 
         document.getElementById('chat-settings-btn').addEventListener('click', () => {
             chatPlusPanel.style.display = 'none';
+            updateChatSettingsLabels();
             chatSettingsPage.style.display = 'flex';
         });
 
         document.getElementById('chat-settings-back-btn').addEventListener('click', () => {
             chatSettingsPage.style.display = 'none';
+        });
+
+        document.querySelector('#chat-settings-page .settings-group').addEventListener('click', async (event) => {
+            const item = event.target.closest('.settings-item');
+            if (!item) return;
+
+            if (item.id === 'btn-open-role-settings') {
+                openRoleSettingsPage();
+                return;
+            }
+
+            const label = item.textContent.replace(/\s+/g, ' ').trim();
+            if (label.includes('清空聊天记录')) {
+                await clearCurrentChatHistory();
+                return;
+            }
+
+            if (label.includes('删除好友') || label.includes('解散群聊')) {
+                await deleteCurrentFriend();
+                return;
+            }
         });
 
         function openChatRoom(friendName) {
@@ -1646,6 +2093,92 @@
             chatRoom.style.display = 'flex';
             chatPlusPanel.style.display = 'none';
             renderChatHistory();
+        }
+
+        function updateChatSettingsLabels() {
+            const friend = getFriendByName(currentChatFriend);
+            const isGroupChat = friend?.type === 'group';
+            const title = document.getElementById('chat-settings-title');
+            const roleLabel = document.querySelector('#btn-open-role-settings span');
+            const deleteLabel = document.getElementById('chat-settings-delete-label');
+
+            if (title) {
+                title.textContent = isGroupChat ? '群聊设置' : '聊天设置';
+            }
+
+            if (roleLabel) {
+                roleLabel.textContent = isGroupChat ? '群聊设置' : '角色设置';
+            }
+
+            if (deleteLabel) {
+                deleteLabel.textContent = isGroupChat ? '解散群聊' : '删除好友';
+            }
+        }
+
+        function getBoundUserPersona(friend) {
+            if (!friend?.boundUserPersonaId) return null;
+            return userPersonas.find(persona => persona.id === friend.boundUserPersonaId) || null;
+        }
+
+        function escapeForJsonString(value) {
+            return String(value || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+        }
+
+        function buildSingleChatSystemPrompt(friend) {
+            const config = getDefaultRoleConfig(friend);
+            const boundUserPersona = getBoundUserPersona(friend);
+            const roleName = friend.name || '未命名角色';
+            const rolePersona = config.personaPrompt || '性格设定暂未填写。';
+            const userPersonaName = boundUserPersona?.name || '对话对象';
+            const userPersonaDesc = boundUserPersona?.description || '未绑定具体用户人设。';
+
+            return [
+                `你是${roleName}。`,
+                `你的性格、经历和扮演设定是：${rolePersona}`,
+                `现在你正在使用手机聊天软件，与${userPersonaName}对话。`,
+                `对方的人设是：${userPersonaDesc}`,
+                '当前场景是网络聊天，不是面对面交谈。',
+                '请使用口语化、碎片化、像微信一样的短消息回复。',
+                `一次回复拆成 ${config.replyMin} 到 ${config.replyMax} 条独立短消息。`,
+                '每条消息控制在 1 到 25 个字左右。',
+                '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
+                '请严格返回 JSON，格式为：{"replies":["第一条","第二条"]}',
+                '除了这个 JSON 之外，不要输出任何额外文字、标题、代码块或说明。'
+            ].join('\n');
+        }
+
+        function normalizeAiReplyMessages(replyText) {
+            const fallbackMessages = String(replyText || '')
+                .split(/\n+/)
+                .map(item => item.trim())
+                .filter(Boolean);
+
+            try {
+                const parsed = JSON.parse(replyText);
+                if (Array.isArray(parsed?.replies)) {
+                    const validReplies = parsed.replies
+                        .map(item => String(item || '').trim())
+                        .filter(Boolean);
+                    if (validReplies.length) return validReplies;
+                }
+            } catch (error) {
+                const jsonMatch = String(replyText || '').match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                    try {
+                        const parsed = JSON.parse(jsonMatch[0]);
+                        if (Array.isArray(parsed?.replies)) {
+                            const validReplies = parsed.replies
+                                .map(item => String(item || '').trim())
+                                .filter(Boolean);
+                            if (validReplies.length) return validReplies;
+                        }
+                    } catch (nestedError) {
+                    }
+                }
+            }
+
+            if (fallbackMessages.length) return fallbackMessages.slice(0, 8);
+            return ['……'];
         }
 
         function renderChatHistory() {
@@ -1692,9 +2225,19 @@
         // 重回按钮
         document.getElementById('btn-reroll').addEventListener('click', () => {
             const msgs = chatDatabase[currentChatFriend];
-            // 如果存在消息且最后一条是 AI，则删掉AI的数据再请求
+            // 如果存在消息且最后一条是 AI，则删掉整轮 AI 回复再请求
             if(msgs.length > 0 && msgs[msgs.length - 1].role === 'ai') {
-                msgs.pop(); 
+                const lastTurnId = msgs[msgs.length - 1].turnId;
+                while (
+                    msgs.length > 0 &&
+                    msgs[msgs.length - 1].role === 'ai' &&
+                    (
+                        (lastTurnId && msgs[msgs.length - 1].turnId === lastTurnId) ||
+                        (!lastTurnId)
+                    )
+                ) {
+                    msgs.pop();
+                }
                 persistChatDatabase();
                 renderChatHistory(); 
             }
@@ -1717,13 +2260,20 @@
                 return;
             }
 
-            // 提取人物设定作为系统提示词
+            const friend = getFriendByName(currentChatFriend);
+            const isGroupChat = friend?.type === 'group';
             const settingsMap = parseStoredJson('friend_settings', {});
-            const systemPrompt = settingsMap[currentChatFriend] || '你是一个好用的AI助手。';
+            const defaultPrompt = settingsMap[currentChatFriend] || '你是一个好用的AI助手。';
+            const systemPrompt = isGroupChat
+                ? defaultPrompt
+                : buildSingleChatSystemPrompt(friend || { name: currentChatFriend, personaPrompt: defaultPrompt });
+
+            const contextLimit = !isGroupChat ? getDefaultRoleConfig(friend).contextLimit : msgs.length;
+            const contextMessages = msgs.slice(-Math.max(1, contextLimit));
 
             // 构造标准对话结构
             const apiMessages = [ { role: 'system', content: systemPrompt } ];
-            msgs.forEach(m => {
+            contextMessages.forEach(m => {
                 apiMessages.push({
                     role: m.role === 'user' ? 'user' : 'assistant',
                     content: m.content
@@ -1762,11 +2312,15 @@
 
                 const data = await res.json();
                 const replyText = data.choices[0].message.content;
+                const replyMessages = isGroupChat ? [replyText] : normalizeAiReplyMessages(replyText);
+                const replyTurnId = `ai-turn-${Date.now()}`;
 
                 // 记录并渲染
-                chatDatabase[currentChatFriend].push({ role: 'ai', content: replyText });
+                replyMessages.forEach(message => {
+                    chatDatabase[currentChatFriend].push({ role: 'ai', content: message, turnId: replyTurnId });
+                    appendMsgBubble('ai', message);
+                });
                 persistChatDatabase();
-                appendMsgBubble('ai', replyText);
                 scrollToBottom();
 
             } catch (e) {
