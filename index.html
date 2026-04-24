@@ -99,6 +99,14 @@
         /* ================= 微信APP专属样式 ================= */
         .wc-page { display: none; height: 100%; width: 100%; }
         .wc-page.active { display: block; }
+        .wc-subpage {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: #ededed;
+            z-index: 2;
+        }
+        .wc-subpage.active { display: block; }
         .wc-tabbar {
             height: 55px; background: #f7f7f7; border-top: 0.5px solid #dcdcdc;
             display: flex; justify-content: space-around; align-items: center; padding-bottom: env(safe-area-inset-bottom);
@@ -186,20 +194,20 @@
         }
         .persona-card {
             background: #fff;
-            padding: 14px 16px;
+            padding: 10px 14px;
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
-            min-height: 92px;
-            height: 92px;
+            min-height: 72px;
+            height: 72px;
             box-sizing: border-box;
             border-bottom: 0.5px solid #ececec;
         }
         .persona-card:last-child { border-bottom: none; }
         .persona-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             background: #111;
             background-size: cover;
             background-position: center;
@@ -208,7 +216,7 @@
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
         }
         .persona-info {
@@ -218,16 +226,16 @@
             overflow: hidden;
         }
         .persona-name {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: #111;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         .persona-desc {
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1.45;
             color: #8a8a8a;
             overflow: hidden;
@@ -245,11 +253,11 @@
             flex-shrink: 0;
         }
         .persona-action-btn {
-                min-width: 52px;
-                height: 34px;
-                padding: 0 12px;
-                border-radius: 12px;
-                font-size: 12px;
+                min-width: 44px;
+                height: 30px;
+                padding: 0 10px;
+                border-radius: 10px;
+                font-size: 11px;
                 font-weight: 600;
             cursor: pointer;
                 border: 0.5px solid #e2e2e2;
@@ -356,15 +364,29 @@
         #chat-room { z-index: 600; background-color: #ededed; }
         #chat-settings-page { z-index: 610; background-color: #ededed; }
         .chat-scroll-area { padding: 16px; display: flex; flex-direction: column; gap: 16px; min-height: 100%; }
-        .msg-row { display: flex; width: 100%; margin-bottom: 10px; }
+        .msg-row { display: flex; width: 100%; margin-bottom: 10px; align-items: flex-start; gap: 8px; }
         .msg-row.ai { justify-content: flex-start; }
         .msg-row.user { justify-content: flex-end; }
+        .msg-row.system { justify-content: center; }
+        .msg-main { display: flex; flex-direction: column; gap: 4px; max-width: 70%; }
+        .msg-row.user .msg-main { align-items: flex-end; order: 1; }
+        .msg-row.ai .msg-main { align-items: flex-start; }
+        .msg-avatar {
+            width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 600; color: #fff; overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .msg-row.user .msg-avatar { order: 2; }
+        .msg-sender-name { font-size: 12px; color: #8c8c8c; padding: 0 2px; }
         .msg-bubble {
-            max-width: 70%; padding: 10px 14px; border-radius: 8px; font-size: 15px; line-height: 1.4;
+            max-width: 100%; padding: 10px 14px; border-radius: 8px; font-size: 15px; line-height: 1.4;
             word-wrap: break-word; user-select: text; -webkit-user-select: text;
         }
         .msg-row.ai .msg-bubble { background: #fff; color: #111; border-top-left-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .msg-row.user .msg-bubble { background: #95ec69; color: #111; border-top-right-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .msg-row.system .msg-bubble { max-width: 88%; padding: 6px 12px; background: transparent; color: #8c8c8c; font-size: 13px; line-height: 1.5; box-shadow: none; border-radius: 999px; text-align: center; }
         
         /* 正在输入小动画 */
         @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
@@ -448,6 +470,16 @@
             padding: 16px 16px calc(110px + env(safe-area-inset-bottom));
             padding: 16px 16px calc(110px + constant(safe-area-inset-bottom));
         }
+        #group-settings-page { z-index: 625; background-color: #ededed; }
+        #group-settings-page .app-content-body {
+            padding: 16px 16px calc(110px + env(safe-area-inset-bottom));
+            padding: 16px 16px calc(110px + constant(safe-area-inset-bottom));
+        }
+        #group-members-page { z-index: 626; background-color: #ededed; }
+        #group-members-page .app-content-body {
+            padding: 16px 16px calc(32px + env(safe-area-inset-bottom));
+            padding: 16px 16px calc(32px + constant(safe-area-inset-bottom));
+        }
         .role-settings-block {
             display: flex;
             flex-direction: column;
@@ -517,6 +549,150 @@
             text-align: center;
             color: #999;
             font-size: 14px;
+        }
+        .group-settings-members-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px 10px;
+        }
+        .group-settings-member-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .group-settings-member-avatar {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: #111;
+            color: #fff;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .group-settings-member-name {
+            width: 100%;
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .group-settings-row-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .group-settings-row-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .group-settings-row-link .settings-arrow {
+            width: 18px;
+            height: 18px;
+            fill: #b3b3b3;
+            flex-shrink: 0;
+        }
+        .group-settings-add-card {
+            cursor: pointer;
+        }
+        .group-settings-add-card .group-settings-member-avatar {
+            background: #f7f7f7;
+            color: #666;
+            border: 1px dashed #d7d7d7;
+            font-size: 30px;
+            font-weight: 400;
+        }
+        .group-settings-member-empty {
+            padding: 14px;
+            border-radius: 12px;
+            background: #f7f7f7;
+            border: 1px dashed #d9d9d9;
+            color: #999;
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        .group-members-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .group-members-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: #fff;
+            border-radius: 16px;
+            border: 0.5px solid #e8e8e8;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .group-members-item-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: #111;
+            color: #fff;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .group-members-item-info {
+            min-width: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .group-members-item-name {
+            font-size: 15px;
+            color: #222;
+            font-weight: 600;
+        }
+        .group-members-item-desc {
+            font-size: 12px;
+            color: #8a8a8a;
+            line-height: 1.5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .group-members-kick-btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 999px;
+            background: #ff3b30;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .group-members-empty {
+            padding: 18px 16px;
+            text-align: center;
+            font-size: 13px;
+            color: #8a8a8a;
+            background: #fff;
+            border-radius: 16px;
+            border: 0.5px solid #e8e8e8;
         }
         .role-settings-footer {
             padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
@@ -701,6 +877,11 @@
                     </div>
                 </div>
             </div>
+            <div class="wc-subpage" id="wc-subpage-user-personas">
+                <div class="app-content-body persona-page-body">
+                    <div class="persona-list" id="user-persona-list"></div>
+                </div>
+            </div>
         </div>
 
         <!-- 底部Tab栏 -->
@@ -717,21 +898,6 @@
                 <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                 <span>我</span>
             </div>
-        </div>
-    </div>
-
-    <div class="full-app" id="user-personas-page">
-        <div class="app-header-bar">
-            <div class="app-btn-icon" id="user-personas-back-btn">
-                <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-            </div>
-            <div class="app-title-text">我的人设</div>
-            <div class="app-btn-icon persona-plus-btn is-visible" id="user-personas-add-btn">
-                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-            </div>
-        </div>
-        <div class="app-content-body persona-page-body">
-            <div class="persona-list" id="user-persona-list"></div>
         </div>
     </div>
 
@@ -870,6 +1036,78 @@
         </div>
     </div>
 
+    <div class="full-app" id="group-settings-page">
+        <div class="app-header-bar">
+            <div class="app-btn-icon" id="group-settings-back-btn">
+                <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+            </div>
+            <div class="app-title-text">群聊设置</div>
+            <div class="app-btn-icon"></div>
+        </div>
+        <div class="app-content-body">
+            <div class="role-settings-block">
+                <div class="role-settings-section">
+                    <div class="role-settings-avatar-wrap">
+                        <input type="file" id="group-settings-avatar-upload" accept="image/*" style="display: none;">
+                        <div class="role-settings-avatar" id="group-settings-avatar-preview" onclick="document.getElementById('group-settings-avatar-upload').click()">群</div>
+                        <div class="role-settings-avatar-tip">点击更换群头像</div>
+                    </div>
+                </div>
+
+                <div class="role-settings-section">
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">群聊名称</div>
+                        <input type="text" class="settings-input" id="group-settings-name" placeholder="请输入群聊名称" autocomplete="off">
+                    </div>
+                    <div class="role-settings-row">
+                        <div class="group-settings-row-link" id="btn-open-group-members-page">
+                            <div class="role-settings-label">群成员管理</div>
+                            <svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                        </div>
+                        <div class="group-settings-members-grid" id="group-settings-members-grid"></div>
+                    </div>
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">我的人设</div>
+                        <select class="settings-select" id="group-settings-user-persona-select">
+                            <option value="">不绑定</option>
+                        </select>
+                        <div class="role-settings-hint">绑定后，后续发送给 AI 的用户身份将使用该人设。</div>
+                    </div>
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">上下文记忆条数</div>
+                        <input type="number" class="settings-input" id="group-settings-context-limit" min="1" max="100" inputmode="numeric" placeholder="例如 12">
+                        <div class="role-settings-hint">后续群聊发给 AI 时，将按这里限制最近对话条数。</div>
+                    </div>
+                    <div class="role-settings-row">
+                        <div class="role-settings-label">回复条数区间</div>
+                        <div class="role-settings-range">
+                            <input type="number" class="settings-input" id="group-settings-reply-min" min="1" max="20" inputmode="numeric" placeholder="最少条数">
+                            <div class="role-settings-range-sep">至</div>
+                            <input type="number" class="settings-input" id="group-settings-reply-max" min="1" max="20" inputmode="numeric" placeholder="最多条数">
+                        </div>
+                        <div class="role-settings-hint">这个区间先保存下来，后续接群聊提示词时直接使用。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="role-settings-footer">
+            <div class="api-btn" id="btn-save-group-settings" style="background: #34c759;">保存群聊设置</div>
+        </div>
+    </div>
+
+    <div class="full-app" id="group-members-page">
+        <div class="app-header-bar">
+            <div class="app-btn-icon" id="group-members-back-btn">
+                <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+            </div>
+            <div class="app-title-text">群成员管理</div>
+            <div class="app-btn-icon"></div>
+        </div>
+        <div class="app-content-body">
+            <div class="group-members-list" id="group-members-list"></div>
+        </div>
+    </div>
+
 
     <!-- ================= 设置 APP ================= -->
     <div class="full-app" id="settings-app">
@@ -986,6 +1224,17 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="group-settings-invite-modal">
+        <div class="modal-box">
+            <div class="modal-title">邀请好友进群</div>
+            <div class="group-member-list" id="group-settings-invite-list"></div>
+            <div class="modal-actions">
+                <div class="modal-btn btn-cancel" id="btn-cancel-group-invite">取消</div>
+                <div class="modal-btn btn-confirm" id="btn-confirm-group-invite">邀请</div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="app-dialog-modal">
         <div class="modal-box dialog-box">
             <div class="modal-title" id="app-dialog-title">提示</div>
@@ -1077,7 +1326,6 @@
         const settingsApp = document.getElementById('settings-app');
         
         document.getElementById('app-wechat').addEventListener('click', () => { wechatApp.style.display = 'flex'; });
-        document.getElementById('wc-back-btn').addEventListener('click', () => { wechatApp.style.display = 'none'; });
 
         document.getElementById('app-settings').addEventListener('click', () => { settingsApp.style.display = 'flex'; });
         document.getElementById('settings-back-btn').addEventListener('click', () => { settingsApp.style.display = 'none'; });
@@ -1374,23 +1622,56 @@
         const plusMenu = document.getElementById('wc-plus-menu');
         const plusBtn = document.getElementById('wc-plus-btn');
         const titleEl = document.getElementById('wc-title');
+        const wcBackBtn = document.getElementById('wc-back-btn');
+        const wcTabbar = document.querySelector('.wc-tabbar');
+        const userPersonasSubpage = document.getElementById('wc-subpage-user-personas');
+        let activeWechatSubpage = '';
+
+        function updateWechatHeader() {
+            if (activeWechatSubpage === 'user-personas') {
+                titleEl.textContent = '我的人设';
+                plusBtn.style.visibility = 'visible';
+                wcTabbar.style.display = 'none';
+                return;
+            }
+
+            const activeTab = document.querySelector('.wc-tab.active');
+            const target = activeTab?.getAttribute('data-target') || 'messages';
+            titleEl.textContent = activeTab?.getAttribute('data-title') || '微信';
+            plusBtn.style.visibility = target === 'messages' ? 'visible' : 'hidden';
+            wcTabbar.style.display = 'flex';
+        }
+
+        function closeWechatSubpage() {
+            activeWechatSubpage = '';
+            userPersonasSubpage.classList.remove('active');
+            plusMenu.style.display = 'none';
+            updateWechatHeader();
+        }
 
         const wcTabs = document.querySelectorAll('.wc-tab');
         const wcPages = document.querySelectorAll('.wc-page');
         wcTabs.forEach(tab => {
             tab.addEventListener('click', () => {
+                closeWechatSubpage();
                 wcTabs.forEach(t => t.classList.remove('active'));
                 wcPages.forEach(p => p.classList.remove('active'));
                 plusMenu.style.display = 'none'; 
                 tab.classList.add('active');
                 const target = tab.getAttribute('data-target');
                 document.getElementById(`wc-page-${target}`).classList.add('active');
-                titleEl.textContent = tab.getAttribute('data-title');
-                plusBtn.style.visibility = target === 'messages' ? 'visible' : 'hidden';
+                updateWechatHeader();
             });
         });
 
-        plusBtn.addEventListener('click', (e) => { e.stopPropagation(); plusMenu.style.display = plusMenu.style.display === 'flex' ? 'none' : 'flex'; });
+        plusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (activeWechatSubpage === 'user-personas') {
+                openUserPersonaModal();
+                return;
+            }
+            plusMenu.style.display = plusMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
         wechatApp.addEventListener('click', () => { plusMenu.style.display = 'none'; });
 
         // ================= 添加朋友/聊天体系数据中心 =================
@@ -1408,7 +1689,6 @@
         const groupNameInput = document.getElementById('group-name-input');
         const chatListContainer = document.getElementById('wc-chat-list');
         const roleSelect = document.getElementById('role-select');
-        const userPersonasPage = document.getElementById('user-personas-page');
         const userPersonaList = document.getElementById('user-persona-list');
         const userPersonaModal = document.getElementById('user-persona-modal');
         const userPersonaModalTitle = document.getElementById('user-persona-modal-title');
@@ -1416,6 +1696,7 @@
         const userPersonaDescInput = document.getElementById('user-persona-desc');
         const userPersonaAvatarPreview = document.getElementById('user-persona-avatar-preview');
         const roleSettingsPage = document.getElementById('role-settings-page');
+        const groupSettingsPage = document.getElementById('group-settings-page');
         const roleSettingsAvatarPreview = document.getElementById('role-settings-avatar-preview');
         const roleSettingsNameInput = document.getElementById('role-settings-name');
         const roleSettingsPersonaInput = document.getElementById('role-settings-persona');
@@ -1423,9 +1704,22 @@
         const roleSettingsContextLimitInput = document.getElementById('role-settings-context-limit');
         const roleSettingsReplyMinInput = document.getElementById('role-settings-reply-min');
         const roleSettingsReplyMaxInput = document.getElementById('role-settings-reply-max');
+        const groupSettingsAvatarPreview = document.getElementById('group-settings-avatar-preview');
+        const groupSettingsNameInput = document.getElementById('group-settings-name');
+        const groupSettingsMembersGrid = document.getElementById('group-settings-members-grid');
+        const groupMembersPage = document.getElementById('group-members-page');
+        const groupMembersList = document.getElementById('group-members-list');
+        const groupSettingsUserPersonaSelect = document.getElementById('group-settings-user-persona-select');
+        const groupSettingsContextLimitInput = document.getElementById('group-settings-context-limit');
+        const groupSettingsReplyMinInput = document.getElementById('group-settings-reply-min');
+        const groupSettingsReplyMaxInput = document.getElementById('group-settings-reply-max');
+        const groupSettingsInviteModal = document.getElementById('group-settings-invite-modal');
+        const groupSettingsInviteList = document.getElementById('group-settings-invite-list');
         let tempAvatarData = '';
         let tempUserPersonaAvatarData = '';
         let tempRoleSettingsAvatarData = '';
+        let tempGroupSettingsAvatarData = '';
+        let editingGroupMembers = [];
         let editingUserPersonaIndex = -1;
 
         function persistChatDatabase() {
@@ -1450,6 +1744,31 @@
             };
         }
 
+        function getGroupMembers(friend = {}) {
+            if (!Array.isArray(friend.members)) return [];
+
+            return friend.members
+                .map(member => {
+                    const source = friendList.find(item => item.id === member.id && item.type !== 'group');
+                    if (source) {
+                        return {
+                            id: source.id,
+                            name: source.name,
+                            avatar: source.avatar || '',
+                            desc: source.personaPrompt || source.desc || ''
+                        };
+                    }
+
+                    return {
+                        id: member.id,
+                        name: member.name || '未命名成员',
+                        avatar: member.avatar || '',
+                        desc: member.desc || ''
+                    };
+                })
+                .filter(member => member.id);
+        }
+
         function renderRoleSettingsUserPersonaOptions(selectedId = '') {
             roleSettingsUserPersonaSelect.innerHTML = '<option value="">不绑定</option>';
             userPersonas.forEach(persona => {
@@ -1459,6 +1778,17 @@
                 roleSettingsUserPersonaSelect.appendChild(option);
             });
             roleSettingsUserPersonaSelect.value = selectedId || '';
+        }
+
+        function renderGroupSettingsUserPersonaOptions(selectedId = '') {
+            groupSettingsUserPersonaSelect.innerHTML = '<option value="">不绑定</option>';
+            userPersonas.forEach(persona => {
+                const option = document.createElement('option');
+                option.value = persona.id;
+                option.textContent = persona.name || '未命名人设';
+                groupSettingsUserPersonaSelect.appendChild(option);
+            });
+            groupSettingsUserPersonaSelect.value = selectedId || '';
         }
 
         function fillRoleSettingsAvatar(friend) {
@@ -1471,6 +1801,119 @@
 
             roleSettingsAvatarPreview.style.backgroundImage = 'none';
             roleSettingsAvatarPreview.textContent = displayName.charAt(0) || '角';
+        }
+
+        function fillGroupSettingsAvatar(friend) {
+            const displayName = friend?.name || '群';
+            if (tempGroupSettingsAvatarData) {
+                groupSettingsAvatarPreview.style.backgroundImage = `url(${tempGroupSettingsAvatarData})`;
+                groupSettingsAvatarPreview.textContent = '';
+                return;
+            }
+
+            groupSettingsAvatarPreview.style.backgroundImage = 'none';
+            groupSettingsAvatarPreview.textContent = displayName.charAt(0) || '群';
+        }
+
+        function renderGroupSettingsMembers() {
+            groupSettingsMembersGrid.innerHTML = '';
+
+            if (!editingGroupMembers.length) {
+                const emptyState = document.createElement('div');
+                emptyState.className = 'group-settings-member-empty';
+                emptyState.textContent = '当前群聊还没有成员，请点击加号邀请好友进群。';
+                groupSettingsMembersGrid.appendChild(emptyState);
+            } else {
+                editingGroupMembers.forEach(member => {
+                    const card = document.createElement('div');
+                    card.className = 'group-settings-member-card';
+
+                    const avatarMarkup = member.avatar
+                        ? `<div class="group-settings-member-avatar" style="background-image: url(${member.avatar});"></div>`
+                        : `<div class="group-settings-member-avatar">${(member.name || '成').charAt(0)}</div>`;
+
+                    card.innerHTML = `
+                        ${avatarMarkup}
+                        <div class="group-settings-member-name">${member.name || '未命名成员'}</div>
+                    `;
+                    groupSettingsMembersGrid.appendChild(card);
+                });
+            }
+
+            const addCard = document.createElement('div');
+            addCard.className = 'group-settings-member-card group-settings-add-card';
+            addCard.id = 'group-settings-add-member';
+            addCard.innerHTML = `
+                <div class="group-settings-member-avatar">+</div>
+                <div class="group-settings-member-name">邀请</div>
+            `;
+            groupSettingsMembersGrid.appendChild(addCard);
+        }
+
+        function renderGroupInviteOptions() {
+            const selectedIds = new Set(editingGroupMembers.map(member => member.id));
+            const selectableFriends = getSelectableFriends().filter(friend => !selectedIds.has(friend.id));
+            groupSettingsInviteList.innerHTML = '';
+
+            if (!selectableFriends.length) {
+                groupSettingsInviteList.innerHTML = '<div class="group-member-empty">没有可邀请的新好友了，先去创建更多好友吧。</div>';
+                return;
+            }
+
+            selectableFriends.forEach(friend => {
+                const item = document.createElement('label');
+                item.className = 'group-member-item';
+
+                const avatarMarkup = friend.avatar
+                    ? `<div class="group-member-avatar" style="background-image: url(${friend.avatar});"></div>`
+                    : `<div class="group-member-avatar">${(friend.name || '友').charAt(0)}</div>`;
+
+                item.innerHTML = `
+                    <input type="checkbox" class="group-member-check" value="${friend.id}">
+                    ${avatarMarkup}
+                    <div class="group-member-info">
+                        <div class="group-member-name">${friend.name}</div>
+                        <div class="group-member-desc">${friend.personaPrompt || friend.desc || '这个角色还没有额外设定'}</div>
+                    </div>
+                `;
+                groupSettingsInviteList.appendChild(item);
+            });
+        }
+
+        function renderGroupMembersPage() {
+            groupMembersList.innerHTML = '';
+
+            if (!editingGroupMembers.length) {
+                const emptyState = document.createElement('div');
+                emptyState.className = 'group-members-empty';
+                emptyState.textContent = '当前群聊暂无成员。';
+                groupMembersList.appendChild(emptyState);
+                return;
+            }
+
+            editingGroupMembers.forEach(member => {
+                const item = document.createElement('div');
+                item.className = 'group-members-item';
+
+                const avatarMarkup = member.avatar
+                    ? `<div class="group-members-item-avatar" style="background-image: url(${member.avatar});"></div>`
+                    : `<div class="group-members-item-avatar">${(member.name || '成').charAt(0)}</div>`;
+
+                item.innerHTML = `
+                    ${avatarMarkup}
+                    <div class="group-members-item-info">
+                        <div class="group-members-item-name">${member.name || '未命名成员'}</div>
+                        <div class="group-members-item-desc">${member.desc || '暂无更多信息'}</div>
+                    </div>
+                    <button type="button" class="group-members-kick-btn" data-member-id="${member.id}">踢出</button>
+                `;
+                groupMembersList.appendChild(item);
+            });
+        }
+
+        function openGroupMembersPage() {
+            renderGroupMembersPage();
+            groupMembersPage.style.display = 'flex';
         }
 
         function openRoleSettingsPage() {
@@ -1487,6 +1930,23 @@
             renderRoleSettingsUserPersonaOptions(config.boundUserPersonaId);
             fillRoleSettingsAvatar(friend);
             roleSettingsPage.style.display = 'flex';
+        }
+
+        function openGroupSettingsPage() {
+            const friend = getFriendByName(currentChatFriend);
+            if (!friend || friend.type !== 'group') return;
+
+            const config = getDefaultRoleConfig(friend);
+            tempGroupSettingsAvatarData = friend.avatar || '';
+            editingGroupMembers = getGroupMembers(friend);
+            groupSettingsNameInput.value = friend.name || '';
+            groupSettingsContextLimitInput.value = config.contextLimit;
+            groupSettingsReplyMinInput.value = config.replyMin;
+            groupSettingsReplyMaxInput.value = config.replyMax;
+            renderGroupSettingsUserPersonaOptions(config.boundUserPersonaId);
+            renderGroupSettingsMembers();
+            fillGroupSettingsAvatar(friend);
+            groupSettingsPage.style.display = 'flex';
         }
 
         function renameChatHistory(oldName, newName) {
@@ -1510,6 +1970,152 @@
                 chatDatabase[friendName] = [];
                 persistChatDatabase();
             }
+        }
+
+        function appendSystemChatRecord(friendName, text) {
+            const content = String(text || '').trim();
+            if (!friendName || !content) return;
+
+            ensureFriendChatHistory(friendName);
+            chatDatabase[friendName].push({ role: 'system', content });
+            persistChatDatabase();
+
+            if (currentChatFriend === friendName && chatRoom.style.display === 'flex') {
+                appendMsgBubble('system', content);
+                scrollToBottom();
+            }
+
+            renderFriendList();
+        }
+
+        function getDisplayAvatarMeta(options = {}) {
+            const name = String(options.name || '').trim();
+            const avatar = String(options.avatar || '').trim();
+            const fallbackText = String(options.fallbackText || name || '?').trim().charAt(0) || '?';
+            const isGroup = Boolean(options.isGroup);
+
+            if (avatar) {
+                return {
+                    style: `background-image: url(${avatar});`,
+                    text: ''
+                };
+            }
+
+            if (isGroup) {
+                return {
+                    style: 'background: linear-gradient(135deg, #1f1f1f, #4a4a4a);',
+                    text: fallbackText || '群'
+                };
+            }
+
+            return {
+                style: 'background-color: #c9c9ce;',
+                text: fallbackText
+            };
+        }
+
+        function getCurrentUserAvatarMeta() {
+            const friend = getFriendByName(currentChatFriend);
+            const boundUserPersona = getBoundUserPersona(friend);
+            const userName = boundUserPersona?.name || localStorage.getItem('os_name') || '我';
+            return getDisplayAvatarMeta({
+                name: userName,
+                avatar: boundUserPersona?.avatar || localStorage.getItem('os_avatar') || '',
+                fallbackText: userName.charAt(0) || '我'
+            });
+        }
+
+        function getCurrentChatAvatarMeta() {
+            const friend = getFriendByName(currentChatFriend) || {};
+            const fallbackText = friend.type === 'group'
+                ? (friend.name || '群').charAt(0) || '群'
+                : (friend.name || '友').charAt(0) || '友';
+            return getDisplayAvatarMeta({
+                name: friend.name || currentChatFriend,
+                avatar: friend.avatar || '',
+                fallbackText,
+                isGroup: friend.type === 'group'
+            });
+        }
+
+        function getGroupMemberByIdentity(friend, message = {}) {
+            const members = getGroupMembers(friend);
+            const speakerId = String(message.speakerId || '').trim();
+            const speakerName = String(message.speakerName || '').trim();
+
+            if (speakerId) {
+                const byId = members.find(member => member.id === speakerId);
+                if (byId) return byId;
+            }
+
+            if (speakerName) {
+                const byName = members.find(member => member.name === speakerName);
+                if (byName) return byName;
+            }
+
+            return null;
+        }
+
+        function getMessageAvatarMeta(role, message = {}) {
+            if (role === 'user') return getCurrentUserAvatarMeta();
+
+            const friend = getFriendByName(currentChatFriend);
+            if (friend?.type === 'group') {
+                const member = getGroupMemberByIdentity(friend, message);
+                if (member) {
+                    return getDisplayAvatarMeta({
+                        name: member.name,
+                        avatar: message.speakerAvatar || member.avatar || '',
+                        fallbackText: (member.name || '群').charAt(0) || '群'
+                    });
+                }
+            }
+
+            return getCurrentChatAvatarMeta();
+        }
+
+        function getMessageDisplayName(role, message = {}) {
+            if (role === 'user') {
+                const friend = getFriendByName(currentChatFriend);
+                const boundUserPersona = getBoundUserPersona(friend);
+                return boundUserPersona?.name || localStorage.getItem('os_name') || '我';
+            }
+
+            const friend = getFriendByName(currentChatFriend);
+            if (friend?.type === 'group') {
+                const member = getGroupMemberByIdentity(friend, message);
+                return message.speakerName || member?.name || '群成员';
+            }
+
+            return friend?.name || currentChatFriend;
+        }
+
+        function formatGroupContextMessage(friend, message = {}) {
+            const role = message.role;
+            const rawContent = String(message.content || '').trim();
+            if (!rawContent) return null;
+
+            if (role === 'system') {
+                return {
+                    role: 'system',
+                    content: rawContent
+                };
+            }
+
+            if (role === 'user') {
+                const boundUserPersona = getBoundUserPersona(friend);
+                const userName = boundUserPersona?.name || localStorage.getItem('os_name') || '我';
+                return {
+                    role: 'user',
+                    content: `${userName}：${rawContent}`
+                };
+            }
+
+            const speakerName = getMessageDisplayName('ai', message) || '群成员';
+            return {
+                role: 'assistant',
+                content: `${speakerName}：${rawContent}`
+            };
         }
 
         function getSelectableFriends() {
@@ -1603,11 +2209,15 @@
             const friend = getFriendByName(currentChatFriend);
             if (!friend) return;
 
+            const isGroupChat = friend.type === 'group';
+
             const ok = await showAppDialog({
-                title: '删除好友',
-                message: `确定要删除「${currentChatFriend}」吗？删除后聊天记录也会一起移除。`,
+                title: isGroupChat ? '解散群聊' : '删除好友',
+                message: isGroupChat
+                    ? `确定要解散「${currentChatFriend}」吗？解散后聊天记录也会一起移除。`
+                    : `确定要删除「${currentChatFriend}」吗？删除后聊天记录也会一起移除。`,
                 mode: 'confirm',
-                confirmText: '删除',
+                confirmText: isGroupChat ? '解散' : '删除',
                 cancelText: '取消'
             });
             if (!ok) return;
@@ -1630,9 +2240,10 @@
             renderFriendList();
 
             chatSettingsPage.style.display = 'none';
+            groupSettingsPage.style.display = 'none';
             chatRoom.style.display = 'none';
             currentChatFriend = '';
-            await showAppDialog({ title: '已删除', message: '好友已删除。' });
+            await showAppDialog({ title: isGroupChat ? '已解散' : '已删除', message: isGroupChat ? '群聊已解散。' : '好友已删除。' });
         }
 
         function renderFriendList() {
@@ -1647,23 +2258,18 @@
                     persistFriendList();
                 }
 
-                let avatarStyle = '';
-                let avatarContent = '';
-                if (friend.type === 'group') {
-                    avatarStyle = 'background: linear-gradient(135deg, #1f1f1f, #4a4a4a); color: #fff; font-size: 18px; font-weight: 600;';
-                    avatarContent = '群';
-                } else if (friend.avatar) {
-                    avatarStyle = `background-image: url(${friend.avatar});`;
-                } else {
-                    avatarStyle = 'background-color: #c9c9ce; color: #fff; font-size: 20px; font-weight: 500;';
-                    avatarContent = (friend.name || '友').charAt(0);
-                }
+                const avatarMeta = getDisplayAvatarMeta({
+                    name: friend.name,
+                    avatar: friend.avatar || '',
+                    fallbackText: friend.type === 'group' ? '群' : (friend.name || '友').charAt(0),
+                    isGroup: friend.type === 'group'
+                });
 
                 const chatItem = document.createElement('div');
                 chatItem.className = 'wc-chat-item';
                 const previewText = getFriendPreviewText(friend);
                 chatItem.innerHTML = `
-                    <div class="wc-chat-avatar" style="${avatarStyle}">${avatarContent}</div>
+                    <div class="wc-chat-avatar" style="${avatarMeta.style}">${avatarMeta.text}</div>
                     <div class="wc-chat-info">
                         <div class="wc-chat-header"><span class="wc-chat-name">${friend.name}</span><span class="wc-chat-time">${friend.time || ''}</span></div>
                         <div class="wc-chat-desc">${previewText}</div>
@@ -1783,12 +2389,26 @@
 
         function openUserPersonasPage() {
             renderUserPersonas();
-            userPersonasPage.style.display = 'flex';
+            activeWechatSubpage = 'user-personas';
+            userPersonasSubpage.classList.add('active');
+            plusMenu.style.display = 'none';
+            updateWechatHeader();
         }
 
         document.getElementById('btn-open-role-settings').addEventListener('click', openRoleSettingsPage);
         document.getElementById('role-settings-back-btn').addEventListener('click', () => {
             roleSettingsPage.style.display = 'none';
+        });
+        document.getElementById('group-settings-back-btn').addEventListener('click', () => {
+            groupSettingsPage.style.display = 'none';
+            chatSettingsPage.style.display = 'flex';
+        });
+        document.getElementById('btn-open-group-members-page').addEventListener('click', () => {
+            openGroupMembersPage();
+        });
+        document.getElementById('group-members-back-btn').addEventListener('click', () => {
+            groupMembersPage.style.display = 'none';
+            groupSettingsPage.style.display = 'flex';
         });
 
         document.getElementById('role-settings-avatar-upload').addEventListener('change', function(e) {
@@ -1802,9 +2422,26 @@
             }
         });
 
+        document.getElementById('group-settings-avatar-upload').addEventListener('change', function(e) {
+            if (e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    tempGroupSettingsAvatarData = event.target.result;
+                    fillGroupSettingsAvatar({ name: groupSettingsNameInput.value.trim() || currentChatFriend || '群' });
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
         roleSettingsNameInput.addEventListener('input', () => {
             if (!tempRoleSettingsAvatarData) {
                 fillRoleSettingsAvatar({ name: roleSettingsNameInput.value.trim() || currentChatFriend || '角' });
+            }
+        });
+
+        groupSettingsNameInput.addEventListener('input', () => {
+            if (!tempGroupSettingsAvatarData) {
+                fillGroupSettingsAvatar({ name: groupSettingsNameInput.value.trim() || currentChatFriend || '群' });
             }
         });
 
@@ -1858,6 +2495,9 @@
             renameChatHistory(oldName, newName);
             const settingsMap = parseStoredJson('friend_settings', {});
             settingsMap[newName] = personaPrompt;
+            if (oldName !== newName && Object.prototype.hasOwnProperty.call(settingsMap, oldName)) {
+                delete settingsMap[oldName];
+            }
             localStorage.setItem('friend_settings', JSON.stringify(settingsMap));
 
             currentChatFriend = newName;
@@ -1868,13 +2508,89 @@
             await showAppDialog({ title: '保存成功', message: '角色设置已更新。' });
         });
 
+        document.getElementById('btn-save-group-settings').addEventListener('click', async () => {
+            const friend = getFriendByName(currentChatFriend);
+            if (!friend || friend.type !== 'group') return;
+
+            const newName = groupSettingsNameInput.value.trim();
+            const boundUserPersonaId = groupSettingsUserPersonaSelect.value;
+            const contextLimit = Number(groupSettingsContextLimitInput.value) || 12;
+            const replyMin = Number(groupSettingsReplyMinInput.value) || 2;
+            const replyMax = Number(groupSettingsReplyMaxInput.value) || 4;
+
+            if (!newName) {
+                await showAppDialog({ title: '无法保存', message: '请先填写群聊名称。' });
+                return;
+            }
+
+            if (editingGroupMembers.length < 2) {
+                await showAppDialog({ title: '无法保存', message: '群聊至少需要 2 个成员。' });
+                return;
+            }
+
+            if (contextLimit < 1) {
+                await showAppDialog({ title: '无法保存', message: '上下文记忆条数至少要为 1。' });
+                return;
+            }
+
+            if (replyMin < 1 || replyMax < 1 || replyMin > replyMax) {
+                await showAppDialog({ title: '无法保存', message: '回复条数区间不合法，请重新输入。' });
+                return;
+            }
+
+            const duplicateFriend = friendList.find(item => item.name === newName && item.id !== friend.id);
+            if (duplicateFriend) {
+                await showAppDialog({ title: '无法保存', message: '已经存在同名聊天，请换一个名字。' });
+                return;
+            }
+
+            const oldName = friend.name;
+            const previousMembers = getGroupMembers(friend);
+            const previousMemberIds = new Set(previousMembers.map(member => member.id));
+            const nextMemberIds = new Set(editingGroupMembers.map(member => member.id));
+            const invitedMembers = editingGroupMembers.filter(member => !previousMemberIds.has(member.id));
+            const removedMembers = previousMembers.filter(member => !nextMemberIds.has(member.id));
+
+            friend.name = newName;
+            friend.avatar = tempGroupSettingsAvatarData;
+            friend.boundUserPersonaId = boundUserPersonaId;
+            friend.contextLimit = contextLimit;
+            friend.replyMin = replyMin;
+            friend.replyMax = replyMax;
+            friend.members = editingGroupMembers.map(member => ({
+                id: member.id,
+                name: member.name,
+                avatar: member.avatar || '',
+                desc: member.desc || ''
+            }));
+            friend.desc = `${editingGroupMembers.map(member => member.name || '未命名成员').join('、')} 已加入群聊`;
+
+            renameChatHistory(oldName, newName);
+            currentChatFriend = newName;
+            document.getElementById('chat-title-name').textContent = newName;
+            persistFriendList();
+            renderFriendList();
+            renderGroupSettingsMembers();
+            groupSettingsPage.style.display = 'none';
+
+            if (invitedMembers.length) {
+                appendSystemChatRecord(newName, `${invitedMembers.map(member => member.name || '未命名成员').join('、')}加入了群聊`);
+            }
+
+            if (removedMembers.length) {
+                removedMembers.forEach(member => {
+                    appendSystemChatRecord(newName, `${member.name || '未命名成员'}被移出了群聊`);
+                });
+            }
+
+            if (oldName !== newName) {
+                appendSystemChatRecord(newName, `群聊名称已修改为「${newName}」`);
+            }
+
+            await showAppDialog({ title: '保存成功', message: '群聊设置已更新。' });
+        });
+
         document.getElementById('btn-open-user-personas').addEventListener('click', openUserPersonasPage);
-        document.getElementById('user-personas-back-btn').addEventListener('click', () => {
-            userPersonasPage.style.display = 'none';
-        });
-        document.getElementById('user-personas-add-btn').addEventListener('click', () => {
-            openUserPersonaModal();
-        });
         document.getElementById('btn-cancel-user-persona').addEventListener('click', () => {
             userPersonaModal.style.display = 'none';
         });
@@ -1925,6 +2641,14 @@
         renderUserPersonas();
 
         document.getElementById('wc-create-group-btn').addEventListener('click', openCreateGroupModal);
+
+        wcBackBtn.addEventListener('click', () => {
+            if (activeWechatSubpage) {
+                closeWechatSubpage();
+                return;
+            }
+            wechatApp.style.display = 'none';
+        });
 
         document.getElementById('wc-add-friend-btn').addEventListener('click', () => {
             plusMenu.style.display = 'none';
@@ -2031,6 +2755,7 @@
             });
 
             ensureFriendChatHistory(groupName);
+            appendSystemChatRecord(groupName, `${selectedMembers.map(member => member.name).join('、')}加入了群聊`);
             persistFriendList();
             persistChatDatabase();
             renderFriendList();
@@ -2066,12 +2791,17 @@
             chatSettingsPage.style.display = 'none';
         });
 
-        document.querySelector('#chat-settings-page .settings-group').addEventListener('click', async (event) => {
+        chatSettingsPage.addEventListener('click', async (event) => {
             const item = event.target.closest('.settings-item');
             if (!item) return;
 
             if (item.id === 'btn-open-role-settings') {
-                openRoleSettingsPage();
+                const friend = getFriendByName(currentChatFriend);
+                if (friend?.type === 'group') {
+                    openGroupSettingsPage();
+                } else {
+                    openRoleSettingsPage();
+                }
                 return;
             }
 
@@ -2095,6 +2825,67 @@
             renderChatHistory();
         }
 
+        groupSettingsMembersGrid.addEventListener('click', async (event) => {
+            const addCard = event.target.closest('#group-settings-add-member');
+            if (addCard) {
+                renderGroupInviteOptions();
+                groupSettingsInviteModal.style.display = 'flex';
+            }
+        });
+
+        document.getElementById('btn-cancel-group-invite').addEventListener('click', () => {
+            groupSettingsInviteModal.style.display = 'none';
+        });
+
+        document.getElementById('btn-confirm-group-invite').addEventListener('click', async () => {
+            const selectedIds = Array.from(groupSettingsInviteList.querySelectorAll('.group-member-check:checked')).map(item => item.value);
+            if (!selectedIds.length) {
+                await showAppDialog({ title: '无法邀请', message: '请先选择至少 1 个好友。' });
+                return;
+            }
+
+            const newMembers = getSelectableFriends()
+                .filter(friend => selectedIds.includes(friend.id))
+                .map(friend => ({
+                    id: friend.id,
+                    name: friend.name,
+                    avatar: friend.avatar || '',
+                    desc: friend.personaPrompt || friend.desc || ''
+                }));
+
+            editingGroupMembers = [...editingGroupMembers, ...newMembers];
+            renderGroupSettingsMembers();
+            renderGroupMembersPage();
+            groupSettingsInviteModal.style.display = 'none';
+        });
+
+        groupMembersList.addEventListener('click', async (event) => {
+            const kickButton = event.target.closest('.group-members-kick-btn');
+            if (!kickButton) return;
+
+            const memberId = kickButton.getAttribute('data-member-id');
+            const member = editingGroupMembers.find(item => item.id === memberId);
+            if (!member) return;
+
+            if (editingGroupMembers.length <= 2) {
+                await showAppDialog({ title: '无法踢出', message: '群聊至少需要保留 2 个成员。' });
+                return;
+            }
+
+            const shouldKick = await showAppDialog({
+                title: '踢出成员',
+                message: `确定要将「${member.name || '未命名成员'}」踢出群聊吗？`,
+                mode: 'confirm',
+                confirmText: '踢出',
+                cancelText: '取消'
+            });
+            if (!shouldKick) return;
+
+            editingGroupMembers = editingGroupMembers.filter(item => item.id !== memberId);
+            renderGroupMembersPage();
+            renderGroupSettingsMembers();
+        });
+
         function updateChatSettingsLabels() {
             const friend = getFriendByName(currentChatFriend);
             const isGroupChat = friend?.type === 'group';
@@ -2103,7 +2894,7 @@
             const deleteLabel = document.getElementById('chat-settings-delete-label');
 
             if (title) {
-                title.textContent = isGroupChat ? '群聊设置' : '聊天设置';
+                title.textContent = '聊天设置';
             }
 
             if (roleLabel) {
@@ -2147,6 +2938,37 @@
             ].join('\n');
         }
 
+        function buildGroupChatSystemPrompt(friend) {
+            const config = getDefaultRoleConfig(friend);
+            const boundUserPersona = getBoundUserPersona(friend);
+            const userPersonaName = boundUserPersona?.name || '用户';
+            const userPersonaDesc = boundUserPersona?.description || '未绑定具体用户人设。';
+            const members = getGroupMembers(friend);
+            const memberLines = members.length
+                ? members.map(member => `${member.name || '未命名成员'}：${member.desc || '暂无设定'}`).join('；')
+                : '暂无群成员信息。';
+            const extraPrompt = parseStoredJson('friend_settings', {})[friend.name] || '';
+
+            return [
+                `这是一个微信群聊天，群聊名称是：${friend.name || '未命名群聊'}。`,
+                `群成员有人：${memberLines}`,
+                `你需要同时扮演这些群成员，和${userPersonaName}进行群聊。`,
+                `用户人设是：${userPersonaDesc}`,
+                '请严格按照各自人设、关系和群聊语境决定谁发言、每个人发几条，不需要平均分配。',
+                `整轮回复总条数控制在 ${config.replyMin} 到 ${config.replyMax} 条。`,
+                '可以只有部分成员发言，也可以连续由同一成员发多条，只要符合人设和当前话题。',
+                '当前场景是线上微信群聊天，不是面对面交谈。',
+                '请使用口语化、碎片化、像微信一样的短消息回复。',
+                '每条消息控制在 1 到 25 个字左右。',
+                '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
+                '如果内容里需要提到发言人，只在 speaker 字段里写，不要把名字重复写进 content。',
+                '请严格返回 JSON，格式为：{"replies":[{"speaker":"角色名","content":"第一条"},{"speaker":"角色名","content":"第二条"}]}',
+                'speaker 必须是群成员名字之一，content 只写这条消息正文。',
+                extraPrompt ? `补充规则：${extraPrompt}` : '',
+                '除了这个 JSON 之外，不要输出任何额外文字、标题、代码块或说明。'
+            ].filter(Boolean).join('\n');
+        }
+
         function normalizeAiReplyMessages(replyText) {
             const fallbackMessages = String(replyText || '')
                 .split(/\n+/)
@@ -2181,19 +3003,127 @@
             return ['……'];
         }
 
+        function normalizeGroupReplyMessages(replyText, friend) {
+            const members = getGroupMembers(friend);
+            const memberMap = new Map(members.map(member => [member.name, member]));
+            const fallbackSpeaker = members[0] || null;
+
+            function mapReplyItems(items) {
+                if (!Array.isArray(items)) return [];
+
+                return items
+                    .map(item => {
+                        if (!item || typeof item !== 'object') return null;
+
+                        const speakerName = String(item.speaker || item.name || '').trim();
+                        const content = String(item.content || item.text || '').trim();
+                        if (!speakerName || !content) return null;
+
+                        const member = memberMap.get(speakerName);
+                        if (!member) return null;
+
+                        return {
+                            role: 'ai',
+                            content,
+                            speakerId: member.id,
+                            speakerName: member.name,
+                            speakerAvatar: member.avatar || ''
+                        };
+                    })
+                    .filter(Boolean);
+            }
+
+            try {
+                const parsed = JSON.parse(replyText);
+                const validReplies = mapReplyItems(parsed?.replies);
+                if (validReplies.length) return validReplies;
+            } catch (error) {
+                const jsonMatch = String(replyText || '').match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                    try {
+                        const parsed = JSON.parse(jsonMatch[0]);
+                        const validReplies = mapReplyItems(parsed?.replies);
+                        if (validReplies.length) return validReplies;
+                    } catch (nestedError) {
+                    }
+                }
+            }
+
+            const fallbackReplies = String(replyText || '')
+                .split(/\n+/)
+                .map(item => item.trim())
+                .filter(Boolean)
+                .map(item => {
+                    const match = item.match(/^([^:：]{1,20})[:：]\s*(.+)$/);
+                    if (match) {
+                        const speakerName = match[1].trim();
+                        const content = match[2].trim();
+                        const member = memberMap.get(speakerName);
+                        if (member && content) {
+                            return {
+                                role: 'ai',
+                                content,
+                                speakerId: member.id,
+                                speakerName: member.name,
+                                speakerAvatar: member.avatar || ''
+                            };
+                        }
+                    }
+
+                    if (!fallbackSpeaker) return null;
+                    return {
+                        role: 'ai',
+                        content: item,
+                        speakerId: fallbackSpeaker.id,
+                        speakerName: fallbackSpeaker.name,
+                        speakerAvatar: fallbackSpeaker.avatar || ''
+                    };
+                })
+                .filter(Boolean);
+
+            if (fallbackReplies.length) return fallbackReplies.slice(0, 12);
+            if (!fallbackSpeaker) {
+                return [{ role: 'ai', content: '……', speakerId: '', speakerName: '群成员', speakerAvatar: '' }];
+            }
+
+            return [{
+                role: 'ai',
+                content: '……',
+                speakerId: fallbackSpeaker.id,
+                speakerName: fallbackSpeaker.name,
+                speakerAvatar: fallbackSpeaker.avatar || ''
+            }];
+        }
+
         function renderChatHistory() {
             chatMsgList.innerHTML = '';
             const msgs = chatDatabase[currentChatFriend] || [];
-            msgs.forEach(msg => { appendMsgBubble(msg.role, msg.content); });
+            msgs.forEach(msg => { appendMsgBubble(msg.role, msg.content, null, msg); });
             scrollToBottom();
         }
 
         // 增加 id 支持以便删除临时气泡
-        function appendMsgBubble(role, text, id = null) {
+        function appendMsgBubble(role, text, id = null, message = {}) {
             const row = document.createElement('div');
             row.className = `msg-row ${role}`;
             if(id) row.id = id;
-            row.innerHTML = `<div class="msg-bubble">${text}</div>`;
+
+            if (role === 'system') {
+                row.innerHTML = `<div class="msg-bubble">${text}</div>`;
+                chatMsgList.appendChild(row);
+                return;
+            }
+
+            const avatarMeta = getMessageAvatarMeta(role, message);
+            const displayName = getMessageDisplayName(role, message);
+            const shouldShowSenderName = role === 'ai' && getFriendByName(currentChatFriend)?.type === 'group' && displayName;
+            row.innerHTML = `
+                <div class="msg-avatar" style="${avatarMeta.style}">${avatarMeta.text}</div>
+                <div class="msg-main">
+                    ${shouldShowSenderName ? `<div class="msg-sender-name">${displayName}</div>` : ''}
+                    <div class="msg-bubble">${text}</div>
+                </div>
+            `;
             chatMsgList.appendChild(row);
         }
 
@@ -2210,7 +3140,7 @@
                 ensureFriendChatHistory(currentChatFriend);
                 chatDatabase[currentChatFriend].push({ role: 'user', content: text });
                 persistChatDatabase();
-                appendMsgBubble('user', text);
+                appendMsgBubble('user', text, null, { role: 'user', content: text });
                 chatInputField.value = '';
                 chatPlusPanel.style.display = 'none';
                 scrollToBottom();
@@ -2262,27 +3192,38 @@
 
             const friend = getFriendByName(currentChatFriend);
             const isGroupChat = friend?.type === 'group';
-            const settingsMap = parseStoredJson('friend_settings', {});
-            const defaultPrompt = settingsMap[currentChatFriend] || '你是一个好用的AI助手。';
+            const config = getDefaultRoleConfig(friend || {});
             const systemPrompt = isGroupChat
-                ? defaultPrompt
-                : buildSingleChatSystemPrompt(friend || { name: currentChatFriend, personaPrompt: defaultPrompt });
+                ? buildGroupChatSystemPrompt(friend || { name: currentChatFriend })
+                : buildSingleChatSystemPrompt(friend || { name: currentChatFriend, personaPrompt: '' });
 
-            const contextLimit = !isGroupChat ? getDefaultRoleConfig(friend).contextLimit : msgs.length;
+            const contextLimit = config.contextLimit;
             const contextMessages = msgs.slice(-Math.max(1, contextLimit));
 
             // 构造标准对话结构
             const apiMessages = [ { role: 'system', content: systemPrompt } ];
             contextMessages.forEach(m => {
+                if (isGroupChat) {
+                    const formattedMessage = formatGroupContextMessage(friend || { name: currentChatFriend }, m);
+                    if (formattedMessage) {
+                        apiMessages.push(formattedMessage);
+                    }
+                    return;
+                }
+
                 apiMessages.push({
-                    role: m.role === 'user' ? 'user' : 'assistant',
+                    role: m.role === 'user'
+                        ? 'user'
+                        : m.role === 'system'
+                            ? 'system'
+                            : 'assistant',
                     content: m.content
                 });
             });
 
             // 界面上加一个等待动效
             const loadingId = 'loading-' + Date.now();
-            appendMsgBubble('ai', '<div class="typing-indicator" style="display:flex; gap:2px; font-weight:bold; font-size:20px; line-height:10px;"><span>.</span><span>.</span><span>.</span></div>', loadingId);
+            appendMsgBubble('ai', '<div class="typing-indicator" style="display:flex; gap:2px; font-weight:bold; font-size:20px; line-height:10px;"><span>.</span><span>.</span><span>.</span></div>', loadingId, { role: 'ai', content: '', speakerName: isGroupChat ? '群成员' : '' });
             scrollToBottom();
 
             try {
@@ -2312,13 +3253,16 @@
 
                 const data = await res.json();
                 const replyText = data.choices[0].message.content;
-                const replyMessages = isGroupChat ? [replyText] : normalizeAiReplyMessages(replyText);
+                const replyMessages = isGroupChat
+                    ? normalizeGroupReplyMessages(replyText, friend || { name: currentChatFriend, members: [] })
+                    : normalizeAiReplyMessages(replyText).map(message => ({ role: 'ai', content: message }));
                 const replyTurnId = `ai-turn-${Date.now()}`;
 
                 // 记录并渲染
                 replyMessages.forEach(message => {
-                    chatDatabase[currentChatFriend].push({ role: 'ai', content: message, turnId: replyTurnId });
-                    appendMsgBubble('ai', message);
+                    const record = { ...message, role: 'ai', turnId: replyTurnId };
+                    chatDatabase[currentChatFriend].push(record);
+                    appendMsgBubble('ai', record.content, null, record);
                 });
                 persistChatDatabase();
                 scrollToBottom();
