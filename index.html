@@ -442,7 +442,7 @@
             border: 0.5px solid #ececec;
             display: flex; flex-direction: column; gap: 12px;
         }
-        .api-btn { background: #111; color: #fff; text-align: center; padding: 12px; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
+        .api-btn { background: #111; color: #fff; text-align: center; padding: 12px; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: 500; transition: background 0.2s; border: none; width: 100%; display: block; -webkit-appearance: none; appearance: none; }
         .api-btn:active { background: #333; }
         .api-btn-small { padding: 8px 12px; background: #eee; border-radius: 6px; font-size: 14px; color: #333; cursor: pointer; font-weight: 500; text-align: center; border: 1px solid #ddd; }
         .api-btn-small:active { background: #e0e0e0; }
@@ -725,7 +725,7 @@
         .modal-input:focus { border-color: #999; }
         .modal-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px; }
         .modal-btn {
-            flex: 1; padding: 10px 0; border-radius: 6px; text-align: center; font-size: 15px; font-weight: 600; cursor: pointer;
+            flex: 1; padding: 10px 0; border-radius: 6px; text-align: center; font-size: 15px; font-weight: 600; cursor: pointer; border: none; width: 100%; display: block; -webkit-appearance: none; appearance: none;
         }
         .btn-cancel { background: #f2f2f2; color: #333; }
         .btn-confirm { background: #111; color: #fff; }
@@ -1032,7 +1032,7 @@
             </div>
         </div>
         <div class="role-settings-footer">
-            <div class="api-btn" id="btn-save-role-settings" style="background: #34c759;">保存角色设置</div>
+            <button type="button" class="api-btn" id="btn-save-role-settings" style="background: #34c759;">保存角色设置</button>
         </div>
     </div>
 
@@ -1091,7 +1091,7 @@
             </div>
         </div>
         <div class="role-settings-footer">
-            <div class="api-btn" id="btn-save-group-settings" style="background: #34c759;">保存群聊设置</div>
+            <button type="button" class="api-btn" id="btn-save-group-settings" style="background: #34c759;">保存群聊设置</button>
         </div>
     </div>
 
@@ -1218,8 +1218,8 @@
             <input type="text" class="modal-input" id="group-name-input" placeholder="请输入群聊名称" autocomplete="off">
             <div class="group-member-list" id="group-member-list"></div>
             <div class="modal-actions">
-                <div class="modal-btn btn-cancel" id="btn-cancel-group">取消</div>
-                <div class="modal-btn btn-confirm" id="btn-confirm-group">创建</div>
+                <button type="button" class="modal-btn btn-cancel" id="btn-cancel-group">取消</button>
+                <button type="button" class="modal-btn btn-confirm" id="btn-confirm-group">创建</button>
             </div>
         </div>
     </div>
@@ -2158,6 +2158,14 @@
             createGroupModal.style.display = 'flex';
         }
 
+        function closeOverlay(modal) {
+            if (!modal) return;
+            if (document.activeElement && typeof document.activeElement.blur === 'function') {
+                document.activeElement.blur();
+            }
+            modal.style.display = 'none';
+        }
+
         function renderRoleOptions() {
             roleSelect.innerHTML = '<option value="">请先添加一个角色</option>';
             friendList.forEach(friend => {
@@ -2446,148 +2454,158 @@
         });
 
         document.getElementById('btn-save-role-settings').addEventListener('click', async () => {
-            const friend = getFriendByName(currentChatFriend);
-            if (!friend || friend.type === 'group') return;
+            try {
+                const friend = getFriendByName(currentChatFriend);
+                if (!friend || friend.type === 'group') return;
 
-            const newName = roleSettingsNameInput.value.trim();
-            const personaPrompt = roleSettingsPersonaInput.value.trim();
-            const boundUserPersonaId = roleSettingsUserPersonaSelect.value;
-            const contextLimit = Number(roleSettingsContextLimitInput.value) || 12;
-            const replyMin = Number(roleSettingsReplyMinInput.value) || 2;
-            const replyMax = Number(roleSettingsReplyMaxInput.value) || 4;
+                const newName = roleSettingsNameInput.value.trim();
+                const personaPrompt = roleSettingsPersonaInput.value.trim();
+                const boundUserPersonaId = roleSettingsUserPersonaSelect.value;
+                const contextLimit = Number(roleSettingsContextLimitInput.value) || 12;
+                const replyMin = Number(roleSettingsReplyMinInput.value) || 2;
+                const replyMax = Number(roleSettingsReplyMaxInput.value) || 4;
 
-            if (!newName) {
-                await showAppDialog({ title: '无法保存', message: '请先填写角色姓名。' });
-                return;
+                if (!newName) {
+                    await showAppDialog({ title: '无法保存', message: '请先填写角色姓名。' });
+                    return;
+                }
+
+                if (!personaPrompt) {
+                    await showAppDialog({ title: '无法保存', message: '请先填写角色人设。' });
+                    return;
+                }
+
+                if (contextLimit < 1) {
+                    await showAppDialog({ title: '无法保存', message: '上下文记忆条数至少要为 1。' });
+                    return;
+                }
+
+                if (replyMin < 1 || replyMax < 1 || replyMin > replyMax) {
+                    await showAppDialog({ title: '无法保存', message: '回复条数区间不合法，请重新输入。' });
+                    return;
+                }
+
+                const duplicateFriend = friendList.find(item => item.name === newName && item.id !== friend.id);
+                if (duplicateFriend) {
+                    await showAppDialog({ title: '无法保存', message: '已经存在同名角色，请换一个名字。' });
+                    return;
+                }
+
+                const oldName = friend.name;
+                friend.name = newName;
+                friend.avatar = tempRoleSettingsAvatarData;
+                friend.personaPrompt = personaPrompt;
+                friend.boundUserPersonaId = boundUserPersonaId;
+                friend.contextLimit = contextLimit;
+                friend.replyMin = replyMin;
+                friend.replyMax = replyMax;
+                friend.desc = '你们已经是好友了，开始聊天吧';
+
+                closeOverlay(roleSettingsPage);
+                renameChatHistory(oldName, newName);
+                const settingsMap = parseStoredJson('friend_settings', {});
+                settingsMap[newName] = personaPrompt;
+                if (oldName !== newName && Object.prototype.hasOwnProperty.call(settingsMap, oldName)) {
+                    delete settingsMap[oldName];
+                }
+                localStorage.setItem('friend_settings', JSON.stringify(settingsMap));
+
+                currentChatFriend = newName;
+                document.getElementById('chat-title-name').textContent = newName;
+                persistFriendList();
+                renderFriendList();
+                await showAppDialog({ title: '保存成功', message: '角色设置已更新。' });
+            } catch (error) {
+                console.error('保存角色设置失败', error);
+                await showAppDialog({ title: '保存失败', message: `角色设置保存失败：${error.message}` });
             }
-
-            if (!personaPrompt) {
-                await showAppDialog({ title: '无法保存', message: '请先填写角色人设。' });
-                return;
-            }
-
-            if (contextLimit < 1) {
-                await showAppDialog({ title: '无法保存', message: '上下文记忆条数至少要为 1。' });
-                return;
-            }
-
-            if (replyMin < 1 || replyMax < 1 || replyMin > replyMax) {
-                await showAppDialog({ title: '无法保存', message: '回复条数区间不合法，请重新输入。' });
-                return;
-            }
-
-            const duplicateFriend = friendList.find(item => item.name === newName && item.id !== friend.id);
-            if (duplicateFriend) {
-                await showAppDialog({ title: '无法保存', message: '已经存在同名角色，请换一个名字。' });
-                return;
-            }
-
-            const oldName = friend.name;
-            friend.name = newName;
-            friend.avatar = tempRoleSettingsAvatarData;
-            friend.personaPrompt = personaPrompt;
-            friend.boundUserPersonaId = boundUserPersonaId;
-            friend.contextLimit = contextLimit;
-            friend.replyMin = replyMin;
-            friend.replyMax = replyMax;
-            friend.desc = '你们已经是好友了，开始聊天吧';
-
-            renameChatHistory(oldName, newName);
-            const settingsMap = parseStoredJson('friend_settings', {});
-            settingsMap[newName] = personaPrompt;
-            if (oldName !== newName && Object.prototype.hasOwnProperty.call(settingsMap, oldName)) {
-                delete settingsMap[oldName];
-            }
-            localStorage.setItem('friend_settings', JSON.stringify(settingsMap));
-
-            currentChatFriend = newName;
-            document.getElementById('chat-title-name').textContent = newName;
-            persistFriendList();
-            renderFriendList();
-            roleSettingsPage.style.display = 'none';
-            await showAppDialog({ title: '保存成功', message: '角色设置已更新。' });
         });
 
         document.getElementById('btn-save-group-settings').addEventListener('click', async () => {
-            const friend = getFriendByName(currentChatFriend);
-            if (!friend || friend.type !== 'group') return;
+            try {
+                const friend = getFriendByName(currentChatFriend);
+                if (!friend || friend.type !== 'group') return;
 
-            const newName = groupSettingsNameInput.value.trim();
-            const boundUserPersonaId = groupSettingsUserPersonaSelect.value;
-            const contextLimit = Number(groupSettingsContextLimitInput.value) || 12;
-            const replyMin = Number(groupSettingsReplyMinInput.value) || 2;
-            const replyMax = Number(groupSettingsReplyMaxInput.value) || 4;
+                const newName = groupSettingsNameInput.value.trim();
+                const boundUserPersonaId = groupSettingsUserPersonaSelect.value;
+                const contextLimit = Number(groupSettingsContextLimitInput.value) || 12;
+                const replyMin = Number(groupSettingsReplyMinInput.value) || 2;
+                const replyMax = Number(groupSettingsReplyMaxInput.value) || 4;
 
-            if (!newName) {
-                await showAppDialog({ title: '无法保存', message: '请先填写群聊名称。' });
-                return;
+                if (!newName) {
+                    await showAppDialog({ title: '无法保存', message: '请先填写群聊名称。' });
+                    return;
+                }
+
+                if (editingGroupMembers.length < 2) {
+                    await showAppDialog({ title: '无法保存', message: '群聊至少需要 2 个成员。' });
+                    return;
+                }
+
+                if (contextLimit < 1) {
+                    await showAppDialog({ title: '无法保存', message: '上下文记忆条数至少要为 1。' });
+                    return;
+                }
+
+                if (replyMin < 1 || replyMax < 1 || replyMin > replyMax) {
+                    await showAppDialog({ title: '无法保存', message: '回复条数区间不合法，请重新输入。' });
+                    return;
+                }
+
+                const duplicateFriend = friendList.find(item => item.name === newName && item.id !== friend.id);
+                if (duplicateFriend) {
+                    await showAppDialog({ title: '无法保存', message: '已经存在同名聊天，请换一个名字。' });
+                    return;
+                }
+
+                const oldName = friend.name;
+                const previousMembers = getGroupMembers(friend);
+                const previousMemberIds = new Set(previousMembers.map(member => member.id));
+                const nextMemberIds = new Set(editingGroupMembers.map(member => member.id));
+                const invitedMembers = editingGroupMembers.filter(member => !previousMemberIds.has(member.id));
+                const removedMembers = previousMembers.filter(member => !nextMemberIds.has(member.id));
+
+                friend.name = newName;
+                friend.avatar = tempGroupSettingsAvatarData;
+                friend.boundUserPersonaId = boundUserPersonaId;
+                friend.contextLimit = contextLimit;
+                friend.replyMin = replyMin;
+                friend.replyMax = replyMax;
+                friend.members = editingGroupMembers.map(member => ({
+                    id: member.id,
+                    name: member.name,
+                    avatar: member.avatar || '',
+                    desc: member.desc || ''
+                }));
+                friend.desc = `${editingGroupMembers.map(member => member.name || '未命名成员').join('、')} 已加入群聊`;
+
+                closeOverlay(groupSettingsPage);
+                renameChatHistory(oldName, newName);
+                currentChatFriend = newName;
+                document.getElementById('chat-title-name').textContent = newName;
+                persistFriendList();
+                renderFriendList();
+                renderGroupSettingsMembers();
+
+                if (invitedMembers.length) {
+                    appendSystemChatRecord(newName, `${invitedMembers.map(member => member.name || '未命名成员').join('、')}加入了群聊`);
+                }
+
+                if (removedMembers.length) {
+                    removedMembers.forEach(member => {
+                        appendSystemChatRecord(newName, `${member.name || '未命名成员'}被移出了群聊`);
+                    });
+                }
+
+                if (oldName !== newName) {
+                    appendSystemChatRecord(newName, `群聊名称已修改为「${newName}」`);
+                }
+
+                await showAppDialog({ title: '保存成功', message: '群聊设置已更新。' });
+            } catch (error) {
+                console.error('保存群聊设置失败', error);
+                await showAppDialog({ title: '保存失败', message: `群聊设置保存失败：${error.message}` });
             }
-
-            if (editingGroupMembers.length < 2) {
-                await showAppDialog({ title: '无法保存', message: '群聊至少需要 2 个成员。' });
-                return;
-            }
-
-            if (contextLimit < 1) {
-                await showAppDialog({ title: '无法保存', message: '上下文记忆条数至少要为 1。' });
-                return;
-            }
-
-            if (replyMin < 1 || replyMax < 1 || replyMin > replyMax) {
-                await showAppDialog({ title: '无法保存', message: '回复条数区间不合法，请重新输入。' });
-                return;
-            }
-
-            const duplicateFriend = friendList.find(item => item.name === newName && item.id !== friend.id);
-            if (duplicateFriend) {
-                await showAppDialog({ title: '无法保存', message: '已经存在同名聊天，请换一个名字。' });
-                return;
-            }
-
-            const oldName = friend.name;
-            const previousMembers = getGroupMembers(friend);
-            const previousMemberIds = new Set(previousMembers.map(member => member.id));
-            const nextMemberIds = new Set(editingGroupMembers.map(member => member.id));
-            const invitedMembers = editingGroupMembers.filter(member => !previousMemberIds.has(member.id));
-            const removedMembers = previousMembers.filter(member => !nextMemberIds.has(member.id));
-
-            friend.name = newName;
-            friend.avatar = tempGroupSettingsAvatarData;
-            friend.boundUserPersonaId = boundUserPersonaId;
-            friend.contextLimit = contextLimit;
-            friend.replyMin = replyMin;
-            friend.replyMax = replyMax;
-            friend.members = editingGroupMembers.map(member => ({
-                id: member.id,
-                name: member.name,
-                avatar: member.avatar || '',
-                desc: member.desc || ''
-            }));
-            friend.desc = `${editingGroupMembers.map(member => member.name || '未命名成员').join('、')} 已加入群聊`;
-
-            renameChatHistory(oldName, newName);
-            currentChatFriend = newName;
-            document.getElementById('chat-title-name').textContent = newName;
-            persistFriendList();
-            renderFriendList();
-            renderGroupSettingsMembers();
-            groupSettingsPage.style.display = 'none';
-
-            if (invitedMembers.length) {
-                appendSystemChatRecord(newName, `${invitedMembers.map(member => member.name || '未命名成员').join('、')}加入了群聊`);
-            }
-
-            if (removedMembers.length) {
-                removedMembers.forEach(member => {
-                    appendSystemChatRecord(newName, `${member.name || '未命名成员'}被移出了群聊`);
-                });
-            }
-
-            if (oldName !== newName) {
-                appendSystemChatRecord(newName, `群聊名称已修改为「${newName}」`);
-            }
-
-            await showAppDialog({ title: '保存成功', message: '群聊设置已更新。' });
         });
 
         document.getElementById('btn-open-user-personas').addEventListener('click', openUserPersonasPage);
@@ -2660,7 +2678,7 @@
             document.getElementById('friend-avatar-preview').innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="#999"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>';
         });
         document.getElementById('btn-cancel-friend').addEventListener('click', () => { addFriendModal.style.display = 'none'; });
-        document.getElementById('btn-cancel-group').addEventListener('click', () => { createGroupModal.style.display = 'none'; });
+        document.getElementById('btn-cancel-group').addEventListener('click', () => { closeOverlay(createGroupModal); });
 
         document.getElementById('friend-avatar-upload').addEventListener('change', function(e) {
             if (e.target.files[0]) {
@@ -2718,48 +2736,54 @@
         });
 
         document.getElementById('btn-confirm-group').addEventListener('click', async () => {
-            const groupName = groupNameInput.value.trim();
-            const selectedIds = Array.from(groupMemberList.querySelectorAll('.group-member-check:checked')).map(item => item.value);
-            const selectedMembers = getSelectableFriends().filter(friend => selectedIds.includes(friend.id));
+            try {
+                const groupName = groupNameInput.value.trim();
+                const selectedIds = Array.from(groupMemberList.querySelectorAll('.group-member-check:checked')).map(item => item.value);
+                const selectedMembers = getSelectableFriends().filter(friend => selectedIds.includes(friend.id));
 
-            if (!groupName) {
-                await showAppDialog({ title: '无法创建群聊', message: '请先填写群聊名称。' });
-                return;
+                if (!groupName) {
+                    await showAppDialog({ title: '无法创建群聊', message: '请先填写群聊名称。' });
+                    return;
+                }
+
+                if (selectedMembers.length < 2) {
+                    await showAppDialog({ title: '无法创建群聊', message: '请至少选择 2 个已有角色加入群聊。' });
+                    return;
+                }
+
+                if (friendList.some(friend => friend.name === groupName)) {
+                    await showAppDialog({ title: '名称已存在', message: '这个群聊名称已经被使用，请换一个名称。' });
+                    return;
+                }
+
+                closeOverlay(createGroupModal);
+
+                const now = new Date();
+                const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                const groupDesc = `${selectedMembers.map(member => member.name).join('、')} 已加入群聊`;
+                const groupSettingsMap = parseStoredJson('friend_settings', {});
+                groupSettingsMap[groupName] = `你现在在一个多人群聊中发言。群成员包括：${selectedMembers.map(member => `${member.name}（${member.desc || '暂无设定'}）`).join('；')}。请保持群聊语气，并自然回应最近的话题。`;
+                localStorage.setItem('friend_settings', JSON.stringify(groupSettingsMap));
+
+                friendList.unshift({
+                    id: `group-${Date.now()}`,
+                    name: groupName,
+                    desc: groupDesc,
+                    avatar: '',
+                    time: timeStr,
+                    type: 'group',
+                    members: selectedMembers.map(member => ({ id: member.id, name: member.name }))
+                });
+
+                ensureFriendChatHistory(groupName);
+                appendSystemChatRecord(groupName, `${selectedMembers.map(member => member.name).join('、')}加入了群聊`);
+                persistFriendList();
+                persistChatDatabase();
+                renderFriendList();
+            } catch (error) {
+                console.error('创建群聊失败', error);
+                await showAppDialog({ title: '创建失败', message: `群聊创建失败：${error.message}` });
             }
-
-            if (selectedMembers.length < 2) {
-                await showAppDialog({ title: '无法创建群聊', message: '请至少选择 2 个已有角色加入群聊。' });
-                return;
-            }
-
-            if (friendList.some(friend => friend.name === groupName)) {
-                await showAppDialog({ title: '名称已存在', message: '这个群聊名称已经被使用，请换一个名称。' });
-                return;
-            }
-
-            const now = new Date();
-            const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-            const groupDesc = `${selectedMembers.map(member => member.name).join('、')} 已加入群聊`;
-            const groupSettingsMap = parseStoredJson('friend_settings', {});
-            groupSettingsMap[groupName] = `你现在在一个多人群聊中发言。群成员包括：${selectedMembers.map(member => `${member.name}（${member.desc || '暂无设定'}）`).join('；')}。请保持群聊语气，并自然回应最近的话题。`;
-            localStorage.setItem('friend_settings', JSON.stringify(groupSettingsMap));
-
-            friendList.unshift({
-                id: `group-${Date.now()}`,
-                name: groupName,
-                desc: groupDesc,
-                avatar: '',
-                time: timeStr,
-                type: 'group',
-                members: selectedMembers.map(member => ({ id: member.id, name: member.name }))
-            });
-
-            ensureFriendChatHistory(groupName);
-            appendSystemChatRecord(groupName, `${selectedMembers.map(member => member.name).join('、')}加入了群聊`);
-            persistFriendList();
-            persistChatDatabase();
-            renderFriendList();
-            createGroupModal.style.display = 'none';
         });
 
         // ================= 聊天房间专属逻辑 =================
