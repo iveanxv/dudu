@@ -465,6 +465,100 @@
         .input-inline-action .settings-input { flex: 1; }
         .input-inline-action .api-btn-small { white-space: nowrap; }
 
+        /* 世界书页面 */
+        #worldbook-app { z-index: 560; background-color: #ededed; }
+        #worldbook-app .app-content-body {
+            padding: 16px 16px calc(32px + env(safe-area-inset-bottom));
+            padding: 16px 16px calc(32px + constant(safe-area-inset-bottom));
+        }
+        .worldbook-header-actions { display: flex; align-items: center; gap: 8px; }
+        .worldbook-action-btn {
+            min-width: 28px;
+            height: 28px;
+            padding: 0 8px;
+            border-radius: 999px;
+            background: #111;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .worldbook-action-btn.secondary { background: #fff; color: #111; border: 0.5px solid #dcdcdc; }
+        .worldbook-list { display: flex; flex-direction: column; gap: 12px; }
+        .worldbook-empty {
+            padding: 24px 16px;
+            border-radius: 16px;
+            background: #fff;
+            border: 0.5px solid #e8e8e8;
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .worldbook-category {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 0.5px solid #e8e8e8;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .worldbook-category-head {
+            padding: 14px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .worldbook-folder-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: #111;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .worldbook-folder-icon svg { width: 18px; height: 18px; fill: #fff; }
+        .worldbook-category-info { flex: 1; min-width: 0; }
+        .worldbook-category-name { font-size: 16px; font-weight: 600; color: #111; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .worldbook-category-count { margin-top: 2px; font-size: 12px; color: #8a8a8a; }
+        .worldbook-delete-btn {
+            padding: 6px 9px;
+            border-radius: 8px;
+            background: #fff1f0;
+            color: #ff3b30;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .worldbook-chevron { width: 16px; height: 16px; fill: #b2b2b2; transition: transform 0.2s ease; flex-shrink: 0; }
+        .worldbook-category.open .worldbook-chevron { transform: rotate(90deg); }
+        .worldbook-items { display: none; border-top: 0.5px solid #ececec; background: #fafafa; }
+        .worldbook-category.open .worldbook-items { display: block; }
+        .worldbook-item {
+            min-height: 50px;
+            padding: 10px 14px 10px 58px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 0.5px solid #ececec;
+            cursor: pointer;
+        }
+        .worldbook-item:active { background: #f2f2f2; }
+        .worldbook-item:last-child { border-bottom: none; }
+        .worldbook-item-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+        .worldbook-item-name { min-width: 0; font-size: 15px; color: #111; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .worldbook-item-preview { font-size: 12px; color: #8a8a8a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .worldbook-item-empty { padding: 14px 14px 14px 58px; font-size: 13px; color: #999; }
+        .worldbook-modal-select { margin-top: 10px; }
+        .worldbook-content-input { min-height: 140px; resize: vertical; line-height: 1.5; }
+
         #role-settings-page { z-index: 620; background-color: #ededed; }
         #role-settings-page .app-content-body {
             padding: 16px 16px calc(110px + env(safe-area-inset-bottom));
@@ -549,6 +643,171 @@
             text-align: center;
             color: #999;
             font-size: 14px;
+        }
+        .worldbook-binding-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .worldbook-binding-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border: 0.5px solid #e3e3e3;
+            border-radius: 12px;
+            background: #f8f8f8;
+            cursor: pointer;
+        }
+        .worldbook-binding-trigger:active { background: #f1f1f1; }
+        .worldbook-binding-trigger-left {
+            min-width: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: left;
+        }
+        .worldbook-binding-title { font-size: 14px; color: #111; font-weight: 600; }
+        .worldbook-binding-summary {
+            font-size: 12px;
+            color: #8a8a8a;
+            line-height: 1.5;
+            word-break: break-all;
+        }
+        .worldbook-binding-chevron {
+            width: 16px;
+            height: 16px;
+            fill: #b2b2b2;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+        .worldbook-binding-row.open .worldbook-binding-chevron { transform: rotate(90deg); }
+        .worldbook-binding-panel {
+            display: none;
+            padding: 12px;
+            border-radius: 14px;
+            background: #f8f8f8;
+            border: 0.5px solid #ececec;
+        }
+        .worldbook-binding-row.open .worldbook-binding-panel { display: block; }
+        .worldbook-binding-scroll {
+            max-height: 260px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-right: 2px;
+        }
+        .worldbook-binding-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 12px;
+            background: #fff;
+            border-radius: 12px;
+            border: 0.5px solid #ececec;
+            cursor: pointer;
+        }
+        .worldbook-binding-option input,
+        .worldbook-binding-category-head input,
+        .worldbook-binding-suboption input {
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .worldbook-binding-option-main {
+            min-width: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            justify-content: center;
+        }
+        .worldbook-binding-option-title { font-size: 14px; color: #111; font-weight: 600; }
+        .worldbook-binding-option-desc { font-size: 12px; color: #8a8a8a; line-height: 1.5; }
+        .worldbook-binding-category-card {
+            border-radius: 14px;
+            background: #fff;
+            border: 0.5px solid #ececec;
+            overflow: hidden;
+        }
+        .worldbook-binding-category-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+        }
+        .worldbook-binding-category-toggle {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            background: transparent;
+            padding: 0;
+            margin-top: 1px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .worldbook-binding-category-toggle svg {
+            width: 14px;
+            height: 14px;
+            fill: #b2b2b2;
+            transition: transform 0.2s ease;
+        }
+        .worldbook-binding-category-meta {
+            min-width: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .worldbook-binding-category-children {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0 10px 10px 38px;
+            background: #fcfcfc;
+            border-top: 0.5px solid #f0f0f0;
+        }
+        .worldbook-binding-category-card.collapsed .worldbook-binding-category-children {
+            display: none;
+        }
+        .worldbook-binding-category-card.expanded .worldbook-binding-category-toggle svg {
+            transform: rotate(90deg);
+        }
+        .worldbook-binding-suboption {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: #fff;
+            border: 0.5px solid #efefef;
+            cursor: pointer;
+        }
+        .worldbook-binding-option.is-selected,
+        .worldbook-binding-category-head.is-selected,
+        .worldbook-binding-suboption.is-selected {
+            border-color: #7db6ff;
+            background: #eef6ff;
+        }
+        .worldbook-binding-category-head.is-selected + .worldbook-binding-category-children {
+            background: #f7fbff;
+        }
+        .worldbook-binding-empty {
+            padding: 14px 12px;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            line-height: 1.6;
+            background: #fff;
+            border-radius: 12px;
+            border: 0.5px dashed #dfdfdf;
         }
         .group-settings-members-grid {
             display: grid;
@@ -805,7 +1064,7 @@
         <div class="app-item"><div class="app-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div><span class="app-name">电话</span></div>
         <div class="app-item"><div class="app-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div><span class="app-name">主题</span></div>
         <div class="app-item" id="app-settings"><div class="app-icon"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49-.12-.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div><span class="app-name">设置</span></div>
-        <div class="app-item"><div class="app-icon"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></div><span class="app-name">世界书</span></div>
+        <div class="app-item" id="app-worldbook"><div class="app-icon"><svg viewBox="0 0 24 24"><path d="M5 4.5C5 3.67 5.67 3 6.5 3H18c.55 0 1 .45 1 1v15.5c0 .83-.67 1.5-1.5 1.5H6.5C5.67 21 5 20.33 5 19.5v-15zM7 5v12.15c.16-.06.33-.1.5-.1H17V5H7zm.5 14H17v-.95H7.5c-.28 0-.5.21-.5.48 0 .26.22.47.5.47zM9 7h6v1.5H9V7zm0 3h5v1.5H9V10z"/></svg></div><span class="app-name">世界书</span></div>
     </div>
 
 
@@ -1005,7 +1264,18 @@
                     </div>
                     <div class="role-settings-row">
                         <div class="role-settings-label">世界书</div>
-                        <div class="role-settings-placeholder">暂时留空，后续再接入世界书内容。</div>
+                        <div class="worldbook-binding-row" id="role-worldbook-binding">
+                            <div class="worldbook-binding-trigger" data-worldbook-trigger="role">
+                                <div class="worldbook-binding-trigger-left">
+                                    <div class="worldbook-binding-title">绑定世界书</div>
+                                    <div class="worldbook-binding-summary" id="role-worldbook-binding-summary">当前未绑定世界书</div>
+                                </div>
+                                <svg class="worldbook-binding-chevron" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="worldbook-binding-panel">
+                                <div class="worldbook-binding-scroll" id="role-worldbook-binding-options"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="role-settings-row">
                         <div class="role-settings-label">我的人设</div>
@@ -1060,6 +1330,21 @@
                         <input type="text" class="settings-input" id="group-settings-name" placeholder="请输入群聊名称" autocomplete="off">
                     </div>
                     <div class="role-settings-row">
+                        <div class="role-settings-label">世界书</div>
+                        <div class="worldbook-binding-row" id="group-worldbook-binding">
+                            <div class="worldbook-binding-trigger" data-worldbook-trigger="group">
+                                <div class="worldbook-binding-trigger-left">
+                                    <div class="worldbook-binding-title">绑定世界书</div>
+                                    <div class="worldbook-binding-summary" id="group-worldbook-binding-summary">当前未绑定世界书</div>
+                                </div>
+                                <svg class="worldbook-binding-chevron" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="worldbook-binding-panel">
+                                <div class="worldbook-binding-scroll" id="group-worldbook-binding-options"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="role-settings-row">
                         <div class="group-settings-row-link" id="btn-open-group-members-page">
                             <div class="role-settings-label">群成员管理</div>
                             <svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
@@ -1105,6 +1390,24 @@
         </div>
         <div class="app-content-body">
             <div class="group-members-list" id="group-members-list"></div>
+        </div>
+    </div>
+
+
+    <!-- ================= 世界书 APP ================= -->
+    <div class="full-app" id="worldbook-app">
+        <div class="app-header-bar">
+            <div class="app-btn-icon" id="worldbook-back-btn">
+                <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+            </div>
+            <div class="app-title-text">世界书</div>
+            <div class="worldbook-header-actions">
+                <div class="worldbook-action-btn secondary" id="btn-create-worldbook-category">分类</div>
+                <div class="worldbook-action-btn" id="btn-create-worldbook">＋</div>
+            </div>
+        </div>
+        <div class="app-content-body">
+            <div class="worldbook-list" id="worldbook-list"></div>
         </div>
     </div>
 
@@ -1266,6 +1569,32 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="worldbook-modal">
+        <div class="modal-box">
+            <div class="modal-title" id="worldbook-modal-title">添加世界书</div>
+            <input type="text" class="modal-input" id="worldbook-name-input" placeholder="请输入世界书名字" autocomplete="off">
+            <textarea class="modal-input worldbook-content-input" id="worldbook-content-input" placeholder="请输入世界书内容" autocomplete="off"></textarea>
+            <select class="settings-select worldbook-modal-select" id="worldbook-category-select">
+                <option value="__none__">无分类</option>
+            </select>
+            <div class="modal-actions">
+                <div class="modal-btn btn-cancel" id="btn-cancel-worldbook">取消</div>
+                <div class="modal-btn btn-confirm" id="btn-confirm-worldbook">创建</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="worldbook-category-modal">
+        <div class="modal-box">
+            <div class="modal-title">创建世界书分类</div>
+            <input type="text" class="modal-input" id="worldbook-category-name-input" placeholder="请输入分类名字" autocomplete="off">
+            <div class="modal-actions">
+                <div class="modal-btn btn-cancel" id="btn-cancel-worldbook-category">取消</div>
+                <div class="modal-btn btn-confirm" id="btn-confirm-worldbook-category">创建</div>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         // ================= 桌面通用逻辑 =================
@@ -1324,11 +1653,265 @@
         // ================= APP 打开与关闭逻辑 =================
         const wechatApp = document.getElementById('wechat-app');
         const settingsApp = document.getElementById('settings-app');
+        const worldbookApp = document.getElementById('worldbook-app');
         
         document.getElementById('app-wechat').addEventListener('click', () => { wechatApp.style.display = 'flex'; });
 
         document.getElementById('app-settings').addEventListener('click', () => { settingsApp.style.display = 'flex'; });
         document.getElementById('settings-back-btn').addEventListener('click', () => { settingsApp.style.display = 'none'; });
+
+        document.getElementById('app-worldbook').addEventListener('click', () => {
+            renderWorldBooks();
+            worldbookApp.style.display = 'flex';
+        });
+        document.getElementById('worldbook-back-btn').addEventListener('click', () => { worldbookApp.style.display = 'none'; });
+
+        // ================= 世界书逻辑 =================
+        const WORLD_BOOK_NONE_CATEGORY = '__none__';
+        const worldbookList = document.getElementById('worldbook-list');
+        const worldbookModal = document.getElementById('worldbook-modal');
+        const worldbookNameInput = document.getElementById('worldbook-name-input');
+        const worldbookContentInput = document.getElementById('worldbook-content-input');
+        const worldbookCategorySelect = document.getElementById('worldbook-category-select');
+        const worldbookCategoryModal = document.getElementById('worldbook-category-modal');
+        const worldbookCategoryNameInput = document.getElementById('worldbook-category-name-input');
+        const btnCreateWorldbook = document.getElementById('btn-create-worldbook');
+        const btnCreateWorldbookCategory = document.getElementById('btn-create-worldbook-category');
+        const btnCancelWorldbook = document.getElementById('btn-cancel-worldbook');
+        const btnConfirmWorldbook = document.getElementById('btn-confirm-worldbook');
+        const btnCancelWorldbookCategory = document.getElementById('btn-cancel-worldbook-category');
+        const btnConfirmWorldbookCategory = document.getElementById('btn-confirm-worldbook-category');
+        const worldbookModalTitle = document.getElementById('worldbook-modal-title');
+        const worldbookData = parseStoredJson('worldbook_data', { categories: [], books: [] });
+        let worldbookCategories = Array.isArray(worldbookData.categories) ? worldbookData.categories : [];
+        let worldbooks = Array.isArray(worldbookData.books) ? worldbookData.books : [];
+        let editingWorldbookId = '';
+        const worldbookOpenCategories = new Set([WORLD_BOOK_NONE_CATEGORY, ...worldbookCategories.map(category => category.id)]);
+
+        function makeWorldbookId(prefix) {
+            return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+        }
+
+        function persistWorldbooks() {
+            safeSetJsonStorage('worldbook_data', {
+                categories: worldbookCategories,
+                books: worldbooks
+            });
+        }
+
+        function updateWorldbookCategoryOptions() {
+            worldbookCategorySelect.innerHTML = '<option value="__none__">无分类</option>';
+            worldbookCategories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.id;
+                option.textContent = category.name;
+                worldbookCategorySelect.appendChild(option);
+            });
+        }
+
+        function getWorldbookGroups() {
+            return [
+                { id: WORLD_BOOK_NONE_CATEGORY, name: '无分类', builtin: true },
+                ...worldbookCategories
+            ];
+        }
+
+        function renderWorldBooks() {
+            updateWorldbookCategoryOptions();
+            worldbookList.innerHTML = '';
+
+            if (!worldbookCategories.length && !worldbooks.length) {
+                worldbookList.innerHTML = '<div class="worldbook-empty">还没有世界书。点击右上角“＋”创建世界书，或点击“分类”创建文件夹。</div>';
+                return;
+            }
+
+            getWorldbookGroups().forEach(category => {
+                const books = worldbooks.filter(book => (book.categoryId || WORLD_BOOK_NONE_CATEGORY) === category.id);
+                if (category.builtin && !books.length) return;
+
+                const categoryEl = document.createElement('div');
+                categoryEl.className = `worldbook-category${worldbookOpenCategories.has(category.id) ? ' open' : ''}`;
+                categoryEl.dataset.categoryId = category.id;
+
+                const deleteButton = category.builtin ? '' : '<div class="worldbook-delete-btn" data-action="delete-category">删除分类</div>';
+                const folderIcon = '<svg viewBox="0 0 24 24"><path d="M10 4l2 2h8c1.1 0 2 .9 2 2v9c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2L2.01 6C2.01 4.9 2.9 4 4 4h6z"/></svg>';
+                const itemsHtml = books.length
+                    ? books.map(book => {
+                        const preview = String(book.content || '').trim() || '暂无内容';
+                        return `
+                        <div class="worldbook-item" data-book-id="${book.id}">
+                            <div class="worldbook-item-body">
+                                <div class="worldbook-item-name">${escapeHtml(book.name)}</div>
+                                <div class="worldbook-item-preview">${escapeHtml(preview)}</div>
+                            </div>
+                            <div class="worldbook-delete-btn" data-action="delete-book">删除</div>
+                        </div>
+                    `;
+                    }).join('')
+                    : '<div class="worldbook-item-empty">这个分类下还没有世界书。</div>';
+
+                categoryEl.innerHTML = `
+                    <div class="worldbook-category-head" data-action="toggle-category">
+                        <div class="worldbook-folder-icon">${folderIcon}</div>
+                        <div class="worldbook-category-info">
+                            <div class="worldbook-category-name">${escapeHtml(category.name)}</div>
+                            <div class="worldbook-category-count">${books.length} 条世界书</div>
+                        </div>
+                        ${deleteButton}
+                        <svg class="worldbook-chevron" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </div>
+                    <div class="worldbook-items">${itemsHtml}</div>
+                `;
+                worldbookList.appendChild(categoryEl);
+            });
+        }
+
+        function openWorldbookModal() {
+            updateWorldbookCategoryOptions();
+            editingWorldbookId = '';
+            worldbookModalTitle.textContent = '添加世界书';
+            btnConfirmWorldbook.textContent = '创建';
+            worldbookNameInput.value = '';
+            worldbookContentInput.value = '';
+            worldbookCategorySelect.value = WORLD_BOOK_NONE_CATEGORY;
+            worldbookModal.style.display = 'flex';
+            setTimeout(() => worldbookNameInput.focus(), 50);
+        }
+
+        function openEditWorldbookModal(bookId) {
+            const book = worldbooks.find(item => item.id === bookId);
+            if (!book) return;
+
+            updateWorldbookCategoryOptions();
+            editingWorldbookId = book.id;
+            worldbookModalTitle.textContent = '修改世界书';
+            btnConfirmWorldbook.textContent = '保存';
+            worldbookNameInput.value = book.name || '';
+            worldbookContentInput.value = book.content || '';
+            worldbookCategorySelect.value = book.categoryId || WORLD_BOOK_NONE_CATEGORY;
+            worldbookModal.style.display = 'flex';
+            setTimeout(() => worldbookNameInput.focus(), 50);
+        }
+
+        function closeWorldbookModal() {
+            worldbookModal.style.display = 'none';
+            editingWorldbookId = '';
+        }
+
+        function openWorldbookCategoryModal() {
+            worldbookCategoryNameInput.value = '';
+            worldbookCategoryModal.style.display = 'flex';
+            setTimeout(() => worldbookCategoryNameInput.focus(), 50);
+        }
+
+        function closeWorldbookCategoryModal() {
+            worldbookCategoryModal.style.display = 'none';
+        }
+
+        btnCreateWorldbook.addEventListener('click', openWorldbookModal);
+        btnCreateWorldbookCategory.addEventListener('click', openWorldbookCategoryModal);
+        btnCancelWorldbook.addEventListener('click', closeWorldbookModal);
+        btnCancelWorldbookCategory.addEventListener('click', closeWorldbookCategoryModal);
+
+        btnConfirmWorldbook.addEventListener('click', () => {
+            const name = worldbookNameInput.value.trim();
+            const content = worldbookContentInput.value.trim();
+            if (!name) {
+                showAppDialog({ title: editingWorldbookId ? '无法保存' : '无法创建', message: '请输入世界书名字。' });
+                return;
+            }
+            if (!content) {
+                showAppDialog({ title: editingWorldbookId ? '无法保存' : '无法创建', message: '请输入世界书内容。' });
+                return;
+            }
+
+            const categoryId = worldbookCategorySelect.value || WORLD_BOOK_NONE_CATEGORY;
+            if (editingWorldbookId) {
+                const book = worldbooks.find(item => item.id === editingWorldbookId);
+                if (!book) return;
+                book.name = name;
+                book.content = content;
+                book.categoryId = categoryId;
+                book.updatedAt = Date.now();
+            } else {
+                worldbooks.push({ id: makeWorldbookId('book'), name, content, categoryId, createdAt: Date.now() });
+            }
+            worldbookOpenCategories.add(categoryId);
+            closeWorldbookModal();
+            persistWorldbooks();
+            renderWorldBooks();
+        });
+
+        btnConfirmWorldbookCategory.addEventListener('click', () => {
+            const name = worldbookCategoryNameInput.value.trim();
+            if (!name) {
+                showAppDialog({ title: '无法创建', message: '请输入分类名字。' });
+                return;
+            }
+            if (worldbookCategories.some(category => category.name === name)) {
+                showAppDialog({ title: '无法创建', message: '已经有同名分类。' });
+                return;
+            }
+
+            const category = { id: makeWorldbookId('category'), name, createdAt: Date.now() };
+            worldbookCategories.push(category);
+            worldbookOpenCategories.add(category.id);
+            closeWorldbookCategoryModal();
+            persistWorldbooks();
+            renderWorldBooks();
+        });
+
+        worldbookList.addEventListener('click', async (event) => {
+            const deleteBookBtn = event.target.closest('[data-action="delete-book"]');
+            if (deleteBookBtn) {
+                event.stopPropagation();
+                const item = deleteBookBtn.closest('.worldbook-item');
+                const bookId = item?.dataset.bookId;
+                if (!bookId) return;
+                const confirmed = await showAppDialog({ title: '删除世界书', message: '确定删除这条世界书吗？', mode: 'confirm', confirmText: '删除' });
+                if (!confirmed) return;
+                worldbooks = worldbooks.filter(book => book.id !== bookId);
+                persistWorldbooks();
+                renderWorldBooks();
+                return;
+            }
+
+            const deleteCategoryBtn = event.target.closest('[data-action="delete-category"]');
+            if (deleteCategoryBtn) {
+                event.stopPropagation();
+                const categoryEl = deleteCategoryBtn.closest('.worldbook-category');
+                const categoryId = categoryEl?.dataset.categoryId;
+                if (!categoryId || categoryId === WORLD_BOOK_NONE_CATEGORY) return;
+                const confirmed = await showAppDialog({ title: '删除分类', message: '确定删除整个分类和分类下的世界书吗？', mode: 'confirm', confirmText: '删除' });
+                if (!confirmed) return;
+                worldbookCategories = worldbookCategories.filter(category => category.id !== categoryId);
+                worldbooks = worldbooks.filter(book => book.categoryId !== categoryId);
+                worldbookOpenCategories.delete(categoryId);
+                persistWorldbooks();
+                renderWorldBooks();
+                return;
+            }
+
+            const bookItem = event.target.closest('.worldbook-item');
+            if (bookItem) {
+                const bookId = bookItem.dataset.bookId;
+                if (bookId) openEditWorldbookModal(bookId);
+                return;
+            }
+
+            const header = event.target.closest('[data-action="toggle-category"]');
+            if (header) {
+                const categoryEl = header.closest('.worldbook-category');
+                const categoryId = categoryEl?.dataset.categoryId;
+                if (!categoryId) return;
+                if (worldbookOpenCategories.has(categoryId)) {
+                    worldbookOpenCategories.delete(categoryId);
+                } else {
+                    worldbookOpenCategories.add(categoryId);
+                }
+                renderWorldBooks();
+            }
+        });
 
         // ================= 设置页内部逻辑 (API设置与预设) =================
         const apiPage = document.getElementById('api-page');
@@ -1420,6 +2003,15 @@
 
         function safeSetJsonStorage(key, value) {
             return safeSetStorage(key, JSON.stringify(value));
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
         }
 
         function getSavedModel() {
@@ -1718,6 +2310,9 @@
         const roleSettingsContextLimitInput = document.getElementById('role-settings-context-limit');
         const roleSettingsReplyMinInput = document.getElementById('role-settings-reply-min');
         const roleSettingsReplyMaxInput = document.getElementById('role-settings-reply-max');
+        const roleWorldbookBinding = document.getElementById('role-worldbook-binding');
+        const roleWorldbookBindingSummary = document.getElementById('role-worldbook-binding-summary');
+        const roleWorldbookBindingOptions = document.getElementById('role-worldbook-binding-options');
         const groupSettingsAvatarPreview = document.getElementById('group-settings-avatar-preview');
         const groupSettingsNameInput = document.getElementById('group-settings-name');
         const groupSettingsMembersGrid = document.getElementById('group-settings-members-grid');
@@ -1727,6 +2322,9 @@
         const groupSettingsContextLimitInput = document.getElementById('group-settings-context-limit');
         const groupSettingsReplyMinInput = document.getElementById('group-settings-reply-min');
         const groupSettingsReplyMaxInput = document.getElementById('group-settings-reply-max');
+        const groupWorldbookBinding = document.getElementById('group-worldbook-binding');
+        const groupWorldbookBindingSummary = document.getElementById('group-worldbook-binding-summary');
+        const groupWorldbookBindingOptions = document.getElementById('group-worldbook-binding-options');
         const groupSettingsInviteModal = document.getElementById('group-settings-invite-modal');
         const groupSettingsInviteList = document.getElementById('group-settings-invite-list');
         let tempAvatarData = '';
@@ -1735,6 +2333,10 @@
         let tempGroupSettingsAvatarData = '';
         let editingGroupMembers = [];
         let editingUserPersonaIndex = -1;
+        let tempRoleWorldbookBinding = { type: 'none', categoryId: '', bookId: '' };
+        let tempGroupWorldbookBinding = { type: 'none', categoryId: '', bookId: '' };
+        const roleWorldbookExpandedCategories = new Set();
+        const groupWorldbookExpandedCategories = new Set();
 
         function persistChatDatabase() {
             safeSetJsonStorage('chat_histories', chatDatabase);
@@ -1752,10 +2354,167 @@
             return {
                 personaPrompt: friend.personaPrompt || '',
                 boundUserPersonaId: friend.boundUserPersonaId || '',
+                worldbookBinding: {
+                    type: friend.worldbookBinding?.type || 'none',
+                    categoryId: friend.worldbookBinding?.categoryId || '',
+                    bookId: friend.worldbookBinding?.bookId || ''
+                },
                 contextLimit: Number(friend.contextLimit) > 0 ? Number(friend.contextLimit) : 12,
                 replyMin: Number(friend.replyMin) > 0 ? Number(friend.replyMin) : 2,
                 replyMax: Number(friend.replyMax) > 0 ? Number(friend.replyMax) : 4
             };
+        }
+
+        function normalizeWorldbookBinding(binding = {}) {
+            return {
+                type: binding.type === 'category' || binding.type === 'book' ? binding.type : 'none',
+                categoryId: String(binding.categoryId || '').trim(),
+                bookId: String(binding.bookId || '').trim()
+            };
+        }
+
+        function getWorldbookBindingSummary(binding = {}) {
+            const normalized = normalizeWorldbookBinding(binding);
+            if (normalized.type === 'category') {
+                const category = worldbookCategories.find(item => item.id === normalized.categoryId);
+                return category ? `已绑定分类：${category.name}` : '当前未绑定世界书';
+            }
+
+            if (normalized.type === 'book') {
+                const book = worldbooks.find(item => item.id === normalized.bookId);
+                if (!book) return '当前未绑定世界书';
+                const category = worldbookCategories.find(item => item.id === (book.categoryId || ''));
+                return category ? `已绑定：${category.name} / ${book.name}` : `已绑定：${book.name}`;
+            }
+
+            return '当前未绑定世界书';
+        }
+
+        function getBooksByCategory(categoryId) {
+            return worldbooks.filter(book => (book.categoryId || WORLD_BOOK_NONE_CATEGORY) === categoryId);
+        }
+
+        function getWorldbookExpandedSet(mode) {
+            return mode === 'role' ? roleWorldbookExpandedCategories : groupWorldbookExpandedCategories;
+        }
+
+        function syncWorldbookExpandedSet(mode) {
+            const expandedSet = getWorldbookExpandedSet(mode);
+            const validIds = new Set(getWorldbookGroups().map(category => category.id));
+            Array.from(expandedSet).forEach(id => {
+                if (!validIds.has(id)) expandedSet.delete(id);
+            });
+        }
+
+        function renderWorldbookBindingOptions(mode) {
+            const isRole = mode === 'role';
+            const container = isRole ? roleWorldbookBindingOptions : groupWorldbookBindingOptions;
+            const summary = isRole ? roleWorldbookBindingSummary : groupWorldbookBindingSummary;
+            const binding = normalizeWorldbookBinding(isRole ? tempRoleWorldbookBinding : tempGroupWorldbookBinding);
+
+            summary.textContent = getWorldbookBindingSummary(binding);
+
+            if (!container) return;
+
+            if (!worldbookCategories.length && !worldbooks.length) {
+                container.innerHTML = '<div class="worldbook-binding-empty">还没有任何世界书，先去首页创建后再回来绑定。</div>';
+                return;
+            }
+
+            syncWorldbookExpandedSet(mode);
+            const expandedSet = getWorldbookExpandedSet(mode);
+            const groups = getWorldbookGroups().filter(category => !category.builtin || getBooksByCategory(category.id).length);
+            const groupsHtml = groups.map(category => {
+                const books = getBooksByCategory(category.id);
+                const isCategorySelected = binding.type === 'category' && binding.categoryId === category.id;
+                const isExpanded = expandedSet.has(category.id);
+                const childrenHtml = books.length
+                    ? books.map(book => {
+                        const isBookSelected = (binding.type === 'book' && binding.bookId === book.id) || isCategorySelected;
+                        return `
+                            <label class="worldbook-binding-suboption ${isBookSelected ? 'is-selected' : ''}" data-worldbook-option="book" data-worldbook-value="book:${book.id}">
+                                <input type="checkbox" value="book:${book.id}" ${isBookSelected ? 'checked' : ''}>
+                                <div class="worldbook-binding-option-main">
+                                    <div class="worldbook-binding-option-title">${escapeHtml(book.name)}</div>
+                                </div>
+                            </label>
+                        `;
+                    }).join('')
+                    : '<div class="worldbook-binding-empty">这个分类下还没有世界书。</div>';
+
+                return `
+                    <div class="worldbook-binding-category-card ${isExpanded ? 'expanded' : 'collapsed'}">
+                        <div class="worldbook-binding-category-head ${isCategorySelected ? 'is-selected' : ''}" data-worldbook-option="category" data-worldbook-value="category:${category.id}">
+                            <input type="checkbox" value="category:${category.id}" ${isCategorySelected ? 'checked' : ''}>
+                            <div class="worldbook-binding-category-meta">
+                                <div class="worldbook-binding-option-title">${escapeHtml(category.name)}</div>
+                            </div>
+                            <button type="button" class="worldbook-binding-category-toggle" data-worldbook-toggle="${category.id}" aria-label="切换分类展开">
+                                <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            </button>
+                        </div>
+                        <div class="worldbook-binding-category-children">${childrenHtml}</div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = groupsHtml;
+        }
+
+        function updateWorldbookBindingSelection(mode, value) {
+            const currentBinding = normalizeWorldbookBinding(mode === 'role' ? tempRoleWorldbookBinding : tempGroupWorldbookBinding);
+            const nextBinding = { type: 'none', categoryId: '', bookId: '' };
+
+            if (value) {
+                const [type, id] = value.split(':');
+                if (type === 'category') {
+                    if (!(currentBinding.type === 'category' && currentBinding.categoryId === (id || ''))) {
+                        nextBinding.type = 'category';
+                        nextBinding.categoryId = id || '';
+                    }
+                } else if (type === 'book') {
+                    const book = worldbooks.find(item => item.id === (id || ''));
+                    const isInheritedFromSelectedCategory = book
+                        && currentBinding.type === 'category'
+                        && currentBinding.categoryId === (book.categoryId || WORLD_BOOK_NONE_CATEGORY);
+
+                    if (book && !isInheritedFromSelectedCategory && !(currentBinding.type === 'book' && currentBinding.bookId === book.id)) {
+                        nextBinding.type = 'book';
+                        nextBinding.bookId = book.id;
+                        nextBinding.categoryId = book.categoryId || WORLD_BOOK_NONE_CATEGORY;
+                    }
+                }
+            }
+
+            if (mode === 'role') {
+                tempRoleWorldbookBinding = nextBinding;
+            } else {
+                tempGroupWorldbookBinding = nextBinding;
+            }
+
+            renderWorldbookBindingOptions(mode);
+        }
+
+        function toggleWorldbookBindingCategory(mode, categoryId) {
+            const expandedSet = getWorldbookExpandedSet(mode);
+            if (expandedSet.has(categoryId)) {
+                expandedSet.delete(categoryId);
+            } else {
+                expandedSet.add(categoryId);
+            }
+
+            renderWorldbookBindingOptions(mode);
+        }
+
+        function toggleWorldbookBindingPanel(mode, forceOpen) {
+            const root = mode === 'role' ? roleWorldbookBinding : groupWorldbookBinding;
+            if (!root) return;
+
+            const nextOpen = typeof forceOpen === 'boolean' ? forceOpen : !root.classList.contains('open');
+            root.classList.toggle('open', nextOpen);
+            if (nextOpen) {
+                renderWorldbookBindingOptions(mode);
+            }
         }
 
         function getGroupMembers(friend = {}) {
@@ -1941,7 +2700,10 @@
             roleSettingsContextLimitInput.value = config.contextLimit;
             roleSettingsReplyMinInput.value = config.replyMin;
             roleSettingsReplyMaxInput.value = config.replyMax;
+            tempRoleWorldbookBinding = normalizeWorldbookBinding(config.worldbookBinding);
             renderRoleSettingsUserPersonaOptions(config.boundUserPersonaId);
+            renderWorldbookBindingOptions('role');
+            toggleWorldbookBindingPanel('role', false);
             fillRoleSettingsAvatar(friend);
             roleSettingsPage.style.display = 'flex';
         }
@@ -1957,7 +2719,10 @@
             groupSettingsContextLimitInput.value = config.contextLimit;
             groupSettingsReplyMinInput.value = config.replyMin;
             groupSettingsReplyMaxInput.value = config.replyMax;
+            tempGroupWorldbookBinding = normalizeWorldbookBinding(config.worldbookBinding);
             renderGroupSettingsUserPersonaOptions(config.boundUserPersonaId);
+            renderWorldbookBindingOptions('group');
+            toggleWorldbookBindingPanel('group', false);
             renderGroupSettingsMembers();
             fillGroupSettingsAvatar(friend);
             groupSettingsPage.style.display = 'flex';
@@ -2459,6 +3224,46 @@
             }
         });
 
+        roleWorldbookBinding.addEventListener('click', (event) => {
+            const trigger = event.target.closest('[data-worldbook-trigger="role"]');
+            if (trigger) {
+                toggleWorldbookBindingPanel('role');
+                return;
+            }
+
+            const toggle = event.target.closest('[data-worldbook-toggle]');
+            if (toggle) {
+                event.stopPropagation();
+                toggleWorldbookBindingCategory('role', toggle.dataset.worldbookToggle || '');
+                return;
+            }
+
+            const option = event.target.closest('[data-worldbook-option]');
+            if (option) {
+                updateWorldbookBindingSelection('role', option.dataset.worldbookValue || '');
+            }
+        });
+
+        groupWorldbookBinding.addEventListener('click', (event) => {
+            const trigger = event.target.closest('[data-worldbook-trigger="group"]');
+            if (trigger) {
+                toggleWorldbookBindingPanel('group');
+                return;
+            }
+
+            const toggle = event.target.closest('[data-worldbook-toggle]');
+            if (toggle) {
+                event.stopPropagation();
+                toggleWorldbookBindingCategory('group', toggle.dataset.worldbookToggle || '');
+                return;
+            }
+
+            const option = event.target.closest('[data-worldbook-option]');
+            if (option) {
+                updateWorldbookBindingSelection('group', option.dataset.worldbookValue || '');
+            }
+        });
+
         document.getElementById('btn-save-role-settings').addEventListener('click', async () => {
             const friend = getFriendByName(currentChatFriend);
             if (!friend || friend.type === 'group') return;
@@ -2501,6 +3306,7 @@
             friend.avatar = tempRoleSettingsAvatarData;
             friend.personaPrompt = personaPrompt;
             friend.boundUserPersonaId = boundUserPersonaId;
+            friend.worldbookBinding = normalizeWorldbookBinding(tempRoleWorldbookBinding);
             friend.contextLimit = contextLimit;
             friend.replyMin = replyMin;
             friend.replyMax = replyMax;
@@ -2568,6 +3374,7 @@
             friend.name = newName;
             friend.avatar = tempGroupSettingsAvatarData;
             friend.boundUserPersonaId = boundUserPersonaId;
+            friend.worldbookBinding = normalizeWorldbookBinding(tempGroupWorldbookBinding);
             friend.contextLimit = contextLimit;
             friend.replyMin = replyMin;
             friend.replyMax = replyMax;
@@ -2925,6 +3732,33 @@
             return userPersonas.find(persona => persona.id === friend.boundUserPersonaId) || null;
         }
 
+        function getBoundWorldbookEntries(friend) {
+            const binding = normalizeWorldbookBinding(friend?.worldbookBinding || {});
+            if (binding.type === 'category') {
+                return getBooksByCategory(binding.categoryId);
+            }
+
+            if (binding.type === 'book') {
+                const book = worldbooks.find(item => item.id === binding.bookId);
+                return book ? [book] : [];
+            }
+
+            return [];
+        }
+
+        function getWorldbookPromptText(friend) {
+            const entries = getBoundWorldbookEntries(friend)
+                .map(book => {
+                    const name = String(book?.name || '').trim();
+                    const content = String(book?.content || '').trim();
+                    if (!content) return '';
+                    return name ? `${name}：${content}` : content;
+                })
+                .filter(Boolean);
+
+            return entries.join('\n');
+        }
+
         function escapeForJsonString(value) {
             return String(value || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
         }
@@ -2936,12 +3770,14 @@
             const rolePersona = config.personaPrompt || '性格设定暂未填写。';
             const userPersonaName = boundUserPersona?.name || '对话对象';
             const userPersonaDesc = boundUserPersona?.description || '未绑定具体用户人设。';
+            const worldbookPrompt = getWorldbookPromptText(friend);
 
             return [
-                `你是${roleName}。`,
-                `你的性格、经历和扮演设定是：${rolePersona}`,
-                `现在你正在使用手机聊天软件，与${userPersonaName}对话。`,
+                `这是手机聊天，你在和${userPersonaName}聊天。`,
                 `对方的人设是：${userPersonaDesc}`,
+                `你的姓名是：${roleName}。`,
+                `你的设定是：${rolePersona}`,
+                worldbookPrompt ? `你的背景设定是：${worldbookPrompt}` : '',
                 '当前场景是网络聊天，不是面对面交谈。',
                 '请使用口语化、碎片化、像微信一样的短消息回复。',
                 `一次回复拆成 ${config.replyMin} 到 ${config.replyMax} 条独立短消息。`,
@@ -2949,7 +3785,7 @@
                 '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
                 '请严格返回 JSON，格式为：{"replies":["第一条","第二条"]}',
                 '除了这个 JSON 之外，不要输出任何额外文字、标题、代码块或说明。'
-            ].join('\n');
+            ].filter(Boolean).join('\n');
         }
 
         function buildGroupChatSystemPrompt(friend) {
@@ -2961,13 +3797,16 @@
             const memberLines = members.length
                 ? members.map(member => `${member.name || '未命名成员'}：${member.desc || '暂无设定'}`).join('；')
                 : '暂无群成员信息。';
+            const worldbookPrompt = getWorldbookPromptText(friend);
             const extraPrompt = parseStoredJson('friend_settings', {})[friend.name] || '';
 
             return [
-                `这是一个微信群聊天，群聊名称是：${friend.name || '未命名群聊'}。`,
-                `群成员有人：${memberLines}`,
+                `这是手机群聊，你们在和${userPersonaName}聊天。`,
+                `对方的人设是：${userPersonaDesc}`,
+                `群聊名称是：${friend.name || '未命名群聊'}。`,
+                `群成员设定如下：${memberLines}`,
+                worldbookPrompt ? `这个群聊的背景设定是：${worldbookPrompt}` : '',
                 `你需要同时扮演这些群成员，和${userPersonaName}进行群聊。`,
-                `用户人设是：${userPersonaDesc}`,
                 '请严格按照各自人设、关系和群聊语境决定谁发言、每个人发几条，不需要平均分配。',
                 `整轮回复总条数控制在 ${config.replyMin} 到 ${config.replyMax} 条。`,
                 '可以只有部分成员发言，也可以连续由同一成员发多条，只要符合人设和当前话题。',
