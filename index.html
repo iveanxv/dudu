@@ -364,7 +364,7 @@
         #chat-room { z-index: 600; background-color: #ededed; }
         #chat-settings-page { z-index: 610; background-color: #ededed; }
         .chat-scroll-area { padding: 16px; display: flex; flex-direction: column; gap: 16px; min-height: 100%; }
-        .msg-row { display: flex; width: 100%; margin-bottom: 10px; align-items: flex-start; gap: 8px; }
+        .msg-row { display: flex; width: 100%; margin-bottom: 10px; align-items: flex-start; gap: 8px; position: relative; }
         .msg-row.ai { justify-content: flex-start; }
         .msg-row.user { justify-content: flex-end; }
         .msg-row.system { justify-content: center; }
@@ -382,11 +382,41 @@
         .msg-sender-name { font-size: 12px; color: #8c8c8c; padding: 0 2px; }
         .msg-bubble {
             max-width: 100%; padding: 10px 14px; border-radius: 8px; font-size: 15px; line-height: 1.4;
-            word-wrap: break-word; user-select: text; -webkit-user-select: text;
+            word-wrap: break-word; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
         }
+        .msg-bubble.is-pressing { transform: scale(0.985); filter: saturate(0.98); }
         .msg-row.ai .msg-bubble { background: #fff; color: #111; border-top-left-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .msg-row.user .msg-bubble { background: #95ec69; color: #111; border-top-right-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .msg-row.system .msg-bubble { max-width: 88%; padding: 6px 12px; background: transparent; color: #8c8c8c; font-size: 13px; line-height: 1.5; box-shadow: none; border-radius: 999px; text-align: center; }
+        .msg-actions-card {
+            display: none;
+            margin-top: 8px;
+            padding: 6px;
+            width: 280px;
+            max-width: min(calc(100vw - 56px), 280px);
+            background: rgba(247, 247, 247, 0.96);
+            border: 0.5px solid rgba(210, 210, 210, 0.9);
+            border-radius: 14px;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .msg-row.user .msg-actions-card { align-self: flex-end; }
+        .msg-row.ai .msg-actions-card { align-self: flex-start; }
+        .msg-row.menu-open .msg-actions-card { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+        .msg-action-btn {
+            border: none;
+            background: #fff;
+            color: #111;
+            border-radius: 10px;
+            padding: 10px 0;
+            font-size: 13px;
+            line-height: 1;
+            box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.06);
+            cursor: pointer;
+        }
+        .msg-action-btn:active { background: #f0f0f0; }
+        .msg-action-btn[disabled] { cursor: default; }
         
         /* 正在输入小动画 */
         @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
@@ -3589,6 +3619,11 @@
         const chatMsgList = document.getElementById('chat-msg-list');
         const chatInputField = document.getElementById('chat-input-field');
         const chatScrollView = document.getElementById('chat-scroll-view');
+        const MESSAGE_LONG_PRESS_MS = 380;
+        const messageActionLabels = ['复制', '编辑', '引用', '收藏', '多选', '删除'];
+        let activeMessageActionRow = null;
+        let messagePressTimer = null;
+        let messagePressState = null;
         
         const chatPlusBtn = document.getElementById('btn-chat-plus');
         const chatPlusPanel = document.getElementById('chat-plus-panel');
@@ -3600,10 +3635,12 @@
         document.getElementById('chat-back-btn').addEventListener('click', () => {
             chatRoom.style.display = 'none';
             chatPlusPanel.style.display = 'none';
+            closeMessageActionCard();
         });
 
         document.getElementById('chat-settings-btn').addEventListener('click', () => {
             chatPlusPanel.style.display = 'none';
+            closeMessageActionCard();
             updateChatSettingsLabels();
             chatSettingsPage.style.display = 'flex';
         });
@@ -3643,8 +3680,116 @@
             document.getElementById('chat-title-name').textContent = friendName;
             chatRoom.style.display = 'flex';
             chatPlusPanel.style.display = 'none';
+            closeMessageActionCard();
             renderChatHistory();
         }
+
+        function clearMessagePressTimer() {
+            if (messagePressTimer) {
+                clearTimeout(messagePressTimer);
+                messagePressTimer = null;
+            }
+        }
+
+        function removeMessagePressingState() {
+            if (!messagePressState?.bubble) return;
+            messagePressState.bubble.classList.remove('is-pressing');
+        }
+
+        function closeMessageActionCard() {
+            if (activeMessageActionRow) {
+                activeMessageActionRow.classList.remove('menu-open');
+            }
+            activeMessageActionRow = null;
+        }
+
+        function openMessageActionCard(row) {
+            if (!row || row.classList.contains('system')) return;
+            if (activeMessageActionRow && activeMessageActionRow !== row) {
+                activeMessageActionRow.classList.remove('menu-open');
+            }
+            row.classList.add('menu-open');
+            activeMessageActionRow = row;
+            row.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            if (window.getSelection) {
+                const selection = window.getSelection();
+                if (selection && selection.rangeCount) selection.removeAllRanges();
+            }
+        }
+
+        function cancelMessagePress() {
+            clearMessagePressTimer();
+            removeMessagePressingState();
+            messagePressState = null;
+        }
+
+        function startMessagePress(event) {
+            if (event.target.closest('.msg-actions-card')) return;
+            const bubble = event.target.closest('.msg-bubble');
+            const row = event.target.closest('.msg-row');
+            if (!bubble || !row || row.classList.contains('system')) return;
+
+            closeMessageActionCard();
+            clearMessagePressTimer();
+            removeMessagePressingState();
+
+            bubble.classList.add('is-pressing');
+            messagePressState = {
+                row,
+                bubble,
+                startX: event.clientX,
+                startY: event.clientY,
+                triggered: false
+            };
+
+            messagePressTimer = setTimeout(() => {
+                if (!messagePressState) return;
+                messagePressState.triggered = true;
+                bubble.classList.remove('is-pressing');
+                openMessageActionCard(row);
+            }, MESSAGE_LONG_PRESS_MS);
+        }
+
+        function moveMessagePress(event) {
+            if (!messagePressState || messagePressState.triggered) return;
+            const deltaX = Math.abs(event.clientX - messagePressState.startX);
+            const deltaY = Math.abs(event.clientY - messagePressState.startY);
+            if (deltaX > 8 || deltaY > 8) {
+                cancelMessagePress();
+            }
+        }
+
+        function endMessagePress(event) {
+            if (!messagePressState) return;
+
+            const wasTriggered = messagePressState.triggered;
+            const row = messagePressState.row;
+            cancelMessagePress();
+
+            if (wasTriggered) {
+                event.preventDefault();
+            } else if (activeMessageActionRow === row) {
+                closeMessageActionCard();
+            }
+        }
+
+        chatMsgList.addEventListener('pointerdown', startMessagePress);
+        chatMsgList.addEventListener('pointermove', moveMessagePress);
+        chatMsgList.addEventListener('pointerup', endMessagePress);
+        chatMsgList.addEventListener('pointercancel', cancelMessagePress);
+        chatMsgList.addEventListener('contextmenu', event => {
+            if (event.target.closest('.msg-bubble')) {
+                event.preventDefault();
+            }
+        });
+        chatScrollView.addEventListener('scroll', () => {
+            cancelMessagePress();
+        });
+        document.addEventListener('pointerdown', event => {
+            if (!event.target.closest('#chat-msg-list')) {
+                closeMessageActionCard();
+            }
+        });
 
         groupSettingsMembersGrid.addEventListener('click', async (event) => {
             const addCard = event.target.closest('#group-settings-add-member');
@@ -3975,6 +4120,9 @@
                 <div class="msg-main">
                     ${shouldShowSenderName ? `<div class="msg-sender-name">${displayName}</div>` : ''}
                     <div class="msg-bubble">${text}</div>
+                    <div class="msg-actions-card">
+                        ${messageActionLabels.map(label => `<button type="button" class="msg-action-btn" disabled>${label}</button>`).join('')}
+                    </div>
                 </div>
             `;
             chatMsgList.appendChild(row);
