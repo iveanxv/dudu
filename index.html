@@ -368,9 +368,28 @@
         .msg-row.ai { justify-content: flex-start; }
         .msg-row.user { justify-content: flex-end; }
         .msg-row.system { justify-content: center; }
+        .msg-row.multi-selecting { cursor: pointer; }
         .msg-main { display: flex; flex-direction: column; gap: 4px; max-width: 70%; }
         .msg-row.user .msg-main { align-items: flex-end; order: 1; }
         .msg-row.ai .msg-main { align-items: flex-start; }
+        .msg-select-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1.5px solid #c8c8c8;
+            background: #fff;
+            flex-shrink: 0;
+            align-self: center;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .msg-row.multi-selecting .msg-select-check { display: flex; }
+        .msg-row.selected .msg-select-check { background: #07c160; border-color: #07c160; }
+        .msg-row.selected .msg-select-check::after { content: '✓'; }
         .msg-avatar {
             width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
             background-size: cover; background-position: center; background-repeat: no-repeat;
@@ -387,6 +406,35 @@
         .msg-row.ai .msg-bubble { background: #fff; color: #111; border-top-left-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .msg-row.user .msg-bubble { background: #95ec69; color: #111; border-top-right-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .msg-row.system .msg-bubble { max-width: 88%; padding: 6px 12px; background: transparent; color: #8c8c8c; font-size: 13px; line-height: 1.5; box-shadow: none; border-radius: 999px; text-align: center; }
+        .msg-media-card { display: flex; flex-direction: column; gap: 8px; }
+        .msg-voice-bubble { min-width: 116px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; }
+        .msg-voice-wave { display: flex; align-items: center; gap: 3px; height: 18px; }
+        .msg-voice-wave span { display: block; width: 3px; background: #111; border-radius: 99px; opacity: .75; }
+        .msg-voice-wave span:nth-child(1) { height: 7px; }
+        .msg-voice-wave span:nth-child(2) { height: 13px; }
+        .msg-voice-wave span:nth-child(3) { height: 18px; }
+        .msg-voice-duration { font-size: 14px; color: #333; }
+        .msg-voice-transcript { display: none; max-width: 210px; padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,.72); color: #555; font-size: 13px; line-height: 1.45; word-break: break-word; }
+        .msg-row.ai .msg-voice-transcript { background: #f7f7f7; }
+        .msg-row.voice-open .msg-voice-transcript { display: block; }
+        .msg-photo-card { width: 178px; min-height: 128px; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg, #cfe9ff 0%, #e8f6d9 48%, #ffe3c8 100%); box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.08); position: relative; }
+        .msg-photo-card::before { content: ''; position: absolute; left: 18px; bottom: 18px; width: 56px; height: 36px; border-radius: 50% 50% 0 0; background: rgba(70, 150, 82, .35); transform: skewX(-18deg); }
+        .msg-photo-card::after { content: ''; position: absolute; right: 18px; top: 16px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 190, 72, .75); }
+        .msg-photo-desc { position: relative; z-index: 1; min-height: 128px; display: flex; align-items: center; justify-content: center; padding: 18px; color: rgba(20,20,20,.78); font-size: 14px; line-height: 1.45; text-align: center; word-break: break-word; text-shadow: 0 1px 6px rgba(255,255,255,.9); }
+        .msg-quote-card {
+            max-width: 100%;
+            padding: 7px 9px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.62);
+            border-left: 3px solid rgba(0,0,0,0.18);
+            color: #777;
+            font-size: 12px;
+            line-height: 1.35;
+            word-break: break-word;
+        }
+        .msg-row.ai .msg-quote-card { background: #f7f7f7; }
+        .msg-quote-name { color: #555; font-weight: 600; margin-bottom: 2px; }
+        .msg-quote-text { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
         .msg-actions-card {
             display: none;
             margin-top: 8px;
@@ -416,6 +464,33 @@
         }
         .msg-action-btn:active { background: #f0f0f0; }
         .msg-action-btn[disabled] { cursor: default; }
+        .chat-quote-preview {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-bottom: 0.5px solid #e5e5e5;
+            background: rgba(247,247,247,0.96);
+        }
+        .chat-quote-preview.active { display: flex; }
+        .chat-quote-preview-body { flex: 1; min-width: 0; border-left: 3px solid #b8b8b8; padding-left: 8px; }
+        .chat-quote-preview-title { font-size: 12px; color: #555; font-weight: 600; }
+        .chat-quote-preview-text { margin-top: 2px; font-size: 12px; color: #888; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .chat-quote-clear { border: none; background: transparent; color: #777; font-size: 18px; cursor: pointer; padding: 2px 6px; }
+        .chat-multi-bar {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 12px;
+            border-bottom: 0.5px solid #e5e5e5;
+            background: rgba(247,247,247,0.96);
+        }
+        .chat-multi-bar.active { display: flex; }
+        .chat-multi-count { font-size: 13px; color: #555; }
+        .chat-multi-actions { display: flex; gap: 8px; }
+        .chat-multi-btn { border: none; border-radius: 999px; padding: 7px 12px; font-size: 13px; background: #fff; color: #111; box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.08); cursor: pointer; }
+        .chat-multi-btn.danger { color: #ff3b30; background: #fff5f4; }
         
         /* 正在输入小动画 */
         @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
@@ -435,6 +510,22 @@
         .plus-icon { width: 60px; height: 60px; background: #fff; border-radius: 12px; display: flex; justify-content: center; align-items: center; }
         .plus-icon svg { width: 28px; height: 28px; fill: #444; }
         .plus-text { font-size: 12px; color: #666; }
+        .chat-compose-panel { z-index: 1200; }
+        .chat-compose-panel .modal-box { gap: 14px; }
+        .chat-compose-title { text-align: center; font-size: 17px; font-weight: 600; color: #111; }
+        .chat-compose-input { width: 100%; min-height: 112px; resize: none; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 15px; line-height: 1.5; outline: none; user-select: text; -webkit-user-select: text; }
+        .chat-compose-input:focus { border-color: #999; }
+        .chat-compose-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 2px; }
+        .chat-compose-btn { flex: 1; border: none; border-radius: 6px; padding: 10px 0; font-size: 15px; font-weight: 600; cursor: pointer; }
+        .chat-compose-btn.primary { background: #111; color: #fff; }
+
+        .favorites-page-body { min-height: 100%; padding: 16px; background: #ededed; }
+        .favorites-list { display: flex; flex-direction: column; gap: 10px; }
+        .favorite-card { background: #fff; border-radius: 16px; border: 0.5px solid #e8e8e8; padding: 13px 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .favorite-meta { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; color: #8a8a8a; font-size: 12px; }
+        .favorite-chat { color: #111; font-weight: 600; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .favorite-content { font-size: 14px; line-height: 1.55; color: #333; white-space: pre-wrap; word-break: break-word; }
+        .favorite-empty { padding: 42px 20px; border-radius: 18px; background: #fff; border: 0.5px dashed #d7d7d7; text-align: center; color: #999; font-size: 14px; line-height: 1.7; }
 
         /* ================= 设置APP样式 ================= */
         .settings-group { margin-top: 16px; background: #fff; border-top: 0.5px solid #e5e5e5; border-bottom: 0.5px solid #e5e5e5; }
@@ -1153,7 +1244,7 @@
                                 <div class="wc-me-item-desc">你的余额与支付内容会放在这里</div>
                             </div>
                         </div>
-                        <div class="wc-me-item">
+                        <div class="wc-me-item" id="btn-open-favorites">
                             <div class="wc-me-icon">
                                 <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
                             </div>
@@ -1168,6 +1259,11 @@
             <div class="wc-subpage" id="wc-subpage-user-personas">
                 <div class="app-content-body persona-page-body">
                     <div class="persona-list" id="user-persona-list"></div>
+                </div>
+            </div>
+            <div class="wc-subpage" id="wc-subpage-favorites">
+                <div class="app-content-body favorites-page-body">
+                    <div class="favorites-list" id="favorites-list"></div>
                 </div>
             </div>
         </div>
@@ -1208,6 +1304,20 @@
         </div>
 
         <div class="chat-footer">
+            <div class="chat-multi-bar" id="chat-multi-bar">
+                <div class="chat-multi-count" id="chat-multi-count">已选择 0 条</div>
+                <div class="chat-multi-actions">
+                    <button type="button" class="chat-multi-btn" id="btn-cancel-multi">取消</button>
+                    <button type="button" class="chat-multi-btn danger" id="btn-delete-selected">删除</button>
+                </div>
+            </div>
+            <div class="chat-quote-preview" id="chat-quote-preview">
+                <div class="chat-quote-preview-body">
+                    <div class="chat-quote-preview-title" id="chat-quote-preview-title">引用</div>
+                    <div class="chat-quote-preview-text" id="chat-quote-preview-text"></div>
+                </div>
+                <button type="button" class="chat-quote-clear" id="btn-clear-quote">×</button>
+            </div>
             <div class="chat-input-bar">
                 <!-- 重回按钮 (刷新图标) -->
                 <div class="chat-icon-btn" id="btn-reroll">
@@ -1232,12 +1342,22 @@
             
             <!-- 扩展面板 -->
             <div class="chat-plus-panel" id="chat-plus-panel">
-                <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg></div><span class="plus-text">语音</span></div>
-                <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div><span class="plus-text">照片</span></div>
+                <div class="plus-item" data-compose-type="voice"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg></div><span class="plus-text">语音</span></div>
+                <div class="plus-item" data-compose-type="photo"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div><span class="plus-text">照片</span></div>
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg></div><span class="plus-text">视频通话</span></div>
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><span class="plus-text">转账</span></div>
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg></div><span class="plus-text">位置</span></div>
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg></div><span class="plus-text">礼物</span></div>
+            </div>
+            <div class="modal-overlay chat-compose-panel" id="chat-compose-panel">
+                <div class="modal-box">
+                    <div class="chat-compose-title" id="chat-compose-title">发送</div>
+                    <textarea class="chat-compose-input" id="chat-compose-input" placeholder="输入内容..." autocomplete="off"></textarea>
+                    <div class="chat-compose-actions">
+                        <button type="button" class="chat-compose-btn btn-cancel" id="btn-cancel-compose">取消</button>
+                        <button type="button" class="chat-compose-btn primary" id="btn-send-compose">发送</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1972,6 +2092,7 @@
                 mode = 'alert',
                 confirmText = '确定',
                 cancelText = '取消',
+                placeholder = '',
                 defaultValue = ''
             } = options;
 
@@ -1981,6 +2102,7 @@
                 appDialogConfirm.textContent = confirmText;
                 appDialogCancel.textContent = cancelText;
                 appDialogInput.value = defaultValue;
+                appDialogInput.placeholder = placeholder;
                 appDialogInput.style.display = mode === 'prompt' ? 'block' : 'none';
                 appDialogCancel.style.display = mode === 'confirm' || mode === 'prompt' ? 'block' : 'none';
                 appDialogModal.style.display = 'flex';
@@ -1999,7 +2121,7 @@
 
                 appDialogCancel.onclick = () => {
                     cleanup();
-                    resolve(mode === 'prompt' ? '' : false);
+                    resolve(mode === 'prompt' ? null : false);
                 };
 
                 if (mode === 'prompt') {
@@ -2260,12 +2382,20 @@
         const wcBackBtn = document.getElementById('wc-back-btn');
         const wcTabbar = document.querySelector('.wc-tabbar');
         const userPersonasSubpage = document.getElementById('wc-subpage-user-personas');
+        const favoritesSubpage = document.getElementById('wc-subpage-favorites');
         let activeWechatSubpage = '';
 
         function updateWechatHeader() {
             if (activeWechatSubpage === 'user-personas') {
                 titleEl.textContent = '我的人设';
                 plusBtn.style.visibility = 'visible';
+                wcTabbar.style.display = 'none';
+                return;
+            }
+
+            if (activeWechatSubpage === 'favorites') {
+                titleEl.textContent = '收藏';
+                plusBtn.style.visibility = 'hidden';
                 wcTabbar.style.display = 'none';
                 return;
             }
@@ -2280,6 +2410,7 @@
         function closeWechatSubpage() {
             activeWechatSubpage = '';
             userPersonasSubpage.classList.remove('active');
+            favoritesSubpage.classList.remove('active');
             plusMenu.style.display = 'none';
             updateWechatHeader();
         }
@@ -2305,6 +2436,7 @@
                 openUserPersonaModal();
                 return;
             }
+            if (activeWechatSubpage) return;
             plusMenu.style.display = plusMenu.style.display === 'flex' ? 'none' : 'flex';
         });
         wechatApp.addEventListener('click', () => { plusMenu.style.display = 'none'; });
@@ -2314,6 +2446,8 @@
         if (!chatDatabase || typeof chatDatabase !== 'object' || Array.isArray(chatDatabase)) {
             chatDatabase = {};
         }
+        let favoriteMessages = parseStoredJson('favorite_messages', []);
+        if (!Array.isArray(favoriteMessages)) favoriteMessages = [];
         let friendList = parseStoredJson('friend_list', []);
         if (!Array.isArray(friendList)) friendList = [];
         let currentChatFriend = ""; 
@@ -2356,6 +2490,7 @@
         const groupWorldbookBindingOptions = document.getElementById('group-worldbook-binding-options');
         const groupSettingsInviteModal = document.getElementById('group-settings-invite-modal');
         const groupSettingsInviteList = document.getElementById('group-settings-invite-list');
+        const favoritesList = document.getElementById('favorites-list');
         let tempAvatarData = '';
         let tempUserPersonaAvatarData = '';
         let tempRoleSettingsAvatarData = '';
@@ -2373,6 +2508,21 @@
 
         function persistFriendList() {
             safeSetJsonStorage('friend_list', friendList);
+        }
+
+        function persistFavoriteMessages() {
+            safeSetJsonStorage('favorite_messages', favoriteMessages);
+        }
+
+        function createMessageId(prefix = 'msg') {
+            return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+        }
+
+        function ensureMessageIdentity(message = {}) {
+            if (!message.id) {
+                message.id = createMessageId(message.role || 'msg');
+            }
+            return message.id;
         }
 
         function getFriendByName(friendName) {
@@ -2900,8 +3050,10 @@
 
         function formatGroupContextMessage(friend, message = {}) {
             const role = message.role;
-            const rawContent = String(message.content || '').trim();
+            const rawContent = getMessagePromptContent(message);
             if (!rawContent) return null;
+
+            const quotedPrefix = getQuoteContextPrefix(message);
 
             if (role === 'system') {
                 return {
@@ -2915,14 +3067,14 @@
                 const userName = boundUserPersona?.name || localStorage.getItem('os_name') || '我';
                 return {
                     role: 'user',
-                    content: `${userName}：${rawContent}`
+                    content: `${userName}：${quotedPrefix}${rawContent}`
                 };
             }
 
             const speakerName = getMessageDisplayName('ai', message) || '群成员';
             return {
                 role: 'assistant',
-                content: `${speakerName}：${rawContent}`
+                content: `${speakerName}：${quotedPrefix}${rawContent}`
             };
         }
 
@@ -3204,6 +3356,40 @@
             renderUserPersonas();
             activeWechatSubpage = 'user-personas';
             userPersonasSubpage.classList.add('active');
+            favoritesSubpage.classList.remove('active');
+            plusMenu.style.display = 'none';
+            updateWechatHeader();
+        }
+
+        function renderFavorites() {
+            favoritesList.innerHTML = '';
+
+            if (!favoriteMessages.length) {
+                favoritesList.innerHTML = '<div class="favorite-empty">还没有收藏消息。<br>在聊天中长按消息，点击“收藏”后会出现在这里。</div>';
+                return;
+            }
+
+            favoriteMessages.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'favorite-card';
+                const timeText = item.savedAt ? new Date(item.savedAt).toLocaleString('zh-CN', { hour12: false }) : '';
+                const speaker = item.speakerName ? `${item.speakerName} · ` : '';
+                card.innerHTML = `
+                    <div class="favorite-meta">
+                        <div class="favorite-chat">${escapeHtml(speaker + (item.chatName || '未知聊天'))}</div>
+                        <div>${escapeHtml(timeText)}</div>
+                    </div>
+                    <div class="favorite-content">${escapeHtml(item.content || '')}</div>
+                `;
+                favoritesList.appendChild(card);
+            });
+        }
+
+        function openFavoritesPage() {
+            renderFavorites();
+            activeWechatSubpage = 'favorites';
+            userPersonasSubpage.classList.remove('active');
+            favoritesSubpage.classList.add('active');
             plusMenu.style.display = 'none';
             updateWechatHeader();
         }
@@ -3446,6 +3632,7 @@
         });
 
         document.getElementById('btn-open-user-personas').addEventListener('click', openUserPersonasPage);
+        document.getElementById('btn-open-favorites').addEventListener('click', openFavoritesPage);
         document.getElementById('btn-cancel-user-persona').addEventListener('click', () => {
             userPersonaModal.style.display = 'none';
         });
@@ -3623,28 +3810,151 @@
         const chatMsgList = document.getElementById('chat-msg-list');
         const chatInputField = document.getElementById('chat-input-field');
         const chatScrollView = document.getElementById('chat-scroll-view');
+        const chatQuotePreview = document.getElementById('chat-quote-preview');
+        const chatQuotePreviewTitle = document.getElementById('chat-quote-preview-title');
+        const chatQuotePreviewText = document.getElementById('chat-quote-preview-text');
+        const chatMultiBar = document.getElementById('chat-multi-bar');
+        const chatMultiCount = document.getElementById('chat-multi-count');
+        const chatComposePanel = document.getElementById('chat-compose-panel');
+        const chatComposeTitle = document.getElementById('chat-compose-title');
+        const chatComposeInput = document.getElementById('chat-compose-input');
+        const btnCancelCompose = document.getElementById('btn-cancel-compose');
+        const btnSendCompose = document.getElementById('btn-send-compose');
         const MESSAGE_LONG_PRESS_MS = 380;
-        const messageActionLabels = ['复制', '编辑', '引用', '收藏', '多选', '删除'];
+        const messageActionLabels = [
+            { action: 'copy', label: '复制' },
+            { action: 'edit', label: '编辑' },
+            { action: 'quote', label: '引用' },
+            { action: 'favorite', label: '收藏' },
+            { action: 'multi', label: '多选' },
+            { action: 'delete', label: '删除' }
+        ];
         let activeMessageActionRow = null;
         let messagePressTimer = null;
         let messagePressState = null;
         let lastChatItemOpenAt = 0;
+        let activeQuoteMessage = null;
+        let isMultiSelectingMessages = false;
+        let currentComposeType = '';
+        const selectedMessageIds = new Set();
+
+        function getEventElementTarget(event) {
+            const target = event?.target;
+            if (target instanceof Element) return target;
+            return target?.parentElement || null;
+        }
+
+        function getEventPoint(event) {
+            if (typeof event?.clientX === 'number' && typeof event?.clientY === 'number') {
+                return { x: event.clientX, y: event.clientY };
+            }
+
+            const touch = event?.touches?.[0] || event?.changedTouches?.[0];
+            if (touch) {
+                return { x: touch.clientX, y: touch.clientY };
+            }
+
+            return { x: 0, y: 0 };
+        }
+
+        function bindTap(element, handler, options = {}) {
+            if (!element) return;
+
+            let touchHandled = false;
+            element.addEventListener('click', event => {
+                if (touchHandled) {
+                    touchHandled = false;
+                    return;
+                }
+                handler(event);
+            });
+
+            element.addEventListener('touchend', event => {
+                touchHandled = true;
+                if (options.preventDefault !== false && event.cancelable) {
+                    event.preventDefault();
+                }
+                handler(event);
+            }, { passive: false });
+        }
         
         const chatPlusBtn = document.getElementById('btn-chat-plus');
         const chatPlusPanel = document.getElementById('chat-plus-panel');
-        chatPlusBtn.addEventListener('click', () => {
+        function toggleChatPlusPanel() {
             chatPlusPanel.style.display = chatPlusPanel.style.display === 'grid' ? 'none' : 'grid';
+            if (chatPlusPanel.style.display === 'none') closeChatComposePanel();
             scrollToBottom();
+        }
+
+        bindTap(chatPlusBtn, toggleChatPlusPanel);
+
+        function openChatComposePanel(type) {
+            currentComposeType = type;
+            chatComposeTitle.textContent = type === 'voice' ? '发送语音' : '发送照片';
+            chatComposeInput.placeholder = type === 'voice' ? '输入语音转文字内容...' : '输入图片描述...';
+            chatComposeInput.value = '';
+            chatComposePanel.style.display = 'flex';
+            setTimeout(() => chatComposeInput.focus(), 30);
+        }
+
+        function closeChatComposePanel() {
+            currentComposeType = '';
+            chatComposeInput.value = '';
+            chatComposePanel.style.display = 'none';
+        }
+
+        function sendSpecialUserMessage(type, content) {
+            const text = String(content || '').trim();
+            if (!text || !currentChatFriend) return;
+
+            ensureFriendChatHistory(currentChatFriend);
+            const record = { role: 'user', type, content: text, id: createMessageId('user') };
+            if (activeQuoteMessage) record.quote = { ...activeQuoteMessage };
+            chatDatabase[currentChatFriend].push(record);
+            persistChatDatabase();
+            appendMsgBubble('user', text, null, record);
+            clearActiveQuote();
+            closeChatComposePanel();
+            chatPlusPanel.style.display = 'none';
+            scrollToBottom();
+            renderFriendList();
+        }
+
+        function handleChatPlusPanelAction(event) {
+            const target = getEventElementTarget(event);
+            const item = target?.closest('[data-compose-type]');
+            if (!item) return;
+            event.stopPropagation();
+            openChatComposePanel(item.dataset.composeType);
+        }
+
+        chatPlusPanel.addEventListener('click', handleChatPlusPanelAction);
+        chatPlusPanel.addEventListener('touchend', handleChatPlusPanelAction, { passive: false });
+
+        bindTap(btnCancelCompose, closeChatComposePanel);
+        bindTap(btnSendCompose, () => {
+            sendSpecialUserMessage(currentComposeType, chatComposeInput.value);
         });
+        function handleChatComposeOverlayClose(event) {
+            const target = getEventElementTarget(event);
+            if (target === chatComposePanel) closeChatComposePanel();
+        }
+
+        chatComposePanel.addEventListener('click', handleChatComposeOverlayClose);
+        chatComposePanel.addEventListener('touchend', handleChatComposeOverlayClose, { passive: false });
 
         document.getElementById('chat-back-btn').addEventListener('click', () => {
             chatRoom.style.display = 'none';
             chatPlusPanel.style.display = 'none';
+            closeChatComposePanel();
             closeMessageActionCard();
+            clearActiveQuote();
+            exitMessageMultiSelect();
         });
 
         document.getElementById('chat-settings-btn').addEventListener('click', () => {
             chatPlusPanel.style.display = 'none';
+            closeChatComposePanel();
             closeMessageActionCard();
             updateChatSettingsLabels();
             chatSettingsPage.style.display = 'flex';
@@ -3701,13 +4011,146 @@
         function openChatRoom(friendName) {
             currentChatFriend = friendName;
             document.getElementById('chat-title-name').textContent = friendName;
+            chatMsgList.textContent = '';
             chatRoom.style.display = 'flex';
             chatPlusPanel.style.display = 'none';
+            closeChatComposePanel();
             closeMessageActionCard();
+            activeQuoteMessage = null;
+            selectedMessageIds.clear();
+            isMultiSelectingMessages = false;
+            syncQuotePreview();
             requestAnimationFrame(() => {
                 renderChatHistory();
             });
         }
+
+        function getCurrentChatMessages() {
+            ensureFriendChatHistory(currentChatFriend);
+            return chatDatabase[currentChatFriend] || [];
+        }
+
+        function getMessageById(messageId) {
+            return getCurrentChatMessages().find(message => message.id === messageId) || null;
+        }
+
+        function getMessageSpeakerLabel(message = {}) {
+            if (message.role === 'user') {
+                const friend = getFriendByName(currentChatFriend);
+                const boundUserPersona = getBoundUserPersona(friend);
+                return boundUserPersona?.name || localStorage.getItem('os_name') || '我';
+            }
+
+            if (message.role === 'ai') {
+                return message.speakerName || getFriendByName(currentChatFriend)?.name || currentChatFriend || '对方';
+            }
+
+            return '系统';
+        }
+
+        function makeQuotePayload(message = {}) {
+            return {
+                id: message.id || '',
+                role: message.role || '',
+                speakerName: getMessageSpeakerLabel(message),
+                content: String(message.content || '').trim()
+            };
+        }
+
+        function getQuoteContextPrefix(message = {}) {
+            const quote = message.quote;
+            if (!quote || !String(quote.content || '').trim()) return '';
+            const speaker = String(quote.speakerName || '某条消息').trim();
+            const content = String(quote.content || '').trim();
+            return `引用「${speaker}：${content}」\n回复：`;
+        }
+
+        function getMessagePromptContent(message = {}) {
+            const content = String(message.content || '').trim();
+            if (!content) return '';
+            if (message.type === 'voice') return `[语音消息转文字：${content}]`;
+            if (message.type === 'photo') return `[图片消息，图片描述：${content}]`;
+            return content;
+        }
+
+        function syncQuotePreview() {
+            if (!activeQuoteMessage) {
+                chatQuotePreview.classList.remove('active');
+                chatQuotePreviewText.textContent = '';
+                return;
+            }
+
+            chatQuotePreviewTitle.textContent = `引用 ${activeQuoteMessage.speakerName || '消息'}`;
+            chatQuotePreviewText.textContent = activeQuoteMessage.content || '';
+            chatQuotePreview.classList.add('active');
+        }
+
+        function clearActiveQuote() {
+            activeQuoteMessage = null;
+            syncQuotePreview();
+        }
+
+        function setActiveQuote(message = {}) {
+            activeQuoteMessage = makeQuotePayload(message);
+            syncQuotePreview();
+            chatInputField.focus();
+        }
+
+        document.getElementById('btn-clear-quote').addEventListener('click', clearActiveQuote);
+
+        function syncMultiSelectUi() {
+            chatMultiBar.classList.toggle('active', isMultiSelectingMessages);
+            chatMultiCount.textContent = `已选择 ${selectedMessageIds.size} 条`;
+            chatMsgList.querySelectorAll('.msg-row').forEach(row => {
+                const selectable = !row.classList.contains('system') && row.dataset.messageId;
+                row.classList.toggle('multi-selecting', isMultiSelectingMessages && selectable);
+                row.classList.toggle('selected', selectedMessageIds.has(row.dataset.messageId));
+            });
+        }
+
+        function enterMessageMultiSelect(initialId = '') {
+            isMultiSelectingMessages = true;
+            selectedMessageIds.clear();
+            if (initialId) selectedMessageIds.add(initialId);
+            closeMessageActionCard();
+            syncMultiSelectUi();
+        }
+
+        function exitMessageMultiSelect() {
+            isMultiSelectingMessages = false;
+            selectedMessageIds.clear();
+            syncMultiSelectUi();
+        }
+
+        function toggleSelectedMessage(row) {
+            const messageId = row?.dataset?.messageId;
+            if (!messageId) return;
+            if (selectedMessageIds.has(messageId)) {
+                selectedMessageIds.delete(messageId);
+            } else {
+                selectedMessageIds.add(messageId);
+            }
+            syncMultiSelectUi();
+        }
+
+        document.getElementById('btn-cancel-multi').addEventListener('click', exitMessageMultiSelect);
+        document.getElementById('btn-delete-selected').addEventListener('click', async () => {
+            if (!selectedMessageIds.size) return;
+            const ok = await showAppDialog({
+                title: '删除消息',
+                message: `确定删除选中的 ${selectedMessageIds.size} 条消息吗？`,
+                mode: 'confirm',
+                confirmText: '删除',
+                cancelText: '取消'
+            });
+            if (!ok) return;
+
+            chatDatabase[currentChatFriend] = getCurrentChatMessages().filter(message => !selectedMessageIds.has(message.id));
+            persistChatDatabase();
+            exitMessageMultiSelect();
+            renderChatHistory();
+            renderFriendList();
+        });
 
         function clearMessagePressTimer() {
             if (messagePressTimer) {
@@ -3749,10 +4192,14 @@
         }
 
         function startMessagePress(event) {
-            if (event.target.closest('.msg-actions-card')) return;
-            const bubble = event.target.closest('.msg-bubble');
-            const row = event.target.closest('.msg-row');
+            const target = getEventElementTarget(event);
+            if (target?.closest('.msg-actions-card')) return;
+            if (isMultiSelectingMessages) return;
+            const bubble = target?.closest('.msg-bubble');
+            const row = target?.closest('.msg-row');
             if (!bubble || !row || row.classList.contains('system')) return;
+
+            const point = getEventPoint(event);
 
             closeMessageActionCard();
             clearMessagePressTimer();
@@ -3762,8 +4209,8 @@
             messagePressState = {
                 row,
                 bubble,
-                startX: event.clientX,
-                startY: event.clientY,
+                startX: point.x,
+                startY: point.y,
                 triggered: false
             };
 
@@ -3777,8 +4224,9 @@
 
         function moveMessagePress(event) {
             if (!messagePressState || messagePressState.triggered) return;
-            const deltaX = Math.abs(event.clientX - messagePressState.startX);
-            const deltaY = Math.abs(event.clientY - messagePressState.startY);
+            const point = getEventPoint(event);
+            const deltaX = Math.abs(point.x - messagePressState.startX);
+            const deltaY = Math.abs(point.y - messagePressState.startY);
             if (deltaX > 8 || deltaY > 8) {
                 cancelMessagePress();
             }
@@ -3802,8 +4250,73 @@
         chatMsgList.addEventListener('pointermove', moveMessagePress);
         chatMsgList.addEventListener('pointerup', endMessagePress);
         chatMsgList.addEventListener('pointercancel', cancelMessagePress);
+        chatMsgList.addEventListener('touchstart', startMessagePress, { passive: true });
+        chatMsgList.addEventListener('touchmove', moveMessagePress, { passive: true });
+        chatMsgList.addEventListener('touchend', endMessagePress, { passive: false });
+        chatMsgList.addEventListener('touchcancel', cancelMessagePress, { passive: true });
+        chatMsgList.addEventListener('click', event => {
+            const target = getEventElementTarget(event);
+            const voiceBubble = target?.closest('.msg-voice-bubble');
+            if (voiceBubble) {
+                event.stopPropagation();
+                voiceBubble.closest('.msg-row')?.classList.toggle('voice-open');
+                return;
+            }
+
+            const actionButton = target?.closest('.msg-action-btn');
+            if (actionButton) return;
+            if (!isMultiSelectingMessages) return;
+            const row = target?.closest('.msg-row');
+            if (!row || row.classList.contains('system')) return;
+            event.preventDefault();
+            toggleSelectedMessage(row);
+        });
+        chatMsgList.addEventListener('touchend', event => {
+            const target = getEventElementTarget(event);
+            const voiceBubble = target?.closest('.msg-voice-bubble');
+            if (voiceBubble) {
+                event.stopPropagation();
+                voiceBubble.closest('.msg-row')?.classList.toggle('voice-open');
+                return;
+            }
+
+            const actionButton = target?.closest('.msg-action-btn');
+            if (actionButton) return;
+            if (!isMultiSelectingMessages) return;
+            const row = target?.closest('.msg-row');
+            if (!row || row.classList.contains('system')) return;
+            if (event.cancelable) event.preventDefault();
+            toggleSelectedMessage(row);
+        }, { passive: false });
+        chatMsgList.addEventListener('click', async event => {
+            const target = getEventElementTarget(event);
+            const actionButton = target?.closest('.msg-action-btn');
+            if (!actionButton) return;
+            event.preventDefault();
+            event.stopPropagation();
+
+            const row = actionButton.closest('.msg-row');
+            const message = getMessageById(row?.dataset?.messageId || '');
+            if (!row || !message) return;
+
+            await handleMessageAction(actionButton.dataset.action, message, row);
+        });
+        chatMsgList.addEventListener('touchend', async event => {
+            const target = getEventElementTarget(event);
+            const actionButton = target?.closest('.msg-action-btn');
+            if (!actionButton) return;
+            if (event.cancelable) event.preventDefault();
+            event.stopPropagation();
+
+            const row = actionButton.closest('.msg-row');
+            const message = getMessageById(row?.dataset?.messageId || '');
+            if (!row || !message) return;
+
+            await handleMessageAction(actionButton.dataset.action, message, row);
+        }, { passive: false });
         chatMsgList.addEventListener('contextmenu', event => {
-            if (event.target.closest('.msg-bubble')) {
+            const target = getEventElementTarget(event);
+            if (target?.closest('.msg-bubble')) {
                 event.preventDefault();
             }
         });
@@ -3811,10 +4324,112 @@
             cancelMessagePress();
         });
         document.addEventListener('pointerdown', event => {
-            if (!event.target.closest('#chat-msg-list')) {
+            const target = getEventElementTarget(event);
+            if (!target?.closest('#chat-msg-list')) {
                 closeMessageActionCard();
             }
         });
+        document.addEventListener('touchstart', event => {
+            const target = getEventElementTarget(event);
+            if (!target?.closest('#chat-msg-list')) {
+                closeMessageActionCard();
+            }
+        }, { passive: true });
+
+        async function copyTextToClipboard(text) {
+            const value = String(text || '');
+            if (navigator.clipboard?.writeText) {
+                await navigator.clipboard.writeText(value);
+                return true;
+            }
+
+            const textarea = document.createElement('textarea');
+            textarea.value = value;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            const ok = document.execCommand('copy');
+            textarea.remove();
+            return ok;
+        }
+
+        async function handleMessageAction(action, message, row) {
+            closeMessageActionCard();
+
+            if (action === 'copy') {
+                await copyTextToClipboard(message.content || '');
+                await showAppDialog({ title: '已复制', message: '消息内容已复制到剪贴板。' });
+                return;
+            }
+
+            if (action === 'edit') {
+                const editedText = await showAppDialog({
+                    title: '编辑消息',
+                    message: '',
+                    mode: 'prompt',
+                    placeholder: '请输入消息内容',
+                    defaultValue: message.content || '',
+                    confirmText: '保存',
+                    cancelText: '取消'
+                });
+                if (editedText === null) return;
+                const nextContent = String(editedText || '').trim();
+                if (!nextContent) {
+                    await showAppDialog({ title: '无法保存', message: '消息内容不能为空。' });
+                    return;
+                }
+                message.content = nextContent;
+                message.editedAt = Date.now();
+                persistChatDatabase();
+                renderChatHistory();
+                renderFriendList();
+                return;
+            }
+
+            if (action === 'quote') {
+                setActiveQuote(message);
+                return;
+            }
+
+            if (action === 'favorite') {
+                if (!favoriteMessages.some(item => item.sourceMessageId === message.id && item.chatName === currentChatFriend)) {
+                    favoriteMessages.unshift({
+                        id: createMessageId('favorite'),
+                        sourceMessageId: message.id,
+                        chatName: currentChatFriend,
+                        role: message.role,
+                        speakerName: getMessageSpeakerLabel(message),
+                        content: message.content || '',
+                        savedAt: Date.now()
+                    });
+                    persistFavoriteMessages();
+                }
+                await showAppDialog({ title: '已收藏', message: '这条消息已保存到“我 > 收藏”。' });
+                return;
+            }
+
+            if (action === 'multi') {
+                enterMessageMultiSelect(message.id);
+                return;
+            }
+
+            if (action === 'delete') {
+                const ok = await showAppDialog({
+                    title: '删除消息',
+                    message: '确定删除这条消息吗？',
+                    mode: 'confirm',
+                    confirmText: '删除',
+                    cancelText: '取消'
+                });
+                if (!ok) return;
+                chatDatabase[currentChatFriend] = getCurrentChatMessages().filter(item => item.id !== message.id);
+                persistChatDatabase();
+                renderChatHistory();
+                renderFriendList();
+            }
+        }
 
         groupSettingsMembersGrid.addEventListener('click', async (event) => {
             const addCard = event.target.closest('#group-settings-add-member');
@@ -3952,8 +4567,10 @@
                 '请使用口语化、碎片化、像微信一样的短消息回复。',
                 `一次回复拆成 ${config.replyMin} 到 ${config.replyMax} 条独立短消息。`,
                 '每条消息控制在 1 到 25 个字左右。',
+                '你也可以在适合聊天情景时自然发送语音或图片，但不需要每次都发。',
+                '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述。',
                 '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
-                '请严格返回 JSON，格式为：{"replies":["第一条","第二条"]}',
+                '请严格返回 JSON，格式为：{"replies":[{"type":"text","content":"第一条"},{"type":"voice","content":"语音转文字内容"},{"type":"photo","content":"图片画面描述"}]}',
                 '除了这个 JSON 之外，不要输出任何额外文字、标题、代码块或说明。'
             ].filter(Boolean).join('\n');
         }
@@ -3983,9 +4600,11 @@
                 '当前场景是线上微信群聊天，不是面对面交谈。',
                 '请使用口语化、碎片化、像微信一样的短消息回复。',
                 '每条消息控制在 1 到 25 个字左右。',
+                '群成员也可以在适合聊天情景时自然发送语音或图片，但不需要每次都发。',
+                '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述。',
                 '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
                 '如果内容里需要提到发言人，只在 speaker 字段里写，不要把名字重复写进 content。',
-                '请严格返回 JSON，格式为：{"replies":[{"speaker":"角色名","content":"第一条"},{"speaker":"角色名","content":"第二条"}]}',
+                '请严格返回 JSON，格式为：{"replies":[{"speaker":"角色名","type":"text","content":"第一条"},{"speaker":"角色名","type":"voice","content":"语音转文字内容"},{"speaker":"角色名","type":"photo","content":"图片画面描述"}]}',
                 'speaker 必须是群成员名字之一，content 只写这条消息正文。',
                 extraPrompt ? `补充规则：${extraPrompt}` : '',
                 '除了这个 JSON 之外，不要输出任何额外文字、标题、代码块或说明。'
@@ -3993,6 +4612,10 @@
         }
 
         function normalizeAiReplyMessages(replyText) {
+            function normalizeReplyType(type) {
+                return type === 'voice' || type === 'photo' ? type : 'text';
+            }
+
             const fallbackMessages = String(replyText || '')
                 .split(/\n+/)
                 .map(item => item.trim())
@@ -4002,7 +4625,17 @@
                 const parsed = JSON.parse(replyText);
                 if (Array.isArray(parsed?.replies)) {
                     const validReplies = parsed.replies
-                        .map(item => String(item || '').trim())
+                        .map(item => {
+                            if (item && typeof item === 'object') {
+                                const content = String(item.content || item.text || '').trim();
+                                if (!content) return null;
+                                const type = normalizeReplyType(item.type);
+                                return type === 'text' ? { content } : { type, content };
+                            }
+
+                            const content = String(item || '').trim();
+                            return content ? { content } : null;
+                        })
                         .filter(Boolean);
                     if (validReplies.length) return validReplies;
                 }
@@ -4013,7 +4646,17 @@
                         const parsed = JSON.parse(jsonMatch[0]);
                         if (Array.isArray(parsed?.replies)) {
                             const validReplies = parsed.replies
-                                .map(item => String(item || '').trim())
+                                .map(item => {
+                                    if (item && typeof item === 'object') {
+                                        const content = String(item.content || item.text || '').trim();
+                                        if (!content) return null;
+                                        const type = normalizeReplyType(item.type);
+                                        return type === 'text' ? { content } : { type, content };
+                                    }
+
+                                    const content = String(item || '').trim();
+                                    return content ? { content } : null;
+                                })
                                 .filter(Boolean);
                             if (validReplies.length) return validReplies;
                         }
@@ -4022,14 +4665,18 @@
                 }
             }
 
-            if (fallbackMessages.length) return fallbackMessages.slice(0, 8);
-            return ['……'];
+            if (fallbackMessages.length) return fallbackMessages.slice(0, 8).map(content => ({ content }));
+            return [{ content: '……' }];
         }
 
         function normalizeGroupReplyMessages(replyText, friend) {
             const members = getGroupMembers(friend);
             const memberMap = new Map(members.map(member => [member.name, member]));
             const fallbackSpeaker = members[0] || null;
+
+            function normalizeReplyType(type) {
+                return type === 'voice' || type === 'photo' ? type : 'text';
+            }
 
             function mapReplyItems(items) {
                 if (!Array.isArray(items)) return [];
@@ -4045,8 +4692,11 @@
                         const member = memberMap.get(speakerName);
                         if (!member) return null;
 
+                        const type = normalizeReplyType(item.type);
+
                         return {
                             role: 'ai',
+                            ...(type === 'text' ? {} : { type }),
                             content,
                             speakerId: member.id,
                             speakerName: member.name,
@@ -4121,36 +4771,73 @@
         function renderChatHistory() {
             chatMsgList.innerHTML = '';
             const msgs = chatDatabase[currentChatFriend] || [];
-            msgs.forEach(msg => { appendMsgBubble(msg.role, msg.content, null, msg); });
+            let changed = false;
+            msgs.forEach(msg => {
+                if (!msg.id) {
+                    ensureMessageIdentity(msg);
+                    changed = true;
+                }
+            });
+            if (changed) persistChatDatabase();
+            const fragment = document.createDocumentFragment();
+            msgs.forEach(msg => { appendMsgBubble(msg.role, msg.content, null, msg, fragment); });
+            chatMsgList.appendChild(fragment);
+            syncMultiSelectUi();
             scrollToBottom();
         }
 
         // 增加 id 支持以便删除临时气泡
-        function appendMsgBubble(role, text, id = null, message = {}) {
+        function appendMsgBubble(role, text, id = null, message = {}, container = chatMsgList) {
             const row = document.createElement('div');
             row.className = `msg-row ${role}`;
             if(id) row.id = id;
+            if (role !== 'system' && message?.id) row.dataset.messageId = message.id;
 
             if (role === 'system') {
-                row.innerHTML = `<div class="msg-bubble">${text}</div>`;
-                chatMsgList.appendChild(row);
+                row.innerHTML = `<div class="msg-bubble">${escapeHtml(text)}</div>`;
+                container.appendChild(row);
                 return;
             }
 
             const avatarMeta = getMessageAvatarMeta(role, message);
             const displayName = getMessageDisplayName(role, message);
             const shouldShowSenderName = role === 'ai' && getFriendByName(currentChatFriend)?.type === 'group' && displayName;
+            const quote = message.quote;
+            const quoteMarkup = quote?.content ? `
+                    <div class="msg-quote-card">
+                        <div class="msg-quote-name">${escapeHtml(quote.speakerName || '引用')}</div>
+                        <div class="msg-quote-text">${escapeHtml(quote.content || '')}</div>
+                    </div>
+                ` : '';
+            const normalizedText = String(text || '');
+            const voiceDuration = Math.max(1, Math.min(60, Math.round(normalizedText.length / 2) + 1));
+            let bubbleContent = message.isHtml ? text : escapeHtml(normalizedText);
+            if (message.type === 'voice') {
+                bubbleContent = `
+                    <div class="msg-media-card">
+                        <div class="msg-voice-bubble" title="点击查看文字">
+                            <div class="msg-voice-wave"><span></span><span></span><span></span></div>
+                            <div class="msg-voice-duration">${voiceDuration}''</div>
+                        </div>
+                        <div class="msg-voice-transcript">${escapeHtml(normalizedText)}</div>
+                    </div>
+                `;
+            } else if (message.type === 'photo') {
+                bubbleContent = `<div class="msg-photo-card"><div class="msg-photo-desc">${escapeHtml(normalizedText)}</div></div>`;
+            }
             row.innerHTML = `
+                <div class="msg-select-check"></div>
                 <div class="msg-avatar" style="${avatarMeta.style}">${avatarMeta.text}</div>
                 <div class="msg-main">
-                    ${shouldShowSenderName ? `<div class="msg-sender-name">${displayName}</div>` : ''}
-                    <div class="msg-bubble">${text}</div>
+                    ${shouldShowSenderName ? `<div class="msg-sender-name">${escapeHtml(displayName)}</div>` : ''}
+                    ${quoteMarkup}
+                    <div class="msg-bubble">${bubbleContent}</div>
                     <div class="msg-actions-card">
-                        ${messageActionLabels.map(label => `<button type="button" class="msg-action-btn" disabled>${label}</button>`).join('')}
+                        ${messageActionLabels.map(item => `<button type="button" class="msg-action-btn" data-action="${item.action}">${item.label}</button>`).join('')}
                     </div>
                 </div>
             `;
-            chatMsgList.appendChild(row);
+            container.appendChild(row);
         }
 
         function scrollToBottom() {
@@ -4164,12 +4851,17 @@
                 if(!text) return;
                 
                 ensureFriendChatHistory(currentChatFriend);
-                chatDatabase[currentChatFriend].push({ role: 'user', content: text });
+                const record = { role: 'user', content: text, id: createMessageId('user') };
+                if (activeQuoteMessage) record.quote = { ...activeQuoteMessage };
+                chatDatabase[currentChatFriend].push(record);
                 persistChatDatabase();
-                appendMsgBubble('user', text, null, { role: 'user', content: text });
+                appendMsgBubble('user', text, null, record);
                 chatInputField.value = '';
+                clearActiveQuote();
                 chatPlusPanel.style.display = 'none';
+                closeChatComposePanel();
                 scrollToBottom();
+                renderFriendList();
             }
         });
 
@@ -4243,13 +4935,13 @@
                         : m.role === 'system'
                             ? 'system'
                             : 'assistant',
-                    content: m.content
+                    content: `${getQuoteContextPrefix(m)}${getMessagePromptContent(m)}`
                 });
             });
 
             // 界面上加一个等待动效
             const loadingId = 'loading-' + Date.now();
-            appendMsgBubble('ai', '<div class="typing-indicator" style="display:flex; gap:2px; font-weight:bold; font-size:20px; line-height:10px;"><span>.</span><span>.</span><span>.</span></div>', loadingId, { role: 'ai', content: '', speakerName: isGroupChat ? '群成员' : '' });
+            appendMsgBubble('ai', '<div class="typing-indicator" style="display:flex; gap:2px; font-weight:bold; font-size:20px; line-height:10px;"><span>.</span><span>.</span><span>.</span></div>', loadingId, { role: 'ai', content: '', speakerName: isGroupChat ? '群成员' : '', isHtml: true });
             scrollToBottom();
 
             try {
@@ -4281,17 +4973,18 @@
                 const replyText = data.choices[0].message.content;
                 const replyMessages = isGroupChat
                     ? normalizeGroupReplyMessages(replyText, friend || { name: currentChatFriend, members: [] })
-                    : normalizeAiReplyMessages(replyText).map(message => ({ role: 'ai', content: message }));
+                    : normalizeAiReplyMessages(replyText).map(message => ({ ...message, role: 'ai' }));
                 const replyTurnId = `ai-turn-${Date.now()}`;
 
                 // 记录并渲染
                 replyMessages.forEach(message => {
-                    const record = { ...message, role: 'ai', turnId: replyTurnId };
+                    const record = { ...message, role: 'ai', id: createMessageId('ai'), turnId: replyTurnId };
                     chatDatabase[currentChatFriend].push(record);
                     appendMsgBubble('ai', record.content, null, record);
                 });
                 persistChatDatabase();
                 scrollToBottom();
+                renderFriendList();
 
             } catch (e) {
                 console.error(e);
