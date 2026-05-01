@@ -144,6 +144,188 @@
         .wc-chat-time { font-size: 12px; color: #b2b2b2; }
         .wc-chat-desc { font-size: 14px; color: #999; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .wc-empty-page { display: flex; align-items: center; justify-content: center; height: 100%; color: #999; font-size: 15px; }
+        .wc-discover-page { min-height: 100%; background: #ededed; padding: 0 0 32px; }
+        .wc-discover-list { background: #fff; border-top: 0.5px solid #ececec; border-bottom: 0.5px solid #ececec; }
+        .wc-discover-item { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-bottom: 0.5px solid #ececec; cursor: pointer; }
+        .wc-discover-item:last-child { border-bottom: none; }
+        .wc-discover-item:active { background: #f5f5f5; }
+        .wc-discover-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #111; }
+        .wc-discover-icon svg { width: 18px; height: 18px; fill: #fff; }
+        .wc-discover-title { flex: 1; font-size: 16px; color: #111; font-weight: 500; }
+        .moments-page-body { min-height: 100%; background: #ededed; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        .moments-cover { height: 235px; background: #9b9b9b; background-size: cover; background-position: center; position: relative; cursor: pointer; }
+        .moments-cover input { display: none; }
+        .wc-header-actions { display: none; align-items: center; gap: 6px; }
+        .wc-header-actions.active { display: flex; }
+        .wc-header-actions .app-btn-icon { width: 32px; height: 32px; }
+        .wc-header-actions .app-btn-icon svg { width: 22px; height: 22px; }
+        .moments-profile { position: absolute; right: 16px; bottom: -18px; display: flex; align-items: flex-start; gap: 10px; }
+        .moments-name { min-width: 72px; max-width: 180px; margin-top: 6px; color: #fff; font-size: 17px; font-weight: 600; text-align: right; text-shadow: 0 1px 6px rgba(0,0,0,0.35); outline: none; word-break: break-word; user-select: text; -webkit-user-select: text; }
+        .moments-avatar { width: 64px; height: 64px; border-radius: 10px; background: #fff; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: #555; font-size: 24px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.18); cursor: pointer; overflow: hidden; }
+        .moments-avatar:active { opacity: 0.82; }
+        .moments-avatar input { display: none; }
+        .moments-feed { min-height: calc(100vh - 323px); padding: 44px 0 32px; background: #fff; }
+        .moments-empty { padding: 28px 16px; text-align: center; color: #999; font-size: 14px; }
+        .moments-editor-box { width: 88%; max-width: 360px; gap: 14px; }
+        .moments-editor-textarea {
+            width: 100%;
+            min-height: 120px;
+            resize: none;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            line-height: 1.55;
+            outline: none;
+            font-family: inherit;
+            user-select: text;
+            -webkit-user-select: text;
+            background: #fff;
+        }
+        .moments-editor-textarea:focus { border-color: #999; }
+        .moments-editor-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .moments-editor-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid #e3e3e3;
+            background: #f7f7f7;
+            color: #333;
+            cursor: pointer;
+        }
+        .moments-editor-btn:active { background: #efefef; }
+        .moments-editor-btn svg { width: 20px; height: 20px; fill: #8b8b8b; flex-shrink: 0; }
+        .moments-editor-btn-title { flex: 1; min-width: 0; font-size: 14px; font-weight: 600; color: #222; text-align: left; }
+        .moments-editor-preview {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 0.5px solid #e5e5e5;
+            background: #f8f8f8;
+        }
+        .moments-editor-preview-card {
+            width: 100%;
+            min-height: 144px;
+            border-radius: 0;
+        }
+        .moments-editor-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .moments-editor-submit {
+            background: #111;
+            color: #fff;
+        }
+        .moments-post { display: flex; gap: 10px; padding: 14px 16px; border-bottom: 0.5px solid #ececec; }
+        .moments-post-avatar { width: 42px; height: 42px; border-radius: 8px; background: #111; color: #fff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; }
+        .moments-post-body { flex: 1; min-width: 0; }
+        .moments-post-name { color: #444; font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .moments-post-text { color: #111; font-size: 15px; line-height: 1.45; word-break: break-word; }
+        .moments-post-photo { margin-top: 8px; max-width: 210px; border-radius: 8px; overflow: hidden; }
+        .moments-post-photo .msg-photo-card { width: 100%; min-height: 168px; border-radius: 8px; box-shadow: none; }
+        .moments-post-meta { margin-top: 8px; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #999; font-size: 12px; }
+        .moments-post-meta-right { display: flex; align-items: center; gap: 8px; position: relative; }
+        .moments-post-icon-btn {
+            width: 28px;
+            height: 24px;
+            border: none;
+            border-radius: 6px;
+            background: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0;
+        }
+        .moments-post-icon-btn:active { background: #e8e8e8; }
+        .moments-post-icon-btn svg { width: 16px; height: 16px; fill: #7a7a7a; }
+        .moments-post-more {
+            width: 28px;
+            height: 24px;
+            border: none;
+            border-radius: 6px;
+            background: #f1f1f1;
+            color: #576b95;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0;
+        }
+        .moments-post-more:active { background: #e8e8e8; }
+        .moments-post-action-menu {
+            position: absolute;
+            right: 0;
+            bottom: 34px;
+            display: flex;
+            align-items: stretch;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #4c4c4c;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.16);
+            z-index: 2;
+        }
+        .moments-post-action-btn {
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 13px;
+            line-height: 1;
+            padding: 10px 12px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .moments-post-action-btn + .moments-post-action-btn {
+            border-left: 0.5px solid rgba(255,255,255,0.16);
+        }
+        .moments-post-action-btn:active { background: rgba(255,255,255,0.08); }
+        .moments-post-action-btn.delete { color: #ffb8b2; }
+        .moments-post-social {
+            margin-top: 8px;
+            border-radius: 8px;
+            background: #f7f7f7;
+            padding: 8px 10px;
+        }
+        .moments-post-likes {
+            color: #576b95;
+            font-size: 13px;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+        .moments-post-comments {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .moments-post-comments.has-separator {
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 0.5px solid #e3e3e3;
+        }
+        .moments-post-comment-item {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #333;
+            word-break: break-word;
+        }
+        .moments-post-comment-author {
+            color: #576b95;
+            font-weight: 600;
+        }
+        .moments-settings-page {
+            min-height: 100%;
+            background: #ededed;
+            padding: 0 0 32px;
+        }
+        .moments-settings-page .settings-group { margin-top: 0; }
         .wc-me-page {
             min-height: 100%;
             background: #ededed;
@@ -402,6 +584,11 @@
         .msg-bubble {
             max-width: 100%; padding: 10px 14px; border-radius: 8px; font-size: 15px; line-height: 1.4;
             white-space: pre-wrap; word-wrap: break-word; word-break: break-word; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+        }
+        .msg-bubble.rich-content {
+            padding: 8px 10px;
+            white-space: normal;
+            line-height: normal;
         }
         .msg-row.ai .msg-bubble { background: #fff; color: #111; border-top-left-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .msg-row.user .msg-bubble { background: #95ec69; color: #111; border-top-right-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
@@ -1247,6 +1434,14 @@
             <div class="app-btn-icon" id="wc-plus-btn">
                 <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
             </div>
+            <div class="wc-header-actions" id="wc-moments-actions">
+                <div class="app-btn-icon" id="moments-add-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                </div>
+                <div class="app-btn-icon" id="moments-settings-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                </div>
+            </div>
             
             <!-- 右上角加号下拉菜单 -->
             <div class="wc-plus-menu" id="wc-plus-menu">
@@ -1269,7 +1464,19 @@
                     <!-- 动态列表 -->
                 </div>
             </div>
-            <div class="wc-page" id="wc-page-discover"><div class="wc-empty-page">发现页内容为空</div></div>
+            <div class="wc-page" id="wc-page-discover">
+                <div class="wc-discover-page">
+                    <div class="wc-discover-list">
+                        <div class="wc-discover-item" id="btn-open-moments">
+                            <div class="wc-discover-icon">
+                                <svg viewBox="0 0 24 24"><path d="M4 5.5C4 4.12 5.12 3 6.5 3h11C18.88 3 20 4.12 20 5.5v13c0 1.38-1.12 2.5-2.5 2.5h-11C5.12 21 4 19.88 4 18.5v-13zm2 0v9.08l3.42-3.42c.78-.78 2.05-.78 2.83 0l1.05 1.05 1.87-1.87c.78-.78 2.05-.78 2.83 0L18 12.34V5.5c0-.28-.22-.5-.5-.5h-11c-.28 0-.5.22-.5.5zm9.5 3.5c.83 0 1.5-.67 1.5-1.5S16.33 6 15.5 6 14 6.67 14 7.5 14.67 9 15.5 9z"/></svg>
+                            </div>
+                            <div class="wc-discover-title">朋友圈</div>
+                            <svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="wc-page" id="wc-page-me">
                 <div class="wc-me-page">
                     <div class="wc-me-list">
@@ -1312,6 +1519,43 @@
             <div class="wc-subpage" id="wc-subpage-favorites">
                 <div class="app-content-body favorites-page-body">
                     <div class="favorites-list" id="favorites-list"></div>
+                </div>
+            </div>
+            <div class="wc-subpage" id="wc-subpage-moments">
+                <div class="moments-page-body">
+                    <div class="moments-cover" id="moments-cover">
+                        <input type="file" id="moments-cover-upload" accept="image/*">
+                        <div class="moments-profile">
+                            <div class="moments-name" id="moments-name" contenteditable="true">用户</div>
+                            <label class="moments-avatar" id="moments-avatar">
+                                <input type="file" id="moments-avatar-upload" accept="image/*">
+                                <span id="moments-avatar-text">用</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="moments-feed" id="moments-feed">
+                        <div class="moments-empty"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="wc-subpage" id="wc-subpage-moments-settings">
+                <div class="app-content-body moments-settings-page">
+                    <div class="settings-group">
+                        <div class="settings-item with-switch">
+                            <span>角色自动评论</span>
+                            <label class="switch" aria-label="角色自动评论开关">
+                                <input type="checkbox" id="moments-auto-comment-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-item with-switch">
+                            <span>角色自动发朋友圈</span>
+                            <label class="switch" aria-label="角色自动发朋友圈开关">
+                                <input type="checkbox" id="moments-auto-post-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1822,6 +2066,43 @@
             <div class="modal-actions">
                 <div class="modal-btn btn-cancel" id="btn-cancel-worldbook-category">取消</div>
                 <div class="modal-btn btn-confirm" id="btn-confirm-worldbook-category">创建</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="moments-compose-modal">
+        <div class="modal-box moments-editor-box">
+            <div class="modal-title">发布朋友圈</div>
+            <textarea class="moments-editor-textarea" id="moments-compose-text" placeholder="这一刻的想法..." autocomplete="off"></textarea>
+            <div class="moments-editor-preview" id="moments-compose-preview" style="display: none;">
+                <div class="msg-photo-card moments-editor-preview-card">
+                    <div class="msg-photo-desc" id="moments-compose-preview-text"></div>
+                </div>
+            </div>
+            <div class="moments-editor-actions">
+                <div class="moments-editor-btn" id="btn-moments-compose-photo">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <div class="moments-editor-btn-title">上传图片</div>
+                </div>
+                <div class="moments-editor-btn" id="btn-moments-compose-visibility">
+                    <svg viewBox="0 0 24 24"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 11.5A4.5 4.5 0 1112 7.5a4.5 4.5 0 010 9zm0-7.2A2.7 2.7 0 1012 14.7 2.7 2.7 0 0012 9.3z"/></svg>
+                    <div class="moments-editor-btn-title">谁可以看</div>
+                </div>
+            </div>
+            <div class="moments-editor-footer">
+                <div class="modal-btn btn-cancel" id="btn-cancel-moments-compose">取消</div>
+                <div class="modal-btn moments-editor-submit" id="btn-confirm-moments-compose">发布</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="moments-photo-modal">
+        <div class="modal-box">
+            <div class="modal-title">图片描述</div>
+            <textarea class="modal-input worldbook-content-input" id="moments-photo-input" placeholder="输入这张图片的画面描述" autocomplete="off"></textarea>
+            <div class="modal-actions">
+                <div class="modal-btn btn-cancel" id="btn-cancel-moments-photo">取消</div>
+                <div class="modal-btn btn-confirm" id="btn-confirm-moments-photo">确定</div>
             </div>
         </div>
     </div>
@@ -2465,9 +2746,1049 @@
         const wcTabbar = document.querySelector('.wc-tabbar');
         const userPersonasSubpage = document.getElementById('wc-subpage-user-personas');
         const favoritesSubpage = document.getElementById('wc-subpage-favorites');
+        const momentsSubpage = document.getElementById('wc-subpage-moments');
+        const momentsSettingsSubpage = document.getElementById('wc-subpage-moments-settings');
+        const wcMomentsActions = document.getElementById('wc-moments-actions');
+        const btnOpenMoments = document.getElementById('btn-open-moments');
+        const momentsName = document.getElementById('moments-name');
+        const momentsCover = document.getElementById('moments-cover');
+        const momentsCoverUpload = document.getElementById('moments-cover-upload');
+        const momentsFeed = document.getElementById('moments-feed');
+        const momentsAvatar = document.getElementById('moments-avatar');
+        const momentsAvatarUpload = document.getElementById('moments-avatar-upload');
+        const momentsAvatarText = document.getElementById('moments-avatar-text');
+        const momentsAddBtn = document.getElementById('moments-add-btn');
+        const momentsComposeModal = document.getElementById('moments-compose-modal');
+        const momentsComposeText = document.getElementById('moments-compose-text');
+        const momentsComposePreview = document.getElementById('moments-compose-preview');
+        const momentsComposePreviewText = document.getElementById('moments-compose-preview-text');
+        const momentsSettingsBtn = document.getElementById('moments-settings-btn');
+        const momentsPhotoModal = document.getElementById('moments-photo-modal');
+        const momentsPhotoInput = document.getElementById('moments-photo-input');
+        const momentsAutoCommentToggle = document.getElementById('moments-auto-comment-toggle');
+        const momentsAutoPostToggle = document.getElementById('moments-auto-post-toggle');
+        let momentsPosts = parseStoredJson('moments_posts', []);
+        if (!Array.isArray(momentsPosts)) momentsPosts = [];
+        let momentsAutoPostState = parseStoredJson('moments_auto_post_state', {});
+        if (!momentsAutoPostState || typeof momentsAutoPostState !== 'object' || Array.isArray(momentsAutoPostState)) {
+            momentsAutoPostState = {};
+        }
+        let tempMomentsPhotoText = '';
         let activeWechatSubpage = '';
+        let activeMomentActionPostId = '';
+
+        function persistMomentsPosts() {
+            safeSetJsonStorage('moments_posts', momentsPosts);
+        }
+
+        function persistMomentsAutoPostState() {
+            safeSetJsonStorage('moments_auto_post_state', momentsAutoPostState);
+        }
+
+        function syncMomentsAutomationSettings() {
+            if (momentsAutoCommentToggle) {
+                momentsAutoCommentToggle.checked = localStorage.getItem('moments_auto_comment_enabled') === '1';
+            }
+            if (momentsAutoPostToggle) {
+                momentsAutoPostToggle.checked = localStorage.getItem('moments_auto_post_enabled') === '1';
+            }
+        }
+
+        syncMomentsAutomationSettings();
+
+        function normalizeMomentPost(post = {}) {
+            return {
+                id: String(post.id || createMessageId('moment')).trim(),
+                authorType: post.authorType === 'friend' ? 'friend' : 'user',
+                authorId: String(post.authorId || 'user-self').trim() || 'user-self',
+                authorName: String(post.authorName || localStorage.getItem('moments_name') || '用户').trim() || '用户',
+                text: String(post.text || '').trim(),
+                photoText: String(post.photoText || '').trim(),
+                likes: Array.isArray(post.likes)
+                    ? post.likes
+                        .map(like => ({
+                            id: String(like?.id || createMessageId('like')).trim(),
+                            authorId: String(like?.authorId || 'user-self').trim() || 'user-self',
+                            authorName: String(like?.authorName || '用户').trim() || '用户',
+                            createdAt: Number(like?.createdAt) || Date.now()
+                        }))
+                        .filter(like => like.authorId)
+                    : [],
+                comments: Array.isArray(post.comments)
+                    ? post.comments
+                        .map(comment => ({
+                            id: String(comment?.id || createMessageId('comment')).trim(),
+                            authorId: String(comment?.authorId || '').trim(),
+                            authorName: String(comment?.authorName || '未命名角色').trim() || '未命名角色',
+                            text: String(comment?.text || '').trim(),
+                            createdAt: Number(comment?.createdAt) || Date.now()
+                        }))
+                        .filter(comment => comment.text)
+                    : [],
+                sourceContext: post.sourceContext && typeof post.sourceContext === 'object' ? post.sourceContext : {},
+                createdAt: Number(post.createdAt) || Date.now()
+            };
+        }
+
+        momentsPosts = momentsPosts.map(normalizeMomentPost);
+
+        function formatMomentEventText(post = {}) {
+            const authorName = String(post.authorName || '用户').trim() || '用户';
+            const parts = [`${authorName}发送了一条朋友圈`];
+            if (post.text) parts.push(`内容：${post.text}`);
+            if (post.photoText) parts.push(`配图：${post.photoText}`);
+            return parts.join('；');
+        }
+
+        function createMomentTimelineRecord(post = {}) {
+            const normalizedPost = normalizeMomentPost(post);
+            return {
+                id: createMessageId('moment-event'),
+                role: 'system',
+                type: 'moment_event',
+                eventKind: normalizedPost.authorType === 'friend' ? 'friend_posted_moment' : 'user_posted_moment',
+                momentId: normalizedPost.id,
+                content: formatMomentEventText(normalizedPost),
+                createdAt: normalizedPost.createdAt,
+                meta: {
+                    authorType: normalizedPost.authorType,
+                    authorId: normalizedPost.authorId,
+                    authorName: normalizedPost.authorName,
+                    text: normalizedPost.text,
+                    photoText: normalizedPost.photoText
+                }
+            };
+        }
+
+        function createMomentCommentTimelineRecord(post = {}, comment = {}) {
+            const normalizedPost = normalizeMomentPost(post);
+            const normalizedComment = {
+                id: String(comment.id || createMessageId('comment')).trim(),
+                authorId: String(comment.authorId || '').trim(),
+                authorName: String(comment.authorName || '未命名角色').trim() || '未命名角色',
+                text: String(comment.text || '').trim(),
+                createdAt: Number(comment.createdAt) || Date.now()
+            };
+
+            return {
+                id: createMessageId('moment-comment-event'),
+                role: 'system',
+                type: 'moment_event',
+                eventKind: 'moment_commented',
+                momentId: normalizedPost.id,
+                content: `${normalizedComment.authorName}评论了${normalizedPost.authorName}的朋友圈：${normalizedComment.text}`,
+                createdAt: normalizedComment.createdAt,
+                meta: {
+                    authorType: 'friend',
+                    authorId: normalizedComment.authorId,
+                    authorName: normalizedComment.authorName,
+                    momentAuthorName: normalizedPost.authorName,
+                    momentText: normalizedPost.text,
+                    momentPhotoText: normalizedPost.photoText,
+                    commentText: normalizedComment.text,
+                    commentId: normalizedComment.id
+                }
+            };
+        }
+
+        function createMomentLikeTimelineRecord(post = {}, like = {}) {
+            const normalizedPost = normalizeMomentPost(post);
+            const normalizedLike = {
+                id: String(like.id || createMessageId('like')).trim(),
+                authorId: String(like.authorId || '').trim(),
+                authorName: String(like.authorName || '用户').trim() || '用户',
+                createdAt: Number(like.createdAt) || Date.now()
+            };
+
+            return {
+                id: createMessageId('moment-like-event'),
+                role: 'system',
+                type: 'moment_event',
+                eventKind: 'moment_liked',
+                momentId: normalizedPost.id,
+                content: `${normalizedLike.authorName}赞了${normalizedPost.authorName}的朋友圈`,
+                createdAt: normalizedLike.createdAt,
+                meta: {
+                    authorType: 'user',
+                    authorId: normalizedLike.authorId,
+                    authorName: normalizedLike.authorName,
+                    momentAuthorName: normalizedPost.authorName,
+                    momentText: normalizedPost.text,
+                    momentPhotoText: normalizedPost.photoText,
+                    likeId: normalizedLike.id
+                }
+            };
+        }
+
+        function createMomentUnlikeTimelineRecord(post = {}, like = {}) {
+            const normalizedPost = normalizeMomentPost(post);
+            const normalizedLike = {
+                id: String(like.id || createMessageId('like')).trim(),
+                authorId: String(like.authorId || '').trim(),
+                authorName: String(like.authorName || '用户').trim() || '用户',
+                createdAt: Number(like.createdAt) || Date.now()
+            };
+
+            return {
+                id: createMessageId('moment-unlike-event'),
+                role: 'system',
+                type: 'moment_event',
+                eventKind: 'moment_unliked',
+                momentId: normalizedPost.id,
+                content: `${normalizedLike.authorName}取消赞了${normalizedPost.authorName}的朋友圈`,
+                createdAt: normalizedLike.createdAt,
+                meta: {
+                    authorType: 'user',
+                    authorId: normalizedLike.authorId,
+                    authorName: normalizedLike.authorName,
+                    momentAuthorName: normalizedPost.authorName,
+                    momentText: normalizedPost.text,
+                    momentPhotoText: normalizedPost.photoText,
+                    likeId: normalizedLike.id
+                }
+            };
+        }
+
+        function cloneTimelineRecord(record = {}) {
+            try {
+                return JSON.parse(JSON.stringify(record));
+            } catch (error) {
+                return {
+                    ...record,
+                    meta: record.meta && typeof record.meta === 'object' ? { ...record.meta } : {}
+                };
+            }
+        }
+
+        function appendStructuredSystemChatRecord(friendName, record = {}) {
+            if (!friendName || !record || typeof record !== 'object') return;
+
+            ensureFriendChatHistory(friendName);
+            const normalizedRecord = {
+                id: record.id || createMessageId('system'),
+                role: 'system',
+                content: String(record.content || '').trim(),
+                type: record.type || 'system_event',
+                eventKind: record.eventKind || '',
+                momentId: record.momentId || '',
+                createdAt: Number(record.createdAt) || Date.now(),
+                meta: record.meta && typeof record.meta === 'object' ? record.meta : {}
+            };
+            if (!normalizedRecord.content) return;
+
+            chatDatabase[friendName].push(cloneTimelineRecord(normalizedRecord));
+            persistChatDatabase();
+
+            if (currentChatFriend === friendName && chatRoom.style.display === 'flex') {
+                appendMsgBubble('system', normalizedRecord.content, null, normalizedRecord);
+                scrollToBottom();
+            }
+
+            renderFriendList();
+        }
+
+        function broadcastMomentToChats(post = {}) {
+            const normalizedPost = normalizeMomentPost(post);
+            const record = createMomentTimelineRecord(normalizedPost);
+            friendList.forEach(friend => {
+                appendStructuredSystemChatRecord(friend.name, record);
+            });
+        }
+
+        function formatMomentEventForPrompt(message = {}) {
+            const meta = message.meta && typeof message.meta === 'object' ? message.meta : {};
+            const authorName = String(meta.authorName || '').trim() || '有人';
+            const eventKind = String(message.eventKind || '').trim();
+            const text = String(meta.text || '').trim();
+            const photoText = String(meta.photoText || '').trim();
+            const momentAuthorName = String(meta.momentAuthorName || '').trim() || '有人';
+            const momentText = String(meta.momentText || '').trim();
+            const momentPhotoText = String(meta.momentPhotoText || '').trim();
+            const commentText = String(meta.commentText || '').trim();
+
+            if (eventKind === 'moment_commented') {
+                const parts = [`${authorName}评论了${momentAuthorName}的朋友圈`];
+                if (commentText) parts.push(`评论：${commentText}`);
+                if (momentText) parts.push(`原动态：${momentText}`);
+                if (momentPhotoText) parts.push(`原配图：${momentPhotoText}`);
+                return parts.join('；');
+            }
+
+            if (eventKind === 'moment_liked') {
+                const parts = [`${authorName}赞了${momentAuthorName}的朋友圈`];
+                if (momentText) parts.push(`原动态：${momentText}`);
+                if (momentPhotoText) parts.push(`原配图：${momentPhotoText}`);
+                return parts.join('；');
+            }
+
+            if (eventKind === 'moment_unliked') {
+                const parts = [`${authorName}取消赞了${momentAuthorName}的朋友圈`];
+                if (momentText) parts.push(`原动态：${momentText}`);
+                if (momentPhotoText) parts.push(`原配图：${momentPhotoText}`);
+                return parts.join('；');
+            }
+
+            const parts = [`${authorName}发了一条朋友圈`];
+            if (text) parts.push(`内容：${text}`);
+            if (photoText) parts.push(`配图：${photoText}`);
+            return parts.join('；');
+        }
+
+        function buildMomentTimelineBlock(messages = []) {
+            const momentLines = messages
+                .filter(message => message?.role === 'system' && message?.type === 'moment_event')
+                .map(message => `- ${formatMomentEventForPrompt(message)}`)
+                .filter(Boolean);
+
+            if (!momentLines.length) return '';
+            return `最近时间线中的朋友圈动态：\n${momentLines.join('\n')}`;
+        }
+
+        function getLatestUserMoment() {
+            return momentsPosts.find(post => post.authorType === 'user') || null;
+        }
+
+        function hasFriendCommentedMoment(friend = {}, moment = {}) {
+            return Array.isArray(moment.comments) && moment.comments.some(comment => comment.authorId === friend.id);
+        }
+
+        function shouldAutoCommentMoments() {
+            return Boolean(momentsAutoCommentToggle?.checked);
+        }
+
+        function shouldAutoPostMoments() {
+            return Boolean(momentsAutoPostToggle?.checked);
+        }
+
+        function getMomentAuthorMeta(post = {}) {
+            const normalizedPost = normalizeMomentPost(post);
+            if (normalizedPost.authorType === 'friend') {
+                const friend = friendList.find(item => item.id === normalizedPost.authorId) || null;
+                return getDisplayAvatarMeta({
+                    name: normalizedPost.authorName,
+                    avatar: friend?.avatar || '',
+                    fallbackText: normalizedPost.authorName.charAt(0) || '友'
+                });
+            }
+
+            return getDisplayAvatarMeta({
+                name: normalizedPost.authorName,
+                avatar: localStorage.getItem('moments_avatar') || '',
+                fallbackText: normalizedPost.authorName.charAt(0) || '用'
+            });
+        }
+
+        function getCurrentMomentUserName() {
+            return String(momentsName?.textContent || localStorage.getItem('moments_name') || localStorage.getItem('os_name') || '用户').trim() || '用户';
+        }
+
+        function getCurrentMomentUserMeta() {
+            return {
+                authorId: 'user-self',
+                authorName: getCurrentMomentUserName()
+            };
+        }
+
+        function findMomentPostIndex(postId = '') {
+            return momentsPosts.findIndex(post => post.id === postId);
+        }
+
+        function hasMomentLikedByCurrentUser(post = {}) {
+            const { authorId } = getCurrentMomentUserMeta();
+            return Array.isArray(post.likes) && post.likes.some(like => like.authorId === authorId);
+        }
+
+        function toggleMomentActionMenu(postId = '') {
+            activeMomentActionPostId = activeMomentActionPostId === postId ? '' : postId;
+            renderMomentsPosts();
+        }
+
+        function toggleMomentLike(postId = '') {
+            const index = findMomentPostIndex(postId);
+            if (index < 0) return;
+
+            const post = normalizeMomentPost(momentsPosts[index]);
+            const currentUser = getCurrentMomentUserMeta();
+            const liked = post.likes.some(like => like.authorId === currentUser.authorId);
+
+            let nextLike = null;
+            let removedLike = null;
+            post.likes = liked
+                ? post.likes.filter(like => {
+                    if (like.authorId === currentUser.authorId) {
+                        removedLike = {
+                            ...like,
+                            createdAt: Date.now()
+                        };
+                        return false;
+                    }
+                    return true;
+                })
+                : [...post.likes, (nextLike = {
+                    id: createMessageId('like'),
+                    authorId: currentUser.authorId,
+                    authorName: currentUser.authorName,
+                    createdAt: Date.now()
+                })];
+
+            momentsPosts[index] = post;
+            persistMomentsPosts();
+            if (!liked && nextLike) {
+                const likeRecord = createMomentLikeTimelineRecord(post, nextLike);
+                friendList.forEach(friend => {
+                    appendStructuredSystemChatRecord(friend.name, likeRecord);
+                });
+            }
+            if (liked && removedLike) {
+                const unlikeRecord = createMomentUnlikeTimelineRecord(post, removedLike);
+                friendList.forEach(friend => {
+                    appendStructuredSystemChatRecord(friend.name, unlikeRecord);
+                });
+            }
+            renderMomentsPosts();
+        }
+
+        async function promptMomentComment(postId = '') {
+            const index = findMomentPostIndex(postId);
+            if (index < 0) return;
+
+            const commentText = await showAppDialog({
+                title: '发表评论',
+                message: '输入评论内容',
+                mode: 'prompt',
+                placeholder: '写评论...',
+                confirmText: '发送',
+                cancelText: '取消'
+            });
+            if (commentText === null) return;
+
+            const text = String(commentText || '').trim();
+            if (!text) {
+                await showAppDialog({ title: '无法评论', message: '评论内容不能为空。' });
+                return;
+            }
+
+            const post = normalizeMomentPost(momentsPosts[index]);
+            const currentUser = getCurrentMomentUserMeta();
+            post.comments = [...post.comments, {
+                id: createMessageId('comment'),
+                authorId: currentUser.authorId,
+                authorName: currentUser.authorName,
+                text,
+                createdAt: Date.now()
+            }];
+
+            const nextComment = post.comments[post.comments.length - 1];
+
+            momentsPosts[index] = post;
+            persistMomentsPosts();
+            const commentRecord = createMomentCommentTimelineRecord(post, nextComment);
+            friendList.forEach(friend => {
+                appendStructuredSystemChatRecord(friend.name, commentRecord);
+            });
+            activeMomentActionPostId = '';
+            renderMomentsPosts();
+        }
+
+        async function deleteMomentPost(postId = '') {
+            const index = findMomentPostIndex(postId);
+            if (index < 0) return;
+
+            const post = normalizeMomentPost(momentsPosts[index]);
+            const ok = await showAppDialog({
+                title: '删除朋友圈',
+                message: `确定删除“${post.authorName || '这条'}”的朋友圈吗？`,
+                mode: 'confirm',
+                confirmText: '删除',
+                cancelText: '取消'
+            });
+            if (!ok) return;
+
+            momentsPosts.splice(index, 1);
+            persistMomentsPosts();
+            activeMomentActionPostId = '';
+            renderMomentsPosts();
+        }
+
+        function getAutoPostStateKey(friend = {}) {
+            return String(friend.id || friend.name || '').trim();
+        }
+
+        function getAutoPostStateEntry(friend = {}) {
+            const key = getAutoPostStateKey(friend);
+            if (!key) return null;
+            const entry = momentsAutoPostState[key];
+            if (!entry || typeof entry !== 'object') {
+                momentsAutoPostState[key] = {
+                    lastPostedAt: 0,
+                    lastEvaluatedAt: 0,
+                    lastEvaluatedRoundCount: 0
+                };
+            } else {
+                if (!Number.isFinite(Number(entry.lastPostedAt))) entry.lastPostedAt = 0;
+                if (!Number.isFinite(Number(entry.lastEvaluatedAt))) entry.lastEvaluatedAt = 0;
+                if (!Number.isFinite(Number(entry.lastEvaluatedRoundCount))) entry.lastEvaluatedRoundCount = 0;
+            }
+            return momentsAutoPostState[key];
+        }
+
+        function countCompletedChatRounds(messages = []) {
+            let roundCount = 0;
+            let lastTurnId = '';
+
+            messages.forEach((message, index) => {
+                if (message?.role !== 'ai') return;
+
+                const turnId = String(message.turnId || '').trim();
+                if (turnId) {
+                    if (turnId !== lastTurnId) {
+                        roundCount += 1;
+                        lastTurnId = turnId;
+                    }
+                    return;
+                }
+
+                const previousMessage = messages[index - 1];
+                if (previousMessage?.role !== 'ai') {
+                    roundCount += 1;
+                }
+                lastTurnId = '';
+            });
+
+            return roundCount;
+        }
+
+        async function maybeAutoPostCurrentRole(friend = null) {
+            if (!shouldAutoPostMoments()) return;
+
+            const targetFriend = friend || getFriendByName(currentChatFriend);
+            if (!targetFriend || targetFriend.type === 'group') return;
+
+            const stateEntry = getAutoPostStateEntry(targetFriend);
+            if (!stateEntry) return;
+
+            const url = localStorage.getItem('api_url') || '';
+            const key = localStorage.getItem('api_key') || '';
+            const model = localStorage.getItem('api_model') || '';
+            if (!url || !key || !model) return;
+
+            const currentMessages = chatDatabase[targetFriend.name] || [];
+            const currentRoundCount = countCompletedChatRounds(currentMessages);
+            const now = Date.now();
+            const minIntervalMs = 5 * 60 * 60 * 1000;
+            const minNewRounds = 10;
+
+            if (currentRoundCount - Number(stateEntry.lastEvaluatedRoundCount || 0) < minNewRounds) return;
+            if (now - Number(stateEntry.lastEvaluatedAt || 0) < minIntervalMs) return;
+
+            stateEntry.lastEvaluatedAt = now;
+            stateEntry.lastEvaluatedRoundCount = currentRoundCount;
+            persistMomentsAutoPostState();
+
+            const config = getDefaultRoleConfig(targetFriend);
+            const boundUserPersona = getBoundUserPersona(targetFriend);
+            const recentMessages = currentMessages.slice(-Math.max(1, config.contextLimit));
+            const recentChatText = recentMessages
+                .map(message => formatSingleChatContextMessage(message))
+                .filter(Boolean)
+                .map(message => `${message.role}：${message.content}`)
+                .join('\n');
+            const worldbookPrompt = getWorldbookPromptText(targetFriend);
+            const timelineBlock = buildMomentTimelineBlock(recentMessages);
+            const userName = boundUserPersona?.name || localStorage.getItem('os_name') || '用户';
+
+            const prompt = [
+                `你是${targetFriend.name || '未命名角色'}。`,
+                `你的人设是：${targetFriend.personaPrompt || '性格设定暂未填写。'}`,
+                worldbookPrompt ? `补充背景设定：${worldbookPrompt}` : '',
+                `你正在和${userName}聊天。`,
+                recentChatText ? `最近聊天内容：${recentChatText}` : '最近没有更多聊天内容。',
+                timelineBlock,
+                '请判断现在这个角色会不会顺手发一条朋友圈。',
+                '只有在最近聊天里确实出现了值得发动态的事情、情绪、状态变化或生活切片时才发。',
+                '不要为了发而发，不要每次聊天都发。',
+                '如果会，返回 JSON：{"shouldPost":true,"text":"朋友圈正文","photoText":"配图描述，可为空"}',
+                '如果不会，返回 JSON：{"shouldPost":false}',
+                '朋友圈正文要像微信动态，简短自然，不超过40字。',
+                '除了 JSON 不要输出任何别的内容。'
+            ].filter(Boolean).join('\n');
+
+            try {
+                let fetchUrl = url;
+                if (fetchUrl.endsWith('/')) fetchUrl = fetchUrl.slice(0, -1);
+
+                const res = await fetch(`${fetchUrl}/chat/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${key}`
+                    },
+                    body: JSON.stringify({
+                        model,
+                        messages: [
+                            { role: 'system', content: prompt },
+                            { role: 'user', content: '请给出结果。' }
+                        ]
+                    })
+                });
+
+                if (!res.ok) return;
+                const data = await res.json().catch(() => null);
+                const replyText = String(data?.choices?.[0]?.message?.content || '').trim();
+                if (!replyText) return;
+
+                let parsed = null;
+                try {
+                    parsed = JSON.parse(replyText);
+                } catch (error) {
+                    const jsonMatch = replyText.match(/\{[\s\S]*\}/);
+                    if (jsonMatch) {
+                        try {
+                            parsed = JSON.parse(jsonMatch[0]);
+                        } catch (nestedError) {
+                        }
+                    }
+                }
+
+                if (!parsed?.shouldPost) return;
+
+                const postText = String(parsed.text || '').trim();
+                const photoText = String(parsed.photoText || '').trim();
+                if (!postText && !photoText) return;
+
+                const nextPost = normalizeMomentPost({
+                    id: createMessageId('moment'),
+                    authorType: 'friend',
+                    authorId: targetFriend.id,
+                    authorName: targetFriend.name || '未命名角色',
+                    text: postText,
+                    photoText,
+                    sourceContext: {
+                        triggerType: 'chat-topic',
+                        relatedChat: targetFriend.name,
+                        relatedMessageIds: recentMessages.slice(-4).map(message => message.id).filter(Boolean)
+                    },
+                    createdAt: Date.now()
+                });
+
+                momentsPosts.unshift(nextPost);
+                persistMomentsPosts();
+                renderMomentsPosts();
+                broadcastMomentToChats(nextPost);
+
+                stateEntry.lastPostedAt = nextPost.createdAt;
+                persistMomentsAutoPostState();
+            } catch (error) {
+                console.warn('自动发朋友圈失败', error);
+            }
+        }
+
+        async function maybeAutoCommentLatestMoment() {
+            if (!shouldAutoCommentMoments()) return;
+
+            const latestMoment = getLatestUserMoment();
+            if (!latestMoment) return;
+
+            const currentMomentAge = Date.now() - (Number(latestMoment.createdAt) || 0);
+            if (currentMomentAge > 10 * 60 * 1000) return;
+
+            const targetFriends = friendList.filter(friend => friend.type !== 'group' && !hasFriendCommentedMoment(friend, latestMoment));
+            if (!targetFriends.length) return;
+
+            const candidateFriend = targetFriends[0];
+            if (!candidateFriend) return;
+
+            const url = localStorage.getItem('api_url') || '';
+            const key = localStorage.getItem('api_key') || '';
+            const model = localStorage.getItem('api_model') || '';
+            if (!url || !key || !model) return;
+
+            const config = getDefaultRoleConfig(candidateFriend);
+            const worldbookPrompt = getWorldbookPromptText(candidateFriend);
+            const recentMessages = (chatDatabase[candidateFriend.name] || []).slice(-Math.max(1, config.contextLimit));
+            const recentChatText = recentMessages
+                .map(message => formatSingleChatContextMessage(message))
+                .filter(Boolean)
+                .map(message => `${message.role}：${message.content}`)
+                .join('\n');
+
+            const prompt = [
+                `你是${candidateFriend.name || '未命名角色'}。`,
+                `你的人设是：${candidateFriend.personaPrompt || '性格设定暂未填写。'}`,
+                worldbookPrompt ? `补充背景设定：${worldbookPrompt}` : '',
+                recentChatText ? `你和用户最近聊天内容：${recentChatText}` : '你和用户最近没有更多聊天内容。',
+                `用户刚发了一条朋友圈：${latestMoment.text || '（无正文）'}`,
+                latestMoment.photoText ? `配图描述：${latestMoment.photoText}` : '',
+                '请判断你会不会评论这条朋友圈。',
+                '如果会，返回 JSON：{"shouldComment":true,"comment":"评论内容"}',
+                '如果不会，返回 JSON：{"shouldComment":false}',
+                '评论必须像微信评论，简短自然，不超过20字。',
+                '除了 JSON 不要输出任何别的内容。'
+            ].filter(Boolean).join('\n');
+
+            try {
+                let fetchUrl = url;
+                if (fetchUrl.endsWith('/')) fetchUrl = fetchUrl.slice(0, -1);
+
+                const res = await fetch(`${fetchUrl}/chat/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${key}`
+                    },
+                    body: JSON.stringify({
+                        model,
+                        messages: [
+                            { role: 'system', content: prompt },
+                            { role: 'user', content: '请给出结果。' }
+                        ]
+                    })
+                });
+
+                if (!res.ok) return;
+                const data = await res.json().catch(() => null);
+                const replyText = String(data?.choices?.[0]?.message?.content || '').trim();
+                if (!replyText) return;
+
+                let parsed = null;
+                try {
+                    parsed = JSON.parse(replyText);
+                } catch (error) {
+                    const jsonMatch = replyText.match(/\{[\s\S]*\}/);
+                    if (jsonMatch) {
+                        try {
+                            parsed = JSON.parse(jsonMatch[0]);
+                        } catch (nestedError) {
+                        }
+                    }
+                }
+
+                if (!parsed?.shouldComment) return;
+                const commentText = String(parsed.comment || '').trim();
+                if (!commentText) return;
+
+                const normalizedMoment = normalizeMomentPost(latestMoment);
+                const comment = {
+                    id: createMessageId('comment'),
+                    authorId: candidateFriend.id,
+                    authorName: candidateFriend.name || '未命名角色',
+                    text: commentText,
+                    createdAt: Date.now()
+                };
+
+                normalizedMoment.comments = [...normalizedMoment.comments, comment];
+                momentsPosts = momentsPosts.map(post => post.id === normalizedMoment.id ? normalizedMoment : post);
+                persistMomentsPosts();
+                renderMomentsPosts();
+
+                const commentRecord = createMomentCommentTimelineRecord(normalizedMoment, comment);
+                friendList.forEach(friend => {
+                    appendStructuredSystemChatRecord(friend.name, commentRecord);
+                });
+            } catch (error) {
+                console.warn('自动评论朋友圈失败', error);
+            }
+        }
+
+        function formatMomentsTime(timestamp) {
+            const date = new Date(Number(timestamp) || Date.now());
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            const hour = date.getHours().toString().padStart(2, '0');
+            const minute = date.getMinutes().toString().padStart(2, '0');
+            return `${month}月${day}日 ${hour}:${minute}`;
+        }
+
+        function renderMomentsPosts() {
+            if (!momentsFeed) return;
+
+            momentsFeed.innerHTML = '';
+            if (!momentsPosts.length) {
+                momentsFeed.innerHTML = '<div class="moments-empty"></div>';
+                return;
+            }
+
+            const displayName = (momentsName?.textContent || localStorage.getItem('moments_name') || '用户').trim() || '用户';
+            const avatarData = localStorage.getItem('moments_avatar') || '';
+            const avatarMarkup = avatarData
+                ? `<div class="moments-post-avatar" style="background-image: url(${avatarData}); background-size: cover; background-position: center;"></div>`
+                : `<div class="moments-post-avatar">${escapeHtml(displayName.charAt(0) || '用')}</div>`;
+
+            momentsPosts.forEach(post => {
+                const item = document.createElement('div');
+                item.className = 'moments-post';
+                const authorMeta = getMomentAuthorMeta(post);
+                const authorName = post.authorName || displayName;
+                const likedByCurrentUser = hasMomentLikedByCurrentUser(post);
+                const isActionOpen = activeMomentActionPostId === post.id;
+                const authorMarkup = `<div class="moments-post-avatar" style="${authorMeta.style}; background-size: cover; background-position: center;">${escapeHtml(authorMeta.text || '')}</div>`;
+
+                const textHtml = post.text ? `<div class="moments-post-text">${escapeHtml(post.text)}</div>` : '';
+                const photoHtml = post.photoText
+                    ? `
+                        <div class="moments-post-photo">
+                            <div class="msg-photo-card">
+                                <div class="msg-photo-desc">${escapeHtml(post.photoText)}</div>
+                            </div>
+                        </div>
+                    `
+                    : '';
+                const likesHtml = post.likes.length
+                    ? `<div class="moments-post-likes">${escapeHtml(post.likes.map(like => like.authorName).join('，'))}</div>`
+                    : '';
+                const commentsHtml = post.comments.length
+                    ? `
+                        <div class="moments-post-comments ${post.likes.length ? 'has-separator' : ''}">
+                            ${post.comments.map(comment => `
+                                <div class="moments-post-comment-item">
+                                    <span class="moments-post-comment-author">${escapeHtml(comment.authorName)}</span>：${escapeHtml(comment.text)}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `
+                    : '';
+                const socialHtml = (likesHtml || commentsHtml)
+                    ? `<div class="moments-post-social">${likesHtml}${commentsHtml}</div>`
+                    : '';
+                const actionMenuHtml = isActionOpen
+                    ? `
+                        <div class="moments-post-action-menu">
+                            <button type="button" class="moments-post-action-btn" data-moment-menu-action="like" data-post-id="${post.id}">${likedByCurrentUser ? '取消赞' : '赞'}</button>
+                            <button type="button" class="moments-post-action-btn" data-moment-menu-action="comment" data-post-id="${post.id}">评论</button>
+                            ${post.authorType === 'friend' ? `<button type="button" class="moments-post-action-btn delete" data-moment-menu-action="delete" data-post-id="${post.id}">删除</button>` : ''}
+                        </div>
+                    `
+                    : '';
+                const ownDeleteButton = post.authorType === 'user'
+                    ? `
+                        <button type="button" class="moments-post-icon-btn" data-moment-delete="${post.id}" aria-label="删除自己的朋友圈">
+                            <svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7zm3-3h6l1 2h4v2H4V6h4l1-2z"/></svg>
+                        </button>
+                    `
+                    : '';
+
+                item.innerHTML = `
+                    ${authorMarkup}
+                    <div class="moments-post-body">
+                        <div class="moments-post-name">${escapeHtml(authorName)}</div>
+                        ${textHtml}
+                        ${photoHtml}
+                        <div class="moments-post-meta">
+                            <span>${escapeHtml(formatMomentsTime(post.createdAt))}</span>
+                            <div class="moments-post-meta-right">
+                                ${ownDeleteButton}
+                                ${actionMenuHtml}
+                                <button type="button" class="moments-post-more" data-moment-more="${post.id}" aria-label="更多操作">··</button>
+                            </div>
+                        </div>
+                        ${socialHtml}
+                    </div>
+                `;
+                momentsFeed.appendChild(item);
+            });
+        }
+
+        momentsFeed?.addEventListener('click', async (event) => {
+            const deleteButton = event.target.closest('[data-moment-delete]');
+            if (deleteButton) {
+                event.stopPropagation();
+                await deleteMomentPost(deleteButton.getAttribute('data-moment-delete') || '');
+                return;
+            }
+
+            const menuButton = event.target.closest('[data-moment-more]');
+            if (menuButton) {
+                event.stopPropagation();
+                toggleMomentActionMenu(menuButton.getAttribute('data-moment-more') || '');
+                return;
+            }
+
+            const menuActionButton = event.target.closest('[data-moment-menu-action]');
+            if (menuActionButton) {
+                event.stopPropagation();
+                const action = menuActionButton.getAttribute('data-moment-menu-action') || '';
+                const postId = menuActionButton.getAttribute('data-post-id') || '';
+
+                if (action === 'like') {
+                    toggleMomentLike(postId);
+                    return;
+                }
+                if (action === 'comment') {
+                    await promptMomentComment(postId);
+                    return;
+                }
+                if (action === 'delete') {
+                    await deleteMomentPost(postId);
+                    return;
+                }
+            }
+
+            if (activeMomentActionPostId && !event.target.closest('.moments-post-meta-right')) {
+                activeMomentActionPostId = '';
+                renderMomentsPosts();
+            }
+        });
+
+        function syncMomentsComposePreview() {
+            if (momentsComposePreviewText) momentsComposePreviewText.textContent = tempMomentsPhotoText;
+            if (momentsComposePreview) momentsComposePreview.style.display = tempMomentsPhotoText ? 'block' : 'none';
+        }
+
+        function resetMomentsComposer() {
+            tempMomentsPhotoText = '';
+            if (momentsComposeText) momentsComposeText.value = '';
+            if (momentsPhotoInput) momentsPhotoInput.value = '';
+            syncMomentsComposePreview();
+        }
+
+        function openMomentsComposeModal() {
+            resetMomentsComposer();
+            if (momentsComposeModal) momentsComposeModal.style.display = 'flex';
+            setTimeout(() => momentsComposeText?.focus(), 50);
+        }
+
+        function closeMomentsComposeModal() {
+            if (momentsComposeModal) momentsComposeModal.style.display = 'none';
+        }
+
+        function openMomentsPhotoModal() {
+            if (momentsPhotoInput) momentsPhotoInput.value = tempMomentsPhotoText;
+            if (momentsPhotoModal) momentsPhotoModal.style.display = 'flex';
+            setTimeout(() => momentsPhotoInput?.focus(), 50);
+        }
+
+        function closeMomentsPhotoModal() {
+            if (momentsPhotoModal) momentsPhotoModal.style.display = 'none';
+        }
+
+        function syncMomentsProfile() {
+            const savedName = localStorage.getItem('moments_name') || '用户';
+            const savedCover = localStorage.getItem('moments_cover') || '';
+            const savedAvatar = localStorage.getItem('moments_avatar') || '';
+            if (momentsName) momentsName.textContent = savedName;
+            if (momentsCover) {
+                momentsCover.style.backgroundImage = savedCover ? `url(${savedCover})` : 'none';
+            }
+            if (momentsAvatar) {
+                momentsAvatar.style.backgroundImage = savedAvatar ? `url(${savedAvatar})` : 'none';
+            }
+            if (momentsAvatarText) {
+                momentsAvatarText.textContent = savedAvatar ? '' : (savedName.trim().charAt(0) || '用');
+                momentsAvatarText.style.display = savedAvatar ? 'none' : 'block';
+            }
+
+            renderMomentsPosts();
+        }
+
+        syncMomentsProfile();
+        syncMomentsComposePreview();
+
+        momentsAutoCommentToggle?.addEventListener('change', () => {
+            safeSetStorage('moments_auto_comment_enabled', momentsAutoCommentToggle.checked ? '1' : '0');
+        });
+        momentsAutoPostToggle?.addEventListener('change', () => {
+            safeSetStorage('moments_auto_post_enabled', momentsAutoPostToggle.checked ? '1' : '0');
+        });
+
+        if (momentsCover && momentsCoverUpload) {
+            momentsCover.addEventListener('click', (event) => {
+                if (event.target.closest('.moments-cover-actions, .moments-profile, input')) return;
+                momentsCoverUpload.click();
+            });
+        }
+
+        if (momentsCoverUpload) {
+            momentsCoverUpload.addEventListener('change', (event) => {
+                const file = event.target.files && event.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (readerEvent) => {
+                    safeSetStorage('moments_cover', readerEvent.target.result);
+                    syncMomentsProfile();
+                };
+                reader.readAsDataURL(file);
+                event.target.value = '';
+            });
+        }
+
+        if (momentsName) {
+            momentsName.addEventListener('blur', () => {
+                const name = momentsName.textContent.trim() || '用户';
+                momentsName.textContent = name;
+                safeSetStorage('moments_name', name);
+                syncMomentsProfile();
+            });
+            momentsName.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    momentsName.blur();
+                }
+            });
+        }
+
+        if (momentsAvatarUpload) {
+            momentsAvatarUpload.addEventListener('change', (event) => {
+                const file = event.target.files && event.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (readerEvent) => {
+                    safeSetStorage('moments_avatar', readerEvent.target.result);
+                    syncMomentsProfile();
+                };
+                reader.readAsDataURL(file);
+                event.target.value = '';
+            });
+        }
+
+        if (momentsAddBtn) {
+            momentsAddBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                openMomentsComposeModal();
+            });
+        }
+
+        document.getElementById('btn-cancel-moments-compose')?.addEventListener('click', closeMomentsComposeModal);
+        document.getElementById('btn-moments-compose-photo')?.addEventListener('click', openMomentsPhotoModal);
+        document.getElementById('btn-cancel-moments-photo')?.addEventListener('click', closeMomentsPhotoModal);
+        document.getElementById('btn-confirm-moments-photo')?.addEventListener('click', () => {
+            tempMomentsPhotoText = String(momentsPhotoInput?.value || '').trim();
+            syncMomentsComposePreview();
+            closeMomentsPhotoModal();
+        });
+        document.getElementById('btn-confirm-moments-compose')?.addEventListener('click', async () => {
+            const text = String(momentsComposeText?.value || '').trim();
+            const photoText = String(tempMomentsPhotoText || '').trim();
+
+            if (!text && !photoText) {
+                await showAppDialog({ title: '无法发布', message: '至少填写文字或添加一张图片。' });
+                return;
+            }
+
+            const nextPost = normalizeMomentPost({
+                id: createMessageId('moment'),
+                authorType: 'user',
+                authorId: 'user-self',
+                authorName: (momentsName?.textContent || localStorage.getItem('moments_name') || '用户').trim() || '用户',
+                text,
+                photoText,
+                createdAt: Date.now()
+            });
+            momentsPosts.unshift(nextPost);
+            persistMomentsPosts();
+            renderMomentsPosts();
+            broadcastMomentToChats(nextPost);
+            closeMomentsComposeModal();
+        });
+        momentsComposeModal?.addEventListener('click', (event) => {
+            if (event.target === momentsComposeModal) closeMomentsComposeModal();
+        });
+        momentsPhotoModal?.addEventListener('click', (event) => {
+            if (event.target === momentsPhotoModal) closeMomentsPhotoModal();
+        });
 
         function updateWechatHeader() {
+            if (wcMomentsActions) wcMomentsActions.classList.remove('active');
+
             if (activeWechatSubpage === 'user-personas') {
                 titleEl.textContent = '我的人设';
                 plusBtn.style.visibility = 'visible';
@@ -2482,9 +3803,25 @@
                 return;
             }
 
+            if (activeWechatSubpage === 'moments') {
+                titleEl.textContent = '朋友圈';
+                plusBtn.style.display = 'none';
+                if (wcMomentsActions) wcMomentsActions.classList.add('active');
+                wcTabbar.style.display = 'none';
+                return;
+            }
+
+            if (activeWechatSubpage === 'moments-settings') {
+                titleEl.textContent = '朋友圈设置';
+                plusBtn.style.display = 'none';
+                wcTabbar.style.display = 'none';
+                return;
+            }
+
             const activeTab = document.querySelector('.wc-tab.active');
             const target = activeTab?.getAttribute('data-target') || 'messages';
             titleEl.textContent = activeTab?.getAttribute('data-title') || '微信';
+            plusBtn.style.display = 'flex';
             plusBtn.style.visibility = target === 'messages' ? 'visible' : 'hidden';
             wcTabbar.style.display = 'flex';
         }
@@ -2493,8 +3830,31 @@
             activeWechatSubpage = '';
             userPersonasSubpage.classList.remove('active');
             favoritesSubpage.classList.remove('active');
+            momentsSubpage.classList.remove('active');
+            momentsSettingsSubpage.classList.remove('active');
             plusMenu.style.display = 'none';
             updateWechatHeader();
+        }
+
+        if (btnOpenMoments) {
+            btnOpenMoments.addEventListener('click', () => {
+                activeWechatSubpage = 'moments';
+                momentsSubpage.classList.add('active');
+                momentsSettingsSubpage.classList.remove('active');
+                plusMenu.style.display = 'none';
+                updateWechatHeader();
+            });
+        }
+
+        if (momentsSettingsBtn) {
+            momentsSettingsBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                activeWechatSubpage = 'moments-settings';
+                momentsSubpage.classList.remove('active');
+                momentsSettingsSubpage.classList.add('active');
+                plusMenu.style.display = 'none';
+                updateWechatHeader();
+            });
         }
 
         const wcTabs = document.querySelectorAll('.wc-tab');
@@ -3784,6 +5144,14 @@
         document.getElementById('wc-create-group-btn').addEventListener('click', openCreateGroupModal);
 
         wcBackBtn.addEventListener('click', () => {
+            if (activeWechatSubpage === 'moments-settings') {
+                activeWechatSubpage = 'moments';
+                momentsSettingsSubpage.classList.remove('active');
+                momentsSubpage.classList.add('active');
+                updateWechatHeader();
+                return;
+            }
+
             if (activeWechatSubpage) {
                 closeWechatSubpage();
                 return;
@@ -4759,6 +6127,7 @@
             const userPersonaName = boundUserPersona?.name || '对话对象';
             const userPersonaDesc = boundUserPersona?.description || '未绑定具体用户人设。';
             const worldbookPrompt = getWorldbookPromptText(friend);
+            const recentMomentBlock = buildMomentTimelineBlock((chatDatabase[friend.name] || []).slice(-Math.max(1, config.contextLimit)));
 
             return [
                 `这是手机聊天，你在和${userPersonaName}聊天。`,
@@ -4766,12 +6135,14 @@
                 `你的姓名是：${roleName}。`,
                 `你的设定是：${rolePersona}`,
                 worldbookPrompt ? `你的背景设定是：${worldbookPrompt}` : '',
+                recentMomentBlock,
                 '当前场景是网络聊天，不是面对面交谈。',
                 '请使用口语化、碎片化、像微信一样的短消息回复。',
                 `一次回复拆成 ${config.replyMin} 到 ${config.replyMax} 条独立短消息。`,
                 '每条消息控制在 1 到 25 个字左右。',
                 '你也可以在适合聊天情景时自然发送语音或图片，但不需要每次都发。',
                 '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述。',
+                '如果最近时间线里出现了朋友圈动态，你可以在合适的时候自然提到，但不要每次都提，不要生硬复述。',
                 '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
                 '请严格返回 JSON，格式为：{"replies":[{"type":"text","content":"第一条"},{"type":"voice","content":"语音转文字内容"},{"type":"photo","content":"图片画面描述"}]}',
                 '除了这个 JSON 之外，不要输出任何额外文字、标题、代码块或说明。'
@@ -4789,6 +6160,7 @@
                 : '暂无群成员信息。';
             const worldbookPrompt = getWorldbookPromptText(friend);
             const extraPrompt = parseStoredJson('friend_settings', {})[friend.name] || '';
+            const recentMomentBlock = buildMomentTimelineBlock((chatDatabase[friend.name] || []).slice(-Math.max(1, config.contextLimit)));
 
             return [
                 `这是手机群聊，你们在和${userPersonaName}聊天。`,
@@ -4796,6 +6168,7 @@
                 `群聊名称是：${friend.name || '未命名群聊'}。`,
                 `群成员设定如下：${memberLines}`,
                 worldbookPrompt ? `这个群聊的背景设定是：${worldbookPrompt}` : '',
+                recentMomentBlock,
                 `你需要同时扮演这些群成员，和${userPersonaName}进行群聊。`,
                 '请严格按照各自人设、关系和群聊语境决定谁发言、每个人发几条，不需要平均分配。',
                 `整轮回复总条数控制在 ${config.replyMin} 到 ${config.replyMax} 条。`,
@@ -4805,6 +6178,7 @@
                 '每条消息控制在 1 到 25 个字左右。',
                 '群成员也可以在适合聊天情景时自然发送语音或图片，但不需要每次都发。',
                 '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述。',
+                '如果最近时间线里出现了朋友圈动态，你们可以在合适的时候自然提到，但不要每次都提，不要机械复述。',
                 '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
                 '如果内容里需要提到发言人，只在 speaker 字段里写，不要把名字重复写进 content。',
                 '请严格返回 JSON，格式为：{"replies":[{"speaker":"角色名","type":"text","content":"第一条"},{"speaker":"角色名","type":"voice","content":"语音转文字内容"},{"speaker":"角色名","type":"photo","content":"图片画面描述"}]}',
@@ -5014,17 +6388,10 @@
                 ` : '';
             const normalizedText = String(text || '');
             const voiceDuration = Math.max(1, Math.min(60, Math.round(normalizedText.length / 2) + 1));
+            const isRichBubble = Boolean(message.type === 'voice' || message.type === 'photo' || message.isHtml);
             let bubbleContent = message.isHtml ? text : escapeHtml(normalizedText);
             if (message.type === 'voice') {
-                bubbleContent = `
-                    <div class="msg-media-card">
-                        <div class="msg-voice-bubble" title="点击查看文字">
-                            <div class="msg-voice-wave"><span></span><span></span><span></span></div>
-                            <div class="msg-voice-duration">${voiceDuration}''</div>
-                        </div>
-                        <div class="msg-voice-transcript">${escapeHtml(normalizedText)}</div>
-                    </div>
-                `;
+                bubbleContent = `<div class="msg-media-card"><div class="msg-voice-bubble" title="点击查看文字"><div class="msg-voice-wave"><span></span><span></span><span></span></div><div class="msg-voice-duration">${voiceDuration}''</div></div><div class="msg-voice-transcript">${escapeHtml(normalizedText)}</div></div>`;
             } else if (message.type === 'photo') {
                 bubbleContent = `<div class="msg-photo-card"><div class="msg-photo-desc">${escapeHtml(normalizedText)}</div></div>`;
             }
@@ -5034,7 +6401,7 @@
                 <div class="msg-main">
                     ${shouldShowSenderName ? `<div class="msg-sender-name">${escapeHtml(displayName)}</div>` : ''}
                     ${quoteMarkup}
-                    <div class="msg-bubble">${bubbleContent}</div>
+                    <div class="msg-bubble${isRichBubble ? ' rich-content' : ''}">${bubbleContent}</div>
                     <div class="msg-actions-card">
                         ${messageActionLabels.map(item => `<button type="button" class="msg-action-btn" data-action="${item.action}">${item.label}</button>`).join('')}
                     </div>
@@ -5233,6 +6600,8 @@
                 persistChatDatabase();
                 scrollToBottom();
                 renderFriendList();
+                await maybeAutoPostCurrentRole(friend || getFriendByName(currentChatFriend));
+                await maybeAutoCommentLatestMoment();
 
             } catch (e) {
                 console.error(e);
