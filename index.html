@@ -6377,7 +6377,6 @@
             msgs.slice(renderStartIndex).forEach(msg => { appendMsgBubble(msg.role, msg.content, null, msg, fragment); });
             chatMsgList.appendChild(fragment);
             syncMultiSelectUi();
-            scrollToBottom();
         }
 
         // 增加 id 支持以便删除临时气泡
