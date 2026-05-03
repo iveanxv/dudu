@@ -5310,6 +5310,7 @@
         let isMultiSelectingMessages = false;
         let currentComposeType = '';
         const CHAT_RENDER_RECENT_LIMIT = 80;
+        const chatScrollPositions = {};
         const selectedMessageIds = new Set();
 
         function getEventElementTarget(event) {
@@ -5418,6 +5419,7 @@
         chatComposePanel.addEventListener('touchend', handleChatComposeOverlayClose, { passive: false });
 
         document.getElementById('chat-back-btn').addEventListener('click', () => {
+            if (currentChatFriend) chatScrollPositions[currentChatFriend] = chatScrollView.scrollTop;
             chatRoom.style.display = 'none';
             chatPlusPanel.style.display = 'none';
             closeChatComposePanel();
@@ -5485,7 +5487,7 @@
         function openChatRoom(friendName) {
             currentChatFriend = friendName;
             document.getElementById('chat-title-name').textContent = friendName;
-            chatMsgList.textContent = '';
+            const savedScrollTop = chatScrollPositions[friendName];
             chatRoom.style.display = 'flex';
             chatPlusPanel.style.display = 'none';
             closeChatComposePanel();
@@ -5496,6 +5498,9 @@
             syncQuotePreview();
             requestAnimationFrame(() => {
                 renderChatHistory();
+                if (typeof savedScrollTop === 'number') {
+                    chatScrollView.scrollTop = savedScrollTop;
+                }
             });
         }
 
@@ -5798,6 +5803,9 @@
             }
         });
         chatScrollView.addEventListener('scroll', () => {
+            if (currentChatFriend && chatRoom.style.display === 'flex') {
+                chatScrollPositions[currentChatFriend] = chatScrollView.scrollTop;
+            }
             cancelMessagePress();
         });
         document.addEventListener('pointerdown', event => {
