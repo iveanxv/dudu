@@ -4592,7 +4592,14 @@
             }
 
             const history = chatDatabase[friend.name] || [];
-            const lastMessage = [...history].reverse().find(message => message && String(message.content || '').trim());
+            let lastMessage = null;
+            for (let index = history.length - 1; index >= 0; index -= 1) {
+                const message = history[index];
+                if (message && String(message.content || '').trim()) {
+                    lastMessage = message;
+                    break;
+                }
+            }
             if (lastMessage) {
                 const preview = String(lastMessage.content || '').trim().replace(/\s+/g, ' ');
                 return preview.length > 28 ? `${preview.slice(0, 28)}...` : preview;
@@ -5302,6 +5309,7 @@
         let activeQuoteMessage = null;
         let isMultiSelectingMessages = false;
         let currentComposeType = '';
+        const CHAT_RENDER_RECENT_LIMIT = 80;
         const selectedMessageIds = new Set();
 
         function getEventElementTarget(event) {
@@ -5612,9 +5620,12 @@
             if (!ok) return;
 
             chatDatabase[currentChatFriend] = getCurrentChatMessages().filter(message => !selectedMessageIds.has(message.id));
+            const deletedIds = new Set(selectedMessageIds);
             persistChatDatabase();
             exitMessageMultiSelect();
-            renderChatHistory();
+            chatMsgList.querySelectorAll('.msg-row').forEach(row => {
+                if (deletedIds.has(row.dataset.messageId)) row.remove();
+            });
             renderFriendList();
         });
 
@@ -5892,7 +5903,7 @@
                 if (!ok) return;
                 chatDatabase[currentChatFriend] = getCurrentChatMessages().filter(item => item.id !== message.id);
                 persistChatDatabase();
-                renderChatHistory();
+                row.remove();
                 renderFriendList();
             }
         }
@@ -6356,7 +6367,14 @@
             });
             if (changed) persistChatDatabase();
             const fragment = document.createDocumentFragment();
-            msgs.forEach(msg => { appendMsgBubble(msg.role, msg.content, null, msg, fragment); });
+            const renderStartIndex = Math.max(0, msgs.length - CHAT_RENDER_RECENT_LIMIT);
+            if (renderStartIndex > 0) {
+                appendMsgBubble('system', `已省略较早的 ${renderStartIndex} 条消息，以减少 Safari 卡顿。`, null, {
+                    role: 'system',
+                    content: `已省略较早的 ${renderStartIndex} 条消息，以减少 Safari 卡顿。`
+                }, fragment);
+            }
+            msgs.slice(renderStartIndex).forEach(msg => { appendMsgBubble(msg.role, msg.content, null, msg, fragment); });
             chatMsgList.appendChild(fragment);
             syncMultiSelectUi();
             scrollToBottom();
