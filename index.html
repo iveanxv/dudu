@@ -5303,7 +5303,6 @@
         let isMultiSelectingMessages = false;
         let currentComposeType = '';
         const selectedMessageIds = new Set();
-        const CHAT_RENDER_LIMIT = 80;
 
         function getEventElementTarget(event) {
             const target = event?.target;
@@ -5501,19 +5500,6 @@
             return getCurrentChatMessages().find(message => message.id === messageId) || null;
         }
 
-        function deleteCurrentChatMessagesByIds(messageIds = new Set()) {
-            if (!currentChatFriend || !messageIds.size) return;
-            const beforeCount = getCurrentChatMessages().length;
-            chatDatabase[currentChatFriend] = getCurrentChatMessages().filter(message => !messageIds.has(message.id));
-            if (chatDatabase[currentChatFriend].length === beforeCount) return;
-
-            persistChatDatabase();
-            messageIds.forEach(messageId => {
-                chatMsgList.querySelector(`.msg-row[data-message-id="${CSS.escape(messageId)}"]`)?.remove();
-            });
-            renderFriendList();
-        }
-
         function getMessageSpeakerLabel(message = {}) {
             if (message.role === 'user') {
                 const friend = getFriendByName(currentChatFriend);
@@ -5625,8 +5611,11 @@
             });
             if (!ok) return;
 
-            deleteCurrentChatMessagesByIds(selectedMessageIds);
+            chatDatabase[currentChatFriend] = getCurrentChatMessages().filter(message => !selectedMessageIds.has(message.id));
+            persistChatDatabase();
             exitMessageMultiSelect();
+            renderChatHistory();
+            renderFriendList();
         });
 
         function clearMessagePressTimer() {
@@ -6367,15 +6356,7 @@
             });
             if (changed) persistChatDatabase();
             const fragment = document.createDocumentFragment();
-            const visibleMessages = msgs.slice(-CHAT_RENDER_LIMIT);
-            if (msgs.length > visibleMessages.length) {
-                const hiddenCount = msgs.length - visibleMessages.length;
-                const notice = document.createElement('div');
-                notice.className = 'msg-row system';
-                notice.innerHTML = `<div class="msg-bubble">已省略较早的 ${hiddenCount} 条消息，以保持聊天流畅。</div>`;
-                fragment.appendChild(notice);
-            }
-            visibleMessages.forEach(msg => { appendMsgBubble(msg.role, msg.content, null, msg, fragment); });
+            msgs.forEach(msg => { appendMsgBubble(msg.role, msg.content, null, msg, fragment); });
             chatMsgList.appendChild(fragment);
             syncMultiSelectUi();
             scrollToBottom();
@@ -6394,7 +6375,10 @@
                 return;
             }
 
-                deleteCurrentChatMessagesByIds(new Set([message.id]));
+            const avatarMeta = getMessageAvatarMeta(role, message);
+            const displayName = getMessageDisplayName(role, message);
+            const shouldShowSenderName = role === 'ai' && getFriendByName(currentChatFriend)?.type === 'group' && displayName;
+            const quote = message.quote;
             const quoteMarkup = quote?.content ? `
                     <div class="msg-quote-card">
                         <div class="msg-quote-name">${escapeHtml(quote.speakerName || '引用')}</div>
