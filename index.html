@@ -326,6 +326,24 @@
             padding: 0 0 32px;
         }
         .moments-settings-page .settings-group { margin-top: 0; }
+        .wc-discover-item.has-badge {
+            position: relative;
+        }
+        .wc-discover-badge {
+            position: absolute;
+            top: 12px;
+            right: 42px;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: #ff3b30;
+            box-shadow: 0 0 0 2px #fff;
+            display: none;
+            flex-shrink: 0;
+        }
+        .wc-discover-item.has-unread .wc-discover-badge {
+            display: block;
+        }
         .wc-me-page {
             min-height: 100%;
             background: #ededed;
@@ -361,6 +379,291 @@
         .wc-me-item-body { flex: 1; min-width: 0; }
         .wc-me-item-title { font-size: 15px; color: #111; font-weight: 500; }
         .wc-me-item-desc { margin-top: 2px; font-size: 11px; color: #8a8a8a; }
+        .wallet-page-body {
+            min-height: 100%;
+            background: #ededed;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .wallet-balance-card {
+            border-radius: 24px;
+            padding: 18px 18px 16px;
+            background: linear-gradient(145deg, #2f2f31, #1f1f21);
+            color: #fff;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+        }
+        .wallet-balance-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .wallet-balance-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.72);
+            letter-spacing: 0.04em;
+        }
+        .wallet-balance-tag {
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.82);
+            font-size: 11px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .wallet-balance-value {
+            margin-top: 10px;
+            font-size: 34px;
+            line-height: 1;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+        }
+        .wallet-balance-actions {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .wallet-balance-action {
+            min-height: 38px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            border: 0.5px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            padding: 0 6px;
+        }
+        .wallet-balance-action-title {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+        .wallet-section-card {
+            background: #fff;
+            border-radius: 22px;
+            padding: 16px;
+            border: 0.5px solid #e8e8e8;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .wallet-section-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .wallet-section-title {
+            font-size: 17px;
+            line-height: 1.2;
+            color: #111;
+            font-weight: 600;
+        }
+        .wallet-section-desc {
+            margin-top: 4px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #8a8a8a;
+        }
+        .wallet-section-link {
+            flex-shrink: 0;
+            font-size: 12px;
+            color: #8a8a8a;
+            line-height: 1.4;
+        }
+        .wallet-family-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .wallet-family-card {
+            border-radius: 18px;
+            background: #f6f6f6;
+            padding: 14px;
+            border: 0.5px solid #ebebeb;
+        }
+        .wallet-family-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .wallet-family-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: #212121;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .wallet-family-info {
+            min-width: 0;
+            flex: 1;
+        }
+        .wallet-family-name-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .wallet-family-name {
+            font-size: 15px;
+            color: #111;
+            font-weight: 600;
+        }
+        .wallet-family-badge {
+            padding: 3px 7px;
+            border-radius: 999px;
+            background: #ececec;
+            color: #666;
+            font-size: 10px;
+            line-height: 1;
+        }
+        .wallet-family-desc {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #8a8a8a;
+            line-height: 1.4;
+        }
+        .wallet-family-limit {
+            margin-top: 12px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            color: #666;
+            font-size: 12px;
+        }
+        .wallet-family-limit strong {
+            color: #111;
+            font-size: 20px;
+            line-height: 1;
+            font-weight: 600;
+        }
+        .wallet-family-progress {
+            margin-top: 10px;
+            height: 6px;
+            border-radius: 999px;
+            background: #e5e5e5;
+            overflow: hidden;
+        }
+        .wallet-family-progress-bar {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #2b2b2b, #6a6a6a);
+        }
+        .wallet-family-meta {
+            margin-top: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 11px;
+            color: #8a8a8a;
+        }
+        .wallet-family-add {
+            border-radius: 18px;
+            border: 1px dashed #d4d4d4;
+            background: #fafafa;
+            padding: 15px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .wallet-family-add-title {
+            font-size: 14px;
+            color: #222;
+            font-weight: 500;
+        }
+        .wallet-family-add-desc {
+            margin-top: 3px;
+            font-size: 11px;
+            color: #8a8a8a;
+        }
+        .wallet-family-add-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 10px;
+            background: #efefef;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .wallet-bills-page-body {
+            min-height: 100%;
+            background: #ededed;
+            padding: 16px;
+        }
+        .wallet-bills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .wallet-bill-item {
+            background: #fff;
+            border-radius: 18px;
+            padding: 14px 15px;
+            border: 0.5px solid #e8e8e8;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+        .wallet-bill-main {
+            min-width: 0;
+            flex: 1;
+        }
+        .wallet-bill-title {
+            font-size: 15px;
+            color: #111;
+            font-weight: 600;
+        }
+        .wallet-bill-time {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #8a8a8a;
+            line-height: 1.4;
+        }
+        .wallet-bill-balance {
+            margin-top: 2px;
+            font-size: 11px;
+            color: #a0a0a0;
+            line-height: 1.4;
+        }
+        .wallet-bill-amount {
+            flex-shrink: 0;
+            font-size: 17px;
+            color: #111;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .wallet-bill-amount.is-negative {
+            color: #555;
+        }
+        .wallet-bill-empty {
+            padding: 28px 18px;
+            background: #fff;
+            border-radius: 18px;
+            border: 0.5px dashed #d8d8d8;
+            text-align: center;
+            color: #8a8a8a;
+            font-size: 13px;
+            line-height: 1.7;
+        }
         .persona-page-body {
             min-height: 100%;
             padding: 16px;
@@ -593,6 +896,10 @@
         .msg-row.ai .msg-bubble { background: #fff; color: #111; border-top-left-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .msg-row.user .msg-bubble { background: #95ec69; color: #111; border-top-right-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .msg-row.system .msg-bubble { max-width: 88%; padding: 6px 12px; background: transparent; color: #8c8c8c; font-size: 13px; line-height: 1.5; box-shadow: none; border-radius: 999px; text-align: center; }
+        .msg-row.system .msg-bubble.load-more { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; background: rgba(255,255,255,0.88); border: 0.5px solid rgba(0,0,0,0.08); color: #666; cursor: pointer; }
+        .msg-row.system .msg-bubble.load-more:active { background: rgba(245,245,245,0.96); }
+        .msg-load-more-label { font-weight: 500; }
+        .msg-load-more-count { color: #999; font-size: 12px; }
         .msg-media-card { display: flex; flex-direction: column; gap: 8px; }
         .msg-voice-bubble { min-width: 116px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; }
         .msg-voice-wave { display: flex; align-items: center; gap: 3px; height: 18px; }
@@ -608,6 +915,100 @@
         .msg-photo-card::before { content: ''; position: absolute; left: 18px; bottom: 18px; width: 56px; height: 36px; border-radius: 50% 50% 0 0; background: rgba(70, 150, 82, .35); transform: skewX(-18deg); }
         .msg-photo-card::after { content: ''; position: absolute; right: 18px; top: 16px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 190, 72, .75); }
         .msg-photo-desc { position: relative; z-index: 1; min-height: 128px; display: flex; align-items: center; justify-content: center; padding: 18px; color: rgba(20,20,20,.78); font-size: 14px; line-height: 1.45; text-align: center; word-break: break-word; text-shadow: 0 1px 6px rgba(255,255,255,.9); }
+        .msg-bubble.transfer-card-bubble {
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+            overflow: visible;
+        }
+        .msg-row.user .msg-bubble.transfer-card-bubble,
+        .msg-row.ai .msg-bubble.transfer-card-bubble {
+            background: transparent;
+            box-shadow: none;
+        }
+        .msg-transfer-card {
+            width: 194px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #f2b24c 0%, #eca33c 100%);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            color: #fff;
+        }
+        .msg-transfer-card-main {
+            min-height: 62px;
+            padding: 10px 11px 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .msg-transfer-card-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            background: rgba(255,255,255,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .msg-transfer-card-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+        }
+        .msg-transfer-card-info {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .msg-transfer-card-amount {
+            font-size: 20px;
+            line-height: 1.08;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+        .msg-transfer-card-remark {
+            font-size: 11px;
+            line-height: 1.3;
+            color: rgba(255,255,255,0.84);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .msg-transfer-card-footer {
+            padding: 6px 11px 7px;
+            border-top: 1px solid rgba(255,255,255,0.16);
+            background: rgba(0,0,0,0.06);
+            font-size: 11px;
+            color: rgba(255,255,255,0.92);
+            line-height: 1.3;
+        }
+        .msg-transfer-card-status {
+            margin-top: 2px;
+            font-size: 11px;
+            line-height: 1.25;
+            color: rgba(255,255,255,0.9);
+        }
+        .msg-transfer-card.is-received,
+        .msg-transfer-card.is-refunded {
+            background: linear-gradient(180deg, #d7aa69 0%, #c89754 100%);
+            opacity: 0.82;
+        }
+        .msg-transfer-card.is-clickable { cursor: pointer; }
+        .msg-transfer-receipt-bubble {
+            align-self: center;
+            max-width: 78%;
+            margin: 2px auto;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background: rgba(0,0,0,0.08);
+            color: #888;
+            font-size: 12px;
+            line-height: 1.35;
+            text-align: center;
+        }
         .msg-quote-card {
             max-width: 100%;
             padding: 7px 9px;
@@ -705,6 +1106,248 @@
         .chat-compose-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 2px; }
         .chat-compose-btn { flex: 1; border: none; border-radius: 6px; padding: 10px 0; font-size: 15px; font-weight: 600; cursor: pointer; }
         .chat-compose-btn.primary { background: #111; color: #fff; }
+        .chat-transfer-panel { z-index: 1200; }
+        .chat-transfer-panel .modal-box { gap: 12px; border-radius: 16px; }
+        .chat-transfer-input {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            line-height: 1.5;
+            outline: none;
+            user-select: text;
+            -webkit-user-select: text;
+            background: #fff;
+        }
+        .chat-transfer-input:focus { border-color: #999; }
+        .chat-transfer-amount-input { padding: 12px 14px; }
+        .chat-transfer-remark-input { min-height: 92px; resize: none; padding: 12px 14px; font-family: inherit; }
+        .chat-transfer-pay-panel { z-index: 1210; }
+        .chat-transfer-pay-panel .modal-box {
+            width: calc(100% - 36px);
+            max-width: 356px;
+            padding: 18px 16px 16px;
+            gap: 0;
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+        }
+        .chat-transfer-pay-header {
+            display: grid;
+            grid-template-columns: 28px 1fr 28px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .chat-transfer-pay-close {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: transparent;
+            color: #777;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+        .chat-transfer-pay-close svg {
+            width: 20px;
+            height: 20px;
+            fill: #555;
+        }
+        .chat-transfer-pay-title {
+            text-align: center;
+            font-size: 17px;
+            font-weight: 600;
+            color: #111;
+            pointer-events: none;
+        }
+        .chat-transfer-pay-subtitle {
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #666;
+        }
+        .chat-transfer-pay-subtitle strong {
+            font-weight: 600;
+            color: #111;
+        }
+        .chat-transfer-pay-amount {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 34px;
+            line-height: 1.15;
+            font-weight: 600;
+            color: #111;
+            letter-spacing: -0.02em;
+        }
+        .chat-transfer-pay-remark {
+            min-height: 20px;
+            margin-top: 8px;
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+            line-height: 1.5;
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+        .chat-transfer-pay-password {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin-top: 18px;
+            padding: 0 2px;
+        }
+        .chat-transfer-pay-password-dot {
+            aspect-ratio: 1 / 1;
+            border: 1px solid #d8d8d8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        .chat-transfer-pay-password-dot::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #111;
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity 0.16s ease, transform 0.16s ease;
+        }
+        .chat-transfer-pay-password-dot.filled::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .chat-transfer-method-trigger {
+            margin-top: 18px;
+            padding: 12px 0;
+            border: none;
+            border-top: 0.5px solid #ededed;
+            border-bottom: 0.5px solid #ededed;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .chat-transfer-method-label {
+            font-size: 14px;
+            color: #111;
+        }
+        .chat-transfer-method-value {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #666;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            text-align: right;
+        }
+        .chat-transfer-method-balance { color: #999; }
+        .chat-transfer-method-arrow {
+            width: 14px;
+            height: 14px;
+            fill: #b2b2b2;
+            flex-shrink: 0;
+        }
+        .chat-transfer-method-sheet {
+            position: absolute;
+            width: min(220px, calc(100% - 24px));
+            right: 0;
+            bottom: 220px;
+            padding: 8px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.98);
+            border: 0.5px solid #ececec;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .chat-transfer-method-sheet.open { display: flex; }
+        .chat-transfer-method-option {
+            border: none;
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .chat-transfer-method-option-label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 3px;
+        }
+        .chat-transfer-method-option-title {
+            font-size: 14px;
+            color: #111;
+            font-weight: 600;
+        }
+        .chat-transfer-method-option-desc {
+            font-size: 12px;
+            color: #999;
+        }
+        .chat-transfer-method-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1.5px solid #d0d0d0;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .chat-transfer-method-option.active .chat-transfer-method-check {
+            border-color: #07c160;
+        }
+        .chat-transfer-method-option.active .chat-transfer-method-check::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border-radius: 50%;
+            background: #07c160;
+        }
+        .chat-transfer-keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .chat-transfer-keypad-key {
+            min-height: 52px;
+            border: none;
+            border-radius: 14px;
+            background: #f6f6f6;
+            color: #111;
+            font-size: 24px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .chat-transfer-keypad-key:active { background: #ececec; }
+        .chat-transfer-keypad-key.placeholder {
+            background: transparent;
+            cursor: default;
+        }
+        .chat-transfer-keypad-key.delete {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-transfer-keypad-key.delete svg {
+            width: 24px;
+            height: 24px;
+            fill: #555;
+        }
 
         .favorites-page-body { min-height: 100%; padding: 16px; background: #ededed; }
         .favorites-list { display: flex; flex-direction: column; gap: 10px; }
@@ -1467,11 +2110,12 @@
             <div class="wc-page" id="wc-page-discover">
                 <div class="wc-discover-page">
                     <div class="wc-discover-list">
-                        <div class="wc-discover-item" id="btn-open-moments">
+                        <div class="wc-discover-item has-badge" id="btn-open-moments">
                             <div class="wc-discover-icon">
                                 <svg viewBox="0 0 24 24"><path d="M4 5.5C4 4.12 5.12 3 6.5 3h11C18.88 3 20 4.12 20 5.5v13c0 1.38-1.12 2.5-2.5 2.5h-11C5.12 21 4 19.88 4 18.5v-13zm2 0v9.08l3.42-3.42c.78-.78 2.05-.78 2.83 0l1.05 1.05 1.87-1.87c.78-.78 2.05-.78 2.83 0L18 12.34V5.5c0-.28-.22-.5-.5-.5h-11c-.28 0-.5.22-.5.5zm9.5 3.5c.83 0 1.5-.67 1.5-1.5S16.33 6 15.5 6 14 6.67 14 7.5 14.67 9 15.5 9z"/></svg>
                             </div>
                             <div class="wc-discover-title">朋友圈</div>
+                            <div class="wc-discover-badge" id="moments-entry-badge"></div>
                             <svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
                         </div>
                     </div>
@@ -1490,7 +2134,7 @@
                             </div>
                             <svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
                         </div>
-                        <div class="wc-me-item">
+                        <div class="wc-me-item" id="btn-open-wallet">
                             <div class="wc-me-icon">
                                 <svg viewBox="0 0 24 24"><path d="M21 7H3V6c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v1zm0 2H3v9c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V9zm-8 7H6v-2h7v2z"/></svg>
                             </div>
@@ -1498,6 +2142,7 @@
                                 <div class="wc-me-item-title">钱包</div>
                                 <div class="wc-me-item-desc">你的余额与支付内容会放在这里</div>
                             </div>
+                            <svg class="settings-arrow" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
                         </div>
                         <div class="wc-me-item" id="btn-open-favorites">
                             <div class="wc-me-icon">
@@ -1519,6 +2164,105 @@
             <div class="wc-subpage" id="wc-subpage-favorites">
                 <div class="app-content-body favorites-page-body">
                     <div class="favorites-list" id="favorites-list"></div>
+                </div>
+            </div>
+            <div class="wc-subpage" id="wc-subpage-wallet">
+                <div class="app-content-body wallet-page-body">
+                    <div class="wallet-balance-card">
+                        <div class="wallet-balance-top">
+                            <div>
+                                <div class="wallet-balance-label">零钱余额</div>
+                                <div class="wallet-balance-value" id="wallet-balance-value">¥ 0.00</div>
+                            </div>
+                            <div class="wallet-balance-tag">安全保障中</div>
+                        </div>
+                        <div class="wallet-balance-actions">
+                            <div class="wallet-balance-action" id="btn-wallet-set-password">
+                                <div class="wallet-balance-action-title">设置密码</div>
+                            </div>
+                            <div class="wallet-balance-action" id="btn-wallet-recharge">
+                                <div class="wallet-balance-action-title">充值</div>
+                            </div>
+                            <div class="wallet-balance-action" id="btn-wallet-withdraw">
+                                <div class="wallet-balance-action-title">提现</div>
+                            </div>
+                            <div class="wallet-balance-action" id="btn-open-wallet-bills">
+                                <div class="wallet-balance-action-title">账单</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wallet-section-card">
+                        <div class="wallet-section-head">
+                            <div>
+                                <div class="wallet-section-title">亲属卡</div>
+                                <div class="wallet-section-desc">管理给家人的消费额度，先做静态样式展示。</div>
+                            </div>
+                            <div class="wallet-section-link">2 张卡</div>
+                        </div>
+                        <div class="wallet-family-list">
+                            <div class="wallet-family-card">
+                                <div class="wallet-family-top">
+                                    <div class="wallet-family-avatar">妈</div>
+                                    <div class="wallet-family-info">
+                                        <div class="wallet-family-name-row">
+                                            <div class="wallet-family-name">妈妈</div>
+                                            <div class="wallet-family-badge">每月额度</div>
+                                        </div>
+                                        <div class="wallet-family-desc">日常采购与生活开销</div>
+                                    </div>
+                                </div>
+                                <div class="wallet-family-limit">
+                                    <span>本月可用</span>
+                                    <strong>¥ 1,500</strong>
+                                </div>
+                                <div class="wallet-family-progress">
+                                    <div class="wallet-family-progress-bar" style="width: 24.5%;"></div>
+                                </div>
+                                <div class="wallet-family-meta">
+                                    <span>已用 ¥ 368.20</span>
+                                    <span>剩余 ¥ 1,131.80</span>
+                                </div>
+                            </div>
+
+                            <div class="wallet-family-card">
+                                <div class="wallet-family-top">
+                                    <div class="wallet-family-avatar">弟</div>
+                                    <div class="wallet-family-info">
+                                        <div class="wallet-family-name-row">
+                                            <div class="wallet-family-name">弟弟</div>
+                                            <div class="wallet-family-badge">校园支出</div>
+                                        </div>
+                                        <div class="wallet-family-desc">餐饮、交通与临时小额消费</div>
+                                    </div>
+                                </div>
+                                <div class="wallet-family-limit">
+                                    <span>本月可用</span>
+                                    <strong>¥ 800</strong>
+                                </div>
+                                <div class="wallet-family-progress">
+                                    <div class="wallet-family-progress-bar" style="width: 15%;"></div>
+                                </div>
+                                <div class="wallet-family-meta">
+                                    <span>已用 ¥ 120.00</span>
+                                    <span>剩余 ¥ 680.00</span>
+                                </div>
+                            </div>
+
+                            <div class="wallet-family-add">
+                                <div>
+                                    <div class="wallet-family-add-title">添加亲属卡</div>
+                                    <div class="wallet-family-add-desc">预留一个静态入口，后续需要时再接功能。</div>
+                                </div>
+                                <div class="wallet-family-add-icon">+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wc-subpage" id="wc-subpage-wallet-bills">
+                <div class="app-content-body wallet-bills-page-body">
+                    <div class="wallet-bills-list" id="wallet-bills-list"></div>
                 </div>
             </div>
             <div class="wc-subpage" id="wc-subpage-moments">
@@ -1637,7 +2381,7 @@
                 <div class="plus-item" data-compose-type="voice"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg></div><span class="plus-text">语音</span></div>
                 <div class="plus-item" data-compose-type="photo"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div><span class="plus-text">照片</span></div>
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg></div><span class="plus-text">视频通话</span></div>
-                <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><span class="plus-text">转账</span></div>
+                <div class="plus-item" data-action="open-transfer"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><span class="plus-text">转账</span></div>
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg></div><span class="plus-text">位置</span></div>
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg></div><span class="plus-text">礼物</span></div>
             </div>
@@ -1648,6 +2392,78 @@
                     <div class="chat-compose-actions">
                         <button type="button" class="chat-compose-btn btn-cancel" id="btn-cancel-compose">取消</button>
                         <button type="button" class="chat-compose-btn primary" id="btn-send-compose">发送</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-overlay chat-transfer-panel" id="chat-transfer-panel">
+                <div class="modal-box">
+                    <div class="chat-compose-title">转账</div>
+                    <input type="text" class="chat-transfer-input chat-transfer-amount-input" id="chat-transfer-amount-input" placeholder="输入金额" autocomplete="off">
+                    <textarea class="chat-transfer-input chat-transfer-remark-input" id="chat-transfer-remark-input" placeholder="选填备注内容" autocomplete="off"></textarea>
+                    <div class="chat-compose-actions">
+                        <button type="button" class="chat-compose-btn btn-cancel" id="btn-cancel-transfer">取消</button>
+                        <button type="button" class="chat-compose-btn primary" id="btn-confirm-transfer">确定</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-overlay chat-transfer-pay-panel" id="chat-transfer-pay-panel">
+                <div class="modal-box">
+                    <div class="chat-transfer-pay-header">
+                        <button type="button" class="chat-transfer-pay-close" id="btn-close-transfer-pay" aria-label="返回转账输入">
+                            <svg viewBox="0 0 24 24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                        </button>
+                        <div class="chat-transfer-pay-title">请输入支付密码</div>
+                    </div>
+                    <div class="chat-transfer-pay-subtitle" id="chat-transfer-pay-subtitle">向 <strong id="chat-transfer-pay-target">对方</strong> 转账</div>
+                    <div class="chat-transfer-pay-amount" id="chat-transfer-pay-amount">¥0.00</div>
+                    <div class="chat-transfer-pay-remark" id="chat-transfer-pay-remark"></div>
+                    <div class="chat-transfer-pay-password" id="chat-transfer-pay-password-dots">
+                        <div class="chat-transfer-pay-password-dot"></div>
+                        <div class="chat-transfer-pay-password-dot"></div>
+                        <div class="chat-transfer-pay-password-dot"></div>
+                        <div class="chat-transfer-pay-password-dot"></div>
+                        <div class="chat-transfer-pay-password-dot"></div>
+                        <div class="chat-transfer-pay-password-dot"></div>
+                    </div>
+                    <button type="button" class="chat-transfer-method-trigger" id="btn-transfer-method-trigger">
+                        <span class="chat-transfer-method-label">付款方式</span>
+                        <span class="chat-transfer-method-value">
+                            <span id="chat-transfer-method-current">零钱</span>
+                            <span class="chat-transfer-method-balance" id="chat-transfer-method-balance">(¥0.00)</span>
+                            <svg class="chat-transfer-method-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+                        </span>
+                    </button>
+                    <div class="chat-transfer-method-sheet" id="chat-transfer-method-sheet">
+                        <button type="button" class="chat-transfer-method-option active" data-transfer-method="零钱">
+                            <span class="chat-transfer-method-option-label">
+                                <span class="chat-transfer-method-option-title">零钱</span>
+                                <span class="chat-transfer-method-option-desc" id="chat-transfer-method-sheet-balance">余额 ¥0.00</span>
+                            </span>
+                            <span class="chat-transfer-method-check"></span>
+                        </button>
+                        <button type="button" class="chat-transfer-method-option" data-transfer-method="亲属卡（暂未开放）">
+                            <span class="chat-transfer-method-option-label">
+                                <span class="chat-transfer-method-option-title">亲属卡</span>
+                                <span class="chat-transfer-method-option-desc">预留入口，后续接入</span>
+                            </span>
+                            <span class="chat-transfer-method-check"></span>
+                        </button>
+                    </div>
+                    <div class="chat-transfer-keypad" id="chat-transfer-keypad">
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="1">1</button>
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="2">2</button>
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="3">3</button>
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="4">4</button>
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="5">5</button>
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="6">6</button>
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="7">7</button>
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="8">8</button>
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="9">9</button>
+                        <button type="button" class="chat-transfer-keypad-key placeholder" tabindex="-1" aria-hidden="true"></button>
+                        <button type="button" class="chat-transfer-keypad-key" data-transfer-key="0">0</button>
+                        <button type="button" class="chat-transfer-keypad-key delete" data-transfer-key="delete" aria-label="删除">
+                            <svg viewBox="0 0 24 24"><path d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.12c.36.53.9.88 1.59.88h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-3.41 12.59L17.17 17l-3.17-3.17L10.83 17l-1.41-1.41 3.17-3.17-3.17-3.17L10.83 7l3.17 3.17L17.17 7l1.41 1.41-3.17 3.17 3.18 3.01z"/></svg>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1678,12 +2494,12 @@
                             <div class="offline-section-header">预设管理</div>
                             <div class="preset-row">
                                 <select class="settings-select" id="offline-preset-select" style="flex: 1; margin: 0;">
-                                    <option>选择预设...</option>
+                                    <option value="">选择预设...</option>
                                 </select>
                             </div>
                             <div class="offline-mini-actions">
-                                <div class="api-btn-small">保存当前为预设</div>
-                                <div class="api-btn-small btn-danger">删除预设</div>
+                                <div class="api-btn-small" id="btn-save-offline-preset">保存当前为预设</div>
+                                <div class="api-btn-small btn-danger" id="btn-delete-offline-preset">删除预设</div>
                             </div>
                         </div>
                         <div class="offline-section">
@@ -1981,7 +2797,7 @@
             </div>
             
             <input type="text" class="modal-input" id="friend-name" placeholder="请输入昵称" autocomplete="off">
-            <input type="text" class="modal-input" id="friend-desc" placeholder="请输入人物设定" autocomplete="off">
+            <textarea class="modal-input" id="friend-desc" placeholder="请输入人物设定" autocomplete="off"></textarea>
             
             <div class="modal-actions">
                 <div class="modal-btn btn-cancel" id="btn-cancel-friend">取消</div>
@@ -2501,6 +3317,15 @@
                 return parsed ?? fallback;
             } catch (error) {
                 console.warn(`读取 ${key} 失败，已回退默认值`, error);
+                try {
+                    const raw = localStorage.getItem(key);
+                    if (raw) {
+                        localStorage.setItem(`${key}_broken_${Date.now()}`, raw.slice(0, 200000));
+                        localStorage.removeItem(key);
+                    }
+                } catch (backupError) {
+                    console.warn(`备份损坏缓存 ${key} 失败`, backupError);
+                }
                 return fallback;
             }
         }
@@ -2526,6 +3351,13 @@
                 .replace(/>/g, '&gt;')
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#39;');
+        }
+
+        function escapeCssUrl(value) {
+            return String(value ?? '')
+                .replace(/\\/g, '\\\\')
+                .replace(/"/g, '\\"')
+                .replace(/[\r\n\f]/g, '');
         }
 
         function getSavedModel() {
@@ -2746,10 +3578,18 @@
         const wcTabbar = document.querySelector('.wc-tabbar');
         const userPersonasSubpage = document.getElementById('wc-subpage-user-personas');
         const favoritesSubpage = document.getElementById('wc-subpage-favorites');
+        const walletSubpage = document.getElementById('wc-subpage-wallet');
+        const walletBillsSubpage = document.getElementById('wc-subpage-wallet-bills');
         const momentsSubpage = document.getElementById('wc-subpage-moments');
         const momentsSettingsSubpage = document.getElementById('wc-subpage-moments-settings');
         const wcMomentsActions = document.getElementById('wc-moments-actions');
         const btnOpenMoments = document.getElementById('btn-open-moments');
+        const walletBalanceValue = document.getElementById('wallet-balance-value');
+        const walletBillsList = document.getElementById('wallet-bills-list');
+        const btnWalletSetPassword = document.getElementById('btn-wallet-set-password');
+        const btnWalletRecharge = document.getElementById('btn-wallet-recharge');
+        const btnWalletWithdraw = document.getElementById('btn-wallet-withdraw');
+        const btnOpenWalletBills = document.getElementById('btn-open-wallet-bills');
         const momentsName = document.getElementById('moments-name');
         const momentsCover = document.getElementById('moments-cover');
         const momentsCoverUpload = document.getElementById('moments-cover-upload');
@@ -2758,6 +3598,7 @@
         const momentsAvatarUpload = document.getElementById('moments-avatar-upload');
         const momentsAvatarText = document.getElementById('moments-avatar-text');
         const momentsAddBtn = document.getElementById('moments-add-btn');
+        const momentsEntryBadge = document.getElementById('moments-entry-badge');
         const momentsComposeModal = document.getElementById('moments-compose-modal');
         const momentsComposeText = document.getElementById('moments-compose-text');
         const momentsComposePreview = document.getElementById('moments-compose-preview');
@@ -2773,6 +3614,10 @@
         if (!momentsAutoPostState || typeof momentsAutoPostState !== 'object' || Array.isArray(momentsAutoPostState)) {
             momentsAutoPostState = {};
         }
+        let walletBalance = 0;
+        let walletTransactions = parseStoredJson('wallet_transactions', []);
+        if (!Array.isArray(walletTransactions)) walletTransactions = [];
+        let momentsUnreadState = localStorage.getItem('moments_unread_flag') === '1';
         let tempMomentsPhotoText = '';
         let activeWechatSubpage = '';
         let activeMomentActionPostId = '';
@@ -2785,6 +3630,212 @@
             safeSetJsonStorage('moments_auto_post_state', momentsAutoPostState);
         }
 
+        function normalizeWalletMoney(value = 0) {
+            const numeric = typeof value === 'string'
+                ? Number(value.replace(/[^\d.-]/g, ''))
+                : Number(value);
+            if (!Number.isFinite(numeric)) return 0;
+            return Math.round(numeric * 100) / 100;
+        }
+
+        function clampWalletBalance(value = 0) {
+            return Math.max(0, normalizeWalletMoney(value));
+        }
+
+        function formatWalletMoney(value = 0) {
+            return `¥ ${clampWalletBalance(value).toFixed(2)}`;
+        }
+
+        function formatWalletBillAmount(value = 0) {
+            const amount = normalizeWalletMoney(value);
+            const sign = amount >= 0 ? '+' : '-';
+            return `${sign}¥ ${Math.abs(amount).toFixed(2)}`;
+        }
+
+        function normalizeWalletTransaction(record = {}) {
+            if (!record || typeof record !== 'object' || Array.isArray(record)) return null;
+
+            const amount = normalizeWalletMoney(record.amount);
+            if (!Number.isFinite(amount) || amount === 0) return null;
+
+            return {
+                id: String(record.id || createMessageId('wallet')).trim() || createMessageId('wallet'),
+                type: String(record.type || 'recharge').trim() || 'recharge',
+                title: String(record.title || (amount >= 0 ? '充值' : '提现')).trim() || (amount >= 0 ? '充值' : '提现'),
+                amount,
+                balanceAfter: clampWalletBalance(record.balanceAfter),
+                createdAt: Number(record.createdAt) || Date.now()
+            };
+        }
+
+        function persistWalletBalance() {
+            safeSetStorage('wallet_balance', clampWalletBalance(walletBalance).toFixed(2));
+        }
+
+        function persistWalletTransactions() {
+            safeSetJsonStorage('wallet_transactions', walletTransactions);
+        }
+
+        function persistWalletPassword(password = '') {
+            safeSetStorage('wallet_password', String(password || '').trim());
+        }
+
+        function renderWalletBalance() {
+            if (walletBalanceValue) walletBalanceValue.textContent = formatWalletMoney(walletBalance);
+        }
+
+        function renderWalletBills() {
+            if (!walletBillsList) return;
+
+            walletBillsList.innerHTML = '';
+            if (!walletTransactions.length) {
+                walletBillsList.innerHTML = '<div class="wallet-bill-empty">还没有零钱流水。<br>完成充值后会显示在这里。</div>';
+                return;
+            }
+
+            walletTransactions.forEach(record => {
+                const item = normalizeWalletTransaction(record);
+                if (!item) return;
+
+                const billNode = document.createElement('div');
+                billNode.className = 'wallet-bill-item';
+                const timeText = new Date(item.createdAt).toLocaleString('zh-CN', { hour12: false });
+                const amountClassName = item.amount < 0 ? 'wallet-bill-amount is-negative' : 'wallet-bill-amount';
+                billNode.innerHTML = `
+                    <div class="wallet-bill-main">
+                        <div class="wallet-bill-title">${escapeHtml(item.title)}</div>
+                        <div class="wallet-bill-time">${escapeHtml(timeText)}</div>
+                        <div class="wallet-bill-balance">余额 ${escapeHtml(formatWalletMoney(item.balanceAfter))}</div>
+                    </div>
+                    <div class="${amountClassName}">${escapeHtml(formatWalletBillAmount(item.amount))}</div>
+                `;
+                walletBillsList.appendChild(billNode);
+            });
+        }
+
+        async function handleWalletRecharge() {
+            const inputValue = await showAppDialog({
+                title: '充值',
+                message: '请输入充值金额',
+                mode: 'prompt',
+                placeholder: '例如 100 或 100.50'
+            });
+
+            if (inputValue === null) return;
+
+            const amount = normalizeWalletMoney(inputValue);
+            if (!Number.isFinite(amount) || amount <= 0) {
+                await showAppDialog({ title: '无法充值', message: '请输入大于 0 的数字金额。' });
+                return;
+            }
+
+            walletBalance = clampWalletBalance(walletBalance + amount);
+            const transaction = normalizeWalletTransaction({
+                id: createMessageId('wallet'),
+                type: 'recharge',
+                title: '充值',
+                amount,
+                balanceAfter: walletBalance,
+                createdAt: Date.now()
+            });
+
+            if (transaction) {
+                walletTransactions.unshift(transaction);
+                persistWalletTransactions();
+            }
+
+            persistWalletBalance();
+            renderWalletBalance();
+            renderWalletBills();
+
+            await showAppDialog({ title: '充值成功', message: `已到账 ${formatWalletMoney(amount)}。` });
+        }
+
+        async function handleWalletWithdraw() {
+            const inputValue = await showAppDialog({
+                title: '提现',
+                message: '请输入提现金额',
+                mode: 'prompt',
+                placeholder: '例如 100 或 100.50'
+            });
+
+            if (inputValue === null) return;
+
+            const amount = normalizeWalletMoney(inputValue);
+            if (!Number.isFinite(amount) || amount <= 0) {
+                await showAppDialog({ title: '无法提现', message: '请输入大于 0 的数字金额。' });
+                return;
+            }
+
+            if (amount > walletBalance) {
+                await showAppDialog({ title: '无法提现', message: '零钱余额不足。' });
+                return;
+            }
+
+            walletBalance = clampWalletBalance(walletBalance - amount);
+            const transaction = normalizeWalletTransaction({
+                id: createMessageId('wallet'),
+                type: 'withdraw',
+                title: '提现',
+                amount: -amount,
+                balanceAfter: walletBalance,
+                createdAt: Date.now()
+            });
+
+            if (transaction) {
+                walletTransactions.unshift(transaction);
+                persistWalletTransactions();
+            }
+
+            persistWalletBalance();
+            renderWalletBalance();
+            renderWalletBills();
+
+            await showAppDialog({ title: '提现成功', message: `已提现 ${formatWalletMoney(amount)}。` });
+        }
+
+        function isValidWalletPassword(value = '') {
+            return /^\d{6}$/.test(String(value || '').trim());
+        }
+
+        async function handleWalletSetPassword() {
+            const existingPassword = String(localStorage.getItem('wallet_password') || '').trim();
+            const nextPassword = await showAppDialog({
+                title: existingPassword ? '修改密码' : '设置密码',
+                message: '请输入六位数字密码',
+                mode: 'prompt',
+                placeholder: '请输入6位数字密码',
+                defaultValue: ''
+            });
+
+            if (nextPassword === null) return;
+
+            if (!isValidWalletPassword(nextPassword)) {
+                await showAppDialog({ title: existingPassword ? '无法修改' : '无法设置', message: '密码必须是 6 位数字。' });
+                return;
+            }
+
+            persistWalletPassword(nextPassword);
+            await showAppDialog({ title: existingPassword ? '修改成功' : '设置成功', message: '钱包密码已保存。' });
+        }
+
+        function syncMomentsEntryBadge() {
+            if (!btnOpenMoments || !momentsEntryBadge) return;
+            btnOpenMoments.classList.toggle('has-unread', momentsUnreadState);
+        }
+
+        function markMomentsUnread() {
+            momentsUnreadState = true;
+            safeSetStorage('moments_unread_flag', '1');
+            syncMomentsEntryBadge();
+        }
+
+        function clearMomentsUnread() {
+            momentsUnreadState = false;
+            safeSetStorage('moments_unread_flag', '0');
+            syncMomentsEntryBadge();
+        }
+
         function syncMomentsAutomationSettings() {
             if (momentsAutoCommentToggle) {
                 momentsAutoCommentToggle.checked = localStorage.getItem('moments_auto_comment_enabled') === '1';
@@ -2795,6 +3846,11 @@
         }
 
         syncMomentsAutomationSettings();
+    walletBalance = clampWalletBalance(localStorage.getItem('wallet_balance'));
+    walletTransactions = walletTransactions.map(normalizeWalletTransaction).filter(Boolean);
+    renderWalletBalance();
+    renderWalletBills();
+    syncMomentsEntryBadge();
 
         function normalizeMomentPost(post = {}) {
             return {
@@ -2960,6 +4016,27 @@
             }
         }
 
+        function shouldDisplaySystemRecordInChat(message = {}, chatName = currentChatFriend) {
+            if (message?.role !== 'system') return true;
+            if (message?.type !== 'moment_event') return true;
+
+            const currentFriend = getFriendByName(chatName);
+            if (!currentFriend || currentFriend.type === 'group') return false;
+
+            const eventKind = String(message.eventKind || '').trim();
+            if (eventKind === 'user_posted_moment') return true;
+
+            if (eventKind === 'friend_posted_moment') {
+                const meta = message.meta && typeof message.meta === 'object' ? message.meta : {};
+                const authorId = String(meta.authorId || '').trim();
+                const authorName = String(meta.authorName || '').trim();
+                if (authorId && currentFriend.id && authorId === currentFriend.id) return true;
+                if (authorName && authorName === currentFriend.name) return true;
+            }
+
+            return false;
+        }
+
         function appendStructuredSystemChatRecord(friendName, record = {}) {
             if (!friendName || !record || typeof record !== 'object') return;
 
@@ -2976,10 +4053,18 @@
             };
             if (!normalizedRecord.content) return;
 
+            chatRenderVisibleCountMap[friendName] = Math.max(
+                getChatRenderVisibleCount(friendName, chatDatabase[friendName].length),
+                CHAT_RENDER_RECENT_LIMIT
+            ) + 1;
             chatDatabase[friendName].push(cloneTimelineRecord(normalizedRecord));
             persistChatDatabase();
 
-            if (currentChatFriend === friendName && chatRoom.style.display === 'flex') {
+            if (
+                currentChatFriend === friendName
+                && chatRoom.style.display === 'flex'
+                && shouldDisplaySystemRecordInChat(normalizedRecord, friendName)
+            ) {
                 appendMsgBubble('system', normalizedRecord.content, null, normalizedRecord);
                 scrollToBottom();
             }
@@ -3375,6 +4460,7 @@
                 persistMomentsPosts();
                 renderMomentsPosts();
                 broadcastMomentToChats(nextPost);
+                markMomentsUnread();
 
                 stateEntry.lastPostedAt = nextPost.createdAt;
                 persistMomentsAutoPostState();
@@ -3479,6 +4565,7 @@
                 momentsPosts = momentsPosts.map(post => post.id === normalizedMoment.id ? normalizedMoment : post);
                 persistMomentsPosts();
                 renderMomentsPosts();
+                markMomentsUnread();
 
                 const commentRecord = createMomentCommentTimelineRecord(normalizedMoment, comment);
                 friendList.forEach(friend => {
@@ -3802,6 +4889,20 @@
                 return;
             }
 
+            if (activeWechatSubpage === 'wallet') {
+                titleEl.textContent = '钱包';
+                plusBtn.style.visibility = 'hidden';
+                wcTabbar.style.display = 'none';
+                return;
+            }
+
+            if (activeWechatSubpage === 'wallet-bills') {
+                titleEl.textContent = '账单';
+                plusBtn.style.visibility = 'hidden';
+                wcTabbar.style.display = 'none';
+                return;
+            }
+
             if (activeWechatSubpage === 'moments') {
                 titleEl.textContent = '朋友圈';
                 plusBtn.style.display = 'none';
@@ -3829,6 +4930,8 @@
             activeWechatSubpage = '';
             userPersonasSubpage.classList.remove('active');
             favoritesSubpage.classList.remove('active');
+            walletSubpage.classList.remove('active');
+            walletBillsSubpage.classList.remove('active');
             momentsSubpage.classList.remove('active');
             momentsSettingsSubpage.classList.remove('active');
             plusMenu.style.display = 'none';
@@ -3841,6 +4944,7 @@
                 momentsSubpage.classList.add('active');
                 momentsSettingsSubpage.classList.remove('active');
                 plusMenu.style.display = 'none';
+                clearMomentsUnread();
                 updateWechatHeader();
             });
         }
@@ -3943,7 +5047,74 @@
         const roleWorldbookExpandedCategories = new Set();
         const groupWorldbookExpandedCategories = new Set();
 
+        function compactChatMessageForStorage(message = {}) {
+            const normalized = normalizeChatMessageRecord(message);
+            if (!normalized) return null;
+
+            const compacted = {
+                id: normalized.id,
+                role: normalized.role,
+                content: normalized.content,
+                createdAt: normalized.createdAt
+            };
+
+            if (normalized.type) compacted.type = normalized.type;
+
+            const turnId = String(normalized.turnId || '').trim();
+            if (turnId) compacted.turnId = turnId;
+
+            const relatedTransferId = String(normalized.relatedTransferId || '').trim();
+            if (relatedTransferId) compacted.relatedTransferId = relatedTransferId;
+
+            const eventKind = String(normalized.eventKind || '').trim();
+            if (eventKind) compacted.eventKind = eventKind;
+
+            const momentId = String(normalized.momentId || '').trim();
+            if (momentId) compacted.momentId = momentId;
+
+            const speakerId = String(normalized.speakerId || '').trim();
+            if (speakerId) compacted.speakerId = speakerId;
+
+            const speakerName = String(normalized.speakerName || '').trim();
+            if (speakerName) compacted.speakerName = speakerName;
+
+            if (normalized.type === 'transfer') {
+                compacted.amount = normalizeWalletMoney(normalized.amount);
+                compacted.remark = String(normalized.remark || '').trim();
+                compacted.method = String(normalized.method || '零钱').trim() || '零钱';
+                compacted.transferStatus = String(normalized.transferStatus || 'pending').trim() || 'pending';
+                const transferDirection = String(normalized.transferDirection || '').trim();
+                if (transferDirection) compacted.transferDirection = transferDirection;
+                const footerText = String(normalized.footerText || '').trim();
+                if (footerText) compacted.footerText = footerText;
+            }
+
+            if (normalized.quote && typeof normalized.quote === 'object' && !Array.isArray(normalized.quote)) {
+                compacted.quote = {
+                    id: String(normalized.quote.id || '').trim(),
+                    role: String(normalized.quote.role || '').trim(),
+                    speakerName: String(normalized.quote.speakerName || '消息').trim() || '消息',
+                    content: String(normalized.quote.content || '').trim()
+                };
+            }
+
+            if (normalized.meta && typeof normalized.meta === 'object' && !Array.isArray(normalized.meta)) {
+                compacted.meta = normalized.meta;
+            }
+
+            return compacted;
+        }
+
         function persistChatDatabase() {
+            const compactedDatabase = {};
+            Object.keys(chatDatabase || {}).forEach(chatName => {
+                const messages = Array.isArray(chatDatabase[chatName]) ? chatDatabase[chatName] : [];
+                compactedDatabase[chatName] = messages
+                    .map(compactChatMessageForStorage)
+                    .filter(Boolean);
+            });
+
+            chatDatabase = compactedDatabase;
             safeSetJsonStorage('chat_histories', chatDatabase);
         }
 
@@ -3965,6 +5136,127 @@
             }
             return message.id;
         }
+
+        function normalizeChatMessageRecord(message = {}) {
+            if (!message || typeof message !== 'object' || Array.isArray(message)) return null;
+
+            const role = message.role === 'user' || message.role === 'system' ? message.role : 'ai';
+            const type = message.type === 'voice' || message.type === 'photo' || message.type === 'moment_event' || message.type === 'transfer' || message.type === 'transfer_receipt' ? message.type : undefined;
+            const content = String(message.content ?? message.text ?? '').trim();
+            if (!content && role !== 'system') return null;
+
+            const normalized = {
+                ...message,
+                id: String(message.id || createMessageId(role)).trim() || createMessageId(role),
+                role,
+                content,
+                createdAt: Number(message.createdAt) || Number(message.time) || Date.now()
+            };
+
+            if (type) normalized.type = type;
+            if (type === 'transfer') {
+                normalized.amount = normalizeWalletMoney(message.amount);
+                normalized.remark = String(message.remark || '').trim();
+                normalized.method = String(message.method || '零钱').trim() || '零钱';
+                normalized.footerText = String(message.footerText || '').trim();
+                const status = String(message.transferStatus || message.status || 'pending').trim();
+                normalized.transferStatus = status === 'received' || status === 'refunded' ? status : 'pending';
+                normalized.transferDirection = String(message.transferDirection || '').trim();
+                normalized.relatedTransferId = String(message.relatedTransferId || '').trim();
+                if (!Number.isFinite(normalized.amount) || normalized.amount <= 0) return null;
+            }
+            if (message.quote && typeof message.quote === 'object' && !Array.isArray(message.quote)) {
+                normalized.quote = {
+                    id: String(message.quote.id || '').trim(),
+                    role: String(message.quote.role || '').trim(),
+                    speakerName: String(message.quote.speakerName || '消息').trim() || '消息',
+                    content: String(message.quote.content || '').trim()
+                };
+            }
+
+            return normalized;
+        }
+
+        function normalizeOfflineConfig(config = {}) {
+            const min = Number(config?.outputMin);
+            const max = Number(config?.outputMax);
+
+            return {
+                stylePrompt: String(config?.stylePrompt || '').trim(),
+                outputMin: Number.isFinite(min) && min > 0 ? Math.round(min) : 0,
+                outputMax: Number.isFinite(max) && max > 0 ? Math.round(max) : 0
+            };
+        }
+
+        function normalizeFriendRecord(friend = {}, index = 0) {
+            if (!friend || typeof friend !== 'object' || Array.isArray(friend)) return null;
+
+            const name = String(friend.name || '').trim();
+            if (!name) return null;
+
+            const type = friend.type === 'group' ? 'group' : 'friend';
+            return {
+                ...friend,
+                id: String(friend.id || `${type}-${Date.now()}-${index}`).trim(),
+                type,
+                name,
+                desc: String(friend.desc || friend.personaPrompt || '你们已经是好友了，开始聊天吧').trim(),
+                avatar: String(friend.avatar || '').trim(),
+                time: String(friend.time || '').trim(),
+                offlineModeEnabled: Boolean(friend.offlineModeEnabled),
+                offlineConfig: normalizeOfflineConfig(friend.offlineConfig)
+            };
+        }
+
+        function repairWechatStorageState() {
+            let shouldPersistFriends = false;
+            let shouldPersistChats = false;
+            const seenNames = new Set();
+
+            friendList = friendList
+                .map((friend, index) => normalizeFriendRecord(friend, index))
+                .filter(friend => {
+                    if (!friend || seenNames.has(friend.name)) {
+                        shouldPersistFriends = true;
+                        return false;
+                    }
+                    seenNames.add(friend.name);
+                    return true;
+                });
+
+            if (!chatDatabase || typeof chatDatabase !== 'object' || Array.isArray(chatDatabase)) {
+                chatDatabase = {};
+                shouldPersistChats = true;
+            }
+
+            Object.keys(chatDatabase).forEach(chatName => {
+                if (!Array.isArray(chatDatabase[chatName])) {
+                    delete chatDatabase[chatName];
+                    shouldPersistChats = true;
+                    return;
+                }
+
+                const normalizedMessages = chatDatabase[chatName]
+                    .map(normalizeChatMessageRecord)
+                    .filter(Boolean);
+                if (normalizedMessages.length !== chatDatabase[chatName].length) {
+                    shouldPersistChats = true;
+                }
+                chatDatabase[chatName] = normalizedMessages;
+            });
+
+            friendList.forEach(friend => {
+                if (!Array.isArray(chatDatabase[friend.name])) {
+                    chatDatabase[friend.name] = [];
+                    shouldPersistChats = true;
+                }
+            });
+
+            if (shouldPersistFriends) persistFriendList();
+            if (shouldPersistChats) persistChatDatabase();
+        }
+
+        repairWechatStorageState();
 
         function getFriendByName(friendName) {
             return friendList.find(friend => friend.name === friendName) || null;
@@ -4365,6 +5657,7 @@
         }
 
         function ensureFriendChatHistory(friendName) {
+            if (!friendName) return;
             if (!Array.isArray(chatDatabase[friendName])) {
                 chatDatabase[friendName] = [];
                 persistChatDatabase();
@@ -4376,6 +5669,10 @@
             if (!friendName || !content) return;
 
             ensureFriendChatHistory(friendName);
+            chatRenderVisibleCountMap[friendName] = Math.max(
+                getChatRenderVisibleCount(friendName, chatDatabase[friendName].length),
+                CHAT_RENDER_RECENT_LIMIT
+            ) + 1;
             chatDatabase[friendName].push({ role: 'system', content });
             persistChatDatabase();
 
@@ -4395,7 +5692,7 @@
 
             if (avatar) {
                 return {
-                    style: `background-image: url(${avatar});`,
+                    style: `background-image: url(&quot;${escapeCssUrl(avatar)}&quot;);`,
                     text: ''
                 };
             }
@@ -4601,6 +5898,10 @@
                 }
             }
             if (lastMessage) {
+                if (lastMessage.type === 'transfer') {
+                    const amount = formatTransferCardAmount(lastMessage.amount);
+                    return `[转账] ${amount}`;
+                }
                 const preview = String(lastMessage.content || '').trim().replace(/\s+/g, ' ');
                 return preview.length > 28 ? `${preview.slice(0, 28)}...` : preview;
             }
@@ -4621,6 +5922,7 @@
             if (!ok) return;
 
             chatDatabase[currentChatFriend] = [];
+            resetChatRenderVisibleCount(currentChatFriend);
             persistChatDatabase();
             renderChatHistory();
             renderFriendList();
@@ -4653,6 +5955,7 @@
             }
 
             delete chatDatabase[currentChatFriend];
+            resetChatRenderVisibleCount(currentChatFriend);
 
             const settingsMap = parseStoredJson('friend_settings', {});
             if (Object.prototype.hasOwnProperty.call(settingsMap, currentChatFriend)) {
@@ -4676,6 +5979,13 @@
             let shouldPersistFriendList = false;
 
             friendList.forEach(friend => {
+                try {
+                const normalizedFriend = normalizeFriendRecord(friend);
+                if (!normalizedFriend) {
+                    shouldPersistFriendList = true;
+                    return;
+                }
+                friend = normalizedFriend;
                 ensureFriendChatHistory(friend.name);
 
                 if (friend.type !== 'group' && friend.desc !== '你们已经是好友了，开始聊天吧') {
@@ -4697,12 +6007,16 @@
                 chatItem.innerHTML = `
                     <div class="wc-chat-avatar" style="${avatarMeta.style}">${avatarMeta.text}</div>
                     <div class="wc-chat-info">
-                        <div class="wc-chat-header"><span class="wc-chat-name">${friend.name}</span><span class="wc-chat-time">${friend.time || ''}</span></div>
-                        <div class="wc-chat-desc">${previewText}</div>
+                        <div class="wc-chat-header"><span class="wc-chat-name">${escapeHtml(friend.name)}</span><span class="wc-chat-time">${escapeHtml(friend.time || '')}</span></div>
+                        <div class="wc-chat-desc">${escapeHtml(previewText)}</div>
                     </div>
                 `;
                 chatItem.dataset.friendName = friend.name;
                 chatListContainer.appendChild(chatItem);
+                } catch (error) {
+                    console.warn('渲染好友项失败，已跳过异常数据', friend, error);
+                    shouldPersistFriendList = true;
+                }
             });
 
             if (shouldPersistFriendList) {
@@ -4822,6 +6136,8 @@
             activeWechatSubpage = 'user-personas';
             userPersonasSubpage.classList.add('active');
             favoritesSubpage.classList.remove('active');
+            walletSubpage.classList.remove('active');
+            walletBillsSubpage.classList.remove('active');
             plusMenu.style.display = 'none';
             updateWechatHeader();
         }
@@ -4855,6 +6171,28 @@
             activeWechatSubpage = 'favorites';
             userPersonasSubpage.classList.remove('active');
             favoritesSubpage.classList.add('active');
+            walletSubpage.classList.remove('active');
+            walletBillsSubpage.classList.remove('active');
+            plusMenu.style.display = 'none';
+            updateWechatHeader();
+        }
+
+        function openWalletPage() {
+            renderWalletBalance();
+            activeWechatSubpage = 'wallet';
+            userPersonasSubpage.classList.remove('active');
+            favoritesSubpage.classList.remove('active');
+            walletSubpage.classList.add('active');
+            walletBillsSubpage.classList.remove('active');
+            plusMenu.style.display = 'none';
+            updateWechatHeader();
+        }
+
+        function openWalletBillsPage() {
+            renderWalletBills();
+            activeWechatSubpage = 'wallet-bills';
+            walletSubpage.classList.remove('active');
+            walletBillsSubpage.classList.add('active');
             plusMenu.style.display = 'none';
             updateWechatHeader();
         }
@@ -5097,7 +6435,12 @@
         });
 
         document.getElementById('btn-open-user-personas').addEventListener('click', openUserPersonasPage);
+        document.getElementById('btn-open-wallet').addEventListener('click', openWalletPage);
         document.getElementById('btn-open-favorites').addEventListener('click', openFavoritesPage);
+        btnWalletSetPassword?.addEventListener('click', handleWalletSetPassword);
+        btnWalletRecharge?.addEventListener('click', handleWalletRecharge);
+        btnWalletWithdraw?.addEventListener('click', handleWalletWithdraw);
+        btnOpenWalletBills?.addEventListener('click', openWalletBillsPage);
         document.getElementById('btn-cancel-user-persona').addEventListener('click', () => {
             userPersonaModal.style.display = 'none';
         });
@@ -5154,6 +6497,14 @@
                 activeWechatSubpage = 'moments';
                 momentsSettingsSubpage.classList.remove('active');
                 momentsSubpage.classList.add('active');
+                updateWechatHeader();
+                return;
+            }
+
+            if (activeWechatSubpage === 'wallet-bills') {
+                activeWechatSubpage = 'wallet';
+                walletBillsSubpage.classList.remove('active');
+                walletSubpage.classList.add('active');
                 updateWechatHeader();
                 return;
             }
@@ -5289,10 +6640,27 @@
         const chatMultiBar = document.getElementById('chat-multi-bar');
         const chatMultiCount = document.getElementById('chat-multi-count');
         const chatComposePanel = document.getElementById('chat-compose-panel');
+        const chatTransferPanel = document.getElementById('chat-transfer-panel');
+        const chatTransferPayPanel = document.getElementById('chat-transfer-pay-panel');
         const chatComposeTitle = document.getElementById('chat-compose-title');
         const chatComposeInput = document.getElementById('chat-compose-input');
+        const chatTransferAmountInput = document.getElementById('chat-transfer-amount-input');
+        const chatTransferRemarkInput = document.getElementById('chat-transfer-remark-input');
+        const chatTransferPayAmount = document.getElementById('chat-transfer-pay-amount');
+        const chatTransferPayRemark = document.getElementById('chat-transfer-pay-remark');
+        const chatTransferPayTarget = document.getElementById('chat-transfer-pay-target');
+        const chatTransferMethodCurrent = document.getElementById('chat-transfer-method-current');
+        const chatTransferMethodBalance = document.getElementById('chat-transfer-method-balance');
+        const chatTransferMethodSheetBalance = document.getElementById('chat-transfer-method-sheet-balance');
+        const chatTransferMethodSheet = document.getElementById('chat-transfer-method-sheet');
+        const chatTransferPayPasswordDots = Array.from(document.querySelectorAll('#chat-transfer-pay-password-dots .chat-transfer-pay-password-dot'));
+        const chatTransferKeypad = document.getElementById('chat-transfer-keypad');
         const btnCancelCompose = document.getElementById('btn-cancel-compose');
         const btnSendCompose = document.getElementById('btn-send-compose');
+        const btnCancelTransfer = document.getElementById('btn-cancel-transfer');
+        const btnConfirmTransfer = document.getElementById('btn-confirm-transfer');
+        const btnCloseTransferPay = document.getElementById('btn-close-transfer-pay');
+        const btnTransferMethodTrigger = document.getElementById('btn-transfer-method-trigger');
         const MESSAGE_LONG_PRESS_MS = 380;
         const messageActionLabels = [
             { action: 'copy', label: '复制' },
@@ -5309,8 +6677,12 @@
         let activeQuoteMessage = null;
         let isMultiSelectingMessages = false;
         let currentComposeType = '';
+        let currentTransferDraft = { amount: '', remark: '', method: '零钱' };
+        let currentTransferPayPassword = '';
         const CHAT_RENDER_RECENT_LIMIT = 80;
+        const CHAT_RENDER_INCREMENT = 80;
         const chatScrollPositions = {};
+        const chatRenderVisibleCountMap = {};
         const selectedMessageIds = new Set();
 
         function getEventElementTarget(event) {
@@ -5352,6 +6724,45 @@
                 handler(event);
             }, { passive: false });
         }
+
+        function getChatRenderVisibleCount(friendName, totalCount) {
+            const normalizedTotal = Math.max(0, Number(totalCount) || 0);
+            if (!friendName) return Math.min(CHAT_RENDER_RECENT_LIMIT, normalizedTotal);
+
+            const storedCount = Number(chatRenderVisibleCountMap[friendName]);
+            const nextCount = Number.isFinite(storedCount) && storedCount > 0
+                ? storedCount
+                : CHAT_RENDER_RECENT_LIMIT;
+            const clampedCount = normalizedTotal
+                ? Math.min(Math.max(CHAT_RENDER_RECENT_LIMIT, nextCount), normalizedTotal)
+                : CHAT_RENDER_RECENT_LIMIT;
+
+            chatRenderVisibleCountMap[friendName] = clampedCount;
+            return clampedCount;
+        }
+
+        function resetChatRenderVisibleCount(friendName) {
+            if (!friendName) return;
+            delete chatRenderVisibleCountMap[friendName];
+        }
+
+        function expandCurrentChatHistory() {
+            if (!currentChatFriend) return;
+
+            ensureFriendChatHistory(currentChatFriend);
+            const msgs = chatDatabase[currentChatFriend] || [];
+            const previousScrollHeight = chatScrollView.scrollHeight;
+            const currentScrollTop = chatScrollView.scrollTop;
+            const visibleCount = getChatRenderVisibleCount(currentChatFriend, msgs.length);
+            chatRenderVisibleCountMap[currentChatFriend] = Math.min(msgs.length, visibleCount + CHAT_RENDER_INCREMENT);
+
+            renderChatHistory();
+
+            requestAnimationFrame(() => {
+                const nextScrollHeight = chatScrollView.scrollHeight;
+                chatScrollView.scrollTop = Math.max(0, nextScrollHeight - previousScrollHeight + currentScrollTop);
+            });
+        }
         
         const chatPlusBtn = document.getElementById('btn-chat-plus');
         const chatPlusPanel = document.getElementById('chat-plus-panel');
@@ -5378,11 +6789,289 @@
             chatComposePanel.style.display = 'none';
         }
 
+        function normalizeTransferAmountDisplay(value = '') {
+            const raw = String(value || '').trim().replace(/[^\d.]/g, '');
+            const amount = Number(raw);
+            if (!raw || !Number.isFinite(amount) || amount <= 0) return '¥0.00';
+            return `¥${amount.toFixed(2)}`;
+        }
+
+        function getNormalizedTransferAmount(value = '') {
+            const raw = String(value || '').trim().replace(/[^\d.]/g, '');
+            const amount = Number(raw);
+            if (!raw || !Number.isFinite(amount) || amount <= 0) return 0;
+            return normalizeWalletMoney(amount);
+        }
+
+        function formatTransferCardAmount(value = 0) {
+            const amount = normalizeWalletMoney(value);
+            if (!Number.isFinite(amount) || amount <= 0) return '¥0.00';
+            return `¥${amount.toFixed(2)}`;
+        }
+
+        function getTransferWalletBalanceText() {
+            return `(${formatWalletMoney(walletBalance)})`;
+        }
+
+        function buildTransferCardMarkup(payload = {}) {
+            const amountText = formatTransferCardAmount(payload.amount);
+            const remarkText = String(payload.remark || '').trim();
+            const methodText = String(payload.method || '零钱').trim() || '零钱';
+            const footerText = String(payload.footerText || `微信转账 · ${methodText}`).trim() || `微信转账 · ${methodText}`;
+            return `
+                <div class="msg-transfer-card">
+                    <div class="msg-transfer-card-main">
+                        <div class="msg-transfer-card-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 6.2h6.5l-1.9-1.9 1.4-1.4 4.3 4.3-4.3 4.3-1.4-1.4 1.9-1.9H7.9c-1.3 0-2.4 1.1-2.4 2.4v1.3h-2v-1.3c0-2.42 1.98-4.4 4.4-4.4Zm9.3 5.6h2v1.3c0 2.42-1.98 4.4-4.4 4.4H8.4l1.9 1.9-1.4 1.4-4.3-4.3L9 12.2l1.4 1.4-1.9 1.9h5.6c1.3 0 2.4-1.1 2.4-2.4z"/></svg>
+                        </div>
+                        <div class="msg-transfer-card-info">
+                            <div class="msg-transfer-card-amount">${escapeHtml(amountText)}</div>
+                            ${remarkText ? `<div class="msg-transfer-card-remark">${escapeHtml(remarkText)}</div>` : ''}
+                        </div>
+                    </div>
+                    <div class="msg-transfer-card-footer">${escapeHtml(footerText)}</div>
+                </div>
+            `;
+        }
+
+        function createTransferMessageRecord(role, payload = {}) {
+            const amount = normalizeWalletMoney(payload.amount);
+            if (!Number.isFinite(amount) || amount <= 0) return null;
+
+            const normalizedRole = role === 'user' || role === 'ai' ? role : 'user';
+            return {
+                id: createMessageId(`${normalizedRole}-transfer`),
+                role: normalizedRole,
+                type: 'transfer',
+                content: String(payload.content || payload.remark || '转账').trim() || '转账',
+                amount,
+                remark: String(payload.remark || '').trim(),
+                method: String(payload.method || '零钱').trim() || '零钱',
+                footerText: String(payload.footerText || '').trim(),
+                createdAt: Date.now()
+            };
+        }
+
+        function appendAndPersistChatRecord(record = {}) {
+            if (!currentChatFriend || !record) return;
+            ensureFriendChatHistory(currentChatFriend);
+            chatRenderVisibleCountMap[currentChatFriend] = Math.max(
+                getChatRenderVisibleCount(currentChatFriend, chatDatabase[currentChatFriend].length),
+                CHAT_RENDER_RECENT_LIMIT
+            ) + 1;
+            chatDatabase[currentChatFriend].push(record);
+            persistChatDatabase();
+            appendMsgBubble(record.role, record.content, null, record);
+        }
+
+        function recordWalletTransferTransaction(direction, amount, targetName, remark = '') {
+            const normalizedAmount = normalizeWalletMoney(amount);
+            if (!Number.isFinite(normalizedAmount) || normalizedAmount <= 0) return;
+
+            const isIncoming = direction === 'incoming';
+            const transaction = normalizeWalletTransaction({
+                id: createMessageId('wallet'),
+                type: isIncoming ? 'transfer-in' : 'transfer-out',
+                title: isIncoming ? `收到${targetName || '对方'}的转账` : `转账给${targetName || '对方'}`,
+                amount: isIncoming ? normalizedAmount : -normalizedAmount,
+                balanceAfter: walletBalance,
+                createdAt: Date.now(),
+                remark: String(remark || '').trim()
+            });
+
+            if (!transaction) return;
+            walletTransactions.unshift(transaction);
+            persistWalletTransactions();
+            renderWalletBills();
+        }
+
+        function applyIncomingTransferFromCurrentRole(record = {}) {
+            const amount = normalizeWalletMoney(record.amount);
+            if (!Number.isFinite(amount) || amount <= 0) return false;
+
+            walletBalance = clampWalletBalance(walletBalance + amount);
+            persistWalletBalance();
+            renderWalletBalance();
+            recordWalletTransferTransaction('incoming', amount, currentChatFriend, record.remark || record.content || '');
+            return true;
+        }
+
+        async function completeTransferPaymentSuccess() {
+            const amount = getNormalizedTransferAmount(currentTransferDraft.amount);
+            if (!amount) {
+                await showAppDialog({ title: '无法转账', message: '请输入正确的转账金额。' });
+                return;
+            }
+
+            if (currentTransferDraft.method !== '零钱') {
+                await showAppDialog({ title: '暂不可用', message: '当前仅支持使用零钱付款。' });
+                currentTransferPayPassword = '';
+                syncTransferPayPasswordDots();
+                return;
+            }
+
+            if (amount > walletBalance) {
+                await showAppDialog({ title: '无法转账', message: '零钱余额不足。' });
+                currentTransferPayPassword = '';
+                syncTransferPayPasswordDots();
+                return;
+            }
+
+            walletBalance = clampWalletBalance(walletBalance - amount);
+            persistWalletBalance();
+            renderWalletBalance();
+            recordWalletTransferTransaction('outgoing', amount, currentChatFriend, currentTransferDraft.remark || currentTransferDraft.content || '');
+            syncTransferMethodOptions();
+
+            const transferRecord = createTransferMessageRecord('user', {
+                content: currentTransferDraft.remark || '转账',
+                amount,
+                remark: String(currentTransferDraft.remark || '').trim(),
+                method: currentTransferDraft.method,
+                footerText: `微信转账 · ${currentTransferDraft.method}`
+            });
+
+            if (transferRecord) {
+                appendAndPersistChatRecord(transferRecord);
+            }
+
+            chatPlusPanel.style.display = 'none';
+            closeChatTransferPayPanel();
+            if (chatTransferPanel) chatTransferPanel.style.display = 'none';
+            if (chatTransferAmountInput) chatTransferAmountInput.value = '';
+            if (chatTransferRemarkInput) chatTransferRemarkInput.value = '';
+            currentTransferDraft = { amount: '', remark: '', method: '零钱' };
+            currentTransferPayPassword = '';
+            scrollToBottom();
+
+            await showAppDialog({ title: '转账成功', message: `已向${currentChatFriend || '对方'}转账 ${formatWalletMoney(amount)}。` });
+        }
+
+        function syncTransferMethodOptions() {
+            const options = chatTransferMethodSheet?.querySelectorAll('[data-transfer-method]') || [];
+            options.forEach(option => {
+                option.classList.toggle('active', option.dataset.transferMethod === currentTransferDraft.method);
+            });
+            if (chatTransferMethodCurrent) {
+                chatTransferMethodCurrent.textContent = currentTransferDraft.method === '零钱' ? '零钱' : currentTransferDraft.method;
+            }
+            if (chatTransferMethodBalance) {
+                chatTransferMethodBalance.textContent = currentTransferDraft.method === '零钱'
+                    ? getTransferWalletBalanceText()
+                    : '';
+            }
+            if (chatTransferMethodSheetBalance) {
+                chatTransferMethodSheetBalance.textContent = `余额 ${formatWalletMoney(walletBalance)}`;
+            }
+        }
+
+        function syncTransferPayPasswordDots() {
+            chatTransferPayPasswordDots.forEach((dot, index) => {
+                dot.classList.toggle('filled', index < currentTransferPayPassword.length);
+            });
+        }
+
+        function syncTransferPayPanelContent() {
+            if (chatTransferPayTarget) {
+                chatTransferPayTarget.textContent = currentChatFriend || '对方';
+            }
+            if (chatTransferPayAmount) {
+                chatTransferPayAmount.textContent = normalizeTransferAmountDisplay(currentTransferDraft.amount);
+            }
+            if (chatTransferPayRemark) {
+                chatTransferPayRemark.textContent = String(currentTransferDraft.remark || '').trim();
+            }
+            syncTransferMethodOptions();
+            syncTransferPayPasswordDots();
+        }
+
+        function closeTransferMethodSheet() {
+            chatTransferMethodSheet?.classList.remove('open');
+        }
+
+        function openTransferMethodSheet() {
+            chatTransferMethodSheet?.classList.add('open');
+        }
+
+        function openChatTransferPanel() {
+            if (chatTransferAmountInput) chatTransferAmountInput.value = '';
+            if (chatTransferRemarkInput) chatTransferRemarkInput.value = '';
+            currentTransferDraft = { amount: '', remark: '', method: '零钱' };
+            currentTransferPayPassword = '';
+            syncTransferPayPanelContent();
+            closeTransferMethodSheet();
+            if (chatTransferPayPanel) chatTransferPayPanel.style.display = 'none';
+            chatTransferPanel.style.display = 'flex';
+            setTimeout(() => chatTransferAmountInput?.focus(), 30);
+        }
+
+        function closeChatTransferPanel() {
+            if (chatTransferAmountInput) chatTransferAmountInput.value = '';
+            if (chatTransferRemarkInput) chatTransferRemarkInput.value = '';
+            currentTransferDraft = { amount: '', remark: '', method: '零钱' };
+            chatTransferPanel.style.display = 'none';
+            closeChatTransferPayPanel();
+        }
+
+        function openChatTransferPayPanel() {
+            currentTransferDraft = {
+                amount: String(chatTransferAmountInput?.value || '').trim(),
+                remark: String(chatTransferRemarkInput?.value || '').trim(),
+                method: currentTransferDraft.method || '零钱'
+            };
+            currentTransferPayPassword = '';
+            syncTransferPayPanelContent();
+            closeTransferMethodSheet();
+            chatTransferPanel.style.display = 'none';
+            chatTransferPayPanel.style.display = 'flex';
+        }
+
+        function closeChatTransferPayPanel() {
+            currentTransferPayPassword = '';
+            syncTransferPayPasswordDots();
+            closeTransferMethodSheet();
+            if (chatTransferPayPanel) chatTransferPayPanel.style.display = 'none';
+        }
+
+        function returnToChatTransferPanel() {
+            currentTransferPayPassword = '';
+            syncTransferPayPasswordDots();
+            closeTransferMethodSheet();
+            if (chatTransferPayPanel) chatTransferPayPanel.style.display = 'none';
+            if (chatTransferAmountInput) chatTransferAmountInput.value = currentTransferDraft.amount || '';
+            if (chatTransferRemarkInput) chatTransferRemarkInput.value = currentTransferDraft.remark || '';
+            chatTransferPanel.style.display = 'flex';
+        }
+
+        function handleTransferPayKeyInput(key) {
+            if (!key) return;
+
+            if (key === 'delete') {
+                if (!currentTransferPayPassword) return;
+                currentTransferPayPassword = currentTransferPayPassword.slice(0, -1);
+                syncTransferPayPasswordDots();
+                return;
+            }
+
+            if (!/^\d$/.test(key) || currentTransferPayPassword.length >= 6) return;
+            currentTransferPayPassword += key;
+            syncTransferPayPasswordDots();
+            if (currentTransferPayPassword.length === 6) {
+                setTimeout(() => {
+                    completeTransferPaymentSuccess();
+                }, 120);
+            }
+        }
+
         function sendSpecialUserMessage(type, content) {
             const text = String(content || '').trim();
             if (!text || !currentChatFriend) return;
 
             ensureFriendChatHistory(currentChatFriend);
+            chatRenderVisibleCountMap[currentChatFriend] = Math.max(
+                getChatRenderVisibleCount(currentChatFriend, chatDatabase[currentChatFriend].length),
+                CHAT_RENDER_RECENT_LIMIT
+            ) + 1;
             const record = { role: 'user', type, content: text, id: createMessageId('user') };
             if (activeQuoteMessage) record.quote = { ...activeQuoteMessage };
             chatDatabase[currentChatFriend].push(record);
@@ -5398,9 +7087,16 @@
         function handleChatPlusPanelAction(event) {
             const target = getEventElementTarget(event);
             const item = target?.closest('[data-compose-type]');
-            if (!item) return;
+            if (item) {
+                event.stopPropagation();
+                openChatComposePanel(item.dataset.composeType);
+                return;
+            }
+
+            const transferItem = target?.closest('[data-action="open-transfer"]');
+            if (!transferItem) return;
             event.stopPropagation();
-            openChatComposePanel(item.dataset.composeType);
+            openChatTransferPanel();
         }
 
         chatPlusPanel.addEventListener('click', handleChatPlusPanelAction);
@@ -5410,19 +7106,67 @@
         bindTap(btnSendCompose, () => {
             sendSpecialUserMessage(currentComposeType, chatComposeInput.value);
         });
+        bindTap(btnCancelTransfer, closeChatTransferPanel);
+        bindTap(btnConfirmTransfer, openChatTransferPayPanel);
+        bindTap(btnCloseTransferPay, returnToChatTransferPanel);
+        bindTap(btnTransferMethodTrigger, () => {
+            if (chatTransferMethodSheet?.classList.contains('open')) {
+                closeTransferMethodSheet();
+                return;
+            }
+            openTransferMethodSheet();
+        });
         function handleChatComposeOverlayClose(event) {
             const target = getEventElementTarget(event);
             if (target === chatComposePanel) closeChatComposePanel();
         }
 
+        function handleChatTransferOverlayClose(event) {
+            const target = getEventElementTarget(event);
+            if (target === chatTransferPanel) closeChatTransferPanel();
+        }
+
+        function handleChatTransferPayOverlayClose(event) {
+            const target = getEventElementTarget(event);
+            if (target === chatTransferPayPanel) closeChatTransferPayPanel();
+        }
+
+        function handleTransferMethodSelect(event) {
+            const target = getEventElementTarget(event);
+            const option = target?.closest('[data-transfer-method]');
+            if (!option) return;
+            event.stopPropagation();
+            currentTransferDraft.method = option.dataset.transferMethod || '零钱';
+            syncTransferMethodOptions();
+            closeTransferMethodSheet();
+        }
+
+        function handleTransferKeypadPress(event) {
+            const target = getEventElementTarget(event);
+            const keyButton = target?.closest('[data-transfer-key]');
+            if (!keyButton) return;
+            event.stopPropagation();
+            handleTransferPayKeyInput(keyButton.dataset.transferKey || '');
+        }
+
         chatComposePanel.addEventListener('click', handleChatComposeOverlayClose);
         chatComposePanel.addEventListener('touchend', handleChatComposeOverlayClose, { passive: false });
+        chatTransferPanel.addEventListener('click', handleChatTransferOverlayClose);
+        chatTransferPanel.addEventListener('touchend', handleChatTransferOverlayClose, { passive: false });
+        chatTransferPayPanel.addEventListener('click', handleChatTransferPayOverlayClose);
+        chatTransferPayPanel.addEventListener('touchend', handleChatTransferPayOverlayClose, { passive: false });
+        chatTransferMethodSheet?.addEventListener('click', handleTransferMethodSelect);
+        chatTransferMethodSheet?.addEventListener('touchend', handleTransferMethodSelect, { passive: false });
+        chatTransferKeypad?.addEventListener('click', handleTransferKeypadPress);
+        chatTransferKeypad?.addEventListener('touchend', handleTransferKeypadPress, { passive: false });
 
         document.getElementById('chat-back-btn').addEventListener('click', () => {
             if (currentChatFriend) chatScrollPositions[currentChatFriend] = chatScrollView.scrollTop;
             chatRoom.style.display = 'none';
             chatPlusPanel.style.display = 'none';
             closeChatComposePanel();
+            closeChatTransferPanel();
+            closeChatTransferPayPanel();
             closeMessageActionCard();
             clearActiveQuote();
             exitMessageMultiSelect();
@@ -5431,8 +7175,11 @@
         document.getElementById('chat-settings-btn').addEventListener('click', () => {
             chatPlusPanel.style.display = 'none';
             closeChatComposePanel();
+            closeChatTransferPanel();
+            closeChatTransferPayPanel();
             closeMessageActionCard();
             updateChatSettingsLabels();
+            loadCurrentChatOfflineSettings();
             chatSettingsPage.style.display = 'flex';
         });
 
@@ -5485,6 +7232,7 @@
         chatListContainer.addEventListener('click', handleChatItemOpen);
 
         function openChatRoom(friendName) {
+            ensureFriendChatHistory(friendName);
             currentChatFriend = friendName;
             document.getElementById('chat-title-name').textContent = friendName;
             const savedScrollTop = chatScrollPositions[friendName];
@@ -5495,11 +7243,14 @@
             activeQuoteMessage = null;
             selectedMessageIds.clear();
             isMultiSelectingMessages = false;
+            getChatRenderVisibleCount(friendName, (chatDatabase[friendName] || []).length);
             syncQuotePreview();
             requestAnimationFrame(() => {
                 renderChatHistory();
                 if (typeof savedScrollTop === 'number') {
                     chatScrollView.scrollTop = savedScrollTop;
+                } else {
+                    chatScrollView.scrollTop = chatScrollView.scrollHeight;
                 }
             });
         }
@@ -5549,6 +7300,13 @@
             if (!content) return '';
             if (message.type === 'voice') return `[语音消息转文字：${content}]`;
             if (message.type === 'photo') return `[图片消息，图片描述：${content}]`;
+            if (message.type === 'transfer') {
+                const amount = formatTransferCardAmount(message.amount);
+                const remark = String(message.remark || '').trim();
+                return remark
+                    ? `[转账消息：金额${amount}，备注：${remark}]`
+                    : `[转账消息：金额${amount}]`;
+            }
             return content;
         }
 
@@ -5738,6 +7496,12 @@
         chatMsgList.addEventListener('touchcancel', cancelMessagePress, { passive: true });
         chatMsgList.addEventListener('click', event => {
             const target = getEventElementTarget(event);
+            const loadMoreBubble = target?.closest('[data-action="load-earlier-messages"]');
+            if (loadMoreBubble) {
+                event.preventDefault();
+                expandCurrentChatHistory();
+                return;
+            }
             const voiceBubble = target?.closest('.msg-voice-bubble');
             if (voiceBubble) {
                 event.stopPropagation();
@@ -5755,6 +7519,12 @@
         });
         chatMsgList.addEventListener('touchend', event => {
             const target = getEventElementTarget(event);
+            const loadMoreBubble = target?.closest('[data-action="load-earlier-messages"]');
+            if (loadMoreBubble) {
+                if (event.cancelable) event.preventDefault();
+                expandCurrentChatHistory();
+                return;
+            }
             const voiceBubble = target?.closest('.msg-voice-bubble');
             if (voiceBubble) {
                 event.stopPropagation();
@@ -5999,44 +7769,224 @@
 
         const offlineModeToggle = document.getElementById('offline-mode-toggle');
         const offlineModeExpand = document.getElementById('offline-mode-expand');
+        const offlinePresetSelect = document.getElementById('offline-preset-select');
+        const btnSaveOfflinePreset = document.getElementById('btn-save-offline-preset');
+        const btnDeleteOfflinePreset = document.getElementById('btn-delete-offline-preset');
         const offlineStyleInput = document.getElementById('offline-style-input');
         const offlineOutputMinInput = document.getElementById('offline-output-min');
         const offlineOutputMaxInput = document.getElementById('offline-output-max');
+
+        function normalizeOfflinePresetRecord(preset = {}) {
+            if (!preset || typeof preset !== 'object' || Array.isArray(preset)) return null;
+
+            const name = String(preset.name || '').trim();
+            if (!name) return null;
+
+            return {
+                name,
+                enabled: Boolean(preset.enabled),
+                config: normalizeOfflineConfig(preset.config || preset)
+            };
+        }
+
+        let offlinePresets = parseStoredJson('offline_presets', []);
+        if (!Array.isArray(offlinePresets)) offlinePresets = [];
+        offlinePresets = offlinePresets.map(normalizeOfflinePresetRecord).filter(Boolean);
+
+        function persistOfflinePresets() {
+            safeSetJsonStorage('offline_presets', offlinePresets);
+        }
+
+        function renderOfflinePresets(selectedIndex = '') {
+            if (!offlinePresetSelect) return;
+
+            offlinePresetSelect.innerHTML = '<option value="">选择预设...</option>';
+            offlinePresets.forEach((preset, index) => {
+                const opt = document.createElement('option');
+                opt.value = index;
+                opt.textContent = preset.name || `线下预设 ${index + 1}`;
+                offlinePresetSelect.appendChild(opt);
+            });
+            offlinePresetSelect.value = selectedIndex;
+        }
+
+        function getOfflineModeFormConfig() {
+            const stylePrompt = String(offlineStyleInput?.value || '').trim();
+            const min = Number(offlineOutputMinInput?.value);
+            const max = Number(offlineOutputMaxInput?.value);
+
+            return normalizeOfflineConfig({
+                stylePrompt,
+                outputMin: min,
+                outputMax: max
+            });
+        }
+
+        function getOfflineSettings(friendOrName = currentChatFriend) {
+            const friend = typeof friendOrName === 'string' ? getFriendByName(friendOrName) : friendOrName;
+            if (friend) {
+                return {
+                    enabled: Boolean(friend.offlineModeEnabled),
+                    config: normalizeOfflineConfig(friend.offlineConfig)
+                };
+            }
+
+            return {
+                enabled: Boolean(offlineModeToggle?.checked),
+                config: getOfflineModeFormConfig()
+            };
+        }
+
+        function fillOfflineModeForm(settings = {}) {
+            const normalized = {
+                enabled: Boolean(settings.enabled),
+                config: normalizeOfflineConfig(settings.config)
+            };
+
+            if (offlineModeToggle) offlineModeToggle.checked = normalized.enabled;
+            if (offlineStyleInput) offlineStyleInput.value = normalized.config.stylePrompt || '';
+            if (offlineOutputMinInput) offlineOutputMinInput.value = normalized.config.outputMin || '';
+            if (offlineOutputMaxInput) offlineOutputMaxInput.value = normalized.config.outputMax || '';
+            syncOfflineModePanel();
+        }
+
+        function loadCurrentChatOfflineSettings() {
+            fillOfflineModeForm(getOfflineSettings(currentChatFriend));
+            renderOfflinePresets();
+        }
+
+        function persistCurrentChatOfflineSettings(options = {}) {
+            const { announceToggle = false } = options;
+            if (!currentChatFriend) return;
+
+            const friend = getFriendByName(currentChatFriend);
+            if (!friend) return;
+
+            const previousEnabled = Boolean(friend.offlineModeEnabled);
+            const nextEnabled = Boolean(offlineModeToggle?.checked);
+            const nextConfig = getOfflineModeFormConfig();
+
+            friend.offlineModeEnabled = nextEnabled;
+            friend.offlineConfig = nextConfig;
+            persistFriendList();
+
+            if (announceToggle && previousEnabled !== nextEnabled) {
+                appendSystemChatRecord(
+                    currentChatFriend,
+                    nextEnabled ? '已不再进行手机聊天，进入线下' : '已开启手机聊天模式'
+                );
+            }
+        }
 
         function syncOfflineModePanel() {
             if (!offlineModeToggle || !offlineModeExpand) return;
             offlineModeExpand.classList.toggle('open', offlineModeToggle.checked);
         }
 
-        function isOfflineModeEnabled() {
-            return Boolean(offlineModeToggle?.checked);
+        function isOfflineModeEnabled(friendOrName = currentChatFriend) {
+            return getOfflineSettings(friendOrName).enabled;
         }
 
-        function getOfflineModeConfig() {
-            const stylePrompt = String(offlineStyleInput?.value || '').trim();
-            const min = Number(offlineOutputMinInput?.value);
-            const max = Number(offlineOutputMaxInput?.value);
-
-            return {
-                stylePrompt,
-                outputMin: Number.isFinite(min) && min > 0 ? Math.round(min) : 0,
-                outputMax: Number.isFinite(max) && max > 0 ? Math.round(max) : 0
-            };
+        function getOfflineModeConfig(friendOrName = currentChatFriend) {
+            return getOfflineSettings(friendOrName).config;
         }
 
         function syncOfflineModeState() {
             syncOfflineModePanel();
-            if (!currentChatFriend) return;
+            persistCurrentChatOfflineSettings({ announceToggle: true });
+        }
 
-            appendSystemChatRecord(
-                currentChatFriend,
-                offlineModeToggle.checked ? '已不再进行手机聊天，进入线下' : '已开启手机聊天模式'
-            );
+        function handleOfflineModeFormInput() {
+            persistCurrentChatOfflineSettings();
+        }
+
+        function applyOfflinePreset(preset = {}) {
+            const normalizedPreset = normalizeOfflinePresetRecord(preset);
+            if (!normalizedPreset) return;
+
+            fillOfflineModeForm(normalizedPreset);
+            persistCurrentChatOfflineSettings();
         }
 
         if (offlineModeToggle && offlineModeExpand) {
             offlineModeToggle.addEventListener('change', syncOfflineModeState);
+            [offlineStyleInput, offlineOutputMinInput, offlineOutputMaxInput].forEach(input => {
+                if (!input) return;
+                input.addEventListener('input', handleOfflineModeFormInput);
+                input.addEventListener('change', handleOfflineModeFormInput);
+            });
             syncOfflineModePanel();
+            renderOfflinePresets();
+        }
+
+        if (offlinePresetSelect) {
+            offlinePresetSelect.addEventListener('change', () => {
+                const idx = offlinePresetSelect.value;
+                if (idx === '') return;
+
+                const preset = offlinePresets[Number(idx)];
+                applyOfflinePreset(preset);
+            });
+        }
+
+        if (btnSaveOfflinePreset) {
+            btnSaveOfflinePreset.addEventListener('click', async () => {
+                const defaultName = offlinePresetSelect && offlinePresetSelect.value !== '' && offlinePresets[Number(offlinePresetSelect.value)]
+                    ? offlinePresets[Number(offlinePresetSelect.value)].name
+                    : `线下预设 ${offlinePresets.length + 1}`;
+
+                const name = await showAppDialog({
+                    title: '保存线下预设',
+                    message: '请输入预设名称。',
+                    mode: 'prompt',
+                    confirmText: '保存',
+                    defaultValue: defaultName
+                });
+                if (!name) return;
+
+                const preset = {
+                    name,
+                    enabled: Boolean(offlineModeToggle?.checked),
+                    config: getOfflineModeFormConfig()
+                };
+                const existingIndex = offlinePresets.findIndex(item => item.name === preset.name);
+                if (existingIndex >= 0) {
+                    offlinePresets[existingIndex] = preset;
+                    persistOfflinePresets();
+                    renderOfflinePresets(String(existingIndex));
+                    await showAppDialog({ title: '预设已更新', message: '同名线下预设已用当前配置覆盖。' });
+                    return;
+                }
+
+                offlinePresets.push(preset);
+                persistOfflinePresets();
+                renderOfflinePresets(String(offlinePresets.length - 1));
+                await showAppDialog({ title: '保存成功', message: '当前线下配置已保存为预设。' });
+            });
+        }
+
+        if (btnDeleteOfflinePreset) {
+            btnDeleteOfflinePreset.addEventListener('click', async () => {
+                const idx = offlinePresetSelect?.value ?? '';
+                if (idx === '') {
+                    await showAppDialog({ title: '无法删除预设', message: '请先选择一个要删除的线下预设。' });
+                    return;
+                }
+
+                const presetName = offlinePresets[Number(idx)]?.name || '当前预设';
+                const shouldDelete = await showAppDialog({
+                    title: '删除线下预设',
+                    message: `确定删除“${presetName}”吗？`,
+                    mode: 'confirm',
+                    confirmText: '删除'
+                });
+                if (!shouldDelete) return;
+
+                offlinePresets.splice(Number(idx), 1);
+                persistOfflinePresets();
+                renderOfflinePresets();
+                await showAppDialog({ title: '删除成功', message: '线下预设已删除。' });
+            });
         }
 
         function getBoundUserPersona(friend) {
@@ -6111,7 +8061,7 @@
             const userName = String(boundUserPersona?.name || localStorage.getItem('os_name') || '用户').trim();
             const userPersonaDesc = String(boundUserPersona?.description || '未绑定具体用户人设。').trim();
             const worldbookPrompt = getWorldbookPromptText(friend);
-            const offlineConfig = getOfflineModeConfig();
+            const offlineConfig = getOfflineModeConfig(friend);
             const outputRange = offlineConfig.outputMin && offlineConfig.outputMax
                 ? `${offlineConfig.outputMin}-${offlineConfig.outputMax}`
                 : offlineConfig.outputMax
@@ -6137,6 +8087,42 @@
             ].filter(Boolean).join('\n');
         }
 
+        function buildOfflineGroupChatSystemPrompt(friend, contextHistory, lastUserMessage) {
+            const boundUserPersona = getBoundUserPersona(friend);
+            const userName = String(boundUserPersona?.name || localStorage.getItem('os_name') || '用户').trim();
+            const userPersonaDesc = String(boundUserPersona?.description || '未绑定具体用户人设。').trim();
+            const members = getGroupMembers(friend);
+            const memberLines = members.length
+                ? members.map(member => `${member.name || '未命名成员'}：${member.desc || '暂无设定'}`).join('；')
+                : '暂无群成员信息。';
+            const worldbookPrompt = getWorldbookPromptText(friend);
+            const offlineConfig = getOfflineModeConfig(friend);
+            const extraPrompt = parseStoredJson('friend_settings', {})[friend.name] || '';
+            const outputRange = offlineConfig.outputMin && offlineConfig.outputMax
+                ? `${offlineConfig.outputMin}-${offlineConfig.outputMax}`
+                : offlineConfig.outputMax
+                    ? `不超过${offlineConfig.outputMax}`
+                    : offlineConfig.outputMin
+                        ? `不少于${offlineConfig.outputMin}`
+                        : '由当前情景自行判断';
+
+            return [
+                '这是线下多人互动场景，不是手机聊天。',
+                `群聊名称是：${friend.name || '未命名群聊'}。`,
+                `参与者设定如下：${memberLines}`,
+                worldbookPrompt ? `补充背景设定：${worldbookPrompt}` : '',
+                `${userName}的人设是：${userPersonaDesc}`,
+                `刚刚你们的互动内容是：${contextHistory || '暂无更多历史内容。'}`,
+                `现在你需要根据当前情景，继续回应 ${userName} 的最新输入：${lastUserMessage || '（空）'}`,
+                '你可以让一名或多名群成员说话或行动，但不要替对方发言，不要替对方做决定。',
+                '只描写群成员的反应、语言和行动，不要编造对方的语言、内心或动作。',
+                `输出字数要求：${outputRange}字。`,
+                offlineConfig.stylePrompt ? `请参考以下文风：${offlineConfig.stylePrompt}` : '',
+                extraPrompt ? `补充规则：${extraPrompt}` : '',
+                '直接输出正文，不要输出标题、注释、JSON、代码块或额外说明。'
+            ].filter(Boolean).join('\n');
+        }
+
         function buildSingleChatSystemPrompt(friend) {
             const config = getDefaultRoleConfig(friend);
             const boundUserPersona = getBoundUserPersona(friend);
@@ -6158,11 +8144,12 @@
                 '请使用口语化、碎片化、像微信一样的短消息回复。',
                 `一次回复拆成 ${config.replyMin} 到 ${config.replyMax} 条独立短消息。`,
                 '每条消息控制在 1 到 25 个字左右。',
-                '你也可以在适合聊天情景时自然发送语音或图片，但不需要每次都发。',
-                '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述。',
+                '你也可以在适合聊天情景时自然发送语音、图片或转账，但不需要每次都发。',
+                '转账只在确实符合情景时再发，比如对方明确开口要钱、红包节日节庆、你按人设需要给钱、报销、请客、补偿、还款等。不要频繁转账，不要无缘无故天天转。',
+                '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述；转账消息使用 type:"transfer"，content 写简短提示文案，amount 写转账金额数字，remark 写备注，可留空。',
                 '如果最近时间线里出现了朋友圈动态，你可以在合适的时候自然提到，但不要每次都提，不要生硬复述。',
                 '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
-                '请严格返回 JSON，格式为：{"replies":[{"type":"text","content":"第一条"},{"type":"voice","content":"语音转文字内容"},{"type":"photo","content":"图片画面描述"}]}',
+                '请严格返回 JSON，格式为：{"replies":[{"type":"text","content":"第一条"},{"type":"voice","content":"语音转文字内容"},{"type":"photo","content":"图片画面描述"},{"type":"transfer","content":"转账留言，可简短","amount":88.8,"remark":"可留空"}]}',
                 '除了这个 JSON 之外，不要输出任何额外文字、标题、代码块或说明。'
             ].filter(Boolean).join('\n');
         }
@@ -6195,6 +8182,7 @@
                 '请使用口语化、碎片化、像微信一样的短消息回复。',
                 '每条消息控制在 1 到 25 个字左右。',
                 '群成员也可以在适合聊天情景时自然发送语音或图片，但不需要每次都发。',
+                '群聊里先不要发送转账消息。',
                 '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述。',
                 '如果最近时间线里出现了朋友圈动态，你们可以在合适的时候自然提到，但不要每次都提，不要机械复述。',
                 '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
@@ -6208,7 +8196,21 @@
 
         function normalizeAiReplyMessages(replyText) {
             function normalizeReplyType(type) {
-                return type === 'voice' || type === 'photo' ? type : 'text';
+                return type === 'voice' || type === 'photo' || type === 'transfer' ? type : 'text';
+            }
+
+            function normalizeTransferReply(item = {}) {
+                const amount = normalizeWalletMoney(item.amount);
+                if (!Number.isFinite(amount) || amount <= 0) return null;
+                const remark = String(item.remark || '').trim();
+                const content = String(item.content || item.text || remark || '转账').trim() || '转账';
+                return {
+                    type: 'transfer',
+                    content,
+                    amount,
+                    remark,
+                    method: '零钱'
+                };
             }
 
             const fallbackMessages = String(replyText || '')
@@ -6222,9 +8224,10 @@
                     const validReplies = parsed.replies
                         .map(item => {
                             if (item && typeof item === 'object') {
+                                const type = normalizeReplyType(item.type);
+                                if (type === 'transfer') return normalizeTransferReply(item);
                                 const content = String(item.content || item.text || '').trim();
                                 if (!content) return null;
-                                const type = normalizeReplyType(item.type);
                                 return type === 'text' ? { content } : { type, content };
                             }
 
@@ -6243,9 +8246,10 @@
                             const validReplies = parsed.replies
                                 .map(item => {
                                     if (item && typeof item === 'object') {
+                                        const type = normalizeReplyType(item.type);
+                                        if (type === 'transfer') return normalizeTransferReply(item);
                                         const content = String(item.content || item.text || '').trim();
                                         if (!content) return null;
-                                        const type = normalizeReplyType(item.type);
                                         return type === 'text' ? { content } : { type, content };
                                     }
 
@@ -6294,8 +8298,7 @@
                             ...(type === 'text' ? {} : { type }),
                             content,
                             speakerId: member.id,
-                            speakerName: member.name,
-                            speakerAvatar: member.avatar || ''
+                            speakerName: member.name
                         };
                     })
                     .filter(Boolean);
@@ -6332,8 +8335,7 @@
                                 role: 'ai',
                                 content,
                                 speakerId: member.id,
-                                speakerName: member.name,
-                                speakerAvatar: member.avatar || ''
+                                speakerName: member.name
                             };
                         }
                     }
@@ -6343,30 +8345,35 @@
                         role: 'ai',
                         content: item,
                         speakerId: fallbackSpeaker.id,
-                        speakerName: fallbackSpeaker.name,
-                        speakerAvatar: fallbackSpeaker.avatar || ''
+                        speakerName: fallbackSpeaker.name
                     };
                 })
                 .filter(Boolean);
 
             if (fallbackReplies.length) return fallbackReplies.slice(0, 12);
             if (!fallbackSpeaker) {
-                return [{ role: 'ai', content: '……', speakerId: '', speakerName: '群成员', speakerAvatar: '' }];
+                return [{ role: 'ai', content: '……', speakerId: '', speakerName: '群成员' }];
             }
 
             return [{
                 role: 'ai',
                 content: '……',
                 speakerId: fallbackSpeaker.id,
-                speakerName: fallbackSpeaker.name,
-                speakerAvatar: fallbackSpeaker.avatar || ''
+                speakerName: fallbackSpeaker.name
             }];
         }
 
         function renderChatHistory() {
             chatMsgList.innerHTML = '';
-            const msgs = chatDatabase[currentChatFriend] || [];
+            ensureFriendChatHistory(currentChatFriend);
+            let msgs = chatDatabase[currentChatFriend] || [];
             let changed = false;
+            const normalizedMsgs = msgs.map(normalizeChatMessageRecord).filter(Boolean);
+            if (normalizedMsgs.length !== msgs.length) {
+                msgs = normalizedMsgs;
+                chatDatabase[currentChatFriend] = msgs;
+                changed = true;
+            }
             msgs.forEach(msg => {
                 if (!msg.id) {
                     ensureMessageIdentity(msg);
@@ -6375,14 +8382,24 @@
             });
             if (changed) persistChatDatabase();
             const fragment = document.createDocumentFragment();
-            const renderStartIndex = Math.max(0, msgs.length - CHAT_RENDER_RECENT_LIMIT);
+            const visibleCount = getChatRenderVisibleCount(currentChatFriend, msgs.length);
+            const renderStartIndex = Math.max(0, msgs.length - visibleCount);
             if (renderStartIndex > 0) {
-                appendMsgBubble('system', `已省略较早的 ${renderStartIndex} 条消息，以减少 Safari 卡顿。`, null, {
+                appendMsgBubble('system', `已省略较早的 ${renderStartIndex} 条消息`, null, {
                     role: 'system',
-                    content: `已省略较早的 ${renderStartIndex} 条消息，以减少 Safari 卡顿。`
+                    type: 'load_more',
+                    omittedCount: renderStartIndex,
+                    content: `已省略较早的 ${renderStartIndex} 条消息`
                 }, fragment);
             }
-            msgs.slice(renderStartIndex).forEach(msg => { appendMsgBubble(msg.role, msg.content, null, msg, fragment); });
+            msgs.slice(renderStartIndex).forEach(msg => {
+                try {
+                    if (!shouldDisplaySystemRecordInChat(msg, currentChatFriend)) return;
+                    appendMsgBubble(msg.role, msg.content, null, msg, fragment);
+                } catch (error) {
+                    console.warn('渲染单条消息失败，已跳过异常数据', msg, error);
+                }
+            });
             chatMsgList.appendChild(fragment);
             syncMultiSelectUi();
         }
@@ -6395,7 +8412,17 @@
             if (role !== 'system' && message?.id) row.dataset.messageId = message.id;
 
             if (role === 'system') {
-                row.innerHTML = `<div class="msg-bubble">${escapeHtml(text)}</div>`;
+                if (message?.type === 'load_more') {
+                    const omittedCount = Math.max(0, Number(message.omittedCount) || 0);
+                    row.innerHTML = `
+                        <div class="msg-bubble load-more" data-action="load-earlier-messages" role="button" tabindex="0" aria-label="加载更早消息">
+                            <span class="msg-load-more-label">加载更早消息</span>
+                            <span class="msg-load-more-count">还有 ${omittedCount} 条</span>
+                        </div>
+                    `;
+                } else {
+                    row.innerHTML = `<div class="msg-bubble">${escapeHtml(text)}</div>`;
+                }
                 container.appendChild(row);
                 return;
             }
@@ -6412,12 +8439,15 @@
                 ` : '';
             const normalizedText = String(text || '');
             const voiceDuration = Math.max(1, Math.min(60, Math.round(normalizedText.length / 2) + 1));
-            const isRichBubble = Boolean(message.type === 'voice' || message.type === 'photo' || message.isHtml);
+            const isTransferMessage = message.type === 'transfer' || message.type === 'transfer_preview';
+            const isRichBubble = Boolean(message.type === 'voice' || message.type === 'photo' || message.isHtml || isTransferMessage);
             let bubbleContent = message.isHtml ? text : escapeHtml(normalizedText);
             if (message.type === 'voice') {
                 bubbleContent = `<div class="msg-media-card"><div class="msg-voice-bubble" title="点击查看文字"><div class="msg-voice-wave"><span></span><span></span><span></span></div><div class="msg-voice-duration">${voiceDuration}''</div></div><div class="msg-voice-transcript">${escapeHtml(normalizedText)}</div></div>`;
             } else if (message.type === 'photo') {
                 bubbleContent = `<div class="msg-photo-card"><div class="msg-photo-desc">${escapeHtml(normalizedText)}</div></div>`;
+            } else if (isTransferMessage) {
+                bubbleContent = buildTransferCardMarkup(message);
             }
             row.innerHTML = `
                 <div class="msg-select-check"></div>
@@ -6425,7 +8455,7 @@
                 <div class="msg-main">
                     ${shouldShowSenderName ? `<div class="msg-sender-name">${escapeHtml(displayName)}</div>` : ''}
                     ${quoteMarkup}
-                    <div class="msg-bubble${isRichBubble ? ' rich-content' : ''}">${bubbleContent}</div>
+                    <div class="msg-bubble${isRichBubble ? ' rich-content' : ''}${isTransferMessage ? ' transfer-card-bubble' : ''}">${bubbleContent}</div>
                     <div class="msg-actions-card">
                         ${messageActionLabels.map(item => `<button type="button" class="msg-action-btn" data-action="${item.action}">${item.label}</button>`).join('')}
                     </div>
@@ -6445,6 +8475,10 @@
                 if(!text) return;
                 
                 ensureFriendChatHistory(currentChatFriend);
+                chatRenderVisibleCountMap[currentChatFriend] = Math.max(
+                    getChatRenderVisibleCount(currentChatFriend, chatDatabase[currentChatFriend].length),
+                    CHAT_RENDER_RECENT_LIMIT
+                ) + 1;
                 const record = { role: 'user', content: text, id: createMessageId('user') };
                 if (activeQuoteMessage) record.quote = { ...activeQuoteMessage };
                 chatDatabase[currentChatFriend].push(record);
@@ -6466,6 +8500,7 @@
 
         // 重回按钮
         document.getElementById('btn-reroll').addEventListener('click', () => {
+            ensureFriendChatHistory(currentChatFriend);
             const msgs = chatDatabase[currentChatFriend];
             // 如果存在消息且最后一条是 AI，则删掉整轮 AI 回复再请求
             if(msgs.length > 0 && msgs[msgs.length - 1].role === 'ai') {
@@ -6488,6 +8523,7 @@
 
         // 真实调用API
         async function triggerAIResponse(isReroll = false) {
+            ensureFriendChatHistory(currentChatFriend);
             const msgs = chatDatabase[currentChatFriend];
             // 避免连续触发或者空触发
             if(!isReroll && msgs.length > 0 && msgs[msgs.length - 1].role === 'ai') return;
@@ -6504,7 +8540,7 @@
 
             const friend = getFriendByName(currentChatFriend);
             const isGroupChat = friend?.type === 'group';
-            const offlineModeEnabled = !isGroupChat && isOfflineModeEnabled();
+            const offlineModeEnabled = isOfflineModeEnabled(friend || currentChatFriend);
             const config = getDefaultRoleConfig(friend || {});
             const contextLimit = config.contextLimit;
             const contextMessages = msgs.slice(-Math.max(1, contextLimit));
@@ -6517,11 +8553,17 @@
                 .filter(Boolean)
                 .join('\n');
             const systemPrompt = offlineModeEnabled
-                ? buildOfflineSingleChatSystemPrompt(
-                    friend || { name: currentChatFriend, personaPrompt: '' },
-                    formatOfflineContextHistory(friend || { name: currentChatFriend }, contextWithoutLastUserTurn),
-                    lastUserMessage
-                )
+                ? isGroupChat
+                    ? buildOfflineGroupChatSystemPrompt(
+                        friend || { name: currentChatFriend, members: [], type: 'group' },
+                        formatOfflineContextHistory(friend || { name: currentChatFriend, members: [], type: 'group' }, contextWithoutLastUserTurn),
+                        lastUserMessage
+                    )
+                    : buildOfflineSingleChatSystemPrompt(
+                        friend || { name: currentChatFriend, personaPrompt: '' },
+                        formatOfflineContextHistory(friend || { name: currentChatFriend }, contextWithoutLastUserTurn),
+                        lastUserMessage
+                    )
                 : isGroupChat
                 ? buildGroupChatSystemPrompt(friend || { name: currentChatFriend })
                 : buildSingleChatSystemPrompt(friend || { name: currentChatFriend, personaPrompt: '' });
@@ -6529,13 +8571,21 @@
             // 构造标准对话结构
             const apiMessages = [ { role: 'system', content: systemPrompt } ];
             if (offlineModeEnabled) {
+                const boundUserPersona = getBoundUserPersona(friend);
+                const offlineUserName = boundUserPersona?.name || localStorage.getItem('os_name') || '我';
+
                 contextWithoutLastUserTurn.forEach(m => {
-                    const formattedMessage = formatSingleChatContextMessage(m);
+                    const formattedMessage = isGroupChat
+                        ? formatGroupContextMessage(friend || { name: currentChatFriend, members: [], type: 'group' }, m)
+                        : formatSingleChatContextMessage(m);
                     if (formattedMessage) apiMessages.push(formattedMessage);
                 });
 
                 if (lastUserMessage) {
-                    apiMessages.push({ role: 'user', content: lastUserMessage });
+                    apiMessages.push({
+                        role: 'user',
+                        content: isGroupChat ? `${offlineUserName}：${lastUserMessage}` : lastUserMessage
+                    });
                 }
             } else {
                 const historyMessages = lastUserTurnMessages.length ? contextWithoutLastUserTurn : contextMessages;
@@ -6617,7 +8667,14 @@
 
                 // 记录并渲染
                 replyMessages.forEach(message => {
+                    chatRenderVisibleCountMap[currentChatFriend] = Math.max(
+                        getChatRenderVisibleCount(currentChatFriend, chatDatabase[currentChatFriend].length),
+                        CHAT_RENDER_RECENT_LIMIT
+                    ) + 1;
                     const record = { ...message, role: 'ai', id: createMessageId('ai'), turnId: replyTurnId };
+                    if (record.type === 'transfer') {
+                        applyIncomingTransferFromCurrentRole(record);
+                    }
                     chatDatabase[currentChatFriend].push(record);
                     appendMsgBubble('ai', record.content, null, record);
                 });
