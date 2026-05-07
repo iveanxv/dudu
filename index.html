@@ -7022,6 +7022,22 @@
             return '';
         }
 
+        function getPendingTransferDirection(message = {}) {
+            if (!message || message.type !== 'transfer' || message.transferStatus !== 'pending') return '';
+            return message.role === 'ai' ? 'incoming' : 'outgoing';
+        }
+
+        function getLatestPendingOutgoingTransfer() {
+            const messages = getCurrentChatMessages();
+            for (let index = messages.length - 1; index >= 0; index -= 1) {
+                const message = messages[index];
+                if (message?.type === 'transfer' && message.role === 'user' && message.transferStatus === 'pending') {
+                    return message;
+                }
+            }
+            return null;
+        }
+
         function findMessageIndexById(messageId = '') {
             const messages = getCurrentChatMessages();
             return messages.findIndex(message => message.id === messageId);
@@ -7082,8 +7098,11 @@
         function openTransferDetailPanel(message = {}) {
             if (!message || message.type !== 'transfer') return;
             activeTransferDetailMessageId = message.id || '';
+            const transferDirection = getPendingTransferDirection(message);
             if (chatTransferDetailTitle) {
-                chatTransferDetailTitle.textContent = message.transferStatus === 'pending' ? '收款确认' : '转账详情';
+                chatTransferDetailTitle.textContent = message.transferStatus === 'pending'
+                    ? (transferDirection === 'outgoing' ? '等待对方处理' : '收款确认')
+                    : '转账详情';
             }
             if (chatTransferDetailAmount) {
                 chatTransferDetailAmount.textContent = formatTransferCardAmount(message.amount);
@@ -7093,7 +7112,7 @@
             }
             if (chatTransferDetailTip) {
                 chatTransferDetailTip.textContent = message.transferStatus === 'pending'
-                    ? '你可以选择收取或退还这笔转账。'
+                    ? (transferDirection === 'outgoing' ? '这笔转账正在等待对方决定收取或退还。' : '你可以选择收取或退还这笔转账。')
                     : `当前状态：${getTransferStatusLabel(message.transferStatus, message.role) || '已完成'}`;
             }
             if (chatTransferDetailActions) {
@@ -7159,6 +7178,61 @@
             closeTransferDetailPanel();
         }
 
+        async function applyAiTransferDecision(decision = {}) {
+            const action = String(decision.action || '').trim();
+            if (action !== 'accept' && action !== 'return') return false;
+
+            const pendingTransfer = getLatestPendingOutgoingTransfer();
+            if (!pendingTransfer) return false;
+
+            const amount = normalizeWalletMoney(pendingTransfer.amount);
+            if (!Number.isFinite(amount) || amount <= 0) return false;
+
+            const resolvedFooter = action === 'accept' ? '微信转账 · 已被接受' : '微信转账 · 已被退还';
+            const resultRemark = action === 'accept' ? '已收款' : '已退还';
+
+            if (action === 'accept') {
+                recordWalletTransferTransaction('outgoing', amount, currentChatFriend, pendingTransfer.remark || pendingTransfer.content || '');
+            }
+
+            if (action === 'return') {
+                walletBalance = clampWalletBalance(walletBalance + amount);
+                persistWalletBalance();
+                renderWalletBalance();
+                recordWalletTransferTransaction('incoming', amount, currentChatFriend, `退还${pendingTransfer.remark || pendingTransfer.content || '转账'}`);
+                syncTransferMethodOptions();
+            }
+
+            updateCurrentChatMessage(pendingTransfer.id, current => ({
+                ...current,
+                transferStatus: action === 'accept' ? 'accepted' : 'returned',
+                footerText: resolvedFooter
+            }));
+
+            const statusRecord = createTransferMessageRecord('ai', {
+                amount,
+                remark: resultRemark,
+                content: resultRemark,
+                method: pendingTransfer.method || '零钱',
+                transferStatus: action === 'accept' ? 'accepted' : 'returned',
+                footerText: '微信转账'
+            });
+
+            if (!statusRecord) return false;
+
+            chatRenderVisibleCountMap[currentChatFriend] = Math.max(
+                getChatRenderVisibleCount(currentChatFriend, chatDatabase[currentChatFriend].length),
+                CHAT_RENDER_RECENT_LIMIT
+            ) + 1;
+            const record = { ...statusRecord, role: 'ai', id: createMessageId('ai') };
+            chatDatabase[currentChatFriend].push(record);
+            appendMsgBubble('ai', record.content, null, record);
+            persistChatDatabase();
+            scrollToBottom();
+            renderFriendList();
+            return true;
+        }
+
         async function completeTransferPaymentSuccess() {
             const amount = getNormalizedTransferAmount(currentTransferDraft.amount);
             if (!amount) {
@@ -7183,7 +7257,6 @@
             walletBalance = clampWalletBalance(walletBalance - amount);
             persistWalletBalance();
             renderWalletBalance();
-            recordWalletTransferTransaction('outgoing', amount, currentChatFriend, currentTransferDraft.remark || currentTransferDraft.content || '');
             syncTransferMethodOptions();
 
             const transferRecord = createTransferMessageRecord('user', {
@@ -7191,7 +7264,8 @@
                 amount,
                 remark: String(currentTransferDraft.remark || '').trim(),
                 method: currentTransferDraft.method,
-                footerText: `微信转账 · ${currentTransferDraft.method}`
+                transferStatus: 'pending',
+                footerText: '微信转账 · 待对方收款'
             });
 
             if (transferRecord) {
@@ -7206,8 +7280,6 @@
             currentTransferDraft = { amount: '', remark: '', method: '零钱' };
             currentTransferPayPassword = '';
             scrollToBottom();
-
-            await showAppDialog({ title: '转账成功', message: `已向${currentChatFriend || '对方'}转账 ${formatWalletMoney(amount)}。` });
         }
 
         function syncTransferMethodOptions() {
@@ -7566,9 +7638,11 @@
             if (message.type === 'transfer') {
                 const amount = formatTransferCardAmount(message.amount);
                 const remark = String(message.remark || '').trim();
+                const statusText = getTransferStatusLabel(message.transferStatus, message.role);
+                const statusBlock = statusText ? `，状态：${statusText}` : '';
                 return remark
-                    ? `[转账消息：金额${amount}，备注：${remark}]`
-                    : `[转账消息：金额${amount}]`;
+                    ? `[转账消息：金额${amount}，备注：${remark}${statusBlock}]`
+                    : `[转账消息：金额${amount}${statusBlock}]`;
             }
             return content;
         }
@@ -7769,7 +7843,7 @@
             if (transferCard) {
                 const row = transferCard.closest('.msg-row');
                 const message = getMessageById(row?.dataset?.messageId || '');
-                if (message?.type === 'transfer' && message.role === 'ai') {
+                if (message?.type === 'transfer') {
                     event.preventDefault();
                     event.stopPropagation();
                     openTransferDetailPanel(message);
@@ -7803,7 +7877,7 @@
             if (transferCard) {
                 const row = transferCard.closest('.msg-row');
                 const message = getMessageById(row?.dataset?.messageId || '');
-                if (message?.type === 'transfer' && message.role === 'ai') {
+                if (message?.type === 'transfer') {
                     if (event.cancelable) event.preventDefault();
                     event.stopPropagation();
                     openTransferDetailPanel(message);
@@ -8458,12 +8532,14 @@
                 '请使用口语化、碎片化、像微信一样的短消息回复。',
                 `一次回复拆成 ${config.replyMin} 到 ${config.replyMax} 条独立短消息。`,
                 '每条消息控制在 1 到 25 个字左右。',
+                '如果对方刚发来一笔待你处理的转账，你需要根据人设和聊天场景决定收取还是退还。',
+                '处理对方转账时，不要再发送新的转账消息，优先返回一个 transfer_action 结果。',
                 '你也可以在适合聊天情景时自然发送语音、图片或转账，但不需要每次都发。',
                 '转账只在确实符合情景时再发，比如对方明确开口要钱、红包节日节庆、你按人设需要给钱、报销、请客、补偿、还款等。不要频繁转账，不要无缘无故天天转。',
-                '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述；转账消息使用 type:"transfer"，content 写简短提示文案，amount 写转账金额数字，remark 写转账备注，可不写。若有备注，优先写在 remark 字段里，不要漏掉。',
+                '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述；转账消息使用 type:"transfer"，content 写简短提示文案，amount 写转账金额数字，remark 写转账备注，可不写。若有备注，优先写在 remark 字段里，不要漏掉。处理对方发来的待收款转账时使用 type:"transfer_action"，action 只能写 accept 或 return，content 可留一句简短说明。',
                 '如果最近时间线里出现了朋友圈动态，你可以在合适的时候自然提到，但不要每次都提，不要生硬复述。',
                 '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
-                '请严格返回 JSON，格式为：{"replies":[{"type":"text","content":"第一条"},{"type":"voice","content":"语音转文字内容"},{"type":"photo","content":"图片画面描述"},{"type":"transfer","content":"转账留言，可简短","amount":88.8,"remark":"转账备注，可留空"}]}',
+                '请严格返回 JSON，格式为：{"replies":[{"type":"text","content":"第一条"},{"type":"voice","content":"语音转文字内容"},{"type":"photo","content":"图片画面描述"},{"type":"transfer","content":"转账留言，可简短","amount":88.8,"remark":"转账备注，可留空"},{"type":"transfer_action","action":"accept","content":"已收下"}]}',
                 '除了这个 JSON 之外，不要输出任何额外文字、标题、代码块或说明。'
             ].filter(Boolean).join('\n');
         }
@@ -8510,7 +8586,7 @@
 
         function normalizeAiReplyMessages(replyText) {
             function normalizeReplyType(type) {
-                return type === 'voice' || type === 'photo' || type === 'transfer' ? type : 'text';
+                return type === 'voice' || type === 'photo' || type === 'transfer' || type === 'transfer_action' ? type : 'text';
             }
 
             function normalizeTransferReply(item = {}) {
@@ -8527,6 +8603,16 @@
                 };
             }
 
+            function normalizeTransferActionReply(item = {}) {
+                const action = String(item.action || '').trim();
+                if (action !== 'accept' && action !== 'return') return null;
+                return {
+                    type: 'transfer_action',
+                    action,
+                    content: String(item.content || item.text || '').trim()
+                };
+            }
+
             const fallbackMessages = String(replyText || '')
                 .split(/\n+/)
                 .map(item => item.trim())
@@ -8540,6 +8626,7 @@
                             if (item && typeof item === 'object') {
                                 const type = normalizeReplyType(item.type);
                                 if (type === 'transfer') return normalizeTransferReply(item);
+                                if (type === 'transfer_action') return normalizeTransferActionReply(item);
                                 const content = String(item.content || item.text || '').trim();
                                 if (!content) return null;
                                 return type === 'text' ? { content } : { type, content };
@@ -8562,6 +8649,7 @@
                                     if (item && typeof item === 'object') {
                                         const type = normalizeReplyType(item.type);
                                         if (type === 'transfer') return normalizeTransferReply(item);
+                                        if (type === 'transfer_action') return normalizeTransferActionReply(item);
                                         const content = String(item.content || item.text || '').trim();
                                         if (!content) return null;
                                         return type === 'text' ? { content } : { type, content };
@@ -8980,7 +9068,11 @@
                 const replyTurnId = `ai-turn-${Date.now()}`;
 
                 // 记录并渲染
-                replyMessages.forEach(message => {
+                for (const message of replyMessages) {
+                    if (message.type === 'transfer_action') {
+                        const handled = await applyAiTransferDecision(message);
+                        if (handled) continue;
+                    }
                     chatRenderVisibleCountMap[currentChatFriend] = Math.max(
                         getChatRenderVisibleCount(currentChatFriend, chatDatabase[currentChatFriend].length),
                         CHAT_RENDER_RECENT_LIMIT
@@ -8992,7 +9084,7 @@
                     }
                     chatDatabase[currentChatFriend].push(record);
                     appendMsgBubble('ai', record.content, null, record);
-                });
+                }
                 persistChatDatabase();
                 scrollToBottom();
                 renderFriendList();
