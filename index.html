@@ -934,6 +934,13 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.08);
             color: #fff;
         }
+        .msg-transfer-card.is-actionable { cursor: pointer; }
+        .msg-transfer-card.is-received,
+        .msg-transfer-card.is-returned {
+            background: linear-gradient(180deg, #f7dfbf 0%, #f2d3a7 100%);
+            box-shadow: 0 2px 6px rgba(166,117,47,0.12);
+            color: #9d6a31;
+        }
         .msg-transfer-card-main {
             min-height: 62px;
             padding: 10px 11px 8px;
@@ -951,10 +958,18 @@
             justify-content: center;
             flex-shrink: 0;
         }
+        .msg-transfer-card.is-received .msg-transfer-card-icon,
+        .msg-transfer-card.is-returned .msg-transfer-card-icon {
+            background: rgba(255,249,239,0.58);
+        }
         .msg-transfer-card-icon svg {
             width: 18px;
             height: 18px;
             fill: #fff;
+        }
+        .msg-transfer-card.is-received .msg-transfer-card-icon svg,
+        .msg-transfer-card.is-returned .msg-transfer-card-icon svg {
+            fill: #b17733;
         }
         .msg-transfer-card-info {
             min-width: 0;
@@ -977,6 +992,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        .msg-transfer-card.is-received .msg-transfer-card-remark,
+        .msg-transfer-card.is-returned .msg-transfer-card-remark {
+            color: rgba(141,95,35,0.84);
+        }
         .msg-transfer-card-footer {
             padding: 6px 11px 7px;
             border-top: 1px solid rgba(255,255,255,0.16);
@@ -985,29 +1004,11 @@
             color: rgba(255,255,255,0.92);
             line-height: 1.3;
         }
-        .msg-transfer-card-status {
-            margin-top: 2px;
-            font-size: 11px;
-            line-height: 1.25;
-            color: rgba(255,255,255,0.9);
-        }
-        .msg-transfer-card.is-received,
-        .msg-transfer-card.is-refunded {
-            background: linear-gradient(180deg, #d7aa69 0%, #c89754 100%);
-            opacity: 0.82;
-        }
-        .msg-transfer-card.is-clickable { cursor: pointer; }
-        .msg-transfer-receipt-bubble {
-            align-self: center;
-            max-width: 78%;
-            margin: 2px auto;
-            padding: 5px 10px;
-            border-radius: 4px;
-            background: rgba(0,0,0,0.08);
-            color: #888;
-            font-size: 12px;
-            line-height: 1.35;
-            text-align: center;
+        .msg-transfer-card.is-received .msg-transfer-card-footer,
+        .msg-transfer-card.is-returned .msg-transfer-card-footer {
+            border-top-color: rgba(177,119,51,0.16);
+            background: rgba(177,119,51,0.05);
+            color: rgba(141,95,35,0.92);
         }
         .msg-quote-card {
             max-width: 100%;
@@ -1348,6 +1349,50 @@
             height: 24px;
             fill: #555;
         }
+        .chat-transfer-detail-panel { z-index: 1220; }
+        .chat-transfer-detail-box { gap: 14px; }
+        .chat-transfer-detail-amount {
+            text-align: center;
+            font-size: 30px;
+            line-height: 1.1;
+            font-weight: 600;
+            color: #111;
+            letter-spacing: -0.02em;
+        }
+        .chat-transfer-detail-remark-wrap {
+            padding: 12px 13px;
+            border-radius: 12px;
+            background: #f7f7f7;
+            border: 0.5px solid #ececec;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+        .chat-transfer-detail-remark-label {
+            font-size: 12px;
+            color: #8a8a8a;
+        }
+        .chat-transfer-detail-remark-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #222;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .chat-transfer-detail-tip {
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #666;
+        }
+        .chat-transfer-detail-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .chat-transfer-detail-actions.single {
+            display: flex;
+        }
+        .chat-transfer-detail-actions.single .chat-compose-btn { flex: 1; }
 
         .favorites-page-body { min-height: 100%; padding: 16px; background: #ededed; }
         .favorites-list { display: flex; flex-direction: column; gap: 10px; }
@@ -2467,6 +2512,21 @@
                     </div>
                 </div>
             </div>
+            <div class="modal-overlay chat-transfer-detail-panel" id="chat-transfer-detail-panel">
+                <div class="modal-box chat-transfer-detail-box">
+                    <div class="chat-compose-title" id="chat-transfer-detail-title">收款确认</div>
+                    <div class="chat-transfer-detail-amount" id="chat-transfer-detail-amount">¥0.00</div>
+                    <div class="chat-transfer-detail-remark-wrap">
+                        <div class="chat-transfer-detail-remark-label">转账备注</div>
+                        <div class="chat-transfer-detail-remark-text" id="chat-transfer-detail-remark">未填写备注</div>
+                    </div>
+                    <div class="chat-transfer-detail-tip" id="chat-transfer-detail-tip">你可以选择收取或退还这笔转账。</div>
+                    <div class="chat-transfer-detail-actions" id="chat-transfer-detail-actions">
+                        <button type="button" class="chat-compose-btn btn-cancel" id="btn-return-transfer">退还</button>
+                        <button type="button" class="chat-compose-btn primary" id="btn-accept-transfer">收取</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -2971,9 +3031,19 @@
             }
         });
 
+        const osProfileStorageKeyMap = {
+            'user-name': 'os_name',
+            'user-sign': 'os_sign',
+            'user-location': 'os_location'
+        };
+
         ['user-name', 'user-sign', 'user-location'].forEach(id => {
             const el = document.getElementById(id);
-            el.addEventListener('blur', () => { safeSetStorage(id.replace('-','_'), el.textContent); resetScroll(); });
+            el.addEventListener('blur', () => {
+                const storageKey = osProfileStorageKeyMap[id] || id.replace('-', '_');
+                safeSetStorage(storageKey, el.textContent);
+                resetScroll();
+            });
             el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); }});
         });
 
@@ -3619,6 +3689,11 @@
         if (!Array.isArray(walletTransactions)) walletTransactions = [];
         let momentsUnreadState = localStorage.getItem('moments_unread_flag') === '1';
         let tempMomentsPhotoText = '';
+        let currentMomentsProfile = {
+            name: String(localStorage.getItem('moments_name') || '用户').trim() || '用户',
+            cover: String(localStorage.getItem('moments_cover') || '').trim(),
+            avatar: String(localStorage.getItem('moments_avatar') || '').trim()
+        };
         let activeWechatSubpage = '';
         let activeMomentActionPostId = '';
 
@@ -3628,6 +3703,80 @@
 
         function persistMomentsAutoPostState() {
             safeSetJsonStorage('moments_auto_post_state', momentsAutoPostState);
+        }
+
+        function getCurrentMomentsProfile() {
+            return {
+                name: String(currentMomentsProfile?.name || '用户').trim() || '用户',
+                cover: String(currentMomentsProfile?.cover || '').trim(),
+                avatar: String(currentMomentsProfile?.avatar || '').trim()
+            };
+        }
+
+        function updateCurrentMomentsProfile(nextProfile = {}) {
+            const profile = getCurrentMomentsProfile();
+
+            if (Object.prototype.hasOwnProperty.call(nextProfile, 'name')) {
+                profile.name = String(nextProfile.name || '').trim() || '用户';
+            }
+            if (Object.prototype.hasOwnProperty.call(nextProfile, 'cover')) {
+                profile.cover = String(nextProfile.cover || '').trim();
+            }
+            if (Object.prototype.hasOwnProperty.call(nextProfile, 'avatar')) {
+                profile.avatar = String(nextProfile.avatar || '').trim();
+            }
+
+            currentMomentsProfile = profile;
+            return currentMomentsProfile;
+        }
+
+        function readFileAsDataUrl(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(String(reader.result || ''));
+                reader.onerror = () => reject(reader.error || new Error('文件读取失败'));
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function loadImageFromDataUrl(dataUrl = '') {
+            return new Promise((resolve, reject) => {
+                const image = new Image();
+                image.onload = () => resolve(image);
+                image.onerror = () => reject(new Error('图片加载失败'));
+                image.src = dataUrl;
+            });
+        }
+
+        async function optimizeImageFile(file, options = {}) {
+            const fallbackDataUrl = await readFileAsDataUrl(file);
+            const maxWidth = Math.max(1, Number(options.maxWidth) || 1280);
+            const maxHeight = Math.max(1, Number(options.maxHeight) || 1280);
+            const quality = Math.min(0.92, Math.max(0.6, Number(options.quality) || 0.84));
+
+            try {
+                const image = await loadImageFromDataUrl(fallbackDataUrl);
+                const sourceWidth = Math.max(1, image.naturalWidth || image.width || 1);
+                const sourceHeight = Math.max(1, image.naturalHeight || image.height || 1);
+                const scale = Math.min(1, maxWidth / sourceWidth, maxHeight / sourceHeight);
+                const targetWidth = Math.max(1, Math.round(sourceWidth * scale));
+                const targetHeight = Math.max(1, Math.round(sourceHeight * scale));
+                const canvas = document.createElement('canvas');
+                canvas.width = targetWidth;
+                canvas.height = targetHeight;
+
+                const context = canvas.getContext('2d');
+                if (!context) return fallbackDataUrl;
+
+                context.clearRect(0, 0, targetWidth, targetHeight);
+                context.drawImage(image, 0, 0, targetWidth, targetHeight);
+
+                const optimizedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                return optimizedDataUrl.length < fallbackDataUrl.length ? optimizedDataUrl : fallbackDataUrl;
+            } catch (error) {
+                console.warn('图片压缩失败，已回退原图', error);
+                return fallbackDataUrl;
+            }
         }
 
         function normalizeWalletMoney(value = 0) {
@@ -3857,7 +4006,7 @@
                 id: String(post.id || createMessageId('moment')).trim(),
                 authorType: post.authorType === 'friend' ? 'friend' : 'user',
                 authorId: String(post.authorId || 'user-self').trim() || 'user-self',
-                authorName: String(post.authorName || localStorage.getItem('moments_name') || '用户').trim() || '用户',
+                authorName: String(post.authorName || getCurrentMomentUserName() || '用户').trim() || '用户',
                 text: String(post.text || '').trim(),
                 photoText: String(post.photoText || '').trim(),
                 likes: Array.isArray(post.likes)
@@ -4158,13 +4307,13 @@
 
             return getDisplayAvatarMeta({
                 name: normalizedPost.authorName,
-                avatar: localStorage.getItem('moments_avatar') || '',
+                avatar: getCurrentMomentsProfile().avatar,
                 fallbackText: normalizedPost.authorName.charAt(0) || '用'
             });
         }
 
         function getCurrentMomentUserName() {
-            return String(momentsName?.textContent || localStorage.getItem('moments_name') || localStorage.getItem('os_name') || '用户').trim() || '用户';
+            return String(momentsName?.textContent || getCurrentMomentsProfile().name || localStorage.getItem('os_name') || '用户').trim() || '用户';
         }
 
         function getCurrentMomentUserMeta() {
@@ -4594,8 +4743,8 @@
                 return;
             }
 
-            const displayName = (momentsName?.textContent || localStorage.getItem('moments_name') || '用户').trim() || '用户';
-            const avatarData = localStorage.getItem('moments_avatar') || '';
+            const displayName = getCurrentMomentUserName();
+            const avatarData = getCurrentMomentsProfile().avatar;
             const avatarMarkup = avatarData
                 ? `<div class="moments-post-avatar" style="background-image: url(${avatarData}); background-size: cover; background-position: center;"></div>`
                 : `<div class="moments-post-avatar">${escapeHtml(displayName.charAt(0) || '用')}</div>`;
@@ -4748,19 +4897,17 @@
         }
 
         function syncMomentsProfile() {
-            const savedName = localStorage.getItem('moments_name') || '用户';
-            const savedCover = localStorage.getItem('moments_cover') || '';
-            const savedAvatar = localStorage.getItem('moments_avatar') || '';
-            if (momentsName) momentsName.textContent = savedName;
+            const profile = getCurrentMomentsProfile();
+            if (momentsName) momentsName.textContent = profile.name;
             if (momentsCover) {
-                momentsCover.style.backgroundImage = savedCover ? `url(${savedCover})` : 'none';
+                momentsCover.style.backgroundImage = profile.cover ? `url(${profile.cover})` : 'none';
             }
             if (momentsAvatar) {
-                momentsAvatar.style.backgroundImage = savedAvatar ? `url(${savedAvatar})` : 'none';
+                momentsAvatar.style.backgroundImage = profile.avatar ? `url(${profile.avatar})` : 'none';
             }
             if (momentsAvatarText) {
-                momentsAvatarText.textContent = savedAvatar ? '' : (savedName.trim().charAt(0) || '用');
-                momentsAvatarText.style.display = savedAvatar ? 'none' : 'block';
+                momentsAvatarText.textContent = profile.avatar ? '' : (profile.name.trim().charAt(0) || '用');
+                momentsAvatarText.style.display = profile.avatar ? 'none' : 'block';
             }
 
             renderMomentsPosts();
@@ -4784,15 +4931,17 @@
         }
 
         if (momentsCoverUpload) {
-            momentsCoverUpload.addEventListener('change', (event) => {
+            momentsCoverUpload.addEventListener('change', async (event) => {
                 const file = event.target.files && event.target.files[0];
                 if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (readerEvent) => {
-                    safeSetStorage('moments_cover', readerEvent.target.result);
+                try {
+                    const coverData = await optimizeImageFile(file, { maxWidth: 1440, maxHeight: 900, quality: 0.82 });
+                    updateCurrentMomentsProfile({ cover: coverData });
+                    safeSetStorage('moments_cover', coverData);
                     syncMomentsProfile();
-                };
-                reader.readAsDataURL(file);
+                } catch (error) {
+                    console.warn('朋友圈封面更新失败', error);
+                }
                 event.target.value = '';
             });
         }
@@ -4801,6 +4950,7 @@
             momentsName.addEventListener('blur', () => {
                 const name = momentsName.textContent.trim() || '用户';
                 momentsName.textContent = name;
+                updateCurrentMomentsProfile({ name });
                 safeSetStorage('moments_name', name);
                 syncMomentsProfile();
             });
@@ -4813,15 +4963,17 @@
         }
 
         if (momentsAvatarUpload) {
-            momentsAvatarUpload.addEventListener('change', (event) => {
+            momentsAvatarUpload.addEventListener('change', async (event) => {
                 const file = event.target.files && event.target.files[0];
                 if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (readerEvent) => {
-                    safeSetStorage('moments_avatar', readerEvent.target.result);
+                try {
+                    const avatarData = await optimizeImageFile(file, { maxWidth: 512, maxHeight: 512, quality: 0.86 });
+                    updateCurrentMomentsProfile({ avatar: avatarData });
+                    safeSetStorage('moments_avatar', avatarData);
                     syncMomentsProfile();
-                };
-                reader.readAsDataURL(file);
+                } catch (error) {
+                    console.warn('朋友圈头像更新失败', error);
+                }
                 event.target.value = '';
             });
         }
@@ -4854,7 +5006,7 @@
                 id: createMessageId('moment'),
                 authorType: 'user',
                 authorId: 'user-self',
-                authorName: (momentsName?.textContent || localStorage.getItem('moments_name') || '用户').trim() || '用户',
+                authorName: getCurrentMomentUserName(),
                 text,
                 photoText,
                 createdAt: Date.now()
@@ -5063,9 +5215,6 @@
             const turnId = String(normalized.turnId || '').trim();
             if (turnId) compacted.turnId = turnId;
 
-            const relatedTransferId = String(normalized.relatedTransferId || '').trim();
-            if (relatedTransferId) compacted.relatedTransferId = relatedTransferId;
-
             const eventKind = String(normalized.eventKind || '').trim();
             if (eventKind) compacted.eventKind = eventKind;
 
@@ -5082,9 +5231,7 @@
                 compacted.amount = normalizeWalletMoney(normalized.amount);
                 compacted.remark = String(normalized.remark || '').trim();
                 compacted.method = String(normalized.method || '零钱').trim() || '零钱';
-                compacted.transferStatus = String(normalized.transferStatus || 'pending').trim() || 'pending';
-                const transferDirection = String(normalized.transferDirection || '').trim();
-                if (transferDirection) compacted.transferDirection = transferDirection;
+                compacted.transferStatus = String(normalized.transferStatus || '').trim() || (normalized.role === 'ai' ? 'pending' : 'sent');
                 const footerText = String(normalized.footerText || '').trim();
                 if (footerText) compacted.footerText = footerText;
             }
@@ -5141,7 +5288,7 @@
             if (!message || typeof message !== 'object' || Array.isArray(message)) return null;
 
             const role = message.role === 'user' || message.role === 'system' ? message.role : 'ai';
-            const type = message.type === 'voice' || message.type === 'photo' || message.type === 'moment_event' || message.type === 'transfer' || message.type === 'transfer_receipt' ? message.type : undefined;
+            const type = message.type === 'voice' || message.type === 'photo' || message.type === 'moment_event' || message.type === 'transfer' ? message.type : undefined;
             const content = String(message.content ?? message.text ?? '').trim();
             if (!content && role !== 'system') return null;
 
@@ -5158,11 +5305,8 @@
                 normalized.amount = normalizeWalletMoney(message.amount);
                 normalized.remark = String(message.remark || '').trim();
                 normalized.method = String(message.method || '零钱').trim() || '零钱';
+                normalized.transferStatus = String(message.transferStatus || '').trim() || (role === 'ai' ? 'pending' : 'sent');
                 normalized.footerText = String(message.footerText || '').trim();
-                const status = String(message.transferStatus || message.status || 'pending').trim();
-                normalized.transferStatus = status === 'received' || status === 'refunded' ? status : 'pending';
-                normalized.transferDirection = String(message.transferDirection || '').trim();
-                normalized.relatedTransferId = String(message.relatedTransferId || '').trim();
                 if (!Number.isFinite(normalized.amount) || normalized.amount <= 0) return null;
             }
             if (message.quote && typeof message.quote === 'object' && !Array.isArray(message.quote)) {
@@ -6655,12 +6799,20 @@
         const chatTransferMethodSheet = document.getElementById('chat-transfer-method-sheet');
         const chatTransferPayPasswordDots = Array.from(document.querySelectorAll('#chat-transfer-pay-password-dots .chat-transfer-pay-password-dot'));
         const chatTransferKeypad = document.getElementById('chat-transfer-keypad');
+        const chatTransferDetailPanel = document.getElementById('chat-transfer-detail-panel');
+        const chatTransferDetailTitle = document.getElementById('chat-transfer-detail-title');
+        const chatTransferDetailAmount = document.getElementById('chat-transfer-detail-amount');
+        const chatTransferDetailRemark = document.getElementById('chat-transfer-detail-remark');
+        const chatTransferDetailTip = document.getElementById('chat-transfer-detail-tip');
+        const chatTransferDetailActions = document.getElementById('chat-transfer-detail-actions');
         const btnCancelCompose = document.getElementById('btn-cancel-compose');
         const btnSendCompose = document.getElementById('btn-send-compose');
         const btnCancelTransfer = document.getElementById('btn-cancel-transfer');
         const btnConfirmTransfer = document.getElementById('btn-confirm-transfer');
         const btnCloseTransferPay = document.getElementById('btn-close-transfer-pay');
         const btnTransferMethodTrigger = document.getElementById('btn-transfer-method-trigger');
+        const btnReturnTransfer = document.getElementById('btn-return-transfer');
+        const btnAcceptTransfer = document.getElementById('btn-accept-transfer');
         const MESSAGE_LONG_PRESS_MS = 380;
         const messageActionLabels = [
             { action: 'copy', label: '复制' },
@@ -6679,6 +6831,7 @@
         let currentComposeType = '';
         let currentTransferDraft = { amount: '', remark: '', method: '零钱' };
         let currentTransferPayPassword = '';
+        let activeTransferDetailMessageId = '';
         const CHAT_RENDER_RECENT_LIMIT = 80;
         const CHAT_RENDER_INCREMENT = 80;
         const chatScrollPositions = {};
@@ -6815,11 +6968,17 @@
 
         function buildTransferCardMarkup(payload = {}) {
             const amountText = formatTransferCardAmount(payload.amount);
-            const remarkText = String(payload.remark || '').trim();
+            const remarkText = String(payload.remark || payload.content || '').trim();
             const methodText = String(payload.method || '零钱').trim() || '零钱';
-            const footerText = String(payload.footerText || `微信转账 · ${methodText}`).trim() || `微信转账 · ${methodText}`;
+            const transferStatus = String(payload.transferStatus || '').trim();
+            const footerText = String(payload.footerText || (transferStatus ? `微信转账 · ${transferStatus}` : `微信转账 · ${methodText}`)).trim() || `微信转账 · ${methodText}`;
+            const cardClassNames = ['msg-transfer-card'];
+            if (payload.role === 'ai' && transferStatus === 'pending') cardClassNames.push('is-actionable');
+            if (transferStatus === 'accepted') cardClassNames.push('is-received');
+            if (transferStatus === 'returned') cardClassNames.push('is-returned');
+            const cardClassName = cardClassNames.join(' ');
             return `
-                <div class="msg-transfer-card">
+                <div class="${cardClassName}" data-transfer-card="true">
                     <div class="msg-transfer-card-main">
                         <div class="msg-transfer-card-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 6.2h6.5l-1.9-1.9 1.4-1.4 4.3 4.3-4.3 4.3-1.4-1.4 1.9-1.9H7.9c-1.3 0-2.4 1.1-2.4 2.4v1.3h-2v-1.3c0-2.42 1.98-4.4 4.4-4.4Zm9.3 5.6h2v1.3c0 2.42-1.98 4.4-4.4 4.4H8.4l1.9 1.9-1.4 1.4-4.3-4.3L9 12.2l1.4 1.4-1.9 1.9h5.6c1.3 0 2.4-1.1 2.4-2.4z"/></svg>
@@ -6839,17 +6998,47 @@
             if (!Number.isFinite(amount) || amount <= 0) return null;
 
             const normalizedRole = role === 'user' || role === 'ai' ? role : 'user';
+            const normalizedRemark = String(payload.remark || payload.content || '').trim();
+            const transferStatus = String(payload.transferStatus || (normalizedRole === 'ai' ? 'pending' : 'sent')).trim() || (normalizedRole === 'ai' ? 'pending' : 'sent');
             return {
                 id: createMessageId(`${normalizedRole}-transfer`),
                 role: normalizedRole,
                 type: 'transfer',
                 content: String(payload.content || payload.remark || '转账').trim() || '转账',
                 amount,
-                remark: String(payload.remark || '').trim(),
+                remark: normalizedRemark,
                 method: String(payload.method || '零钱').trim() || '零钱',
                 footerText: String(payload.footerText || '').trim(),
+                transferStatus,
                 createdAt: Date.now()
             };
+        }
+
+        function getTransferStatusLabel(status = '', role = 'user') {
+            if (status === 'pending') return role === 'ai' ? '待收款' : '待对方收款';
+            if (status === 'accepted') return role === 'ai' ? '已被接受' : '已收款';
+            if (status === 'returned') return role === 'ai' ? '已退还' : '已被退还';
+            if (status === 'sent') return '已转账';
+            return '';
+        }
+
+        function findMessageIndexById(messageId = '') {
+            const messages = getCurrentChatMessages();
+            return messages.findIndex(message => message.id === messageId);
+        }
+
+        function updateCurrentChatMessage(messageId = '', updater = null) {
+            const messageIndex = findMessageIndexById(messageId);
+            if (messageIndex < 0 || typeof updater !== 'function') return null;
+            const currentMessage = getCurrentChatMessages()[messageIndex];
+            const nextMessage = updater({ ...currentMessage });
+            const normalizedMessage = normalizeChatMessageRecord(nextMessage);
+            if (!normalizedMessage) return null;
+            chatDatabase[currentChatFriend][messageIndex] = normalizedMessage;
+            persistChatDatabase();
+            renderChatHistory();
+            renderFriendList();
+            return normalizedMessage;
         }
 
         function appendAndPersistChatRecord(record = {}) {
@@ -6885,15 +7074,89 @@
             renderWalletBills();
         }
 
-        function applyIncomingTransferFromCurrentRole(record = {}) {
-            const amount = normalizeWalletMoney(record.amount);
-            if (!Number.isFinite(amount) || amount <= 0) return false;
+        function closeTransferDetailPanel() {
+            activeTransferDetailMessageId = '';
+            if (chatTransferDetailPanel) chatTransferDetailPanel.style.display = 'none';
+        }
+
+        function openTransferDetailPanel(message = {}) {
+            if (!message || message.type !== 'transfer') return;
+            activeTransferDetailMessageId = message.id || '';
+            if (chatTransferDetailTitle) {
+                chatTransferDetailTitle.textContent = message.transferStatus === 'pending' ? '收款确认' : '转账详情';
+            }
+            if (chatTransferDetailAmount) {
+                chatTransferDetailAmount.textContent = formatTransferCardAmount(message.amount);
+            }
+            if (chatTransferDetailRemark) {
+                chatTransferDetailRemark.textContent = String(message.remark || message.content || '').trim() || '未填写备注';
+            }
+            if (chatTransferDetailTip) {
+                chatTransferDetailTip.textContent = message.transferStatus === 'pending'
+                    ? '你可以选择收取或退还这笔转账。'
+                    : `当前状态：${getTransferStatusLabel(message.transferStatus, message.role) || '已完成'}`;
+            }
+            if (chatTransferDetailActions) {
+                const isPendingIncoming = message.role === 'ai' && message.transferStatus === 'pending';
+                chatTransferDetailActions.classList.toggle('single', !isPendingIncoming);
+                if (btnReturnTransfer) btnReturnTransfer.style.display = isPendingIncoming ? 'block' : 'none';
+                if (btnAcceptTransfer) {
+                    btnAcceptTransfer.textContent = isPendingIncoming ? '收取' : '关闭';
+                }
+            }
+            if (chatTransferDetailPanel) chatTransferDetailPanel.style.display = 'flex';
+        }
+
+        async function acceptPendingTransfer(messageId = '') {
+            const message = getMessageById(messageId);
+            if (!message || message.type !== 'transfer' || message.role !== 'ai' || message.transferStatus !== 'pending') return;
+
+            const amount = normalizeWalletMoney(message.amount);
+            if (!Number.isFinite(amount) || amount <= 0) return;
 
             walletBalance = clampWalletBalance(walletBalance + amount);
             persistWalletBalance();
             renderWalletBalance();
-            recordWalletTransferTransaction('incoming', amount, currentChatFriend, record.remark || record.content || '');
-            return true;
+            recordWalletTransferTransaction('incoming', amount, currentChatFriend, message.remark || message.content || '');
+
+            updateCurrentChatMessage(messageId, current => ({
+                ...current,
+                transferStatus: 'accepted',
+                footerText: '微信转账 · 已被接受'
+            }));
+
+            const statusRecord = createTransferMessageRecord('user', {
+                amount,
+                remark: '已收款',
+                content: '已收款',
+                method: message.method || '零钱',
+                transferStatus: 'accepted',
+                footerText: '微信转账'
+            });
+            appendAndPersistChatRecord(statusRecord);
+            closeTransferDetailPanel();
+        }
+
+        async function returnPendingTransfer(messageId = '') {
+            const message = getMessageById(messageId);
+            if (!message || message.type !== 'transfer' || message.role !== 'ai' || message.transferStatus !== 'pending') return;
+
+            updateCurrentChatMessage(messageId, current => ({
+                ...current,
+                transferStatus: 'returned',
+                footerText: '微信转账 · 已被退还'
+            }));
+
+            const statusRecord = createTransferMessageRecord('user', {
+                amount: message.amount,
+                remark: '已退还',
+                content: '已退还',
+                method: message.method || '零钱',
+                transferStatus: 'returned',
+                footerText: '微信转账'
+            });
+            appendAndPersistChatRecord(statusRecord);
+            closeTransferDetailPanel();
         }
 
         async function completeTransferPaymentSuccess() {
@@ -7502,6 +7765,17 @@
                 expandCurrentChatHistory();
                 return;
             }
+            const transferCard = target?.closest('[data-transfer-card="true"]');
+            if (transferCard) {
+                const row = transferCard.closest('.msg-row');
+                const message = getMessageById(row?.dataset?.messageId || '');
+                if (message?.type === 'transfer' && message.role === 'ai') {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    openTransferDetailPanel(message);
+                    return;
+                }
+            }
             const voiceBubble = target?.closest('.msg-voice-bubble');
             if (voiceBubble) {
                 event.stopPropagation();
@@ -7524,6 +7798,17 @@
                 if (event.cancelable) event.preventDefault();
                 expandCurrentChatHistory();
                 return;
+            }
+            const transferCard = target?.closest('[data-transfer-card="true"]');
+            if (transferCard) {
+                const row = transferCard.closest('.msg-row');
+                const message = getMessageById(row?.dataset?.messageId || '');
+                if (message?.type === 'transfer' && message.role === 'ai') {
+                    if (event.cancelable) event.preventDefault();
+                    event.stopPropagation();
+                    openTransferDetailPanel(message);
+                    return;
+                }
             }
             const voiceBubble = target?.closest('.msg-voice-bubble');
             if (voiceBubble) {
@@ -7590,6 +7875,35 @@
                 closeMessageActionCard();
             }
         }, { passive: true });
+
+        bindTap(btnAcceptTransfer, async () => {
+            const message = getMessageById(activeTransferDetailMessageId);
+            if (!message) {
+                closeTransferDetailPanel();
+                return;
+            }
+            if (message.role === 'ai' && message.transferStatus === 'pending') {
+                await acceptPendingTransfer(message.id);
+                return;
+            }
+            closeTransferDetailPanel();
+        });
+        bindTap(btnReturnTransfer, async () => {
+            const message = getMessageById(activeTransferDetailMessageId);
+            if (!message) {
+                closeTransferDetailPanel();
+                return;
+            }
+            await returnPendingTransfer(message.id);
+        });
+        chatTransferDetailPanel?.addEventListener('click', event => {
+            const target = getEventElementTarget(event);
+            if (target === chatTransferDetailPanel) closeTransferDetailPanel();
+        });
+        chatTransferDetailPanel?.addEventListener('touchend', event => {
+            const target = getEventElementTarget(event);
+            if (target === chatTransferDetailPanel) closeTransferDetailPanel();
+        }, { passive: false });
 
         async function copyTextToClipboard(text) {
             const value = String(text || '');
@@ -8146,10 +8460,10 @@
                 '每条消息控制在 1 到 25 个字左右。',
                 '你也可以在适合聊天情景时自然发送语音、图片或转账，但不需要每次都发。',
                 '转账只在确实符合情景时再发，比如对方明确开口要钱、红包节日节庆、你按人设需要给钱、报销、请客、补偿、还款等。不要频繁转账，不要无缘无故天天转。',
-                '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述；转账消息使用 type:"transfer"，content 写简短提示文案，amount 写转账金额数字，remark 写备注，可留空。',
+                '普通文字消息使用 type:"text"；语音消息使用 type:"voice"，content 写语音转文字内容；图片消息使用 type:"photo"，content 写图片画面描述；转账消息使用 type:"transfer"，content 写简短提示文案，amount 写转账金额数字，remark 写转账备注，可不写。若有备注，优先写在 remark 字段里，不要漏掉。',
                 '如果最近时间线里出现了朋友圈动态，你可以在合适的时候自然提到，但不要每次都提，不要生硬复述。',
                 '不要写长段落，不要写旁白，不要写动作标签，不要解释你在扮演。',
-                '请严格返回 JSON，格式为：{"replies":[{"type":"text","content":"第一条"},{"type":"voice","content":"语音转文字内容"},{"type":"photo","content":"图片画面描述"},{"type":"transfer","content":"转账留言，可简短","amount":88.8,"remark":"可留空"}]}',
+                '请严格返回 JSON，格式为：{"replies":[{"type":"text","content":"第一条"},{"type":"voice","content":"语音转文字内容"},{"type":"photo","content":"图片画面描述"},{"type":"transfer","content":"转账留言，可简短","amount":88.8,"remark":"转账备注，可留空"}]}',
                 '除了这个 JSON 之外，不要输出任何额外文字、标题、代码块或说明。'
             ].filter(Boolean).join('\n');
         }
@@ -8673,7 +8987,8 @@
                     ) + 1;
                     const record = { ...message, role: 'ai', id: createMessageId('ai'), turnId: replyTurnId };
                     if (record.type === 'transfer') {
-                        applyIncomingTransferFromCurrentRole(record);
+                        record.transferStatus = 'pending';
+                        record.footerText = '微信转账 · 待收款';
                     }
                     chatDatabase[currentChatFriend].push(record);
                     appendMsgBubble('ai', record.content, null, record);
