@@ -915,11 +915,103 @@
         .msg-photo-card::before { content: ''; position: absolute; left: 18px; bottom: 18px; width: 56px; height: 36px; border-radius: 50% 50% 0 0; background: rgba(70, 150, 82, .35); transform: skewX(-18deg); }
         .msg-photo-card::after { content: ''; position: absolute; right: 18px; top: 16px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 190, 72, .75); }
         .msg-photo-desc { position: relative; z-index: 1; min-height: 128px; display: flex; align-items: center; justify-content: center; padding: 18px; color: rgba(20,20,20,.78); font-size: 14px; line-height: 1.45; text-align: center; word-break: break-word; text-shadow: 0 1px 6px rgba(255,255,255,.9); }
-        .msg-bubble.transfer-card-bubble {
+        .msg-bubble.transfer-card-bubble,
+        .msg-bubble.location-card-bubble {
             padding: 0;
             background: transparent;
             box-shadow: none;
             overflow: visible;
+        }
+        .msg-row.user .msg-bubble.transfer-card-bubble,
+        .msg-row.ai .msg-bubble.transfer-card-bubble,
+        .msg-row.user .msg-bubble.location-card-bubble,
+        .msg-row.ai .msg-bubble.location-card-bubble {
+            background: transparent;
+            box-shadow: none;
+        }
+        .msg-location-card {
+            width: 196px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #f2f8ef 0%, #e5f1dd 100%);
+            box-shadow: 0 2px 7px rgba(86, 121, 74, 0.14);
+            color: #1f3520;
+        }
+        .msg-location-card-main {
+            padding: 12px 12px 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            min-height: 76px;
+        }
+        .msg-location-card-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 11px;
+            background: linear-gradient(180deg, #5db15b 0%, #4d9950 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.18);
+        }
+        .msg-location-card-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+        .msg-location-card-info {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+        .msg-location-card-title {
+            font-size: 15px;
+            line-height: 1.35;
+            font-weight: 600;
+            color: #203521;
+            word-break: break-word;
+        }
+        .msg-location-card-detail {
+            font-size: 11px;
+            line-height: 1.4;
+            color: rgba(44, 72, 45, 0.72);
+            word-break: break-word;
+        }
+        .msg-location-card-map {
+            height: 84px;
+            position: relative;
+            background:
+                radial-gradient(circle at 24% 28%, rgba(255,255,255,0.95) 0 8px, transparent 9px),
+                radial-gradient(circle at 72% 62%, rgba(255,255,255,0.7) 0 7px, transparent 8px),
+                linear-gradient(135deg, rgba(255,255,255,0.45) 0 14%, transparent 14% 32%, rgba(255,255,255,0.38) 32% 36%, transparent 36% 52%, rgba(255,255,255,0.3) 52% 56%, transparent 56% 100%),
+                linear-gradient(180deg, #d0e8c8 0%, #c0ddb8 100%);
+            border-top: 1px solid rgba(75, 116, 68, 0.12);
+        }
+        .msg-location-card-pin {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 22px;
+            height: 22px;
+            transform: translate(-50%, -72%);
+            border-radius: 50% 50% 50% 0;
+            background: #4ea54b;
+            rotate: -45deg;
+            box-shadow: 0 4px 10px rgba(43, 99, 43, 0.24);
+        }
+        .msg-location-card-pin::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #eff9ec;
+            transform: translate(-50%, -50%);
         }
         .msg-row.user .msg-bubble.transfer-card-bubble,
         .msg-row.ai .msg-bubble.transfer-card-bubble {
@@ -1109,6 +1201,8 @@
         .chat-compose-btn.primary { background: #111; color: #fff; }
         .chat-transfer-panel { z-index: 1200; }
         .chat-transfer-panel .modal-box { gap: 12px; border-radius: 16px; }
+        .chat-location-panel { z-index: 1200; }
+        .chat-location-panel .modal-box { gap: 12px; border-radius: 16px; }
         .chat-transfer-input {
             width: 100%;
             border: 1px solid #ddd;
@@ -1123,6 +1217,7 @@
         .chat-transfer-input:focus { border-color: #999; }
         .chat-transfer-amount-input { padding: 12px 14px; }
         .chat-transfer-remark-input { min-height: 92px; resize: none; padding: 12px 14px; font-family: inherit; }
+        .chat-location-input { padding: 12px 14px; }
         .chat-transfer-pay-panel { z-index: 1210; }
         .chat-transfer-pay-panel .modal-box {
             width: calc(100% - 36px);
@@ -2427,7 +2522,7 @@
                 <div class="plus-item" data-compose-type="photo"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div><span class="plus-text">照片</span></div>
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg></div><span class="plus-text">视频通话</span></div>
                 <div class="plus-item" data-action="open-transfer"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><span class="plus-text">转账</span></div>
-                <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg></div><span class="plus-text">位置</span></div>
+                <div class="plus-item" data-action="open-location"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg></div><span class="plus-text">位置</span></div>
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg></div><span class="plus-text">礼物</span></div>
             </div>
             <div class="modal-overlay chat-compose-panel" id="chat-compose-panel">
@@ -2448,6 +2543,17 @@
                     <div class="chat-compose-actions">
                         <button type="button" class="chat-compose-btn btn-cancel" id="btn-cancel-transfer">取消</button>
                         <button type="button" class="chat-compose-btn primary" id="btn-confirm-transfer">确定</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-overlay chat-location-panel" id="chat-location-panel">
+                <div class="modal-box">
+                    <div class="chat-compose-title">发送位置</div>
+                    <input type="text" class="chat-transfer-input chat-location-input" id="chat-location-name-input" placeholder="我的位置" autocomplete="off">
+                    <input type="text" class="chat-transfer-input chat-location-input" id="chat-location-detail-input" placeholder="选填详细地址或者距离" autocomplete="off">
+                    <div class="chat-compose-actions">
+                        <button type="button" class="chat-compose-btn btn-cancel" id="btn-cancel-location">取消</button>
+                        <button type="button" class="chat-compose-btn primary" id="btn-send-location">发送</button>
                     </div>
                 </div>
             </div>
@@ -3053,7 +3159,15 @@
         const settingsApp = document.getElementById('settings-app');
         const worldbookApp = document.getElementById('worldbook-app');
         
-        document.getElementById('app-wechat').addEventListener('click', () => { wechatApp.style.display = 'flex'; });
+        document.getElementById('app-wechat').addEventListener('click', () => {
+            try {
+                if (typeof repairWechatStorageState === 'function') repairWechatStorageState();
+                if (typeof renderFriendList === 'function') renderFriendList();
+            } catch (error) {
+                console.warn('打开微信前清理数据失败，已继续进入微信', error);
+            }
+            wechatApp.style.display = 'flex';
+        });
 
         document.getElementById('app-settings').addEventListener('click', () => { settingsApp.style.display = 'flex'; });
         document.getElementById('settings-back-btn').addEventListener('click', () => { settingsApp.style.display = 'none'; });
@@ -3411,7 +3525,38 @@
         }
 
         function safeSetJsonStorage(key, value) {
-            return safeSetStorage(key, JSON.stringify(value));
+            try {
+                return safeSetStorage(key, JSON.stringify(value));
+            } catch (error) {
+                console.warn(`序列化 ${key} 失败，已跳过本次写入`, error);
+                return false;
+            }
+        }
+
+        function isPlainDataObject(value) {
+            if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+            const proto = Object.getPrototypeOf(value);
+            return proto === Object.prototype || proto === null;
+        }
+
+        function isUnsafeStorageKey(key = '') {
+            return key === '__proto__' || key === 'prototype' || key === 'constructor';
+        }
+
+        function createSafeDictionary(source = {}) {
+            const safe = Object.create(null);
+            if (!isPlainDataObject(source)) return safe;
+            Object.keys(source).forEach(key => {
+                const normalizedKey = String(key || '').trim();
+                if (!normalizedKey || isUnsafeStorageKey(normalizedKey)) return;
+                safe[normalizedKey] = source[key];
+            });
+            return safe;
+        }
+
+        function clampStoredText(value = '', maxLength = 2000) {
+            const text = String(value ?? '').replace(/\u0000/g, '').trim();
+            return text.length > maxLength ? text.slice(0, maxLength) : text;
         }
 
         function escapeHtml(value) {
@@ -5139,10 +5284,7 @@
         wechatApp.addEventListener('click', () => { plusMenu.style.display = 'none'; });
 
         // ================= 添加朋友/聊天体系数据中心 =================
-        let chatDatabase = parseStoredJson('chat_histories', {});
-        if (!chatDatabase || typeof chatDatabase !== 'object' || Array.isArray(chatDatabase)) {
-            chatDatabase = {};
-        }
+        let chatDatabase = createSafeDictionary(parseStoredJson('chat_histories', {}));
         let favoriteMessages = parseStoredJson('favorite_messages', []);
         if (!Array.isArray(favoriteMessages)) favoriteMessages = [];
         let friendList = parseStoredJson('friend_list', []);
@@ -5236,6 +5378,12 @@
                 if (footerText) compacted.footerText = footerText;
             }
 
+            if (normalized.type === 'location') {
+                compacted.locationTitle = String(normalized.locationTitle || normalized.content || '').trim();
+                const locationDetail = String(normalized.locationDetail || '').trim();
+                if (locationDetail) compacted.locationDetail = locationDetail;
+            }
+
             if (normalized.quote && typeof normalized.quote === 'object' && !Array.isArray(normalized.quote)) {
                 compacted.quote = {
                     id: String(normalized.quote.id || '').trim(),
@@ -5253,15 +5401,24 @@
         }
 
         function persistChatDatabase() {
-            const compactedDatabase = {};
+            const compactedDatabase = Object.create(null);
             Object.keys(chatDatabase || {}).forEach(chatName => {
+                const normalizedChatName = clampStoredText(chatName, 80);
+                if (!normalizedChatName || isUnsafeStorageKey(normalizedChatName)) return;
                 const messages = Array.isArray(chatDatabase[chatName]) ? chatDatabase[chatName] : [];
-                compactedDatabase[chatName] = messages
+                compactedDatabase[normalizedChatName] = messages
+                    .slice(-1000)
                     .map(compactChatMessageForStorage)
                     .filter(Boolean);
             });
 
             chatDatabase = compactedDatabase;
+            if (safeSetJsonStorage('chat_histories', chatDatabase)) return;
+
+            Object.keys(chatDatabase || {}).forEach(chatName => {
+                const messages = Array.isArray(chatDatabase[chatName]) ? chatDatabase[chatName] : [];
+                chatDatabase[chatName] = messages.slice(-300);
+            });
             safeSetJsonStorage('chat_histories', chatDatabase);
         }
 
@@ -5288,13 +5445,13 @@
             if (!message || typeof message !== 'object' || Array.isArray(message)) return null;
 
             const role = message.role === 'user' || message.role === 'system' ? message.role : 'ai';
-            const type = message.type === 'voice' || message.type === 'photo' || message.type === 'moment_event' || message.type === 'transfer' ? message.type : undefined;
-            const content = String(message.content ?? message.text ?? '').trim();
+            const type = message.type === 'voice' || message.type === 'photo' || message.type === 'moment_event' || message.type === 'transfer' || message.type === 'location' ? message.type : undefined;
+            const content = clampStoredText(message.content ?? message.text ?? '', 4000);
             if (!content && role !== 'system') return null;
 
             const normalized = {
                 ...message,
-                id: String(message.id || createMessageId(role)).trim() || createMessageId(role),
+                id: clampStoredText(message.id || createMessageId(role), 120) || createMessageId(role),
                 role,
                 content,
                 createdAt: Number(message.createdAt) || Number(message.time) || Date.now()
@@ -5303,18 +5460,27 @@
             if (type) normalized.type = type;
             if (type === 'transfer') {
                 normalized.amount = normalizeWalletMoney(message.amount);
-                normalized.remark = String(message.remark || '').trim();
-                normalized.method = String(message.method || '零钱').trim() || '零钱';
-                normalized.transferStatus = String(message.transferStatus || '').trim() || (role === 'ai' ? 'pending' : 'sent');
-                normalized.footerText = String(message.footerText || '').trim();
+                normalized.remark = clampStoredText(message.remark || '', 200);
+                normalized.method = clampStoredText(message.method || '零钱', 40) || '零钱';
+                const rawTransferStatus = clampStoredText(message.transferStatus || '', 40);
+                normalized.transferStatus = rawTransferStatus === 'pending' || rawTransferStatus === 'accepted' || rawTransferStatus === 'returned' || rawTransferStatus === 'sent'
+                    ? rawTransferStatus
+                    : (role === 'ai' ? 'pending' : 'sent');
+                normalized.footerText = clampStoredText(message.footerText || '', 80);
                 if (!Number.isFinite(normalized.amount) || normalized.amount <= 0) return null;
+            }
+            if (type === 'location') {
+                normalized.locationTitle = clampStoredText(message.locationTitle || message.content || '', 120);
+                normalized.locationDetail = clampStoredText(message.locationDetail || '', 200);
+                if (!normalized.locationTitle) return null;
+                normalized.content = normalized.locationTitle;
             }
             if (message.quote && typeof message.quote === 'object' && !Array.isArray(message.quote)) {
                 normalized.quote = {
-                    id: String(message.quote.id || '').trim(),
-                    role: String(message.quote.role || '').trim(),
-                    speakerName: String(message.quote.speakerName || '消息').trim() || '消息',
-                    content: String(message.quote.content || '').trim()
+                    id: clampStoredText(message.quote.id || '', 120),
+                    role: clampStoredText(message.quote.role || '', 20),
+                    speakerName: clampStoredText(message.quote.speakerName || '消息', 80) || '消息',
+                    content: clampStoredText(message.quote.content || '', 500)
                 };
             }
 
@@ -5335,69 +5501,123 @@
         function normalizeFriendRecord(friend = {}, index = 0) {
             if (!friend || typeof friend !== 'object' || Array.isArray(friend)) return null;
 
-            const name = String(friend.name || '').trim();
+            const name = clampStoredText(friend.name || '', 80);
             if (!name) return null;
+            if (isUnsafeStorageKey(name)) return null;
 
             const type = friend.type === 'group' ? 'group' : 'friend';
-            return {
+            const normalized = {
                 ...friend,
-                id: String(friend.id || `${type}-${Date.now()}-${index}`).trim(),
+                id: clampStoredText(friend.id || `${type}-${Date.now()}-${index}`, 120),
                 type,
                 name,
-                desc: String(friend.desc || friend.personaPrompt || '你们已经是好友了，开始聊天吧').trim(),
-                avatar: String(friend.avatar || '').trim(),
-                time: String(friend.time || '').trim(),
+                desc: clampStoredText(friend.desc || friend.personaPrompt || '你们已经是好友了，开始聊天吧', 1000),
+                avatar: clampStoredText(friend.avatar || '', 1500000),
+                time: clampStoredText(friend.time || '', 40),
                 offlineModeEnabled: Boolean(friend.offlineModeEnabled),
                 offlineConfig: normalizeOfflineConfig(friend.offlineConfig)
             };
+            if (type === 'group') {
+                normalized.members = Array.isArray(friend.members)
+                    ? friend.members
+                        .map((member, memberIndex) => normalizeFriendRecord({ ...member, type: 'friend' }, memberIndex))
+                        .filter(Boolean)
+                        .slice(0, 100)
+                    : [];
+            }
+            return normalized;
         }
 
         function repairWechatStorageState() {
-            let shouldPersistFriends = false;
-            let shouldPersistChats = false;
-            const seenNames = new Set();
+            try {
+                let shouldPersistFriends = false;
+                let shouldPersistChats = false;
+                const seenNames = new Set();
 
-            friendList = friendList
-                .map((friend, index) => normalizeFriendRecord(friend, index))
-                .filter(friend => {
-                    if (!friend || seenNames.has(friend.name)) {
-                        shouldPersistFriends = true;
-                        return false;
+                friendList = Array.isArray(friendList) ? friendList : [];
+                friendList = friendList
+                    .map((friend, index) => {
+                        try {
+                            return normalizeFriendRecord(friend, index);
+                        } catch (error) {
+                            console.warn('清理异常好友数据', friend, error);
+                            shouldPersistFriends = true;
+                            return null;
+                        }
+                    })
+                    .filter(friend => {
+                        if (!friend || seenNames.has(friend.name)) {
+                            shouldPersistFriends = true;
+                            return false;
+                        }
+                        seenNames.add(friend.name);
+                        return true;
+                    });
+
+                if (!isPlainDataObject(chatDatabase)) {
+                    chatDatabase = Object.create(null);
+                    shouldPersistChats = true;
+                } else {
+                    const safeChatDatabase = createSafeDictionary(chatDatabase);
+                    if (Object.keys(safeChatDatabase).length !== Object.keys(chatDatabase).length) {
+                        shouldPersistChats = true;
                     }
-                    seenNames.add(friend.name);
-                    return true;
+                    chatDatabase = safeChatDatabase;
+                }
+
+                Object.keys(chatDatabase).forEach(chatName => {
+                    try {
+                        if (!Array.isArray(chatDatabase[chatName])) {
+                            delete chatDatabase[chatName];
+                            shouldPersistChats = true;
+                            return;
+                        }
+
+                        const originalLength = chatDatabase[chatName].length;
+                        const normalizedMessages = chatDatabase[chatName]
+                            .slice(-1000)
+                            .map(message => {
+                                try {
+                                    return normalizeChatMessageRecord(message);
+                                } catch (error) {
+                                    console.warn('清理异常聊天消息', chatName, message, error);
+                                    shouldPersistChats = true;
+                                    return null;
+                                }
+                            })
+                            .filter(Boolean);
+                        if (normalizedMessages.length !== originalLength || originalLength > 1000) {
+                            shouldPersistChats = true;
+                        }
+                        chatDatabase[chatName] = normalizedMessages;
+                    } catch (error) {
+                        console.warn('清理异常会话失败，已移除该会话记录', chatName, error);
+                        delete chatDatabase[chatName];
+                        shouldPersistChats = true;
+                    }
                 });
 
-            if (!chatDatabase || typeof chatDatabase !== 'object' || Array.isArray(chatDatabase)) {
-                chatDatabase = {};
-                shouldPersistChats = true;
-            }
+                friendList.forEach(friend => {
+                    if (!Array.isArray(chatDatabase[friend.name])) {
+                        chatDatabase[friend.name] = [];
+                        shouldPersistChats = true;
+                    }
+                });
 
-            Object.keys(chatDatabase).forEach(chatName => {
-                if (!Array.isArray(chatDatabase[chatName])) {
-                    delete chatDatabase[chatName];
-                    shouldPersistChats = true;
-                    return;
-                }
-
-                const normalizedMessages = chatDatabase[chatName]
-                    .map(normalizeChatMessageRecord)
-                    .filter(Boolean);
-                if (normalizedMessages.length !== chatDatabase[chatName].length) {
-                    shouldPersistChats = true;
-                }
-                chatDatabase[chatName] = normalizedMessages;
-            });
-
-            friendList.forEach(friend => {
-                if (!Array.isArray(chatDatabase[friend.name])) {
+                if (shouldPersistFriends) persistFriendList();
+                if (shouldPersistChats) persistChatDatabase();
+            } catch (error) {
+                console.warn('微信数据自修复失败，已隔离聊天缓存', error);
+                chatDatabase = Object.create(null);
+                friendList = Array.isArray(friendList)
+                    ? friendList.map((friend, index) => normalizeFriendRecord(friend, index)).filter(Boolean)
+                    : [];
+                friendList.forEach(friend => {
                     chatDatabase[friend.name] = [];
-                    shouldPersistChats = true;
-                }
-            });
-
-            if (shouldPersistFriends) persistFriendList();
-            if (shouldPersistChats) persistChatDatabase();
+                });
+                persistFriendList();
+                persistChatDatabase();
+            }
         }
 
         repairWechatStorageState();
@@ -5991,19 +6211,24 @@
             }
 
             selectableFriends.forEach(friend => {
+                const normalizedFriend = normalizeFriendRecord(friend);
+                if (!normalizedFriend) return;
+                friend = normalizedFriend;
                 const item = document.createElement('label');
                 item.className = 'group-member-item';
 
-                const avatarMarkup = friend.avatar
-                    ? `<div class="group-member-avatar" style="background-image: url(${friend.avatar});"></div>`
-                    : `<div class="group-member-avatar">${(friend.name || '友').charAt(0)}</div>`;
+                const avatarMeta = getDisplayAvatarMeta({
+                    name: friend.name,
+                    avatar: friend.avatar || '',
+                    fallbackText: (friend.name || '友').charAt(0) || '友'
+                });
 
                 item.innerHTML = `
-                    <input type="checkbox" class="group-member-check" value="${friend.id}">
-                    ${avatarMarkup}
+                    <input type="checkbox" class="group-member-check" value="${escapeHtml(friend.id)}">
+                    <div class="group-member-avatar" style="${avatarMeta.style}">${avatarMeta.text}</div>
                     <div class="group-member-info">
-                        <div class="group-member-name">${friend.name}</div>
-                        <div class="group-member-desc">${friend.desc || '这个角色还没有额外设定'}</div>
+                        <div class="group-member-name">${escapeHtml(friend.name)}</div>
+                        <div class="group-member-desc">${escapeHtml(friend.desc || '这个角色还没有额外设定')}</div>
                     </div>
                 `;
                 groupMemberList.appendChild(item);
@@ -6020,22 +6245,27 @@
         function renderRoleOptions() {
             roleSelect.innerHTML = '<option value="">请先添加一个角色</option>';
             friendList.forEach(friend => {
+                const normalizedFriend = normalizeFriendRecord(friend);
+                if (!normalizedFriend) return;
                 const option = document.createElement('option');
-                option.value = friend.name;
-                option.textContent = friend.name;
+                option.value = normalizedFriend.name;
+                option.textContent = normalizedFriend.name;
                 roleSelect.appendChild(option);
             });
         }
 
         function getFriendPreviewText(friend) {
-            if (friend.type === 'group') {
-                return friend.desc || '群聊已创建，开始聊天吧';
+            const normalizedFriend = normalizeFriendRecord(friend);
+            if (!normalizedFriend) return '聊天数据已清理';
+
+            if (normalizedFriend.type === 'group') {
+                return normalizedFriend.desc || '群聊已创建，开始聊天吧';
             }
 
-            const history = chatDatabase[friend.name] || [];
+            const history = Array.isArray(chatDatabase[normalizedFriend.name]) ? chatDatabase[normalizedFriend.name] : [];
             let lastMessage = null;
             for (let index = history.length - 1; index >= 0; index -= 1) {
-                const message = history[index];
+                const message = normalizeChatMessageRecord(history[index]);
                 if (message && String(message.content || '').trim()) {
                     lastMessage = message;
                     break;
@@ -6046,11 +6276,14 @@
                     const amount = formatTransferCardAmount(lastMessage.amount);
                     return `[转账] ${amount}`;
                 }
+                if (lastMessage.type === 'location') {
+                    return `[位置] ${lastMessage.locationTitle || lastMessage.content || '我的位置'}`;
+                }
                 const preview = String(lastMessage.content || '').trim().replace(/\s+/g, ' ');
                 return preview.length > 28 ? `${preview.slice(0, 28)}...` : preview;
             }
 
-            return friend.desc || '你们已经是好友了，开始聊天吧';
+            return normalizedFriend.desc || '你们已经是好友了，开始聊天吧';
         }
 
         async function clearCurrentChatHistory() {
@@ -6357,26 +6590,28 @@
             groupSettingsPage.style.display = 'flex';
         });
 
-        document.getElementById('role-settings-avatar-upload').addEventListener('change', function(e) {
-            if (e.target.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    tempRoleSettingsAvatarData = event.target.result;
-                    fillRoleSettingsAvatar({ name: roleSettingsNameInput.value.trim() || currentChatFriend || '角' });
-                };
-                reader.readAsDataURL(e.target.files[0]);
+        document.getElementById('role-settings-avatar-upload').addEventListener('change', async function(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            try {
+                tempRoleSettingsAvatarData = await optimizeImageFile(file, { maxWidth: 512, maxHeight: 512, quality: 0.84 });
+                fillRoleSettingsAvatar({ name: roleSettingsNameInput.value.trim() || currentChatFriend || '角' });
+            } catch (error) {
+                console.warn('角色头像处理失败', error);
             }
+            e.target.value = '';
         });
 
-        document.getElementById('group-settings-avatar-upload').addEventListener('change', function(e) {
-            if (e.target.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    tempGroupSettingsAvatarData = event.target.result;
-                    fillGroupSettingsAvatar({ name: groupSettingsNameInput.value.trim() || currentChatFriend || '群' });
-                };
-                reader.readAsDataURL(e.target.files[0]);
+        document.getElementById('group-settings-avatar-upload').addEventListener('change', async function(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            try {
+                tempGroupSettingsAvatarData = await optimizeImageFile(file, { maxWidth: 512, maxHeight: 512, quality: 0.84 });
+                fillGroupSettingsAvatar({ name: groupSettingsNameInput.value.trim() || currentChatFriend || '群' });
+            } catch (error) {
+                console.warn('群聊头像处理失败', error);
             }
+            e.target.value = '';
         });
 
         roleSettingsNameInput.addEventListener('input', () => {
@@ -6589,16 +6824,17 @@
             userPersonaModal.style.display = 'none';
         });
 
-        document.getElementById('user-persona-avatar-upload').addEventListener('change', function(e) {
-            if (e.target.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    tempUserPersonaAvatarData = event.target.result;
-                    userPersonaAvatarPreview.style.backgroundImage = `url(${tempUserPersonaAvatarData})`;
-                    userPersonaAvatarPreview.innerHTML = '';
-                };
-                reader.readAsDataURL(e.target.files[0]);
+        document.getElementById('user-persona-avatar-upload').addEventListener('change', async function(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            try {
+                tempUserPersonaAvatarData = await optimizeImageFile(file, { maxWidth: 512, maxHeight: 512, quality: 0.84 });
+                userPersonaAvatarPreview.style.backgroundImage = `url(${tempUserPersonaAvatarData})`;
+                userPersonaAvatarPreview.innerHTML = '';
+            } catch (error) {
+                console.warn('人设头像处理失败', error);
             }
+            e.target.value = '';
         });
 
         document.getElementById('btn-confirm-user-persona').addEventListener('click', async () => {
@@ -6672,17 +6908,18 @@
         document.getElementById('btn-cancel-friend').addEventListener('click', () => { addFriendModal.style.display = 'none'; });
         document.getElementById('btn-cancel-group').addEventListener('click', () => { createGroupModal.style.display = 'none'; });
 
-        document.getElementById('friend-avatar-upload').addEventListener('change', function(e) {
-            if (e.target.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    tempAvatarData = event.target.result;
-                    const preview = document.getElementById('friend-avatar-preview');
-                    preview.style.backgroundImage = `url(${tempAvatarData})`;
-                    preview.innerHTML = '';
-                };
-                reader.readAsDataURL(e.target.files[0]);
+        document.getElementById('friend-avatar-upload').addEventListener('change', async function(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            try {
+                tempAvatarData = await optimizeImageFile(file, { maxWidth: 512, maxHeight: 512, quality: 0.84 });
+                const preview = document.getElementById('friend-avatar-preview');
+                preview.style.backgroundImage = `url(${tempAvatarData})`;
+                preview.innerHTML = '';
+            } catch (error) {
+                console.warn('好友头像处理失败', error);
             }
+            e.target.value = '';
         });
 
         // 确认添加好友
@@ -6785,11 +7022,14 @@
         const chatMultiCount = document.getElementById('chat-multi-count');
         const chatComposePanel = document.getElementById('chat-compose-panel');
         const chatTransferPanel = document.getElementById('chat-transfer-panel');
+        const chatLocationPanel = document.getElementById('chat-location-panel');
         const chatTransferPayPanel = document.getElementById('chat-transfer-pay-panel');
         const chatComposeTitle = document.getElementById('chat-compose-title');
         const chatComposeInput = document.getElementById('chat-compose-input');
         const chatTransferAmountInput = document.getElementById('chat-transfer-amount-input');
         const chatTransferRemarkInput = document.getElementById('chat-transfer-remark-input');
+        const chatLocationNameInput = document.getElementById('chat-location-name-input');
+        const chatLocationDetailInput = document.getElementById('chat-location-detail-input');
         const chatTransferPayAmount = document.getElementById('chat-transfer-pay-amount');
         const chatTransferPayRemark = document.getElementById('chat-transfer-pay-remark');
         const chatTransferPayTarget = document.getElementById('chat-transfer-pay-target');
@@ -6809,6 +7049,8 @@
         const btnSendCompose = document.getElementById('btn-send-compose');
         const btnCancelTransfer = document.getElementById('btn-cancel-transfer');
         const btnConfirmTransfer = document.getElementById('btn-confirm-transfer');
+        const btnCancelLocation = document.getElementById('btn-cancel-location');
+        const btnSendLocation = document.getElementById('btn-send-location');
         const btnCloseTransferPay = document.getElementById('btn-close-transfer-pay');
         const btnTransferMethodTrigger = document.getElementById('btn-transfer-method-trigger');
         const btnReturnTransfer = document.getElementById('btn-return-transfer');
@@ -6989,6 +7231,27 @@
                         </div>
                     </div>
                     <div class="msg-transfer-card-footer">${escapeHtml(footerText)}</div>
+                </div>
+            `;
+        }
+
+        function buildLocationCardMarkup(payload = {}) {
+            const title = String(payload.locationTitle || payload.content || '').trim() || '我的位置';
+            const detail = String(payload.locationDetail || '').trim();
+            return `
+                <div class="msg-location-card" data-location-card="true">
+                    <div class="msg-location-card-main">
+                        <div class="msg-location-card-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.6a2.6 2.6 0 110-5.2 2.6 2.6 0 010 5.2z"/></svg>
+                        </div>
+                        <div class="msg-location-card-info">
+                            <div class="msg-location-card-title">${escapeHtml(title)}</div>
+                            ${detail ? `<div class="msg-location-card-detail">${escapeHtml(detail)}</div>` : ''}
+                        </div>
+                    </div>
+                    <div class="msg-location-card-map">
+                        <div class="msg-location-card-pin"></div>
+                    </div>
                 </div>
             `;
         }
@@ -7340,6 +7603,52 @@
             setTimeout(() => chatTransferAmountInput?.focus(), 30);
         }
 
+        function openChatLocationPanel() {
+            if (chatLocationNameInput) chatLocationNameInput.value = '';
+            if (chatLocationDetailInput) chatLocationDetailInput.value = '';
+            closeChatComposePanel();
+            closeChatTransferPanel();
+            if (chatLocationPanel) chatLocationPanel.style.display = 'flex';
+            setTimeout(() => chatLocationNameInput?.focus(), 30);
+        }
+
+        function closeChatLocationPanel() {
+            if (chatLocationNameInput) chatLocationNameInput.value = '';
+            if (chatLocationDetailInput) chatLocationDetailInput.value = '';
+            if (chatLocationPanel) chatLocationPanel.style.display = 'none';
+        }
+
+        function sendLocationMessage() {
+            const title = String(chatLocationNameInput?.value || '').trim();
+            const detail = String(chatLocationDetailInput?.value || '').trim();
+            if (!title || !currentChatFriend) return;
+
+            ensureFriendChatHistory(currentChatFriend);
+            chatRenderVisibleCountMap[currentChatFriend] = Math.max(
+                getChatRenderVisibleCount(currentChatFriend, chatDatabase[currentChatFriend].length),
+                CHAT_RENDER_RECENT_LIMIT
+            ) + 1;
+
+            const record = {
+                role: 'user',
+                type: 'location',
+                content: title,
+                locationTitle: title,
+                locationDetail: detail,
+                id: createMessageId('user-location')
+            };
+            if (activeQuoteMessage) record.quote = { ...activeQuoteMessage };
+
+            chatDatabase[currentChatFriend].push(record);
+            persistChatDatabase();
+            appendMsgBubble('user', title, null, record);
+            clearActiveQuote();
+            closeChatLocationPanel();
+            chatPlusPanel.style.display = 'none';
+            scrollToBottom();
+            renderFriendList();
+        }
+
         function closeChatTransferPanel() {
             if (chatTransferAmountInput) chatTransferAmountInput.value = '';
             if (chatTransferRemarkInput) chatTransferRemarkInput.value = '';
@@ -7429,9 +7738,16 @@
             }
 
             const transferItem = target?.closest('[data-action="open-transfer"]');
-            if (!transferItem) return;
+            if (transferItem) {
+                event.stopPropagation();
+                openChatTransferPanel();
+                return;
+            }
+
+            const locationItem = target?.closest('[data-action="open-location"]');
+            if (!locationItem) return;
             event.stopPropagation();
-            openChatTransferPanel();
+            openChatLocationPanel();
         }
 
         chatPlusPanel.addEventListener('click', handleChatPlusPanelAction);
@@ -7443,6 +7759,8 @@
         });
         bindTap(btnCancelTransfer, closeChatTransferPanel);
         bindTap(btnConfirmTransfer, openChatTransferPayPanel);
+        bindTap(btnCancelLocation, closeChatLocationPanel);
+        bindTap(btnSendLocation, sendLocationMessage);
         bindTap(btnCloseTransferPay, returnToChatTransferPanel);
         bindTap(btnTransferMethodTrigger, () => {
             if (chatTransferMethodSheet?.classList.contains('open')) {
@@ -7464,6 +7782,11 @@
         function handleChatTransferPayOverlayClose(event) {
             const target = getEventElementTarget(event);
             if (target === chatTransferPayPanel) closeChatTransferPayPanel();
+        }
+
+        function handleChatLocationOverlayClose(event) {
+            const target = getEventElementTarget(event);
+            if (target === chatLocationPanel) closeChatLocationPanel();
         }
 
         function handleTransferMethodSelect(event) {
@@ -7488,6 +7811,8 @@
         chatComposePanel.addEventListener('touchend', handleChatComposeOverlayClose, { passive: false });
         chatTransferPanel.addEventListener('click', handleChatTransferOverlayClose);
         chatTransferPanel.addEventListener('touchend', handleChatTransferOverlayClose, { passive: false });
+        chatLocationPanel.addEventListener('click', handleChatLocationOverlayClose);
+        chatLocationPanel.addEventListener('touchend', handleChatLocationOverlayClose, { passive: false });
         chatTransferPayPanel.addEventListener('click', handleChatTransferPayOverlayClose);
         chatTransferPayPanel.addEventListener('touchend', handleChatTransferPayOverlayClose, { passive: false });
         chatTransferMethodSheet?.addEventListener('click', handleTransferMethodSelect);
@@ -7501,6 +7826,7 @@
             chatPlusPanel.style.display = 'none';
             closeChatComposePanel();
             closeChatTransferPanel();
+            closeChatLocationPanel();
             closeChatTransferPayPanel();
             closeMessageActionCard();
             clearActiveQuote();
@@ -7511,6 +7837,7 @@
             chatPlusPanel.style.display = 'none';
             closeChatComposePanel();
             closeChatTransferPanel();
+            closeChatLocationPanel();
             closeChatTransferPayPanel();
             closeMessageActionCard();
             updateChatSettingsLabels();
@@ -7635,6 +7962,12 @@
             if (!content) return '';
             if (message.type === 'voice') return `[语音消息转文字：${content}]`;
             if (message.type === 'photo') return `[图片消息，图片描述：${content}]`;
+            if (message.type === 'location') {
+                const detail = String(message.locationDetail || '').trim();
+                return detail
+                    ? `[位置消息：${content}，补充信息：${detail}]`
+                    : `[位置消息：${content}]`;
+            }
             if (message.type === 'transfer') {
                 const amount = formatTransferCardAmount(message.amount);
                 const remark = String(message.remark || '').trim();
@@ -8842,7 +9175,8 @@
             const normalizedText = String(text || '');
             const voiceDuration = Math.max(1, Math.min(60, Math.round(normalizedText.length / 2) + 1));
             const isTransferMessage = message.type === 'transfer' || message.type === 'transfer_preview';
-            const isRichBubble = Boolean(message.type === 'voice' || message.type === 'photo' || message.isHtml || isTransferMessage);
+            const isLocationMessage = message.type === 'location';
+            const isRichBubble = Boolean(message.type === 'voice' || message.type === 'photo' || message.isHtml || isTransferMessage || isLocationMessage);
             let bubbleContent = message.isHtml ? text : escapeHtml(normalizedText);
             if (message.type === 'voice') {
                 bubbleContent = `<div class="msg-media-card"><div class="msg-voice-bubble" title="点击查看文字"><div class="msg-voice-wave"><span></span><span></span><span></span></div><div class="msg-voice-duration">${voiceDuration}''</div></div><div class="msg-voice-transcript">${escapeHtml(normalizedText)}</div></div>`;
@@ -8850,6 +9184,8 @@
                 bubbleContent = `<div class="msg-photo-card"><div class="msg-photo-desc">${escapeHtml(normalizedText)}</div></div>`;
             } else if (isTransferMessage) {
                 bubbleContent = buildTransferCardMarkup(message);
+            } else if (isLocationMessage) {
+                bubbleContent = buildLocationCardMarkup(message);
             }
             row.innerHTML = `
                 <div class="msg-select-check"></div>
@@ -8857,7 +9193,7 @@
                 <div class="msg-main">
                     ${shouldShowSenderName ? `<div class="msg-sender-name">${escapeHtml(displayName)}</div>` : ''}
                     ${quoteMarkup}
-                    <div class="msg-bubble${isRichBubble ? ' rich-content' : ''}${isTransferMessage ? ' transfer-card-bubble' : ''}">${bubbleContent}</div>
+                    <div class="msg-bubble${isRichBubble ? ' rich-content' : ''}${isTransferMessage ? ' transfer-card-bubble' : ''}${isLocationMessage ? ' location-card-bubble' : ''}">${bubbleContent}</div>
                     <div class="msg-actions-card">
                         ${messageActionLabels.map(item => `<button type="button" class="msg-action-btn" data-action="${item.action}">${item.label}</button>`).join('')}
                     </div>
