@@ -1244,6 +1244,9 @@
         .pdd-meal-search {
             margin-bottom: 12px;
         }
+        .pdd-cut-search {
+            margin: 14px 2px 12px;
+        }
         #pdd-app .pdd-meal-search .shop-search-wrap {
             background: rgba(255, 247, 247, 0.96);
             border-color: rgba(229, 184, 184, 0.62);
@@ -1261,6 +1264,24 @@
         #pdd-app .pdd-meal-search .shop-search-button {
             background: linear-gradient(135deg, #ff7067, #e93535);
             box-shadow: 0 8px 18px rgba(227, 61, 61, 0.16);
+        }
+        #pdd-app .pdd-cut-search .shop-search-wrap {
+            background: linear-gradient(180deg, rgba(255, 251, 251, 0.98), rgba(255, 243, 243, 0.98));
+            border-color: rgba(239, 192, 192, 0.76);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.86), 0 12px 24px rgba(227, 61, 61, 0.08);
+        }
+        #pdd-app .pdd-cut-search .shop-search-wrap svg {
+            fill: rgba(198, 84, 84, 0.62);
+        }
+        #pdd-app .pdd-cut-search .shop-search-input {
+            color: #743d3d;
+        }
+        #pdd-app .pdd-cut-search .shop-search-input::placeholder {
+            color: rgba(173, 99, 99, 0.58);
+        }
+        #pdd-app .pdd-cut-search .shop-search-button {
+            background: linear-gradient(135deg, #ff7e6f, #ef4242);
+            box-shadow: 0 8px 18px rgba(227, 61, 61, 0.18);
         }
         .pdd-meal-card {
             display: flex;
@@ -1388,6 +1409,10 @@
         }
         .pdd-meal-action:active {
             transform: scale(0.98);
+        }
+        .pdd-meal-action.is-done {
+            background: linear-gradient(135deg, #ff9a62, #ff4b2b);
+            box-shadow: 0 8px 16px rgba(255, 89, 43, 0.18);
         }
         .pdd-cut-hero {
             position: relative;
@@ -1520,6 +1545,7 @@
             font-size: 12px;
             line-height: 1.5;
             font-weight: 700;
+            white-space: pre-line;
         }
         .pdd-cut-body {
             flex: 1;
@@ -2163,6 +2189,223 @@
             background: rgba(255,255,255,0.46);
             color: #667588;
             text-align: center;
+        }
+        .pdd-cart-page {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 100%;
+            padding-bottom: 8px;
+        }
+        .pdd-cart-tip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 246, 238, 0.98), rgba(255, 228, 224, 0.96));
+            border: 1px solid rgba(255, 104, 70, 0.14);
+            box-shadow: 0 12px 24px rgba(255, 75, 43, 0.08);
+        }
+        .pdd-cart-tip strong {
+            display: block;
+            font-size: 14px;
+            color: #b52715;
+        }
+        .pdd-cart-tip span {
+            display: block;
+            margin-top: 3px;
+            font-size: 11px;
+            color: rgba(171, 48, 28, 0.72);
+        }
+        .pdd-cart-tip-badge {
+            flex: 0 0 auto;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #ff3f25;
+            color: #fff7f3;
+            font-size: 11px;
+            font-weight: 800;
+            box-shadow: 0 8px 16px rgba(255, 63, 37, 0.22);
+        }
+        .pdd-cart-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .pdd-cart-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 220px;
+            padding: 24px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.78);
+            border: 1px dashed rgba(255, 91, 56, 0.22);
+            color: rgba(139, 54, 38, 0.72);
+            text-align: center;
+        }
+        .pdd-cart-empty strong {
+            color: #b52715;
+            font-size: 15px;
+        }
+        .pdd-cart-empty p {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .pdd-cart-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(255, 91, 56, 0.1);
+            box-shadow: 0 12px 24px rgba(179, 45, 24, 0.08);
+        }
+        .pdd-cart-check {
+            flex: 0 0 auto;
+            width: 20px;
+            height: 20px;
+            margin-top: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff2f1f, #ff6a2a);
+            box-shadow: inset 0 0 0 4px #fff, 0 0 0 1px rgba(255, 60, 32, 0.24);
+        }
+        .pdd-cart-thumb {
+            flex: 0 0 78px;
+            height: 78px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.82), rgba(255,255,255,0) 36%), linear-gradient(145deg, #fff2e7, #ffe0d7);
+            color: #ff3d22;
+            font-size: 30px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.76);
+        }
+        .pdd-cart-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .pdd-cart-shop {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: rgba(139, 54, 38, 0.7);
+            font-weight: 700;
+        }
+        .pdd-cart-shop::before {
+            content: '拼';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border-radius: 5px;
+            background: #ff3f25;
+            color: #fff;
+            font-size: 10px;
+        }
+        .pdd-cart-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #39201b;
+            line-height: 1.42;
+        }
+        .pdd-cart-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .pdd-cart-tag {
+            padding: 3px 6px;
+            border-radius: 999px;
+            background: rgba(255, 73, 41, 0.08);
+            color: #d8381f;
+            font-size: 10px;
+            font-weight: 800;
+        }
+        .pdd-cart-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .pdd-cart-price {
+            color: #ff321d;
+            font-size: 18px;
+            font-weight: 900;
+        }
+        .pdd-cart-price small {
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .pdd-cart-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: rgba(255, 243, 239, 0.92);
+            color: #b83a24;
+            font-size: 12px;
+            font-weight: 800;
+        }
+        .pdd-cart-step {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: #ff3b22;
+            box-shadow: 0 2px 8px rgba(255, 75, 43, 0.12);
+        }
+        .pdd-cart-summary {
+            position: sticky;
+            bottom: 10px;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 80, 48, 0.13);
+            box-shadow: 0 16px 32px rgba(190, 50, 28, 0.14);
+        }
+        .pdd-cart-total-label {
+            font-size: 11px;
+            color: rgba(122, 56, 43, 0.7);
+            font-weight: 700;
+        }
+        .pdd-cart-total-value {
+            margin-top: 3px;
+            color: #ff321d;
+            font-size: 22px;
+            font-weight: 900;
+        }
+        .pdd-cart-checkout {
+            flex: 0 0 auto;
+            min-width: 118px;
+            height: 42px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ff2f1f, #ff7a22);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 900;
+            box-shadow: 0 12px 22px rgba(255, 65, 34, 0.26);
         }
         .shop-placeholder-page {
             display: flex;
@@ -3537,7 +3780,8 @@
         .msg-photo-card::after { content: ''; position: absolute; right: 18px; top: 16px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 190, 72, .75); }
         .msg-photo-desc { position: relative; z-index: 1; min-height: 128px; display: flex; align-items: center; justify-content: center; padding: 18px; color: rgba(20,20,20,.78); font-size: 14px; line-height: 1.45; text-align: center; word-break: break-word; text-shadow: 0 1px 6px rgba(255,255,255,.9); }
         .msg-bubble.transfer-card-bubble,
-        .msg-bubble.location-card-bubble {
+        .msg-bubble.location-card-bubble,
+        .msg-bubble.pdd-meal-share-bubble {
             padding: 0;
             background: transparent;
             box-shadow: none;
@@ -3546,10 +3790,76 @@
         .msg-row.user .msg-bubble.transfer-card-bubble,
         .msg-row.ai .msg-bubble.transfer-card-bubble,
         .msg-row.user .msg-bubble.location-card-bubble,
-        .msg-row.ai .msg-bubble.location-card-bubble {
+        .msg-row.ai .msg-bubble.location-card-bubble,
+        .msg-row.user .msg-bubble.pdd-meal-share-bubble,
+        .msg-row.ai .msg-bubble.pdd-meal-share-bubble {
             background: transparent;
             box-shadow: none;
         }
+        .msg-pdd-meal-card {
+            width: 230px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 8px 20px rgba(188, 50, 28, 0.14);
+            border: 1px solid rgba(255, 91, 56, 0.12);
+            color: #39201b;
+        }
+        .msg-pdd-meal-top {
+            padding: 12px 12px 10px;
+            background: linear-gradient(135deg, #fff5ee 0%, #ffe1d8 100%);
+            border-bottom: 1px solid rgba(255, 91, 56, 0.1);
+        }
+        .msg-pdd-meal-kicker {
+            display: inline-flex;
+            align-items: center;
+            height: 20px;
+            padding: 0 8px;
+            border-radius: 999px;
+            background: #ff3f25;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+        }
+        .msg-pdd-meal-title {
+            margin-top: 8px;
+            font-size: 15px;
+            line-height: 1.35;
+            font-weight: 900;
+        }
+        .msg-pdd-meal-scene {
+            margin-top: 5px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: rgba(113, 70, 48, 0.76);
+        }
+        .msg-pdd-meal-body { padding: 10px 12px 12px; }
+        .msg-pdd-meal-price-row { display: flex; align-items: baseline; gap: 7px; }
+        .msg-pdd-meal-price { color: #ff321d; font-size: 22px; font-weight: 900; }
+        .msg-pdd-meal-origin { color: rgba(57, 32, 27, 0.48); font-size: 12px; text-decoration: line-through; }
+        .msg-pdd-meal-meta { margin-top: 5px; font-size: 11px; line-height: 1.45; color: rgba(139, 54, 38, 0.72); }
+        .msg-pdd-meal-status {
+            margin-top: 9px;
+            padding: 7px 9px;
+            border-radius: 12px;
+            background: rgba(255, 63, 37, 0.08);
+            color: #d8381f;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .msg-pdd-meal-add {
+            margin-top: 10px;
+            width: 100%;
+            height: 34px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ff655c, #e93535);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        .msg-pdd-meal-add:active { transform: scale(0.98); }
         .msg-location-card {
             width: 196px;
             border-radius: 14px;
@@ -4747,9 +5057,21 @@
         }
         .btn-cancel { background: #f2f2f2; color: #333; }
         .btn-confirm { background: #111; color: #fff; }
+        .modal-btn.disabled { opacity: 0.42; pointer-events: none; }
         .dialog-box { gap: 14px; }
         .dialog-message { font-size: 14px; color: #555; line-height: 1.6; text-align: center; }
         .dialog-input { width: 100%; }
+        .pdd-share-role-box { gap: 12px; border-radius: 18px; }
+        .pdd-share-role-list { display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; }
+        .pdd-share-role-item { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; border: 1px solid transparent; background: #f7f7f7; cursor: pointer; }
+        .pdd-share-role-item.is-selected { border-color: #111; background: #fff; }
+        .pdd-share-role-item:active { background: #eeeeee; }
+        .pdd-share-role-avatar { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background-size: cover; background-position: center; color: #fff; font-size: 16px; font-weight: 800; }
+        .pdd-share-role-main { flex: 1; min-width: 0; }
+        .pdd-share-role-name { font-size: 14px; font-weight: 800; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pdd-share-role-check { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #d6d6d6; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 12px; font-weight: 900; }
+        .pdd-share-role-item.is-selected .pdd-share-role-check { border-color: #111; background: #111; }
+        .pdd-share-role-empty { padding: 18px 8px; text-align: center; color: #888; font-size: 13px; line-height: 1.6; }
 
     </style>
 </head>
@@ -5105,7 +5427,7 @@
                     <div class="shop-search-bar">
                         <label class="shop-search-wrap">
                             <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79L20 21.5 21.5 20l-6-6zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                            <input class="shop-search-input" id="shop-search-input" type="text" placeholder="搜索后AI生成商品……">
+                            <input class="shop-search-input" id="shop-search-input" type="text" placeholder="搜索高端商品，像商场一样出结果……">
                         </label>
                         <button type="button" class="shop-search-button" id="shop-search-button">搜索</button>
                     </div>
@@ -5326,75 +5648,24 @@
                             <div class="pdd-cut-hero-more">进入一元专区 ›</div>
                             <div class="pdd-cut-hero-desc">点进去全是一元小商品，纸巾、数据线、收纳盒、小风扇这种日用小件都在秒杀。</div>
                         </div>
-                        <div class="pdd-cut-list">
-                            <div class="pdd-cut-card">
-                                <div class="pdd-cut-visual">
-                                    <span class="pdd-cut-badge">3人疯抢</span>
-                                    <div class="pdd-cut-scene">奶白充电小风扇<br>宿舍桌面吹吹风</div>
-                                </div>
-                                <div class="pdd-cut-body">
-                                    <div>
-                                        <div class="pdd-cut-name">便携桌面小风扇 可折叠带夜灯款</div>
-                                        <div class="pdd-cut-price-row">
-                                            <span class="pdd-cut-price-origin">原价199</span>
-                                            <span class="pdd-cut-price-current"><small>￥</small>1.99</span>
-                                        </div>
-                                        <div class="pdd-cut-meta">三人拼单只要1.99，转发给好友一起砍，马上把价格压下来。</div>
-                                    </div>
-                                </div>
-                                <div class="pdd-cut-side">
-                                    <button class="pdd-cut-action" type="button">转发砍一刀</button>
-                                </div>
-                            </div>
-                            <div class="pdd-cut-card">
-                                <div class="pdd-cut-visual" style="background: radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #ffe8db 0%, #ffd6bf 48%, #fff0e7 100%);">
-                                    <span class="pdd-cut-badge">爆款返场</span>
-                                    <div class="pdd-cut-scene" style="color: rgba(143, 79, 39, 0.92);">迷你早餐煎锅<br>一人食也能香喷喷</div>
-                                </div>
-                                <div class="pdd-cut-body">
-                                    <div>
-                                        <div class="pdd-cut-name">不粘迷你煎锅 单人早餐煎蛋锅套装</div>
-                                        <div class="pdd-cut-price-row">
-                                            <span class="pdd-cut-price-origin">原价199</span>
-                                            <span class="pdd-cut-price-current"><small>￥</small>1.99</span>
-                                        </div>
-                                        <div class="pdd-cut-meta">三人拼单只要1.99，拼成再发一刀，低价就差你这一下。</div>
-                                    </div>
-                                </div>
-                                <div class="pdd-cut-side">
-                                    <button class="pdd-cut-action" type="button">转发砍一刀</button>
-                                </div>
-                            </div>
-                            <div class="pdd-cut-card">
-                                <div class="pdd-cut-visual" style="background: radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #e4f4ff 0%, #d0ebfb 48%, #eef9ff 100%);">
-                                    <span class="pdd-cut-badge">宿舍热卖</span>
-                                    <div class="pdd-cut-scene" style="color: rgba(46, 102, 130, 0.9);">云朵软软抱枕<br>午休靠着正舒服</div>
-                                </div>
-                                <div class="pdd-cut-body">
-                                    <div>
-                                        <div class="pdd-cut-name">云朵绒面抱枕靠垫 办公室午睡护腰两用</div>
-                                        <div class="pdd-cut-price-row">
-                                            <span class="pdd-cut-price-origin">原价199</span>
-                                            <span class="pdd-cut-price-current"><small>￥</small>1.99</span>
-                                        </div>
-                                        <div class="pdd-cut-meta">三人拼单只要1.99，转发砍一刀，帮你把今日捡漏价继续往下打。</div>
-                                    </div>
-                                </div>
-                                <div class="pdd-cut-side">
-                                    <button class="pdd-cut-action" type="button">转发砍一刀</button>
-                                </div>
-                            </div>
+                        <div class="shop-search-bar pdd-cut-search">
+                            <label class="shop-search-wrap" aria-label="搜索拼一刀商品">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13Zm0-2a8.5 8.5 0 1 0 5.33 15.12l4.52 4.52a1 1 0 0 0 1.42-1.42l-4.52-4.52A8.5 8.5 0 0 0 10.5 2Z"></path></svg>
+                                <input class="shop-search-input" id="pdd-cut-search-input" type="text" placeholder="搜索便宜商品，搜什么就出什么……">
+                            </label>
+                            <button type="button" class="shop-search-button" id="pdd-cut-search-button">搜索</button>
                         </div>
+                        <div class="pdd-cut-list" id="pdd-cut-list"></div>
                     </div>
                     <div class="pdd-category-panel" data-pdd-panel="romance">
                         <div class="shop-search-bar pdd-meal-search">
                             <label class="shop-search-wrap">
                                 <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79L20 21.5 21.5 20l-6-6zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                                <input class="shop-search-input" id="pdd-romance-search-input" type="text" placeholder="搜索后AI生成商品……">
+                                <input class="shop-search-input" id="pdd-romance-search-input" type="text" placeholder="搜索便宜情趣商品，搜什么就出什么……">
                             </label>
                             <button type="button" class="shop-search-button" id="pdd-romance-search-button">搜索</button>
                         </div>
-                        <div class="pdd-meal-list">
+                        <div class="pdd-meal-list" id="pdd-romance-list">
                             <div class="pdd-meal-card">
                                 <div class="pdd-meal-visual" style="background: radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #fde7ef 0%, #f7ccd9 46%, #fff0f4 100%);">
                                     <div class="pdd-meal-badge">私密热卖</div>
@@ -5457,10 +5728,21 @@
                 </div>
             </div>
             <div class="shop-page" id="pdd-page-cart">
-                <div class="shop-placeholder-page">
-                    <div class="shop-placeholder-card">
-                        <strong>购物车</strong>
-                        <p>这里先做版式占位，商品和结算功能后面再接。</p>
+                <div class="pdd-cart-page">
+                    <div class="pdd-cart-tip">
+                        <div>
+                            <strong>拼单购物车</strong>
+                            <span>先把想拼的小商品攒起来，等会儿再接真实加购逻辑。</span>
+                        </div>
+                        <div class="pdd-cart-tip-badge">满 3 件更划算</div>
+                    </div>
+                    <div class="pdd-cart-list" id="pdd-cart-list"></div>
+                    <div class="pdd-cart-summary" id="pdd-cart-summary">
+                        <div>
+                            <div class="pdd-cart-total-label" id="pdd-cart-total-label">已选 0 件，预估合计</div>
+                            <div class="pdd-cart-total-value" id="pdd-cart-total-value">¥0.00</div>
+                        </div>
+                        <button type="button" class="pdd-cart-checkout">去拼单结算</button>
                     </div>
                 </div>
             </div>
@@ -5612,7 +5894,7 @@
                     <div class="pdd-yuan-hero">
                         <div class="pdd-yuan-eyebrow">一元秒杀</div>
                         <div class="pdd-yuan-title">一元小商品专区</div>
-                        <div class="pdd-yuan-desc">全场都是便宜小件，适合凑单、囤货、顺手买。价格看着离谱，但就是拼刀刀味儿。</div>
+                        <div class="pdd-yuan-desc">全场都是便宜小件，适合凑单、囤货、顺手买。</div>
                         <div class="pdd-yuan-tags">
                             <span class="pdd-yuan-tag">限时 1 元</span>
                             <span class="pdd-yuan-tag">日用百货</span>
@@ -6391,6 +6673,17 @@
             <div class="modal-actions">
                 <div class="modal-btn btn-cancel" id="btn-cancel-user-persona">取消</div>
                 <div class="modal-btn btn-confirm" id="btn-confirm-user-persona">创建</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="pdd-share-role-modal">
+        <div class="modal-box pdd-share-role-box">
+            <div class="modal-title">转发拼单给角色</div>
+            <div class="dialog-message" id="pdd-share-role-hint">选择一个角色，外卖拼单卡片会直接出现在聊天里。</div>
+            <div class="pdd-share-role-list" id="pdd-share-role-list"></div>
+            <div class="modal-actions">
+                <div class="modal-btn btn-cancel" id="pdd-share-role-cancel">取消</div>
+                <div class="modal-btn btn-confirm" id="pdd-share-role-confirm">确认</div>
             </div>
         </div>
     </div>
@@ -8690,6 +8983,21 @@
         const pddMealSearchInput = document.getElementById('pdd-meal-search-input');
         const pddMealSearchButton = document.getElementById('pdd-meal-search-button');
         const pddMealList = document.getElementById('pdd-meal-list');
+        const pddShareRoleModal = document.getElementById('pdd-share-role-modal');
+        const pddShareRoleList = document.getElementById('pdd-share-role-list');
+        const pddShareRoleHint = document.getElementById('pdd-share-role-hint');
+        const pddShareRoleCancel = document.getElementById('pdd-share-role-cancel');
+        const pddShareRoleConfirm = document.getElementById('pdd-share-role-confirm');
+        const pddCartList = document.getElementById('pdd-cart-list');
+        const pddCartSummary = document.getElementById('pdd-cart-summary');
+        const pddCartTotalLabel = document.getElementById('pdd-cart-total-label');
+        const pddCartTotalValue = document.getElementById('pdd-cart-total-value');
+        const pddCutSearchInput = document.getElementById('pdd-cut-search-input');
+        const pddCutSearchButton = document.getElementById('pdd-cut-search-button');
+        const pddCutList = document.getElementById('pdd-cut-list');
+        const pddRomanceSearchInput = document.getElementById('pdd-romance-search-input');
+        const pddRomanceSearchButton = document.getElementById('pdd-romance-search-button');
+        const pddRomanceList = document.getElementById('pdd-romance-list');
         const pddDramaSearchInput = document.getElementById('pdd-drama-search-input');
         const pddDramaSearchButton = document.getElementById('pdd-drama-search-button');
         const pddDramaGrid = document.getElementById('pdd-drama-grid');
@@ -8808,8 +9116,14 @@
         const PDD_STORY_REWARDED_EPISODES_STORAGE_KEY = 'pdd_story_rewarded_episodes';
         const PDD_DRAMA_CARDS_STORAGE_KEY = 'pdd_drama_cards';
         const PDD_MEAL_ITEMS_STORAGE_KEY = 'pdd_meal_items';
+        const PDD_CART_ITEMS_STORAGE_KEY = 'pdd_cart_items';
+        const PDD_CUT_ITEMS_STORAGE_KEY = 'pdd_cut_items';
+        const PDD_ROMANCE_ITEMS_STORAGE_KEY = 'pdd_romance_items';
         const PDD_WALLET_STORAGE_KEY = 'pdd_wallet_balance';
         const PDD_WALLET_BILLS_STORAGE_KEY = 'pdd_wallet_bills';
+        const SHOP_RECOMMEND_PRODUCTS_STORAGE_KEY = 'shop_recommend_products';
+        const SHOP_TAKEOUT_PRODUCTS_STORAGE_KEY = 'shop_takeout_products';
+        const SHOP_ROMANCE_PRODUCTS_STORAGE_KEY = 'shop_romance_products';
         const PDD_DEFAULT_MEALS = [
             {
                 badge: '拼饭爆款',
@@ -8836,6 +9150,82 @@
                 meta: '夜宵人气榜第 2 · 预计 28 分钟送达 · 转发立减配送费'
             }
         ];
+        const PDD_DEFAULT_CUT_ITEMS = [
+            {
+                badge: '3人疯抢',
+                name: '便携桌面小风扇 可折叠带夜灯款',
+                scene: '奶白充电小风扇\n宿舍桌面吹吹风',
+                originPrice: 199,
+                price: 1.99,
+                meta: '三人拼单只要1.99，转发给好友一起砍，马上把价格压下来。'
+            },
+            {
+                badge: '爆款返场',
+                name: '不粘迷你煎锅 单人早餐煎蛋锅套装',
+                scene: '迷你早餐煎锅\n一人食也能香喷喷',
+                originPrice: 199,
+                price: 1.99,
+                meta: '三人拼单只要1.99，拼成再发一刀，低价就差你这一下。'
+            },
+            {
+                badge: '宿舍热卖',
+                name: '云朵绒面抱枕靠垫 办公室午睡护腰两用',
+                scene: '云朵软软抱枕\n午休靠着正舒服',
+                originPrice: 199,
+                price: 1.99,
+                meta: '三人拼单只要1.99，转发砍一刀，帮你把今日捡漏价继续往下打。'
+            }
+        ];
+        const PDD_DEFAULT_ROMANCE_ITEMS = [
+            {
+                badge: '私密热卖',
+                name: '温感氛围按摩凝胶礼盒',
+                scene: '雾粉礼盒里放着温感凝胶、绸面眼罩和一张低调香氛卡。',
+                originPrice: 59.9,
+                price: 1.99,
+                meta: '已拼 1.4 万单 · 保密发货 · 情侣拼单更划算'
+            },
+            {
+                badge: '情侣同享',
+                name: '静音便携私享按摩器',
+                scene: '柔雾外壳的小巧按摩器搭配收纳袋，整体看起来低调不张扬。',
+                originPrice: 89.9,
+                price: 5.99,
+                meta: '热度持续上升 · 转发更容易成团 · 今晚可拼'
+            },
+            {
+                badge: '氛围专区',
+                name: '情侣氛围道具三件套',
+                scene: '浅杏礼盒里摆着羽毛道具、蜡烛和奶油色丝带，气氛感拉满。',
+                originPrice: 69.9,
+                price: 9.99,
+                meta: '新手友好套装 · 同城私密配送 · 补贴进行中'
+            },
+            {
+                badge: '低调补贴',
+                name: '丝滑眼罩香氛助眠组合',
+                scene: '眼罩、香片和按摩小滚珠装在抽屉式礼盒里，适合悄悄收纳。',
+                originPrice: 39.9,
+                price: 3.66,
+                meta: '已拼 9800 单 · 私密包装 · 夜间下单更便宜'
+            },
+            {
+                badge: '捡漏返场',
+                name: '奶油色氛围香薰蜡烛组',
+                scene: '两只小蜡烛和一支点火棒排在纸盒里，主打轻松又暧昧的氛围。',
+                originPrice: 46.9,
+                price: 2.88,
+                meta: '库存尾货补贴 · 已拼 7600 单 · 顺手凑单很值'
+            },
+            {
+                badge: '保密秒拼',
+                name: '入门情侣氛围新手包',
+                scene: '简洁白盒里装着小样凝胶、眼罩和说明卡，风格克制低调。',
+                originPrice: 79.9,
+                price: 6.99,
+                meta: '低调入门款 · 保密面单发货 · 拼成再减配送费'
+            }
+        ];
         let activePddSubpageId = '';
         let pddSubpageHistory = [];
         let pddWheelRotation = 0;
@@ -8846,6 +9236,21 @@
             pddMealItems = PDD_DEFAULT_MEALS.map(meal => ({ ...meal }));
         }
         let pddMealGenerating = false;
+        let pendingPddSharedProduct = null;
+        let pendingPddShareButton = null;
+        let selectedPddShareFriendName = '';
+        let pddCartItems = parseStoredJson(PDD_CART_ITEMS_STORAGE_KEY, []);
+        if (!Array.isArray(pddCartItems)) pddCartItems = [];
+        let pddCutItems = parseStoredJson(PDD_CUT_ITEMS_STORAGE_KEY, null);
+        if (!Array.isArray(pddCutItems) || !pddCutItems.length) {
+            pddCutItems = PDD_DEFAULT_CUT_ITEMS.map(item => ({ ...item }));
+        }
+        let pddCutGenerating = false;
+        let pddRomanceItems = parseStoredJson(PDD_ROMANCE_ITEMS_STORAGE_KEY, null);
+        if (!Array.isArray(pddRomanceItems) || !pddRomanceItems.length) {
+            pddRomanceItems = PDD_DEFAULT_ROMANCE_ITEMS.map(item => ({ ...item }));
+        }
+        let pddRomanceGenerating = false;
         let pddDramaCards = parseStoredJson(PDD_DRAMA_CARDS_STORAGE_KEY, null);
         if (!Array.isArray(pddDramaCards) || !pddDramaCards.length) {
             pddDramaCards = PDD_SHORT_DRAMAS.map(drama => ({ ...drama }));
@@ -8894,67 +9299,95 @@
             }));
         const SHOP_PRODUCT_CATALOG = [
             {
-                id: 'shop_recommend_earbuds',
+                id: 'shop_recommend_speaker',
                 category: 'recommend',
-                badge: '精选',
-                title: '雾灰降噪蓝牙耳机',
-                desc: '通勤和夜跑都能戴，盒体轻，续航稳，整体是偏克制的灰色工业感。',
-                visual: '一副雾灰色入耳耳机，斜放在磨砂充电盒旁边，背景是浅灰桌面与柔光阴影。',
-                price: 299,
-                originPrice: 399
+                badge: '买手推荐',
+                title: '悬浮穹顶蓝牙音箱',
+                desc: '低频厚实但不闷，铝合金机身和织物网面做得很克制，放客厅或书房都像件摆设。',
+                visual: '一只香槟银蓝牙音箱放在胡桃木边柜上，旁边是黑胶唱片和暖色壁灯，空间安静又高级。',
+                price: 1299,
+                originPrice: 1599
             },
             {
-                id: 'shop_recommend_lamp',
+                id: 'shop_recommend_fragrance',
                 category: 'recommend',
-                badge: '上新',
-                title: '桌面月弧氛围灯',
-                desc: '适合放在床头或电脑边，柔光不刺眼，夜间氛围会很安静。',
-                visual: '一盏弧形暖白台灯立在深灰色桌面上，旁边有一本翻开的书和银色水杯。',
-                price: 168,
-                originPrice: 219
+                badge: '沙龙上新',
+                title: '雪松琥珀香氛机',
+                desc: '木质调很干净，扩香速度稳定，适合用来把卧室和工作区的氛围一起提起来。',
+                visual: '一台奶油白香氛机摆在浅石纹台面上，背后是米色窗帘和一束白色花材。',
+                price: 899,
+                originPrice: 1080
             },
             {
-                id: 'shop_takeout_salad',
+                id: 'shop_takeout_omakase',
                 category: 'takeout',
-                badge: '外卖',
-                title: '轻食鸡胸沙拉套餐',
-                desc: '低负担午餐，带玉米、溏心蛋和油醋汁，适合工作日点单。',
-                visual: '透明餐盒里装着鸡胸肉切片、生菜、紫甘蓝和半颗溏心蛋，旁边放着小杯酱汁。',
-                price: 32,
-                originPrice: 45
+                badge: '主厨到家',
+                title: '旬味手作寿司九宫格',
+                desc: '更像精品日料店的外送版本，鱼料新鲜度和摆盘都在线，适合需要一点仪式感的晚餐。',
+                visual: '黑色漆面餐盒里整齐摆着九贯寿司，搭配小盒山葵、腌姜和一支雾面木筷。',
+                price: 228,
+                originPrice: 268
             },
             {
-                id: 'shop_takeout_coffee',
+                id: 'shop_takeout_steak',
                 category: 'takeout',
-                badge: '热卖',
-                title: '冰拿铁双杯组合',
-                desc: '一杯微甜一杯无糖，适合下午一起点，配送稳定。',
-                visual: '两杯透明冰拿铁放在外卖托盘里，杯壁有细密水珠，吸管是磨砂灰色。',
-                price: 26,
-                originPrice: 36
-            },
-            {
-                id: 'shop_romance_box',
-                category: 'romance',
-                badge: '私享',
-                title: '香氛按摩礼盒',
-                desc: '偏氛围感路线，包装低调，包含香薰蜡片、按摩油和软布眼罩。',
-                visual: '深灰礼盒展开摆放，里面整齐放着一瓶香氛油、一只玻璃烛杯和折叠眼罩。',
+                badge: '晚宴限定',
+                title: '慢烤牛排佐黑松露汁',
+                desc: '从包装到配菜都偏西餐厅标准，牛排熟度控制得不错，适合双人分享。',
+                visual: '深色餐盘里放着切片牛排、黄油胡萝卜和土豆泥，旁边是一小盅黑松露酱。',
                 price: 188,
-                originPrice: 269
+                originPrice: 238
             },
             {
-                id: 'shop_romance_silk',
+                id: 'shop_romance_essence',
                 category: 'romance',
-                badge: '限定',
-                title: '雾面缎感睡袍',
-                desc: '面料偏顺滑，颜色是克制的冷灰调，适合居家拍照和放松时穿。',
-                visual: '一件灰蓝色缎面睡袍挂在极简衣架上，后面是浅灰墙面和柔焦落地灯。',
-                price: 239,
-                originPrice: 329
+                badge: '私享系列',
+                title: '夜色微醺双人香氛礼盒',
+                desc: '不是直白路线，更像一套精致的夜间氛围道具，香调、触感和包装都比较克制。',
+                visual: '黑金礼盒半开着，里面放着香氛蜡烛、身体精油和两只磨砂玻璃杯，灯光偏暖。',
+                price: 699,
+                originPrice: 899
+            },
+            {
+                id: 'shop_romance_robe',
+                category: 'romance',
+                badge: '高定面料',
+                title: '真丝雾光长袍套装',
+                desc: '垂坠感很漂亮，版型偏长，颜色是低饱和香槟灰，气质明显比普通居家服更高级。',
+                visual: '一套香槟灰真丝长袍搭在绒面沙发扶手上，边上有一盏金属落地灯和翻开的画册。',
+                price: 1280,
+                originPrice: 1680
             }
         ];
+        const SHOP_DEFAULT_RECOMMEND_PRODUCTS = SHOP_PRODUCT_CATALOG
+            .filter(product => product.category === 'recommend')
+            .map(product => ({ ...product }));
+        const SHOP_DEFAULT_TAKEOUT_PRODUCTS = SHOP_PRODUCT_CATALOG
+            .filter(product => product.category === 'takeout')
+            .map(product => ({ ...product }));
+        const SHOP_DEFAULT_ROMANCE_PRODUCTS = SHOP_PRODUCT_CATALOG
+            .filter(product => product.category === 'romance')
+            .map(product => ({ ...product }));
         let activeShopCategory = 'recommend';
+        let shopRecommendProducts = parseStoredJson(SHOP_RECOMMEND_PRODUCTS_STORAGE_KEY, null);
+        let shopTakeoutProducts = parseStoredJson(SHOP_TAKEOUT_PRODUCTS_STORAGE_KEY, null);
+        let shopRomanceProducts = parseStoredJson(SHOP_ROMANCE_PRODUCTS_STORAGE_KEY, null);
+        let shopGeneratingCategory = '';
+        if (!Array.isArray(shopRecommendProducts) || !shopRecommendProducts.length) {
+            shopRecommendProducts = SHOP_DEFAULT_RECOMMEND_PRODUCTS.map(product => ({ ...product }));
+        } else {
+            shopRecommendProducts = normalizeShopCategoryProducts(shopRecommendProducts, 'recommend');
+        }
+        if (!Array.isArray(shopTakeoutProducts) || !shopTakeoutProducts.length) {
+            shopTakeoutProducts = SHOP_DEFAULT_TAKEOUT_PRODUCTS.map(product => ({ ...product }));
+        } else {
+            shopTakeoutProducts = normalizeShopCategoryProducts(shopTakeoutProducts, 'takeout');
+        }
+        if (!Array.isArray(shopRomanceProducts) || !shopRomanceProducts.length) {
+            shopRomanceProducts = SHOP_DEFAULT_ROMANCE_PRODUCTS.map(product => ({ ...product }));
+        } else {
+            shopRomanceProducts = normalizeShopCategoryProducts(shopRomanceProducts, 'romance');
+        }
         let shopCartItems = parseStoredJson('shop_cart_items', []);
         if (!Array.isArray(shopCartItems)) shopCartItems = [];
 
@@ -8963,14 +9396,177 @@
             return `￥${amount.toFixed(amount % 1 === 0 ? 0 : 2)}`;
         }
 
-        function getFilteredShopProducts() {
-            const keyword = String(shopSearchInput?.value || '').trim().toLowerCase();
-            return SHOP_PRODUCT_CATALOG.filter(product => {
-                if (product.category !== activeShopCategory) return false;
-                if (!keyword) return true;
-                const haystack = [product.title, product.desc, product.visual, product.badge].join(' ').toLowerCase();
-                return haystack.includes(keyword);
+        function normalizeShopPriceNumber(value, fallback = 0) {
+            const numericValue = Number(String(value ?? '').replace(/[^\d.]/g, ''));
+            if (!Number.isFinite(numericValue) || numericValue <= 0) return fallback;
+            return Math.round(numericValue * 100) / 100;
+        }
+
+        function getShopCategoryMeta(category) {
+            if (category === 'takeout') {
+                return {
+                    category: 'takeout',
+                    displayName: '外卖',
+                    placeholder: '搜索精品外卖，像高端餐厅外送一样出结果……',
+                    emptyTitle: '请输入外卖关键词',
+                    emptyMessage: '先输入想吃的内容，比如寿司、牛排、brunch、甜品、沙拉。',
+                    configErrorTitle: '无法搜索外卖商品',
+                    loadingTitle: 'AI 正在安排餐单',
+                    loadingMessage: keyword => `正在根据“${keyword}”生成一组更偏高端的外卖结果，请稍等。`,
+                    promptRole: '你是高端外卖平台的中文餐饮商品策划助手。',
+                    promptNeed: '请根据用户输入的关键词，一次生成 8 个正常可配送的高端外卖商品。',
+                    promptStyle: '结果要像精品餐厅外送或高端餐饮商城，强调食材、摆盘、套餐结构和用餐仪式感，不能有低价凑单、满减冲量、工厂盒饭气质。',
+                    promptExtra: '商品可以覆盖主食、轻食、甜品、咖啡、双人套餐等细分方向，但必须都和关键词相关且适合外送。',
+                    userTask: keyword => `请根据“${keyword}”生成 8 个偏高端、正常可配送的外卖商品。`,
+                    defaultBadge: '精选餐单',
+                    fallbackTitle: '主厨精选餐品',
+                    fallbackDesc: '这是一份更讲究食材和摆盘的高端外卖商品，适合需要仪式感的一餐。',
+                    fallbackVisual: '餐品被摆放在精致餐盒和餐具之间，整体画面干净克制，像餐厅级外送。',
+                    minPrice: 68,
+                    originMarkup: 1.18
+                };
+            }
+            if (category === 'romance') {
+                return {
+                    category: 'romance',
+                    displayName: '情趣',
+                    placeholder: '搜索私享好物，结果更克制也更高级……',
+                    emptyTitle: '请输入情趣关键词',
+                    emptyMessage: '先输入想找的方向，比如香氛礼盒、真丝睡袍、按摩油、双人礼物。',
+                    configErrorTitle: '无法搜索情趣商品',
+                    loadingTitle: 'AI 正在整理私享清单',
+                    loadingMessage: keyword => `正在根据“${keyword}”生成一组更偏高端的私享商品，请稍等。`,
+                    promptRole: '你是高端情趣生活方式平台的中文商品策划助手。',
+                    promptNeed: '请根据用户输入的关键词，一次生成 8 个正常可售卖的高端情趣商品。',
+                    promptStyle: '整体不要出现廉价感。',
+                    promptExtra: '商品必须与关键词直接相关。',
+                    userTask: keyword => `请根据“${keyword}”生成 8 个偏高端的情趣生活方式商品。`,
+                    defaultBadge: '私享精选',
+                    fallbackTitle: '夜间氛围私享单品',
+                    fallbackDesc: '定位偏高端私享路线，更重视质感、包装和氛围，而不是直接刺激。',
+                    fallbackVisual: '商品陈列在柔和灯光与低饱和空间里，包装低调，整体呈现很有质感。',
+                    minPrice: 199,
+                    originMarkup: 1.24
+                };
+            }
+            return {
+                category: 'recommend',
+                displayName: '推荐',
+                placeholder: '搜索高端商品，像商场一样出结果……',
+                emptyTitle: '请输入商品关键词',
+                emptyMessage: '先输入想找的商品，比如音箱、香水、咖啡机、真丝睡袍。',
+                configErrorTitle: '无法搜索商店商品',
+                loadingTitle: 'AI 正在精选上新',
+                loadingMessage: keyword => `正在根据“${keyword}”生成一组更偏高端的推荐商品，请稍等。`,
+                promptRole: '你是高端电商平台的中文商品策划助手。',
+                promptNeed: '请根据用户输入的商品关键词，一次生成 8 个正常可售卖的推荐商品。',
+                promptStyle: '搜索结果要像淘宝或精品电商里的正常商品结果，搜什么就围绕什么返回，不要跑题，整体定位必须偏高端、有质感、有设计感。',
+                promptExtra: '不能有低价甩卖、拼单、9.9 包邮、工厂清仓这类平台气质，结果允许覆盖不同材质、规格、子品类和风格路线。',
+                userTask: keyword => `请根据“${keyword}”生成 8 个偏高端、正常可售卖的推荐商品。`,
+                defaultBadge: '高端精选',
+                fallbackTitle: '高端精选单品',
+                fallbackDesc: '这是一件更强调材质、设计和空间气质的高端商品，适合出现在精品商店首页。',
+                fallbackVisual: '商品被摆放在高级感很强的空间里，光线柔和，整体陈列像买手店。',
+                minPrice: 99,
+                originMarkup: 1.22
+            };
+        }
+
+        function normalizeShopCategoryProducts(items, category, keyword = '') {
+            if (!Array.isArray(items)) return [];
+            const categoryMeta = getShopCategoryMeta(category);
+            return items.slice(0, 8).map((item, index) => {
+                const title = clampStoredText(String(item?.title || '').trim(), 32) || `${keyword || categoryMeta.displayName}${categoryMeta.fallbackTitle}${index + 1}`;
+                const desc = clampStoredText(String(item?.desc || '').trim(), 80) || categoryMeta.fallbackDesc;
+                const visual = clampStoredText(String(item?.visual || '').trim(), 120) || categoryMeta.fallbackVisual;
+                const badge = clampStoredText(String(item?.badge || '').trim(), 12) || categoryMeta.defaultBadge;
+                const price = Math.max(categoryMeta.minPrice, normalizeShopPriceNumber(item?.price, categoryMeta.minPrice * 2.8));
+                const originPrice = Math.max(price + 20, normalizeShopPriceNumber(item?.originPrice, Math.round(price * categoryMeta.originMarkup)));
+                return {
+                    id: String(item?.id || `shop_${category}_dynamic_${Date.now()}_${index}`),
+                    category,
+                    badge,
+                    title,
+                    desc,
+                    visual,
+                    price,
+                    originPrice
+                };
             });
+        }
+
+        function getShopProductsByCategory(category) {
+            if (category === 'recommend') {
+                return Array.isArray(shopRecommendProducts) && shopRecommendProducts.length
+                    ? shopRecommendProducts
+                    : SHOP_DEFAULT_RECOMMEND_PRODUCTS;
+            }
+            if (category === 'takeout') {
+                return Array.isArray(shopTakeoutProducts) && shopTakeoutProducts.length
+                    ? shopTakeoutProducts
+                    : SHOP_DEFAULT_TAKEOUT_PRODUCTS;
+            }
+            if (category === 'romance') {
+                return Array.isArray(shopRomanceProducts) && shopRomanceProducts.length
+                    ? shopRomanceProducts
+                    : SHOP_DEFAULT_ROMANCE_PRODUCTS;
+            }
+            return [];
+        }
+
+        function getAllShopProducts() {
+            return [
+                ...getShopProductsByCategory('recommend'),
+                ...getShopProductsByCategory('takeout'),
+                ...getShopProductsByCategory('romance')
+            ];
+        }
+
+        function findShopProductById(productId) {
+            return getAllShopProducts().find(item => item.id === productId) || null;
+        }
+
+        function persistShopCategoryProducts(category) {
+            if (category === 'recommend') {
+                safeSetJsonStorage(SHOP_RECOMMEND_PRODUCTS_STORAGE_KEY, shopRecommendProducts);
+                return;
+            }
+            if (category === 'takeout') {
+                safeSetJsonStorage(SHOP_TAKEOUT_PRODUCTS_STORAGE_KEY, shopTakeoutProducts);
+                return;
+            }
+            if (category === 'romance') {
+                safeSetJsonStorage(SHOP_ROMANCE_PRODUCTS_STORAGE_KEY, shopRomanceProducts);
+            }
+        }
+
+        function replaceShopCategoryProducts(category, nextItems, keyword = '') {
+            const normalizedItems = normalizeShopCategoryProducts(nextItems, category, keyword);
+            const fallbackProducts = category === 'takeout'
+                ? SHOP_DEFAULT_TAKEOUT_PRODUCTS
+                : category === 'romance'
+                    ? SHOP_DEFAULT_ROMANCE_PRODUCTS
+                    : SHOP_DEFAULT_RECOMMEND_PRODUCTS;
+            const nextProducts = normalizedItems.length
+                ? normalizedItems
+                : fallbackProducts.map(product => ({ ...product }));
+            if (category === 'takeout') {
+                shopTakeoutProducts = nextProducts;
+            } else if (category === 'romance') {
+                shopRomanceProducts = nextProducts;
+            } else {
+                shopRecommendProducts = nextProducts;
+            }
+            persistShopCategoryProducts(category);
+        }
+
+        function updateShopSearchPlaceholder() {
+            if (!shopSearchInput) return;
+            shopSearchInput.placeholder = getShopCategoryMeta(activeShopCategory).placeholder;
+        }
+
+        function getFilteredShopProducts() {
+            return getShopProductsByCategory(activeShopCategory);
         }
 
         function renderShopProducts() {
@@ -9009,7 +9605,7 @@
         }
 
         function addShopItemToCart(productId) {
-            const product = SHOP_PRODUCT_CATALOG.find(item => item.id === productId);
+            const product = findShopProductById(productId);
             if (!product) return;
             const existingItem = shopCartItems.find(item => item.id === productId);
             if (existingItem) {
@@ -9026,6 +9622,102 @@
             }
             persistShopCart();
             renderShopCart();
+        }
+
+        async function generateShopProductsByKeyword(category = activeShopCategory) {
+            if (shopGeneratingCategory) return;
+
+            const categoryMeta = getShopCategoryMeta(category);
+
+            const keyword = String(shopSearchInput?.value || '').trim();
+            if (!keyword) {
+                await showAppDialog({ title: categoryMeta.emptyTitle, message: categoryMeta.emptyMessage });
+                shopSearchInput?.focus();
+                return;
+            }
+
+            const url = localStorage.getItem('api_url') || '';
+            const key = localStorage.getItem('api_key') || '';
+            const model = localStorage.getItem('api_model') || '';
+            if (!url || !key || !model) {
+                await showAppDialog({ title: categoryMeta.configErrorTitle, message: '请先在设置里配置 API 地址、密钥，并拉取选择模型。' });
+                return;
+            }
+
+            shopGeneratingCategory = category;
+            const previousButtonText = shopSearchButton?.textContent || '搜索';
+            if (shopSearchButton) {
+                shopSearchButton.disabled = true;
+                shopSearchButton.textContent = '搜索中...';
+            }
+            if (shopProductGrid) {
+                shopProductGrid.innerHTML = `<div class="shop-cart-empty" style="grid-column: 1 / -1; min-height: 220px;"><strong>${escapeHtml(categoryMeta.loadingTitle)}</strong><p>${escapeHtml(categoryMeta.loadingMessage(keyword))}</p></div>`;
+            }
+
+            const prompt = [
+                categoryMeta.promptRole,
+                categoryMeta.promptNeed,
+                categoryMeta.promptStyle,
+                categoryMeta.promptExtra,
+                '只返回 JSON，不要返回 Markdown，不要返回代码块，不要解释。',
+                '返回格式必须是：{"products":[{"badge":"...","title":"...","desc":"...","visual":"...","price":0,"originPrice":0}]}。',
+                'products 数组里必须正好有 8 个对象。',
+                '每个对象只允许有 badge、title、desc、visual、price、originPrice 这 6 个字段。',
+                'badge 控制在 4 到 6 个字，title 控制在 8 到 20 个字，desc 控制在 18 到 40 个字，visual 控制在 24 到 60 个字。',
+                'price 和 originPrice 必须返回数字，不要带货币符号。',
+                `price 必须高于 ${categoryMeta.minPrice}，originPrice 必须高于 price。`
+            ].join('\n');
+
+            try {
+                let fetchUrl = url;
+                if (fetchUrl.endsWith('/')) fetchUrl = fetchUrl.slice(0, -1);
+
+                const res = await fetch(`${fetchUrl}/chat/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${key}`
+                    },
+                    body: JSON.stringify({
+                        model,
+                        messages: [
+                            { role: 'system', content: prompt },
+                            { role: 'user', content: categoryMeta.userTask(keyword) }
+                        ]
+                    })
+                });
+
+                if (!res.ok) {
+                    const errorData = await res.json().catch(() => ({}));
+                    throw new Error(errorData.error?.message || `HTTP ${res.status}`);
+                }
+
+                const data = await res.json();
+                const replyText = String(data?.choices?.[0]?.message?.content || '').trim();
+                const parsed = parseJsonReplyText(replyText);
+                const nextItems = Array.isArray(parsed)
+                    ? parsed
+                    : Array.isArray(parsed?.products)
+                        ? parsed.products
+                        : [];
+
+                if (!nextItems.length) {
+                    throw new Error('AI 返回格式不正确，没拿到可展示的商品。');
+                }
+
+                replaceShopCategoryProducts(category, nextItems, keyword);
+                renderShopProducts();
+            } catch (error) {
+                console.error(error);
+                renderShopProducts();
+                await showAppDialog({ title: '搜索失败', message: `AI 生成${categoryMeta.displayName}商品失败：${error.message}` });
+            } finally {
+                shopGeneratingCategory = '';
+                if (shopSearchButton) {
+                    shopSearchButton.disabled = false;
+                    shopSearchButton.textContent = previousButtonText;
+                }
+            }
         }
 
         function removeShopCartItem(productId) {
@@ -9233,6 +9925,498 @@
             persistPddMealItems();
         }
 
+        function normalizePddSharedMealPayload(meal = {}, index = 0) {
+            const normalized = normalizePddMealItem(meal, PDD_DEFAULT_MEALS[index % PDD_DEFAULT_MEALS.length]);
+            return {
+                id: clampStoredText(meal.id || `pdd_meal_${String(normalized.name).replace(/\s+/g, '_')}_${String(normalized.price).replace(/[^\d.]/g, '')}`, 120),
+                badge: normalized.badge,
+                name: normalized.name,
+                scene: normalized.scene,
+                originPrice: normalized.originPrice,
+                price: normalized.price,
+                meta: normalized.meta
+            };
+        }
+
+        function getPddProductDefaultItems(type = 'meal') {
+            if (type === 'cut') return PDD_DEFAULT_CUT_ITEMS;
+            if (type === 'romance') return PDD_DEFAULT_ROMANCE_ITEMS;
+            return PDD_DEFAULT_MEALS;
+        }
+
+        function getPddProductLabel(type = 'meal') {
+            if (type === 'cut') return '拼一刀';
+            if (type === 'romance') return '拼情趣';
+            return '拼好饭';
+        }
+
+        function getPddProductActionLabel(type = 'meal') {
+            if (type === 'cut') return '砍价成功';
+            return '拼单成功';
+        }
+
+        function getPddProductCartSource(type = 'meal') {
+            if (type === 'cut') return 'cut-share';
+            if (type === 'romance') return 'romance-share';
+            return 'meal-share';
+        }
+
+        function getPddProductCartIcon(type = 'meal') {
+            if (type === 'cut') return '🛍️';
+            if (type === 'romance') return '🎁';
+            return '🍱';
+        }
+
+        function normalizePddSharedProductPayload(product = {}, type = 'meal', index = 0) {
+            const normalizedType = type === 'cut' || type === 'romance' ? type : 'meal';
+            if (normalizedType === 'meal') {
+                return { ...normalizePddSharedMealPayload(product, index), type: 'meal' };
+            }
+            const defaults = getPddProductDefaultItems(normalizedType);
+            const fallback = defaults[index % defaults.length] || {};
+            const normalized = normalizedType === 'romance'
+                ? normalizePddRomanceItem(product, fallback)
+                : normalizePddCutItem(product, fallback);
+            return {
+                id: clampStoredText(product.id || `pdd_${normalizedType}_${String(normalized.name).replace(/\s+/g, '_')}_${String(normalized.price).replace(/[^\d.]/g, '')}`, 120),
+                type: normalizedType,
+                badge: normalized.badge,
+                name: normalized.name,
+                scene: normalized.scene,
+                originPrice: normalized.originPrice,
+                price: normalized.price,
+                meta: normalized.meta
+            };
+        }
+
+        function getPddMealPriceNumber(meal = {}) {
+            return normalizeShopPriceNumber(meal.price, 0);
+        }
+
+        function persistPddCart() {
+            safeSetJsonStorage(PDD_CART_ITEMS_STORAGE_KEY, pddCartItems);
+        }
+
+        function addPddProductToCart(product = {}, type = 'meal') {
+            const normalizedProduct = normalizePddSharedProductPayload(product, type);
+            const itemId = normalizedProduct.id || createMessageId('pdd_product_cart');
+            const existingItem = pddCartItems.find(item => item.id === itemId);
+            if (existingItem) {
+                existingItem.quantity = Math.min(99, Number(existingItem.quantity || 1) + 1);
+            } else {
+                pddCartItems.unshift({
+                    id: itemId,
+                    source: getPddProductCartSource(normalizedProduct.type),
+                    type: normalizedProduct.type,
+                    title: normalizedProduct.name,
+                    badge: normalizedProduct.badge,
+                    scene: normalizedProduct.scene,
+                    originPrice: normalizedProduct.originPrice,
+                    price: getPddMealPriceNumber(normalizedProduct),
+                    priceText: normalizedProduct.price,
+                    meta: normalizedProduct.meta,
+                    quantity: 1,
+                    createdAt: Date.now()
+                });
+            }
+            persistPddCart();
+            renderPddCart();
+            return itemId;
+        }
+
+        function addPddMealToCart(meal = {}) {
+            return addPddProductToCart(meal, 'meal');
+        }
+
+        function updatePddCartQuantity(itemId, delta) {
+            const targetItem = pddCartItems.find(item => item.id === itemId);
+            if (!targetItem) return;
+            targetItem.quantity = Math.max(1, Math.min(99, Number(targetItem.quantity || 1) + delta));
+            persistPddCart();
+            renderPddCart();
+        }
+
+        function renderPddCart() {
+            if (!pddCartList || !pddCartSummary || !pddCartTotalLabel || !pddCartTotalValue) return;
+            if (!pddCartItems.length) {
+                pddCartList.innerHTML = '<div class="pdd-cart-empty"><strong>拼单购物车还是空的</strong><p>去拼好饭转发拼单，成功后可以从聊天卡片放进这里。</p></div>';
+                pddCartSummary.style.display = 'none';
+                pddCartTotalLabel.textContent = '已选 0 件，预估合计';
+                pddCartTotalValue.textContent = '¥0.00';
+                return;
+            }
+            pddCartSummary.style.display = 'flex';
+            let total = 0;
+            let count = 0;
+            pddCartList.innerHTML = pddCartItems.map(item => {
+                const quantity = Math.max(1, Number(item.quantity) || 1);
+                const price = Number(item.price) || normalizeShopPriceNumber(item.priceText, 0);
+                total += price * quantity;
+                count += quantity;
+                return `
+                    <div class="pdd-cart-item">
+                        <div class="pdd-cart-check"></div>
+                        <div class="pdd-cart-thumb">${getPddProductCartIcon(item.type)}</div>
+                        <div class="pdd-cart-info">
+                            <div class="pdd-cart-shop">${escapeHtml(getPddProductLabel(item.type))} · ${escapeHtml(item.badge || '拼单成功')}</div>
+                            <div class="pdd-cart-title">${escapeHtml(item.title || '拼单商品')}</div>
+                            <div class="pdd-cart-tags">
+                                <span class="pdd-cart-tag">拼单成功</span>
+                                <span class="pdd-cart-tag">${escapeHtml(item.meta || '限时拼单补贴')}</span>
+                            </div>
+                            <div class="pdd-cart-row">
+                                <div class="pdd-cart-price"><small>¥</small>${escapeHtml(price.toFixed(2))}</div>
+                                <div class="pdd-cart-controls">
+                                    <button type="button" class="pdd-cart-step" data-pdd-cart-step="decrease" data-pdd-cart-id="${escapeHtml(item.id)}">−</button>
+                                    <span>${quantity}</span>
+                                    <button type="button" class="pdd-cart-step" data-pdd-cart-step="increase" data-pdd-cart-id="${escapeHtml(item.id)}">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            pddCartTotalLabel.textContent = `已选 ${count} 件，预估合计`;
+            pddCartTotalValue.textContent = `¥${total.toFixed(2)}`;
+        }
+
+        function buildPddProductShareCardMarkup(message = {}) {
+            const product = normalizePddSharedProductPayload(message.product || message.meal || {}, message.productType || 'meal');
+            const label = getPddProductLabel(product.type);
+            const actionLabel = getPddProductActionLabel(product.type);
+            return `
+                <div class="msg-pdd-meal-card">
+                    <div class="msg-pdd-meal-top">
+                        <div>
+                            <div class="msg-pdd-meal-kicker">${escapeHtml(label)} · ${escapeHtml(actionLabel)}</div>
+                            <div class="msg-pdd-meal-title">${escapeHtml(product.name)}</div>
+                        </div>
+                        <div class="msg-pdd-meal-status">已成团</div>
+                    </div>
+                    <div class="msg-pdd-meal-body">
+                        <div class="msg-pdd-meal-scene">${escapeHtml(product.scene)}</div>
+                        <div class="msg-pdd-meal-price-row">
+                            <span class="msg-pdd-meal-price">${escapeHtml(product.price)}</span>
+                            <span class="msg-pdd-meal-origin">${escapeHtml(product.originPrice)}</span>
+                        </div>
+                        <div class="msg-pdd-meal-meta">${escapeHtml(product.meta)}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildPddMealShareCardMarkup(message = {}) {
+            return buildPddProductShareCardMarkup(message);
+        }
+
+        function buildPddProductShareMessageText(product = {}, type = 'meal') {
+            const normalizedProduct = normalizePddSharedProductPayload(product, type);
+            const productName = normalizedProduct.name || '拼单商品';
+            const price = normalizedProduct.price || '9.9';
+            const originPrice = normalizedProduct.originPrice || '19.9';
+            return `${getPddProductLabel(normalizedProduct.type)}${getPddProductActionLabel(normalizedProduct.type)}：${productName}，现价¥${price}，原价¥${originPrice}`;
+        }
+
+        function buildPddMealShareMessageText(meal = {}) {
+            return buildPddProductShareMessageText(meal, 'meal');
+        }
+
+        function closePddShareRoleModal() {
+            if (pddShareRoleModal) pddShareRoleModal.style.display = 'none';
+            pendingPddSharedProduct = null;
+            pendingPddShareButton = null;
+            selectedPddShareFriendName = '';
+            if (pddShareRoleConfirm) pddShareRoleConfirm.classList.add('disabled');
+        }
+
+        function updatePddShareRoleSelection() {
+            if (!pddShareRoleList) return;
+            pddShareRoleList.querySelectorAll('[data-pdd-share-friend]').forEach(item => {
+                const isSelected = item.getAttribute('data-pdd-share-friend') === selectedPddShareFriendName;
+                item.classList.toggle('is-selected', isSelected);
+                const check = item.querySelector('.pdd-share-role-check');
+                if (check) check.textContent = isSelected ? '✓' : '';
+            });
+            if (pddShareRoleConfirm) pddShareRoleConfirm.classList.toggle('disabled', !selectedPddShareFriendName);
+        }
+
+        function renderPddShareRoleList() {
+            if (!pddShareRoleList) return;
+            const selectableFriends = typeof getSelectableFriends === 'function' ? getSelectableFriends() : [];
+            if (!selectableFriends.length) {
+                pddShareRoleList.innerHTML = '<div class="pdd-share-role-empty">还没有可转发的角色。先去微信里添加角色。</div>';
+                return;
+            }
+            pddShareRoleList.innerHTML = selectableFriends.map(friend => {
+                const normalizedFriend = normalizeFriendRecord(friend);
+                if (!normalizedFriend) return '';
+                const avatarMeta = getDisplayAvatarMeta({
+                    name: normalizedFriend.name,
+                    avatar: normalizedFriend.avatar || '',
+                    fallbackText: (normalizedFriend.name || '友').charAt(0) || '友'
+                });
+                return `
+                    <button type="button" class="pdd-share-role-item" data-pdd-share-friend="${escapeHtml(normalizedFriend.name)}">
+                        <div class="pdd-share-role-avatar" style="${avatarMeta.style}">${avatarMeta.text}</div>
+                        <div class="pdd-share-role-main">
+                            <div class="pdd-share-role-name">${escapeHtml(normalizedFriend.name)}</div>
+                        </div>
+                        <div class="pdd-share-role-check" aria-hidden="true"></div>
+                    </button>
+                `;
+            }).join('');
+            updatePddShareRoleSelection();
+        }
+
+        function openPddShareRoleModal(product = {}, triggerButton = null, type = 'meal') {
+            pendingPddSharedProduct = normalizePddSharedProductPayload(product, type);
+            pendingPddShareButton = triggerButton;
+            selectedPddShareFriendName = '';
+            if (pddShareRoleHint) pddShareRoleHint.textContent = `选择一个角色，${pendingPddSharedProduct.name} 会直接${getPddProductActionLabel(pendingPddSharedProduct.type)}并出现在聊天里。`;
+            renderPddShareRoleList();
+            if (pddShareRoleModal) pddShareRoleModal.style.display = 'flex';
+        }
+
+        function sharePddProductToFriend(friendName, product = {}, type = 'meal') {
+            const normalizedFriendName = clampStoredText(friendName, 80);
+            const normalizedProduct = normalizePddSharedProductPayload(product, type);
+            if (!normalizedFriendName || !normalizedProduct.name) return;
+            addPddProductToCart(normalizedProduct, normalizedProduct.type);
+            ensureFriendChatHistory(normalizedFriendName);
+            chatRenderVisibleCountMap[normalizedFriendName] = Math.max(
+                getChatRenderVisibleCount(normalizedFriendName, chatDatabase[normalizedFriendName].length),
+                CHAT_RENDER_RECENT_LIMIT
+            ) + 1;
+            const record = {
+                role: 'user',
+                type: 'pdd_meal_share',
+                content: buildPddProductShareMessageText(normalizedProduct, normalizedProduct.type),
+                productType: normalizedProduct.type,
+                product: normalizedProduct,
+                meal: normalizedProduct,
+                id: createMessageId('pdd-meal'),
+                createdAt: Date.now()
+            };
+            chatDatabase[normalizedFriendName].push(record);
+            persistChatDatabase();
+            if (currentChatFriend === normalizedFriendName && chatRoom.style.display === 'flex') {
+                appendMsgBubble('user', record.content, null, record);
+                scrollToBottom();
+            }
+            renderFriendList();
+            if (pendingPddShareButton) {
+                pendingPddShareButton.classList.add('is-done');
+                pendingPddShareButton.textContent = getPddProductActionLabel(normalizedProduct.type);
+            }
+        }
+
+        function sharePddMealToFriend(friendName, meal = {}) {
+            return sharePddProductToFriend(friendName, meal, 'meal');
+        }
+
+        function formatPddCutMoney(value) {
+            const amount = Number(value) || 0;
+            return amount.toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1');
+        }
+
+        function normalizePddCutItem(item = {}, fallback = {}) {
+            const priceNumber = Math.min(9.99, Math.max(0.99, normalizeShopPriceNumber(item.price, Number(fallback.price) || 1.99)));
+            const fallbackOrigin = normalizeShopPriceNumber(fallback.originPrice, 19.9);
+            const originNumber = Math.max(priceNumber + 1, normalizeShopPriceNumber(item.originPrice || item.originalPrice, fallbackOrigin));
+            return {
+                badge: clampStoredText(item.badge || fallback.badge || '限时疯抢', 12) || '限时疯抢',
+                name: clampStoredText(item.name || item.title || fallback.name || '拼单低价货', 32) || '拼单低价货',
+                scene: clampStoredText(item.scene || item.visual || fallback.scene || '低价货摆在清仓堆头上，主打便宜、瑕疵、尾货和顺手捡漏。', 80) || '低价货摆在清仓堆头上，主打便宜、瑕疵、尾货和顺手捡漏。',
+                originPrice: formatPddCutMoney(originNumber),
+                price: formatPddCutMoney(priceNumber),
+                meta: clampStoredText(item.meta || item.desc || fallback.meta || '已拼很多单 · 限时补贴 · 转发更容易成团', 60) || '已拼很多单 · 限时补贴 · 转发更容易成团'
+            };
+        }
+
+        function buildPddCutKeywordInstruction(keyword = '') {
+            const normalizedKeyword = clampStoredText(keyword, 30);
+            if (!normalizedKeyword) return '';
+            return [
+                `用户这次搜索的是“${normalizedKeyword}”。`,
+                `返回结果必须把“${normalizedKeyword}”当作主商品本体，或者该品类下直接可卖的廉价版本。`,
+                '不要偷换成相关配件、周边、耗材、清洁用品、收纳用品或装饰品。',
+                '例如：搜索“衣服”就返回廉价衣服、尾货衣服、旧款衣服，不要返回除毛器、衣架、喷雾。',
+                '例如：搜索“电脑”就返回老旧电脑、二手电脑、瑕疵电脑，不要返回电脑包、清洁喷雾、桌面配件。'
+            ].join('\n');
+        }
+
+        function normalizePddCutItems(items = []) {
+            const sourceItems = Array.isArray(items) && items.length ? items.slice(0, 6) : PDD_DEFAULT_CUT_ITEMS;
+            return sourceItems.map((item, index) => normalizePddCutItem(item, PDD_DEFAULT_CUT_ITEMS[index % PDD_DEFAULT_CUT_ITEMS.length]));
+        }
+
+        function persistPddCutItems() {
+            safeSetJsonStorage(PDD_CUT_ITEMS_STORAGE_KEY, pddCutItems);
+        }
+
+        function replacePddCutItems(nextItems = []) {
+            pddCutItems = normalizePddCutItems(nextItems);
+            persistPddCutItems();
+        }
+
+        function renderPddCutList() {
+            if (!pddCutList) return;
+            const items = Array.isArray(pddCutItems) && pddCutItems.length ? pddCutItems : normalizePddCutItems();
+            if (!items.length) {
+                pddCutList.innerHTML = '<div class="pdd-drama-empty"><strong>没有找到对应商品</strong><p>换个关键词试试，搜什么就会围绕什么出结果。</p></div>';
+                return;
+            }
+            const visualThemes = [
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #f3ecff 0%, #e4daf8 48%, #efe7fb 100%)',
+                    color: 'rgba(79, 56, 118, 0.9)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #ffe8db 0%, #ffd6bf 48%, #fff0e7 100%)',
+                    color: 'rgba(143, 79, 39, 0.92)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #e4f4ff 0%, #d0ebfb 48%, #eef9ff 100%)',
+                    color: 'rgba(46, 102, 130, 0.9)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #eaf8df 0%, #c8edb2 100%)',
+                    color: 'rgba(67, 113, 50, 0.9)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #fff0f4 0%, #ffc8d8 100%)',
+                    color: 'rgba(128, 58, 82, 0.9)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #fff7d9 0%, #ffe18a 100%)',
+                    color: 'rgba(128, 91, 30, 0.92)'
+                }
+            ];
+            pddCutList.innerHTML = items.map((item, index) => {
+                const theme = visualThemes[index % visualThemes.length];
+                return `
+                    <div class="pdd-cut-card">
+                        <div class="pdd-cut-visual" style="background: ${theme.background};">
+                            <span class="pdd-cut-badge">${escapeHtml(item.badge)}</span>
+                            <div class="pdd-cut-scene" style="color: ${theme.color};">${escapeHtml(item.scene)}</div>
+                        </div>
+                        <div class="pdd-cut-body">
+                            <div>
+                                <div class="pdd-cut-name">${escapeHtml(item.name)}</div>
+                                <div class="pdd-cut-price-row">
+                                    <span class="pdd-cut-price-origin">原价${escapeHtml(item.originPrice)}</span>
+                                    <span class="pdd-cut-price-current"><small>￥</small>${escapeHtml(item.price)}</span>
+                                </div>
+                                <div class="pdd-cut-meta">${escapeHtml(item.meta)}</div>
+                            </div>
+                        </div>
+                        <div class="pdd-cut-side">
+                            <button class="pdd-cut-action" type="button" data-pdd-share-cut="${index}">转发砍一刀</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function normalizePddRomanceItem(item = {}, fallback = {}) {
+            const priceNumber = Math.min(9.99, Math.max(0.99, normalizeShopPriceNumber(item.price, Number(fallback.price) || 2.99)));
+            const fallbackOrigin = normalizeShopPriceNumber(fallback.originPrice, 59.9);
+            const originNumber = Math.max(priceNumber + 1, normalizeShopPriceNumber(item.originPrice || item.originalPrice, fallbackOrigin));
+            return {
+                badge: clampStoredText(item.badge || fallback.badge || '私密热卖', 12) || '私密热卖',
+                name: clampStoredText(item.name || item.title || fallback.name || '低价氛围小物', 32) || '低价氛围小物',
+                scene: clampStoredText(item.scene || item.visual || fallback.scene || '低调礼盒里摆着便宜又有氛围感的小物件，主打顺手拼单和私密到手。', 80) || '低调礼盒里摆着便宜又有氛围感的小物件，主打顺手拼单和私密到手。',
+                originPrice: formatPddCutMoney(originNumber),
+                price: formatPddCutMoney(priceNumber),
+                meta: clampStoredText(item.meta || item.desc || fallback.meta || '已拼很多单 · 保密面单发货 · 转发更容易成团', 60) || '已拼很多单 · 保密面单发货 · 转发更容易成团'
+            };
+        }
+
+        function normalizePddRomanceItems(items = []) {
+            const sourceItems = Array.isArray(items) && items.length ? items.slice(0, 6) : PDD_DEFAULT_ROMANCE_ITEMS;
+            return sourceItems.map((item, index) => normalizePddRomanceItem(item, PDD_DEFAULT_ROMANCE_ITEMS[index % PDD_DEFAULT_ROMANCE_ITEMS.length]));
+        }
+
+        function persistPddRomanceItems() {
+            safeSetJsonStorage(PDD_ROMANCE_ITEMS_STORAGE_KEY, pddRomanceItems);
+        }
+
+        function replacePddRomanceItems(nextItems = []) {
+            pddRomanceItems = normalizePddRomanceItems(nextItems);
+            persistPddRomanceItems();
+        }
+
+        function renderPddRomanceList() {
+            if (!pddRomanceList) return;
+            const items = Array.isArray(pddRomanceItems) && pddRomanceItems.length ? pddRomanceItems : normalizePddRomanceItems();
+            if (!items.length) {
+                pddRomanceList.innerHTML = '<div class="pdd-drama-empty"><strong>没有找到对应商品</strong><p>换个关键词试试，搜什么就会围绕什么出结果。</p></div>';
+                return;
+            }
+            const visualThemes = [
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #fde7ef 0%, #f7ccd9 46%, #fff0f4 100%)',
+                    color: 'rgba(131, 60, 86, 0.9)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #f6e8ff 0%, #ead7fb 46%, #faf2ff 100%)',
+                    color: 'rgba(97, 62, 136, 0.9)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #fff0df 0%, #ffe1c3 46%, #fff6ea 100%)',
+                    color: 'rgba(139, 88, 46, 0.9)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #e4f4ff 0%, #d0ebfb 48%, #eef9ff 100%)',
+                    color: 'rgba(46, 102, 130, 0.9)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #fff6dd 0%, #ffe7a9 48%, #fffaf0 100%)',
+                    color: 'rgba(137, 101, 34, 0.9)'
+                },
+                {
+                    background: 'radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 32%), linear-gradient(145deg, #e9f7e2 0%, #d6efc9 48%, #f5fbf1 100%)',
+                    color: 'rgba(69, 120, 69, 0.9)'
+                }
+            ];
+            pddRomanceList.innerHTML = items.map((item, index) => {
+                const theme = visualThemes[index % visualThemes.length];
+                return `
+                    <div class="pdd-meal-card">
+                        <div class="pdd-meal-visual" style="background: ${theme.background};">
+                            <div class="pdd-meal-badge">${escapeHtml(item.badge)}</div>
+                            <div class="pdd-meal-scene" style="color: ${theme.color};">${escapeHtml(item.scene)}</div>
+                        </div>
+                        <div class="pdd-meal-body">
+                            <div>
+                                <div class="pdd-meal-name">${escapeHtml(item.name)}</div>
+                                <div class="pdd-meal-price-row">
+                                    <span class="pdd-meal-price-origin">原价${escapeHtml(item.originPrice)}</span>
+                                    <span class="pdd-meal-price-current"><small>惊爆价</small>￥${escapeHtml(item.price)}</span>
+                                </div>
+                                <div class="pdd-meal-meta">${escapeHtml(item.meta)}</div>
+                            </div>
+                        </div>
+                        <div class="pdd-meal-side">
+                            <button type="button" class="pdd-meal-action" data-pdd-share-romance="${index}">转发拼单</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function buildPddRomanceKeywordInstruction(keyword = '') {
+            const normalizedKeyword = clampStoredText(keyword, 30);
+            if (!normalizedKeyword) return '';
+            return [
+                `用户这次搜索的是“${normalizedKeyword}”。`,
+                `返回结果必须把“${normalizedKeyword}”当作主商品本体，或者该品类下直接可卖的廉价版本。`,
+                '不要偷换成相关配件、周边、耗材、清洁用品、收纳用品或装饰品。',
+                '例如：搜索“睡衣”就返回廉价睡衣、薄款睡裙、清仓家居服，不要返回衣架、喷雾、收纳袋。',
+                '例如：搜索“按摩器”就返回低价按摩器、入门按摩器、便携按摩器，不要返回清洁湿巾、替换袋、香薰摆件。'
+            ].join('\n');
+        }
+
         function renderPddMealList() {
             if (!pddMealList) return;
             const meals = Array.isArray(pddMealItems) && pddMealItems.length ? pddMealItems : normalizePddMealItems();
@@ -9253,7 +10437,7 @@
                         </div>
                     </div>
                     <div class="pdd-meal-side">
-                        <button type="button" class="pdd-meal-action">转发拼单</button>
+                        <button type="button" class="pdd-meal-action" data-pdd-share-meal="${index}">转发拼单</button>
                     </div>
                 </div>
             `).join('');
@@ -9350,6 +10534,203 @@
                 if (pddMealSearchButton) {
                     pddMealSearchButton.disabled = false;
                     pddMealSearchButton.textContent = previousButtonText;
+                }
+            }
+        }
+
+        async function generatePddCutItemsByKeyword() {
+            if (pddCutGenerating) return;
+
+            const keyword = String(pddCutSearchInput?.value || '').trim();
+            if (!keyword) {
+                await showAppDialog({ title: '请输入商品关键词', message: '先输入想搜的商品，比如短袖、牛仔裤、旧手机、二手电脑、杯子。' });
+                pddCutSearchInput?.focus();
+                return;
+            }
+
+            const url = localStorage.getItem('api_url') || '';
+            const key = localStorage.getItem('api_key') || '';
+            const model = localStorage.getItem('api_model') || '';
+            if (!url || !key || !model) {
+                await showAppDialog({ title: '无法搜索拼单商品', message: '请先在设置里配置 API 地址、密钥，并拉取选择模型。' });
+                return;
+            }
+
+            pddCutGenerating = true;
+            const previousButtonText = pddCutSearchButton?.textContent || '搜索';
+            if (pddCutSearchButton) {
+                pddCutSearchButton.disabled = true;
+                pddCutSearchButton.textContent = '搜索中...';
+            }
+            if (pddCutList) {
+                pddCutList.innerHTML = `<div class="pdd-drama-empty"><strong>AI 正在上架低价货</strong><p>正在根据“${escapeHtml(keyword)}”生成 6 个围绕关键词本体的低价拼单商品，请稍等。</p></div>`;
+            }
+
+            const prompt = [
+                '你是拼多多风格低价拼单商品的中文商品策划助手。',
+                '请根据用户输入的关键词，一次生成 6 个正常可售卖的低价拼单商品。',
+                '搜索结果要像拼多多里的正常商品结果，搜什么就围绕什么返回，不要跑题。',
+                '搜索结果必须优先返回关键词本体，不要把主商品偷换成相关配件、周边、耗材、清洁用品、收纳用品。',
+                '如果关键词本身就是一个商品大类，就返回这个大类里廉价、清仓、尾货、老款、二手、瑕疵但仍可售卖的本体商品。',
+                '可以土味、破旧、库存尾货、四手货，但仍然要像平台上真的在卖的商品。',
+                '不要高端，不要奢侈品，不要大型家电或整屋家具；如果关键词本体不是小件，也要返回它的廉价版本，而不是它的周边。',
+                '整体文案要有拼多多平台感，要出现疯抢、已拼、补贴、成团、低价、捡漏这种便宜拼单气质。',
+                '只返回 JSON，不要返回 Markdown，不要返回代码块，不要解释。',
+                '返回格式必须是：{"products":[{"badge":"...","name":"...","scene":"...","originPrice":0,"price":0,"meta":"..."}]}。',
+                'products 数组里必须正好有 6 个对象。',
+                '每个对象只允许有 badge、name、scene、originPrice、price、meta 这 6 个字段。',
+                'badge 控制在 4 到 6 个字，name 控制在 8 到 20 个字，scene 控制在 18 到 40 个字，meta 控制在 16 到 36 个字。',
+                'price 和 originPrice 必须返回数字，不要带货币符号。',
+                'price 必须大于等于 0.99 且小于等于 9.99，originPrice 必须高于 price。',
+                buildPddCutKeywordInstruction(keyword)
+            ].filter(Boolean).join('\n');
+
+            try {
+                let fetchUrl = url;
+                if (fetchUrl.endsWith('/')) fetchUrl = fetchUrl.slice(0, -1);
+
+                const res = await fetch(`${fetchUrl}/chat/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${key}`
+                    },
+                    body: JSON.stringify({
+                        model,
+                        messages: [
+                            { role: 'system', content: prompt },
+                            { role: 'user', content: `请根据“${keyword}”生成 6 个围绕关键词本体的低价拼单商品，不要返回周边、配件或清洁用品。` }
+                        ]
+                    })
+                });
+
+                if (!res.ok) {
+                    const errorData = await res.json().catch(() => ({}));
+                    throw new Error(errorData.error?.message || `HTTP ${res.status}`);
+                }
+
+                const data = await res.json();
+                const replyText = String(data?.choices?.[0]?.message?.content || '').trim();
+                const parsed = parseJsonReplyText(replyText);
+                const nextItems = Array.isArray(parsed)
+                    ? parsed
+                    : Array.isArray(parsed?.products)
+                        ? parsed.products
+                        : [];
+
+                if (!nextItems.length) {
+                    throw new Error('AI 返回格式不正确，没拿到可展示的拼单小商品。');
+                }
+
+                replacePddCutItems(nextItems);
+                renderPddCutList();
+            } catch (error) {
+                console.error(error);
+                renderPddCutList();
+                await showAppDialog({ title: '搜索失败', message: `AI 生成拼单小商品失败：${error.message}` });
+            } finally {
+                pddCutGenerating = false;
+                if (pddCutSearchButton) {
+                    pddCutSearchButton.disabled = false;
+                    pddCutSearchButton.textContent = previousButtonText;
+                }
+            }
+        }
+
+        async function generatePddRomanceItemsByKeyword() {
+            if (pddRomanceGenerating) return;
+
+            const keyword = String(pddRomanceSearchInput?.value || '').trim();
+            if (!keyword) {
+                await showAppDialog({ title: '请输入情趣关键词', message: '先输入想搜的商品，比如睡衣、按摩器、香薰、礼盒、眼罩。' });
+                pddRomanceSearchInput?.focus();
+                return;
+            }
+
+            const url = localStorage.getItem('api_url') || '';
+            const key = localStorage.getItem('api_key') || '';
+            const model = localStorage.getItem('api_model') || '';
+            if (!url || !key || !model) {
+                await showAppDialog({ title: '无法搜索拼情趣商品', message: '请先在设置里配置 API 地址、密钥，并拉取选择模型。' });
+                return;
+            }
+
+            pddRomanceGenerating = true;
+            const previousButtonText = pddRomanceSearchButton?.textContent || '搜索';
+            if (pddRomanceSearchButton) {
+                pddRomanceSearchButton.disabled = true;
+                pddRomanceSearchButton.textContent = '搜索中...';
+            }
+            if (pddRomanceList) {
+                pddRomanceList.innerHTML = `<div class="pdd-drama-empty"><strong>AI 正在上架私密低价货</strong><p>正在根据“${escapeHtml(keyword)}”生成 6 个围绕关键词本体的低价拼情趣商品，请稍等。</p></div>`;
+            }
+
+            const prompt = [
+                '你是拼多多风格低价拼单商品的中文商品策划助手。',
+                '当前品类是拼情趣，请根据用户输入的关键词，一次生成 6 个正常可售卖的低价拼情趣商品。',
+                '搜索结果要像拼多多里的正常商品结果，搜什么就围绕什么返回，不要跑题。',
+                '搜索结果必须优先返回关键词本体，不要把主商品偷换成相关配件、周边、耗材、清洁用品、收纳用品。',
+                '可以便宜、土味、入门、尾货、库存款，但仍然要像平台上真的在卖的商品。',
+                '整体文案要有拼多多平台感，要出现疯抢、已拼、补贴、成团、低价、捡漏这种便宜拼单气质。',
+                '表达要克制低调，避免露骨描述，用生活方式和氛围化表达来呈现。',
+                '只返回 JSON，不要返回 Markdown，不要返回代码块，不要解释。',
+                '返回格式必须是：{"products":[{"badge":"...","name":"...","scene":"...","originPrice":0,"price":0,"meta":"..."}]}。',
+                'products 数组里必须正好有 6 个对象。',
+                '每个对象只允许有 badge、name、scene、originPrice、price、meta 这 6 个字段。',
+                'badge 控制在 4 到 6 个字，name 控制在 8 到 20 个字，scene 控制在 18 到 40 个字，meta 控制在 16 到 36 个字。',
+                'price 和 originPrice 必须返回数字，不要带货币符号。',
+                'price 必须大于等于 0.99 且小于等于 9.99，originPrice 必须高于 price。',
+                buildPddRomanceKeywordInstruction(keyword)
+            ].filter(Boolean).join('\n');
+
+            try {
+                let fetchUrl = url;
+                if (fetchUrl.endsWith('/')) fetchUrl = fetchUrl.slice(0, -1);
+
+                const res = await fetch(`${fetchUrl}/chat/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${key}`
+                    },
+                    body: JSON.stringify({
+                        model,
+                        messages: [
+                            { role: 'system', content: prompt },
+                            { role: 'user', content: `请根据“${keyword}”生成 6 个围绕关键词本体的低价拼情趣商品，不要返回周边、配件或清洁用品。` }
+                        ]
+                    })
+                });
+
+                if (!res.ok) {
+                    const errorData = await res.json().catch(() => ({}));
+                    throw new Error(errorData.error?.message || `HTTP ${res.status}`);
+                }
+
+                const data = await res.json();
+                const replyText = String(data?.choices?.[0]?.message?.content || '').trim();
+                const parsed = parseJsonReplyText(replyText);
+                const nextItems = Array.isArray(parsed)
+                    ? parsed
+                    : Array.isArray(parsed?.products)
+                        ? parsed.products
+                        : [];
+
+                if (!nextItems.length) {
+                    throw new Error('AI 返回格式不正确，没拿到可展示的拼情趣商品。');
+                }
+
+                replacePddRomanceItems(nextItems);
+                renderPddRomanceList();
+            } catch (error) {
+                console.error(error);
+                renderPddRomanceList();
+                await showAppDialog({ title: '搜索失败', message: `AI 生成拼情趣商品失败：${error.message}` });
+            } finally {
+                pddRomanceGenerating = false;
+                if (pddRomanceSearchButton) {
+                    pddRomanceSearchButton.disabled = false;
+                    pddRomanceSearchButton.textContent = previousButtonText;
                 }
             }
         }
@@ -10132,6 +11513,7 @@
                 activeShopCategory = target;
                 shopCategoryChips.forEach(item => item.classList.remove('active'));
                 chip.classList.add('active');
+                updateShopSearchPlaceholder();
                 renderShopProducts();
             });
         });
@@ -10145,6 +11527,7 @@
                 tab.classList.add('active');
                 const targetPage = document.getElementById(`pdd-page-${target}`);
                 if (targetPage) targetPage.classList.add('active');
+                if (target === 'cart') renderPddCart();
             });
         });
 
@@ -10214,6 +11597,114 @@
             });
         }
 
+        if (pddMealList) {
+            pddMealList.addEventListener('click', (event) => {
+                const target = getEventElementTarget(event);
+                const shareButton = target?.closest('[data-pdd-share-meal]');
+                if (!shareButton) return;
+                const mealIndex = Number(shareButton.getAttribute('data-pdd-share-meal')) || 0;
+                const meals = Array.isArray(pddMealItems) && pddMealItems.length ? pddMealItems : normalizePddMealItems();
+                const meal = meals[mealIndex] || meals[0];
+                if (!meal) return;
+                openPddShareRoleModal(meal, shareButton);
+            });
+        }
+
+        if (pddCutList) {
+            pddCutList.addEventListener('click', (event) => {
+                const target = getEventElementTarget(event);
+                const shareButton = target?.closest('[data-pdd-share-cut]');
+                if (!shareButton) return;
+                const itemIndex = Number(shareButton.getAttribute('data-pdd-share-cut')) || 0;
+                const items = Array.isArray(pddCutItems) && pddCutItems.length ? pddCutItems : normalizePddCutItems();
+                const item = items[itemIndex] || items[0];
+                if (!item) return;
+                openPddShareRoleModal(item, shareButton, 'cut');
+            });
+        }
+
+        if (pddRomanceList) {
+            pddRomanceList.addEventListener('click', (event) => {
+                const target = getEventElementTarget(event);
+                const shareButton = target?.closest('[data-pdd-share-romance]');
+                if (!shareButton) return;
+                const itemIndex = Number(shareButton.getAttribute('data-pdd-share-romance')) || 0;
+                const items = Array.isArray(pddRomanceItems) && pddRomanceItems.length ? pddRomanceItems : normalizePddRomanceItems();
+                const item = items[itemIndex] || items[0];
+                if (!item) return;
+                openPddShareRoleModal(item, shareButton, 'romance');
+            });
+        }
+
+        if (pddShareRoleCancel) {
+            pddShareRoleCancel.addEventListener('click', closePddShareRoleModal);
+        }
+
+        if (pddShareRoleModal) {
+            pddShareRoleModal.addEventListener('click', (event) => {
+                if (event.target === pddShareRoleModal) closePddShareRoleModal();
+            });
+        }
+
+        if (pddShareRoleList) {
+            pddShareRoleList.addEventListener('click', (event) => {
+                const target = getEventElementTarget(event);
+                const roleItem = target?.closest('[data-pdd-share-friend]');
+                if (!roleItem) return;
+                selectedPddShareFriendName = roleItem.getAttribute('data-pdd-share-friend') || '';
+                updatePddShareRoleSelection();
+            });
+        }
+
+        if (pddShareRoleConfirm) {
+            pddShareRoleConfirm.addEventListener('click', () => {
+                if (!pendingPddSharedProduct || !selectedPddShareFriendName) return;
+                sharePddProductToFriend(selectedPddShareFriendName, pendingPddSharedProduct, pendingPddSharedProduct.type);
+                closePddShareRoleModal();
+            });
+        }
+
+        if (pddCartList) {
+            pddCartList.addEventListener('click', (event) => {
+                const target = getEventElementTarget(event);
+                const stepButton = target?.closest('[data-pdd-cart-step]');
+                if (!stepButton) return;
+                const itemId = stepButton.getAttribute('data-pdd-cart-id') || '';
+                const delta = stepButton.getAttribute('data-pdd-cart-step') === 'decrease' ? -1 : 1;
+                updatePddCartQuantity(itemId, delta);
+            });
+        }
+
+        if (pddCutSearchInput) {
+            pddCutSearchInput.addEventListener('keydown', async (event) => {
+                if (event.key !== 'Enter') return;
+                event.preventDefault();
+                await generatePddCutItemsByKeyword();
+            });
+        }
+
+        if (pddCutSearchButton) {
+            pddCutSearchButton.addEventListener('click', async () => {
+                await generatePddCutItemsByKeyword();
+                if (pddCutSearchInput) pddCutSearchInput.focus();
+            });
+        }
+
+        if (pddRomanceSearchInput) {
+            pddRomanceSearchInput.addEventListener('keydown', async (event) => {
+                if (event.key !== 'Enter') return;
+                event.preventDefault();
+                await generatePddRomanceItemsByKeyword();
+            });
+        }
+
+        if (pddRomanceSearchButton) {
+            pddRomanceSearchButton.addEventListener('click', async () => {
+                await generatePddRomanceItemsByKeyword();
+                if (pddRomanceSearchInput) pddRomanceSearchInput.focus();
+            });
+        }
+
         if (pddDramaSearchInput) {
             pddDramaSearchInput.addEventListener('keydown', async (event) => {
                 if (event.key !== 'Enter') return;
@@ -10276,19 +11767,16 @@
         });
 
         if (shopSearchInput) {
-            shopSearchInput.addEventListener('input', () => {
-                renderShopProducts();
-            });
-            shopSearchInput.addEventListener('keydown', (event) => {
+            shopSearchInput.addEventListener('keydown', async (event) => {
                 if (event.key !== 'Enter') return;
                 event.preventDefault();
-                renderShopProducts();
+                await generateShopProductsByKeyword(activeShopCategory);
             });
         }
 
         if (shopSearchButton) {
-            shopSearchButton.addEventListener('click', () => {
-                renderShopProducts();
+            shopSearchButton.addEventListener('click', async () => {
+                await generateShopProductsByKeyword(activeShopCategory);
                 if (shopSearchInput) shopSearchInput.focus();
             });
         }
@@ -10323,10 +11811,13 @@
             });
         }
 
+        updateShopSearchPlaceholder();
         renderShopProducts();
         renderPddCouponList();
         renderPddWallet();
         renderPddMealList();
+        renderPddCutList();
+        renderPddRomanceList();
         renderPddDramaGrid();
         renderShopCart();
         renderPddStoryRewardTotal();
@@ -10443,6 +11934,13 @@
                 if (locationDetail) compacted.locationDetail = locationDetail;
             }
 
+            if (normalized.type === 'pdd_meal_share') {
+                const productType = normalized.productType || normalized.product?.type || normalized.meal?.type || 'meal';
+                compacted.productType = productType;
+                compacted.product = normalizePddSharedProductPayload(normalized.product || normalized.meal || {}, productType);
+                compacted.meal = compacted.product;
+            }
+
             if (normalized.quote && typeof normalized.quote === 'object' && !Array.isArray(normalized.quote)) {
                 compacted.quote = {
                     id: String(normalized.quote.id || '').trim(),
@@ -10504,7 +12002,7 @@
             if (!message || typeof message !== 'object' || Array.isArray(message)) return null;
 
             const role = message.role === 'user' || message.role === 'system' ? message.role : 'ai';
-            const type = message.type === 'voice' || message.type === 'photo' || message.type === 'moment_event' || message.type === 'transfer' || message.type === 'location' ? message.type : undefined;
+            const type = message.type === 'voice' || message.type === 'photo' || message.type === 'moment_event' || message.type === 'transfer' || message.type === 'location' || message.type === 'pdd_meal_share' ? message.type : undefined;
             const content = clampStoredText(message.content ?? message.text ?? '', 4000);
             if (!content && role !== 'system') return null;
 
@@ -10533,6 +12031,13 @@
                 normalized.locationDetail = clampStoredText(message.locationDetail || '', 200);
                 if (!normalized.locationTitle) return null;
                 normalized.content = normalized.locationTitle;
+            }
+            if (type === 'pdd_meal_share') {
+                const productType = message.productType || message.product?.type || message.meal?.type || 'meal';
+                normalized.productType = productType;
+                normalized.product = normalizePddSharedProductPayload(message.product || message.meal || {}, productType);
+                normalized.meal = normalized.product;
+                normalized.content = clampStoredText(normalized.content || buildPddProductShareMessageText(normalized.product, normalized.productType), 4000);
             }
             if (message.quote && typeof message.quote === 'object' && !Array.isArray(message.quote)) {
                 normalized.quote = {
@@ -11337,6 +12842,10 @@
                 }
                 if (lastMessage.type === 'location') {
                     return `[位置] ${lastMessage.locationTitle || lastMessage.content || '我的位置'}`;
+                }
+                if (lastMessage.type === 'pdd_meal_share') {
+                    const productType = lastMessage.productType || lastMessage.product?.type || lastMessage.meal?.type || 'meal';
+                    return `[${getPddProductLabel(productType)}] ${buildPddProductShareMessageText(lastMessage.product || lastMessage.meal || {}, productType)}`;
                 }
                 const preview = String(lastMessage.content || '').trim().replace(/\s+/g, ' ');
                 return preview.length > 28 ? `${preview.slice(0, 28)}...` : preview;
@@ -14235,7 +15744,8 @@
             const voiceDuration = Math.max(1, Math.min(60, Math.round(normalizedText.length / 2) + 1));
             const isTransferMessage = message.type === 'transfer' || message.type === 'transfer_preview';
             const isLocationMessage = message.type === 'location';
-            const isRichBubble = Boolean(message.type === 'voice' || message.type === 'photo' || message.isHtml || isTransferMessage || isLocationMessage);
+            const isPddMealShareMessage = message.type === 'pdd_meal_share';
+            const isRichBubble = Boolean(message.type === 'voice' || message.type === 'photo' || message.isHtml || isTransferMessage || isLocationMessage || isPddMealShareMessage);
             let bubbleContent = message.isHtml ? text : escapeHtml(normalizedText);
             if (message.type === 'voice') {
                 bubbleContent = `<div class="msg-media-card"><div class="msg-voice-bubble" title="点击查看文字"><div class="msg-voice-wave"><span></span><span></span><span></span></div><div class="msg-voice-duration">${voiceDuration}''</div></div><div class="msg-voice-transcript">${escapeHtml(normalizedText)}</div></div>`;
@@ -14245,6 +15755,8 @@
                 bubbleContent = buildTransferCardMarkup(message);
             } else if (isLocationMessage) {
                 bubbleContent = buildLocationCardMarkup(message);
+            } else if (isPddMealShareMessage) {
+                bubbleContent = buildPddMealShareCardMarkup(message);
             }
             row.innerHTML = `
                 <div class="msg-select-check"></div>
@@ -14252,7 +15764,7 @@
                 <div class="msg-main">
                     ${shouldShowSenderName ? `<div class="msg-sender-name">${escapeHtml(displayName)}</div>` : ''}
                     ${quoteMarkup}
-                    <div class="msg-bubble${isRichBubble ? ' rich-content' : ''}${isTransferMessage ? ' transfer-card-bubble' : ''}${isLocationMessage ? ' location-card-bubble' : ''}">${bubbleContent}</div>
+                    <div class="msg-bubble${isRichBubble ? ' rich-content' : ''}${isTransferMessage ? ' transfer-card-bubble' : ''}${isLocationMessage ? ' location-card-bubble' : ''}${isPddMealShareMessage ? ' pdd-meal-share-bubble' : ''}">${bubbleContent}</div>
                     <div class="msg-actions-card">
                         ${messageActionLabels.map(item => `<button type="button" class="msg-action-btn" data-action="${item.action}">${item.label}</button>`).join('')}
                     </div>
