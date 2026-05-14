@@ -2623,10 +2623,12 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
+        #pdd-open-orders-btn,
         #pdd-open-wallet-btn,
         #pdd-open-coupon-btn {
             cursor: pointer;
         }
+        #pdd-open-orders-btn:active,
         #pdd-open-wallet-btn:active,
         #pdd-open-coupon-btn:active {
             transform: scale(0.995);
@@ -2694,6 +2696,33 @@
             font-size: 11px;
             font-weight: 800;
         }
+        .pdd-wallet-actions {
+            position: relative;
+            z-index: 1;
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .pdd-wallet-action {
+            min-height: 42px;
+            border: 0;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            transition: transform 0.16s ease, background 0.16s ease;
+        }
+        .pdd-wallet-action:active {
+            transform: scale(0.985);
+        }
+        .pdd-wallet-action.is-secondary {
+            background: rgba(255,255,255,0.12);
+            color: rgba(255, 247, 236, 0.92);
+        }
         .pdd-wallet-section {
             margin-top: 14px;
             padding: 16px;
@@ -2748,6 +2777,9 @@
             font-weight: 900;
             color: #e33a3a;
         }
+        .pdd-wallet-bill-amount.is-expense {
+            color: #5f3328;
+        }
         .pdd-wallet-bill-empty {
             padding: 18px 12px;
             border-radius: 18px;
@@ -2756,6 +2788,180 @@
             text-align: center;
             font-size: 13px;
             line-height: 1.6;
+        }
+        .pdd-orders-page {
+            min-height: 100%;
+            padding: 18px 18px 28px;
+            background:
+                radial-gradient(circle at top left, rgba(255, 247, 224, 0.82), rgba(255,255,255,0) 34%),
+                linear-gradient(180deg, #fffaf5 0%, #fffdfb 100%);
+        }
+        .pdd-orders-hero {
+            padding: 20px 18px;
+            border-radius: 26px;
+            background: linear-gradient(145deg, #fff2e4 0%, #ffe1c8 48%, #fff7ee 100%);
+            border: 1px solid rgba(244, 216, 188, 0.95);
+            box-shadow: 0 14px 28px rgba(128, 76, 32, 0.08);
+        }
+        .pdd-orders-kicker {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            color: #c36d2d;
+        }
+        .pdd-orders-title {
+            margin-top: 8px;
+            font-size: 24px;
+            line-height: 1.15;
+            font-weight: 900;
+            color: #7a341e;
+        }
+        .pdd-orders-desc {
+            margin-top: 8px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: #9a7158;
+        }
+        .pdd-orders-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+        .pdd-orders-pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.72);
+            color: #b05f24;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .pdd-orders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .pdd-order-card {
+            padding: 16px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.97);
+            border: 1px solid rgba(243, 226, 210, 0.96);
+            box-shadow: 0 12px 26px rgba(113, 74, 47, 0.06);
+        }
+        .pdd-order-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .pdd-order-kicker {
+            font-size: 11px;
+            font-weight: 900;
+            color: #d27a2c;
+        }
+        .pdd-order-title {
+            margin-top: 4px;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 900;
+            color: #6f2f25;
+        }
+        .pdd-order-status {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: rgba(245, 133, 58, 0.12);
+            color: #d66328;
+            font-size: 11px;
+            font-weight: 900;
+        }
+        .pdd-order-scene {
+            margin-top: 10px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: #9a7562;
+        }
+        .pdd-order-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .pdd-order-cell {
+            padding: 10px 11px;
+            border-radius: 16px;
+            background: #fff8f3;
+            border: 1px solid rgba(247, 228, 212, 0.96);
+        }
+        .pdd-order-cell-label {
+            font-size: 11px;
+            color: #b08c78;
+        }
+        .pdd-order-cell-value {
+            margin-top: 4px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #6f4030;
+        }
+        .pdd-order-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(230, 196, 170, 0.9);
+        }
+        .pdd-order-price-group {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .pdd-order-price {
+            font-size: 20px;
+            font-weight: 900;
+            color: #de4b2f;
+        }
+        .pdd-order-price small {
+            font-size: 12px;
+            margin-right: 2px;
+        }
+        .pdd-order-origin {
+            font-size: 12px;
+            color: #c39b88;
+            text-decoration: line-through;
+        }
+        .pdd-order-gift-note {
+            font-size: 12px;
+            font-weight: 800;
+            color: #b0632c;
+        }
+        .pdd-orders-empty {
+            margin-top: 14px;
+            padding: 24px 18px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(243, 226, 210, 0.96);
+            text-align: center;
+            color: #a3816e;
+        }
+        .pdd-orders-empty strong {
+            display: block;
+            font-size: 16px;
+            color: #7b4a34;
+        }
+        .pdd-orders-empty p {
+            margin: 8px 0 0;
+            font-size: 13px;
+            line-height: 1.65;
         }
         .pdd-coupon-page {
             min-height: 100%;
@@ -4134,6 +4340,218 @@
         .chat-transfer-panel .modal-box { gap: 12px; border-radius: 16px; }
         .chat-location-panel { z-index: 1200; }
         .chat-location-panel .modal-box { gap: 12px; border-radius: 16px; }
+        .chat-gift-panel { z-index: 1200; }
+        .chat-gift-panel .modal-box {
+            width: calc(100% - 28px);
+            max-width: 368px;
+            padding: 18px 16px 16px;
+            gap: 12px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, #fffaf5 0%, #ffffff 100%);
+        }
+        .chat-gift-subtitle {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #9a7f6f;
+            text-align: center;
+        }
+        .chat-gift-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 52vh;
+            overflow-y: auto;
+            padding-right: 2px;
+        }
+        .chat-gift-item {
+            width: 100%;
+            border: 1px solid #f1dfd3;
+            background: #fff;
+            border-radius: 18px;
+            padding: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            text-align: left;
+            box-shadow: 0 10px 22px rgba(128, 90, 62, 0.06);
+        }
+        .chat-gift-item.is-selected {
+            border-color: #db8756;
+            box-shadow: 0 12px 24px rgba(219, 135, 86, 0.14);
+            background: #fff8f2;
+        }
+        .chat-gift-item:active {
+            transform: scale(0.995);
+        }
+        .chat-gift-thumb {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffcf9f 0%, #ff8c57 100%);
+            color: #fff;
+        }
+        .chat-gift-thumb svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        .chat-gift-main {
+            flex: 1;
+            min-width: 0;
+        }
+        .chat-gift-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 22px;
+            padding: 0 8px;
+            border-radius: 999px;
+            background: #fff3ea;
+            color: #c86a29;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .chat-gift-title {
+            margin-top: 6px;
+            font-size: 15px;
+            line-height: 1.45;
+            font-weight: 900;
+            color: #6e3527;
+            word-break: break-word;
+        }
+        .chat-gift-meta {
+            margin-top: 6px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #9e7d6b;
+        }
+        .chat-gift-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .chat-gift-price {
+            font-size: 16px;
+            font-weight: 900;
+            color: #df4e32;
+        }
+        .chat-gift-qty {
+            font-size: 11px;
+            color: #b2856e;
+            font-weight: 800;
+        }
+        .chat-gift-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid #d7c5bb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 900;
+        }
+        .chat-gift-item.is-selected .chat-gift-check {
+            border-color: #df7640;
+            background: #df7640;
+        }
+        .chat-gift-empty {
+            padding: 18px 14px;
+            border-radius: 18px;
+            background: #fff7f1;
+            color: #9f7f6d;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+        .msg-row.user .msg-bubble.gift-card-bubble,
+        .msg-row.ai .msg-bubble.gift-card-bubble {
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 18px;
+        }
+        .msg-gift-card {
+            width: 236px;
+            overflow: hidden;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #fff7ef 0%, #ffffff 100%);
+            border: 1px solid rgba(240, 215, 196, 0.92);
+            box-shadow: 0 10px 24px rgba(107, 74, 47, 0.08);
+        }
+        .msg-gift-card-head {
+            display: flex;
+            gap: 10px;
+            padding: 14px 14px 12px;
+        }
+        .msg-gift-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffb474 0%, #ef6e37 100%);
+            color: #fff;
+        }
+        .msg-gift-card-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+        .msg-gift-card-main {
+            min-width: 0;
+            flex: 1;
+        }
+        .msg-gift-card-kicker {
+            font-size: 11px;
+            font-weight: 900;
+            color: #cb6e30;
+        }
+        .msg-gift-card-title {
+            margin-top: 4px;
+            font-size: 15px;
+            line-height: 1.45;
+            font-weight: 900;
+            color: #6b3226;
+            word-break: break-word;
+        }
+        .msg-gift-card-scene {
+            margin-top: 6px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #9a7660;
+        }
+        .msg-gift-card-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 11px 14px 13px;
+            border-top: 1px dashed rgba(232, 203, 181, 0.92);
+            font-size: 12px;
+        }
+        .msg-gift-card-price {
+            color: #e15133;
+            font-size: 18px;
+            font-weight: 900;
+        }
+        .msg-gift-card-price small {
+            font-size: 12px;
+            margin-right: 2px;
+        }
+        .msg-gift-card-foot-note {
+            color: #ab856d;
+            font-weight: 700;
+        }
         .chat-transfer-input {
             width: 100%;
             border: 1px solid #ddd;
@@ -5776,7 +6194,7 @@
                             <div class="pdd-profile-section-title">常用入口</div>
                         </div>
                         <div class="pdd-profile-entry-list">
-                            <div class="pdd-profile-entry">
+                            <div class="pdd-profile-entry" id="pdd-open-orders-btn">
                                 <div class="pdd-profile-entry-icon" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><path d="M7 8h10"></path><path d="M7 12h10"></path><path d="M7 16h7"></path><path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg>
                                 </div>
@@ -5785,7 +6203,7 @@
                                     <div class="pdd-profile-entry-desc">查看已拼成功的订单、待收货商品和历史购买记录。</div>
                                 </div>
                                 <div class="pdd-profile-entry-side">
-                                    <span class="pdd-profile-entry-tag">待收货 0</span>
+                                    <span class="pdd-profile-entry-tag" id="pdd-orders-entry-tag">待收货 0</span>
                                     <div class="pdd-profile-entry-arrow" aria-hidden="true">
                                         <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg>
                                     </div>
@@ -5825,6 +6243,17 @@
                     </div>
                 </div>
             </div>
+            <div class="pdd-subpage" id="pdd-subpage-orders">
+                <div class="pdd-orders-page">
+                    <div class="pdd-orders-hero">
+                        <div class="pdd-orders-kicker">PINDUODUO ARCHIVE</div>
+                        <div class="pdd-orders-title">我买到的</div>
+                        <div class="pdd-orders-desc">支付完成的商品会收进这里，同时也会先放进礼物库存，后面可以在微信页面送给好友。</div>
+                        <div class="pdd-orders-meta" id="pdd-orders-meta"></div>
+                    </div>
+                    <div class="pdd-orders-list" id="pdd-orders-list"></div>
+                </div>
+            </div>
             <div class="pdd-subpage" id="pdd-subpage-wallet">
                 <div class="pdd-wallet-page">
                     <div class="pdd-wallet-balance-card">
@@ -5835,11 +6264,15 @@
                             <span class="pdd-wallet-meta-pill">每集 +0.01</span>
                             <span class="pdd-wallet-meta-pill">活动补贴余额</span>
                         </div>
+                        <div class="pdd-wallet-actions">
+                            <button type="button" class="pdd-wallet-action" id="btn-pdd-wallet-recharge">充值</button>
+                            <button type="button" class="pdd-wallet-action is-secondary" id="btn-pdd-wallet-checkout-help">微信钱包扣款</button>
+                        </div>
                     </div>
                     <div class="pdd-wallet-section">
                         <div class="pdd-wallet-section-head">
                             <div class="pdd-wallet-section-title">余额明细</div>
-                            <div class="pdd-wallet-section-note">最近到账记录</div>
+                            <div class="pdd-wallet-section-note">充值和站内消费都记这里</div>
                         </div>
                         <div class="pdd-wallet-bill-list" id="pdd-wallet-bill-list"></div>
                     </div>
@@ -6174,7 +6607,7 @@
                 <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg></div><span class="plus-text">视频通话</span></div>
                 <div class="plus-item" data-action="open-transfer"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><span class="plus-text">转账</span></div>
                 <div class="plus-item" data-action="open-location"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg></div><span class="plus-text">位置</span></div>
-                <div class="plus-item"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg></div><span class="plus-text">礼物</span></div>
+                <div class="plus-item" data-action="open-gift"><div class="plus-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg></div><span class="plus-text">礼物</span></div>
             </div>
             <div class="modal-overlay chat-compose-panel" id="chat-compose-panel">
                 <div class="modal-box">
@@ -6205,6 +6638,17 @@
                     <div class="chat-compose-actions">
                         <button type="button" class="chat-compose-btn btn-cancel" id="btn-cancel-location">取消</button>
                         <button type="button" class="chat-compose-btn primary" id="btn-send-location">发送</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-overlay chat-gift-panel" id="chat-gift-panel">
+                <div class="modal-box">
+                    <div class="chat-compose-title">选择礼物</div>
+                    <div class="chat-gift-subtitle" id="chat-gift-subtitle">从你买到的库存里选一件，直接送给当前好友。</div>
+                    <div class="chat-gift-list" id="chat-gift-list"></div>
+                    <div class="chat-compose-actions">
+                        <button type="button" class="chat-compose-btn btn-cancel" id="btn-cancel-gift">取消</button>
+                        <button type="button" class="chat-compose-btn primary" id="btn-send-gift">赠送</button>
                     </div>
                 </div>
             </div>
@@ -8967,6 +9411,7 @@
         const pddSubpages = document.querySelectorAll('#pdd-app .pdd-subpage');
         const pddOpenWheelBtn = document.getElementById('pdd-open-wheel-btn');
         const pddOpenDramaBtn = document.getElementById('pdd-open-drama-btn');
+        const pddOpenOrdersBtn = document.getElementById('pdd-open-orders-btn');
         const pddOpenWalletBtn = document.getElementById('pdd-open-wallet-btn');
         const pddOpenCouponBtn = document.getElementById('pdd-open-coupon-btn');
         const pddOpenYuanBtn = document.getElementById('pdd-open-yuan-btn');
@@ -8974,9 +9419,14 @@
         const pddWheelSpinBtn = document.getElementById('pdd-wheel-spin-btn');
         const pddWheelResultValue = document.getElementById('pdd-wheel-result-value');
         const pddWheelResultNote = document.getElementById('pdd-wheel-result-note');
+        const pddOrdersEntryTag = document.getElementById('pdd-orders-entry-tag');
+        const pddOrdersMeta = document.getElementById('pdd-orders-meta');
+        const pddOrdersList = document.getElementById('pdd-orders-list');
         const pddWalletEntryBalance = document.getElementById('pdd-wallet-entry-balance');
         const pddWalletBalanceValue = document.getElementById('pdd-wallet-balance-value');
         const pddWalletBillList = document.getElementById('pdd-wallet-bill-list');
+        const btnPddWalletRecharge = document.getElementById('btn-pdd-wallet-recharge');
+        const btnPddWalletCheckoutHelp = document.getElementById('btn-pdd-wallet-checkout-help');
         const pddCouponCount = document.getElementById('pdd-coupon-count');
         const pddCouponHeroCount = document.getElementById('pdd-coupon-hero-count');
         const pddCouponList = document.getElementById('pdd-coupon-list');
@@ -8992,6 +9442,7 @@
         const pddCartSummary = document.getElementById('pdd-cart-summary');
         const pddCartTotalLabel = document.getElementById('pdd-cart-total-label');
         const pddCartTotalValue = document.getElementById('pdd-cart-total-value');
+        const pddCartCheckoutButton = document.querySelector('#pdd-page-cart .pdd-cart-checkout');
         const pddCutSearchInput = document.getElementById('pdd-cut-search-input');
         const pddCutSearchButton = document.getElementById('pdd-cut-search-button');
         const pddCutList = document.getElementById('pdd-cut-list');
@@ -9119,6 +9570,8 @@
         const PDD_CART_ITEMS_STORAGE_KEY = 'pdd_cart_items';
         const PDD_CUT_ITEMS_STORAGE_KEY = 'pdd_cut_items';
         const PDD_ROMANCE_ITEMS_STORAGE_KEY = 'pdd_romance_items';
+        const PDD_ORDER_ITEMS_STORAGE_KEY = 'pdd_order_items';
+        const PDD_GIFT_INVENTORY_STORAGE_KEY = 'pdd_gift_inventory';
         const PDD_WALLET_STORAGE_KEY = 'pdd_wallet_balance';
         const PDD_WALLET_BILLS_STORAGE_KEY = 'pdd_wallet_bills';
         const SHOP_RECOMMEND_PRODUCTS_STORAGE_KEY = 'shop_recommend_products';
@@ -9286,6 +9739,10 @@
                 createdAt: Number(item.createdAt) || Date.now(),
                 source: String(item.source || '').trim()
             }));
+        let pddOrderItems = parseStoredJson(PDD_ORDER_ITEMS_STORAGE_KEY, []);
+        if (!Array.isArray(pddOrderItems)) pddOrderItems = [];
+        let pddGiftInventory = parseStoredJson(PDD_GIFT_INVENTORY_STORAGE_KEY, []);
+        if (!Array.isArray(pddGiftInventory)) pddGiftInventory = [];
         let pddCouponInventory = parseStoredJson(PDD_COUPON_STORAGE_KEY, []);
         if (!Array.isArray(pddCouponInventory)) pddCouponInventory = [];
         pddCouponInventory = pddCouponInventory
@@ -9819,13 +10276,207 @@
             safeSetJsonStorage(PDD_WALLET_BILLS_STORAGE_KEY, pddWalletBills.slice(0, 80));
         }
 
+        function persistPddOrders() {
+            safeSetJsonStorage(PDD_ORDER_ITEMS_STORAGE_KEY, pddOrderItems.slice(0, 120));
+            safeSetJsonStorage(PDD_GIFT_INVENTORY_STORAGE_KEY, pddGiftInventory.slice(0, 160));
+        }
+
+        function getPddNumberPrice(value) {
+            if (typeof value === 'number' && Number.isFinite(value)) return value;
+            const normalized = Number(String(value || '').replace(/[￥¥元,\s]/g, ''));
+            return Number.isFinite(normalized) ? normalized : 0;
+        }
+
+        function normalizePddOrderItem(item = {}, fallbackType = 'good') {
+            const quantity = Math.max(1, Number(item.quantity) || 1);
+            const price = Number(getPddNumberPrice(item.price).toFixed(2));
+            const originPrice = Number(getPddNumberPrice(item.originPrice).toFixed(2));
+            const type = String(item.type || fallbackType || 'good').trim() || 'good';
+            const title = clampStoredText(item.title || item.name || '拼刀刀好物', 40) || '拼刀刀好物';
+            const scene = clampStoredText(item.scene || item.desc || item.meta || '拼单成功，商品正在进入礼物库存。', 120) || '拼单成功，商品正在进入礼物库存。';
+            const badge = clampStoredText(item.badge || (type === 'meal' ? '拼好饭' : type === 'romance' ? '拼情趣' : type === 'cut' ? '拼一刀' : '拼刀刀'), 16) || '拼刀刀';
+            return {
+                id: String(item.id || createMessageId('pdd_order')),
+                giftId: String(item.giftId || createMessageId('pdd_gift')),
+                title,
+                scene,
+                badge,
+                type,
+                quantity,
+                price,
+                originPrice,
+                total: Number((price * quantity).toFixed(2)),
+                savedAmount: Number((Math.max(0, originPrice - price) * quantity).toFixed(2)),
+                status: clampStoredText(item.status || '待收货', 12) || '待收货',
+                createdAt: Number(item.createdAt) || Date.now(),
+                source: clampStoredText(item.source || '拼刀刀下单', 20) || '拼刀刀下单'
+            };
+        }
+
+        function normalizePddGiftInventoryItem(item = {}) {
+            return {
+                id: String(item.id || createMessageId('pdd_gift')),
+                orderId: String(item.orderId || ''),
+                title: clampStoredText(item.title || item.name || '拼刀刀礼物', 40) || '拼刀刀礼物',
+                badge: clampStoredText(item.badge || (item.type === 'meal' ? '拼好饭' : item.type === 'romance' ? '拼情趣' : item.type === 'cut' ? '拼一刀' : '拼刀刀'), 16) || '拼刀刀',
+                type: clampStoredText(item.type || 'good', 16) || 'good',
+                quantity: Math.max(1, Number(item.quantity) || 1),
+                price: Number(getPddNumberPrice(item.price).toFixed(2)),
+                priceText: clampStoredText(item.priceText || (Number.isFinite(getPddNumberPrice(item.price)) && getPddNumberPrice(item.price) > 0 ? `¥${getPddNumberPrice(item.price).toFixed(2)}` : ''), 20),
+                originPrice: clampStoredText(item.originPrice || '', 20),
+                scene: clampStoredText(item.scene || item.desc || item.meta || '', 120),
+                meta: clampStoredText(item.meta || '', 80),
+                createdAt: Number(item.createdAt) || Date.now(),
+                source: clampStoredText(item.source || '拼刀刀订单入库', 20) || '拼刀刀订单入库',
+                status: clampStoredText(item.status || 'available', 16) || 'available'
+            };
+        }
+
+        function formatPddOrderDate(timestamp) {
+            const date = new Date(timestamp || Date.now());
+            if (Number.isNaN(date.getTime())) return '刚刚下单';
+            return date.toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
+        }
+
+        function getPddOrdersSummary() {
+            return pddOrderItems.reduce((summary, item) => {
+                const quantity = Math.max(1, Number(item.quantity) || 1);
+                const total = Number(item.total) || Number(item.price || 0) * quantity;
+                const savedAmount = Number(item.savedAmount) || 0;
+                summary.orderCount += 1;
+                summary.itemCount += quantity;
+                summary.total += total;
+                summary.saved += savedAmount;
+                return summary;
+            }, { orderCount: 0, itemCount: 0, total: 0, saved: 0 });
+        }
+
+        function renderPddOrders() {
+            const summary = getPddOrdersSummary();
+            if (pddOrdersEntryTag) {
+                pddOrdersEntryTag.textContent = summary.itemCount ? `待收货 ${summary.itemCount}` : '待收货 0';
+            }
+            if (pddOrdersMeta) {
+                pddOrdersMeta.innerHTML = [
+                    `<span class="pdd-orders-pill">共 ${summary.orderCount} 单</span>`,
+                    `<span class="pdd-orders-pill">商品 ${summary.itemCount} 件</span>`,
+                    `<span class="pdd-orders-pill">省下 ¥${summary.saved.toFixed(2)}</span>`
+                ].join('');
+            }
+            if (!pddOrdersList) return;
+            if (!pddOrderItems.length) {
+                pddOrdersList.innerHTML = '<div class="pdd-orders-empty"><strong>还没有已拼成功的订单</strong><p>去拼好饭、拼一刀或拼情趣挑点东西，支付后会自动收进这里，并同步存入礼物库存。</p></div>';
+                return;
+            }
+            pddOrdersList.innerHTML = pddOrderItems.map(item => `
+                <article class="pdd-order-card">
+                    <div class="pdd-order-top">
+                        <div>
+                            <div class="pdd-order-kicker">${escapeHtml(item.badge)}</div>
+                            <div class="pdd-order-title">${escapeHtml(item.title)}</div>
+                        </div>
+                        <div class="pdd-order-status">${escapeHtml(item.status)}</div>
+                    </div>
+                    <div class="pdd-order-scene">${escapeHtml(item.scene)}</div>
+                    <div class="pdd-order-grid">
+                        <div class="pdd-order-cell">
+                            <div class="pdd-order-cell-label">下单时间</div>
+                            <div class="pdd-order-cell-value">${escapeHtml(formatPddOrderDate(item.createdAt))}</div>
+                        </div>
+                        <div class="pdd-order-cell">
+                            <div class="pdd-order-cell-label">商品件数</div>
+                            <div class="pdd-order-cell-value">${escapeHtml(String(item.quantity))} 件</div>
+                        </div>
+                        <div class="pdd-order-cell">
+                            <div class="pdd-order-cell-label">订单来源</div>
+                            <div class="pdd-order-cell-value">${escapeHtml(item.source)}</div>
+                        </div>
+                        <div class="pdd-order-cell">
+                            <div class="pdd-order-cell-label">礼物状态</div>
+                            <div class="pdd-order-cell-value">已存入礼物库存</div>
+                        </div>
+                    </div>
+                    <div class="pdd-order-price-row">
+                        <div class="pdd-order-price-group">
+                            <div class="pdd-order-price"><small>¥</small>${escapeHtml((Number(item.total) || 0).toFixed(2))}</div>
+                            ${Number(item.originPrice) > Number(item.price) ? `<div class="pdd-order-origin">原价 ¥${escapeHtml((Number(item.originPrice) * Math.max(1, Number(item.quantity) || 1)).toFixed(2))}</div>` : ''}
+                        </div>
+                        <div class="pdd-order-gift-note">可在微信页面赠送给好友</div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function storePaidPddItemsAsOrders(items = []) {
+            if (!Array.isArray(items) || !items.length) return 0;
+            const now = Date.now();
+            const nextOrders = [];
+            const nextGifts = [];
+            items.forEach((item, index) => {
+                const order = normalizePddOrderItem({
+                    ...item,
+                    id: createMessageId(`pdd_order_${index}`),
+                    giftId: createMessageId(`pdd_gift_${index}`),
+                    createdAt: now + index,
+                    source: '拼刀刀下单',
+                    status: '待收货'
+                }, item.type || 'good');
+                nextOrders.push(order);
+                nextGifts.push(normalizePddGiftInventoryItem({
+                    id: order.giftId,
+                    orderId: order.id,
+                    title: order.title,
+                    badge: order.badge,
+                    type: order.type,
+                    quantity: order.quantity,
+                    price: order.price,
+                    priceText: `¥${order.price.toFixed(2)}`,
+                    originPrice: Number(order.originPrice) > 0 ? `¥${order.originPrice.toFixed(2)}` : '',
+                    scene: order.scene,
+                    meta: order.source,
+                    createdAt: order.createdAt,
+                    source: '拼刀刀订单入库',
+                    status: 'available'
+                }));
+            });
+            pddOrderItems = [...nextOrders.reverse(), ...pddOrderItems].slice(0, 120);
+            pddGiftInventory = [...nextGifts.reverse(), ...pddGiftInventory].slice(0, 160);
+            persistPddOrders();
+            renderPddOrders();
+            return nextOrders.length;
+        }
+
+        function getPddWalletBillAmountText(value = 0) {
+            const amount = Number(value) || 0;
+            const sign = amount >= 0 ? '+' : '-';
+            return `${sign}¥${Math.abs(amount).toFixed(2)}`;
+        }
+
+        function pushPddWalletBill(record = {}) {
+            const amount = Number(record.amount) || 0;
+            if (!amount) return null;
+            const bill = {
+                id: String(record.id || `pdd_bill_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`),
+                title: String(record.title || '余额变动').trim() || '余额变动',
+                amount: Number(amount.toFixed(2)),
+                balanceAfter: Number((Number(record.balanceAfter) || 0).toFixed(2)),
+                createdAt: Number(record.createdAt) || Date.now(),
+                source: String(record.source || '').trim()
+            };
+            pddWalletBills.unshift(bill);
+            pddWalletBills = pddWalletBills.slice(0, 80);
+            persistPddWallet();
+            renderPddWallet();
+            return bill;
+        }
+
         function renderPddWallet() {
             const balanceText = formatPddWalletMoney(pddWalletBalance);
             if (pddWalletEntryBalance) pddWalletEntryBalance.textContent = `余额 ¥${balanceText}`;
             if (pddWalletBalanceValue) pddWalletBalanceValue.textContent = balanceText;
             if (!pddWalletBillList) return;
             if (!pddWalletBills.length) {
-                pddWalletBillList.innerHTML = '<div class="pdd-wallet-bill-empty">还没有余额明细。去短剧专区看一集，0.01 元会直接进钱包。</div>';
+                pddWalletBillList.innerHTML = '<div class="pdd-wallet-bill-empty">还没有余额明细。可以先充值，或者去短剧专区看一集，0.01 元会直接进钱包。</div>';
                 return;
             }
             pddWalletBillList.innerHTML = pddWalletBills.slice(0, 30).map(bill => `
@@ -9834,7 +10485,7 @@
                         <div class="pdd-wallet-bill-title">${escapeHtml(bill.title)}</div>
                         <div class="pdd-wallet-bill-time">${escapeHtml(formatPddWalletTime(bill.createdAt))} · 余额 ¥${escapeHtml(formatPddWalletMoney(bill.balanceAfter))}</div>
                     </div>
-                    <div class="pdd-wallet-bill-amount">+¥${escapeHtml(formatPddWalletMoney(bill.amount))}</div>
+                    <div class="pdd-wallet-bill-amount ${bill.amount < 0 ? 'is-expense' : ''}">${escapeHtml(getPddWalletBillAmountText(bill.amount))}</div>
                 </article>
             `).join('');
         }
@@ -9843,17 +10494,145 @@
             const safeAmount = Number(amount) || 0;
             if (safeAmount <= 0) return;
             pddWalletBalance = Number((pddWalletBalance + safeAmount).toFixed(2));
-            pddWalletBills.unshift({
-                id: `pdd_bill_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+            pushPddWalletBill({
                 title: String(title || '余额到账').trim() || '余额到账',
-                amount: Number(safeAmount.toFixed(2)),
+                amount: safeAmount,
                 balanceAfter: pddWalletBalance,
                 createdAt: Date.now(),
                 source: String(source || '').trim()
             });
-            pddWalletBills = pddWalletBills.slice(0, 80);
-            persistPddWallet();
-            renderPddWallet();
+        }
+
+        function addPddWalletExpense(amount, title, source = '') {
+            const safeAmount = Number(amount) || 0;
+            if (safeAmount <= 0) return false;
+            if (safeAmount > pddWalletBalance) return false;
+            pddWalletBalance = Number((pddWalletBalance - safeAmount).toFixed(2));
+            pushPddWalletBill({
+                title: String(title || '拼刀刀消费').trim() || '拼刀刀消费',
+                amount: -safeAmount,
+                balanceAfter: pddWalletBalance,
+                createdAt: Date.now(),
+                source: String(source || '').trim()
+            });
+            return true;
+        }
+
+        async function verifyWechatWalletPasswordForPdd() {
+            const existingPassword = String(localStorage.getItem('wallet_password') || '').trim();
+            if (!existingPassword) {
+                await showAppDialog({ title: '无法继续', message: '请先去微信的钱包里设置 6 位支付密码。' });
+                return false;
+            }
+            const inputPassword = await showAppDialog({
+                title: '验证微信支付密码',
+                message: '给拼刀刀钱包充值需要输入微信钱包的 6 位支付密码。',
+                mode: 'prompt',
+                placeholder: '请输入6位数字密码',
+                defaultValue: ''
+            });
+            if (inputPassword === null) return false;
+            if (String(inputPassword).trim() !== existingPassword) {
+                await showAppDialog({ title: '密码错误', message: '微信钱包支付密码不正确。' });
+                return false;
+            }
+            return true;
+        }
+
+        async function handlePddWalletRecharge() {
+            const inputValue = await showAppDialog({
+                title: '拼刀刀钱包充值',
+                message: '请输入要从微信钱包转入拼刀刀钱包的金额。',
+                mode: 'prompt',
+                placeholder: '例如 50 或 88.80'
+            });
+
+            if (inputValue === null) return;
+
+            const amount = normalizeWalletMoney(inputValue);
+            if (!Number.isFinite(amount) || amount <= 0) {
+                await showAppDialog({ title: '无法充值', message: '请输入大于 0 的数字金额。' });
+                return;
+            }
+
+            if (amount > walletBalance) {
+                await showAppDialog({ title: '无法充值', message: '微信钱包零钱余额不足。' });
+                return;
+            }
+
+            const passwordValid = await verifyWechatWalletPasswordForPdd();
+            if (!passwordValid) return;
+
+            walletBalance = clampWalletBalance(walletBalance - amount);
+            persistWalletBalance();
+            renderWalletBalance();
+
+            const walletTransaction = normalizeWalletTransaction({
+                id: createMessageId('wallet'),
+                type: 'pdd-recharge-out',
+                title: '充值到拼刀刀钱包',
+                amount: -amount,
+                balanceAfter: walletBalance,
+                createdAt: Date.now()
+            });
+            if (walletTransaction) {
+                walletTransactions.unshift(walletTransaction);
+                persistWalletTransactions();
+                renderWalletBills();
+            }
+
+            addPddWalletIncome(amount, '微信钱包充值', 'wechat-wallet');
+            await showAppDialog({ title: '充值成功', message: `已从微信钱包转入 ¥${amount.toFixed(2)} 到拼刀刀钱包。` });
+        }
+
+        function getPddCartSummaryStats() {
+            return pddCartItems.reduce((summary, item) => {
+                const quantity = Math.max(1, Number(item.quantity) || 1);
+                const price = Number(item.price) || normalizeShopPriceNumber(item.priceText, 0);
+                summary.count += quantity;
+                summary.total += price * quantity;
+                return summary;
+            }, { count: 0, total: 0 });
+        }
+
+        async function handlePddCartCheckout() {
+            if (!Array.isArray(pddCartItems) || !pddCartItems.length) {
+                await showAppDialog({ title: '无法结算', message: '拼刀刀购物车还是空的。' });
+                return;
+            }
+
+            const paidItemsSnapshot = pddCartItems.map(item => ({ ...item }));
+            const summary = getPddCartSummaryStats();
+            const total = Number(summary.total.toFixed(2));
+            if (total <= 0) {
+                await showAppDialog({ title: '无法结算', message: '当前拼单金额不正确。' });
+                return;
+            }
+
+            if (total > pddWalletBalance) {
+                await showAppDialog({ title: '余额不足', message: `拼刀刀钱包余额不足，还差 ¥${(total - pddWalletBalance).toFixed(2)}。先去拼刀刀钱包充值。` });
+                return;
+            }
+
+            const ok = await showAppDialog({
+                title: '确认拼单结算',
+                message: `本次共 ${summary.count} 件，合计 ¥${total.toFixed(2)}。确认后将只在拼刀刀钱包记录消费明细。`,
+                mode: 'confirm',
+                confirmText: '确认支付'
+            });
+            if (!ok) return;
+
+            const paid = addPddWalletExpense(total, `拼刀刀下单 ${summary.count} 件`, 'pdd-checkout');
+            if (!paid) {
+                await showAppDialog({ title: '支付失败', message: '拼刀刀钱包余额不足。' });
+                return;
+            }
+
+            const storedCount = storePaidPddItemsAsOrders(paidItemsSnapshot);
+            pddCartItems = [];
+            persistPddCart();
+            renderPddCart();
+            await showAppDialog({ title: '拼单成功', message: `已用拼刀刀钱包支付 ¥${total.toFixed(2)}，共收进 ${storedCount} 条订单。这笔消费不会记到微信钱包流水。已存入礼物，可以在微信页面赠送给好友。` });
         }
 
         function renderPddCouponList() {
@@ -10039,7 +10818,7 @@
         function renderPddCart() {
             if (!pddCartList || !pddCartSummary || !pddCartTotalLabel || !pddCartTotalValue) return;
             if (!pddCartItems.length) {
-                pddCartList.innerHTML = '<div class="pdd-cart-empty"><strong>拼单购物车还是空的</strong><p>去拼好饭转发拼单，成功后可以从聊天卡片放进这里。</p></div>';
+                pddCartList.innerHTML = '<div class="pdd-cart-empty"><strong>拼单购物车还是空的</strong><p>去拼好饭、拼一刀或拼情趣转发拼单，成功后会自动进这里，结算时走拼刀刀钱包。</p></div>';
                 pddCartSummary.style.display = 'none';
                 pddCartTotalLabel.textContent = '已选 0 件，预估合计';
                 pddCartTotalValue.textContent = '¥0.00';
@@ -10760,6 +11539,7 @@
                     pddApp.classList.add('is-subpage-open');
                     if (pddTitleText) {
                         if (previousSubpageId === 'pdd-subpage-drama') pddTitleText.textContent = '短剧专区';
+                        else if (previousSubpageId === 'pdd-subpage-orders') pddTitleText.textContent = '我买到的';
                         else if (previousSubpageId === 'pdd-subpage-wallet') pddTitleText.textContent = '拼刀刀钱包';
                         else if (previousSubpageId === 'pdd-subpage-wheel') pddTitleText.textContent = '超级大转盘';
                         else if (previousSubpageId === 'pdd-subpage-coupon') pddTitleText.textContent = '优惠券';
@@ -11556,10 +12336,27 @@
             });
         }
 
+        if (pddOpenOrdersBtn) {
+            pddOpenOrdersBtn.addEventListener('click', () => {
+                renderPddOrders();
+                openPddSubpage('pdd-subpage-orders', '我买到的');
+            });
+        }
+
         if (pddOpenWalletBtn) {
             pddOpenWalletBtn.addEventListener('click', () => {
                 renderPddWallet();
                 openPddSubpage('pdd-subpage-wallet', '拼刀刀钱包');
+            });
+        }
+
+        if (btnPddWalletRecharge) {
+            btnPddWalletRecharge.addEventListener('click', handlePddWalletRecharge);
+        }
+
+        if (btnPddWalletCheckoutHelp) {
+            btnPddWalletCheckoutHelp.addEventListener('click', async () => {
+                await showAppDialog({ title: '充值说明', message: '拼刀刀钱包充值会先验证微信钱包支付密码，再从微信零钱扣款转入。之后在拼刀刀内下单，只记拼刀刀钱包明细。' });
             });
         }
 
@@ -11672,6 +12469,12 @@
                 const itemId = stepButton.getAttribute('data-pdd-cart-id') || '';
                 const delta = stepButton.getAttribute('data-pdd-cart-step') === 'decrease' ? -1 : 1;
                 updatePddCartQuantity(itemId, delta);
+            });
+        }
+
+        if (pddCartCheckoutButton) {
+            pddCartCheckoutButton.addEventListener('click', async () => {
+                await handlePddCartCheckout();
             });
         }
 
@@ -11815,6 +12618,7 @@
         renderShopProducts();
         renderPddCouponList();
         renderPddWallet();
+        renderPddOrders();
         renderPddMealList();
         renderPddCutList();
         renderPddRomanceList();
@@ -11941,6 +12745,15 @@
                 compacted.meal = compacted.product;
             }
 
+            if (normalized.type === 'gift_item') {
+                compacted.giftItem = normalizePddGiftInventoryItem(normalized.giftItem || normalized.product || {});
+                compacted.product = compacted.giftItem;
+                const kicker = String(normalized.kicker || '').trim();
+                const scene = String(normalized.scene || '').trim();
+                if (kicker) compacted.kicker = kicker;
+                if (scene) compacted.scene = scene;
+            }
+
             if (normalized.quote && typeof normalized.quote === 'object' && !Array.isArray(normalized.quote)) {
                 compacted.quote = {
                     id: String(normalized.quote.id || '').trim(),
@@ -12002,7 +12815,7 @@
             if (!message || typeof message !== 'object' || Array.isArray(message)) return null;
 
             const role = message.role === 'user' || message.role === 'system' ? message.role : 'ai';
-            const type = message.type === 'voice' || message.type === 'photo' || message.type === 'moment_event' || message.type === 'transfer' || message.type === 'location' || message.type === 'pdd_meal_share' ? message.type : undefined;
+            const type = message.type === 'voice' || message.type === 'photo' || message.type === 'moment_event' || message.type === 'transfer' || message.type === 'location' || message.type === 'pdd_meal_share' || message.type === 'gift_item' ? message.type : undefined;
             const content = clampStoredText(message.content ?? message.text ?? '', 4000);
             if (!content && role !== 'system') return null;
 
@@ -12038,6 +12851,13 @@
                 normalized.product = normalizePddSharedProductPayload(message.product || message.meal || {}, productType);
                 normalized.meal = normalized.product;
                 normalized.content = clampStoredText(normalized.content || buildPddProductShareMessageText(normalized.product, normalized.productType), 4000);
+            }
+            if (type === 'gift_item') {
+                normalized.giftItem = normalizePddGiftInventoryItem(message.giftItem || message.product || {});
+                normalized.product = normalized.giftItem;
+                normalized.kicker = clampStoredText(message.kicker || normalized.kicker || '微信礼物', 12) || '微信礼物';
+                normalized.scene = clampStoredText(message.scene || normalized.giftItem.scene || '', 120);
+                normalized.content = clampStoredText(normalized.content || `送你一个礼物：${normalized.giftItem.title}`, 4000);
             }
             if (message.quote && typeof message.quote === 'object' && !Array.isArray(message.quote)) {
                 normalized.quote = {
@@ -13591,6 +14411,7 @@
         const chatComposePanel = document.getElementById('chat-compose-panel');
         const chatTransferPanel = document.getElementById('chat-transfer-panel');
         const chatLocationPanel = document.getElementById('chat-location-panel');
+        const chatGiftPanel = document.getElementById('chat-gift-panel');
         const chatTransferPayPanel = document.getElementById('chat-transfer-pay-panel');
         const chatComposeTitle = document.getElementById('chat-compose-title');
         const chatComposeInput = document.getElementById('chat-compose-input');
@@ -13598,6 +14419,8 @@
         const chatTransferRemarkInput = document.getElementById('chat-transfer-remark-input');
         const chatLocationNameInput = document.getElementById('chat-location-name-input');
         const chatLocationDetailInput = document.getElementById('chat-location-detail-input');
+        const chatGiftSubtitle = document.getElementById('chat-gift-subtitle');
+        const chatGiftList = document.getElementById('chat-gift-list');
         const chatTransferPayAmount = document.getElementById('chat-transfer-pay-amount');
         const chatTransferPayRemark = document.getElementById('chat-transfer-pay-remark');
         const chatTransferPayTarget = document.getElementById('chat-transfer-pay-target');
@@ -13619,6 +14442,8 @@
         const btnConfirmTransfer = document.getElementById('btn-confirm-transfer');
         const btnCancelLocation = document.getElementById('btn-cancel-location');
         const btnSendLocation = document.getElementById('btn-send-location');
+        const btnCancelGift = document.getElementById('btn-cancel-gift');
+        const btnSendGift = document.getElementById('btn-send-gift');
         const btnCloseTransferPay = document.getElementById('btn-close-transfer-pay');
         const btnTransferMethodTrigger = document.getElementById('btn-transfer-method-trigger');
         const btnReturnTransfer = document.getElementById('btn-return-transfer');
@@ -13641,6 +14466,7 @@
         let currentComposeType = '';
         let currentTransferDraft = { amount: '', remark: '', method: '零钱' };
         let currentTransferPayPassword = '';
+        let selectedChatGiftId = '';
         let activeTransferDetailMessageId = '';
         const CHAT_RENDER_RECENT_LIMIT = 80;
         const CHAT_RENDER_INCREMENT = 80;
@@ -13822,6 +14648,158 @@
                     </div>
                 </div>
             `;
+        }
+
+        function buildGiftCardMarkup(payload = {}) {
+            const giftItem = normalizePddGiftInventoryItem(payload.giftItem || payload.product || {});
+            const scene = clampStoredText(giftItem.scene || payload.scene || payload.desc || '', 80);
+            const kicker = clampStoredText(payload.kicker || giftItem.badge || '微信礼物', 12) || '微信礼物';
+            const priceText = clampStoredText(giftItem.priceText || (giftItem.price > 0 ? `¥${giftItem.price.toFixed(2)}` : '¥0.00'), 20) || '¥0.00';
+            return `
+                <div class="msg-gift-card" data-gift-card="true">
+                    <div class="msg-gift-card-head">
+                        <div class="msg-gift-card-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg>
+                        </div>
+                        <div class="msg-gift-card-main">
+                            <div class="msg-gift-card-kicker">${escapeHtml(kicker)}</div>
+                            <div class="msg-gift-card-title">${escapeHtml(giftItem.title)}</div>
+                            ${scene ? `<div class="msg-gift-card-scene">${escapeHtml(scene)}</div>` : ''}
+                        </div>
+                    </div>
+                    <div class="msg-gift-card-foot">
+                        <div class="msg-gift-card-price">${escapeHtml(priceText)}</div>
+                        <div class="msg-gift-card-foot-note">已送出 ${escapeHtml(String(giftItem.quantity))} 件</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getAvailableGiftInventoryItems() {
+            return pddGiftInventory
+                .map(item => normalizePddGiftInventoryItem(item))
+                .filter(item => item.status === 'available' && item.quantity > 0);
+        }
+
+        function updateChatGiftSelectionUi() {
+            if (!chatGiftList) return;
+            chatGiftList.querySelectorAll('[data-chat-gift-id]').forEach(item => {
+                const isSelected = item.getAttribute('data-chat-gift-id') === selectedChatGiftId;
+                item.classList.toggle('is-selected', isSelected);
+                const check = item.querySelector('.chat-gift-check');
+                if (check) check.textContent = isSelected ? '✓' : '';
+            });
+            if (btnSendGift) btnSendGift.disabled = !selectedChatGiftId;
+        }
+
+        function renderChatGiftList() {
+            if (!chatGiftList) return;
+            const availableItems = getAvailableGiftInventoryItems();
+            if (chatGiftSubtitle) {
+                chatGiftSubtitle.textContent = currentChatFriend
+                    ? `从你买到的库存里选一件，直接送给 ${currentChatFriend}。`
+                    : '从你买到的库存里选一件，直接送给当前好友。';
+            }
+            if (!availableItems.length) {
+                chatGiftList.innerHTML = '<div class="chat-gift-empty">现在还没有可赠送的礼物。先去拼刀刀付款买点东西，库存就会出现在这里。</div>';
+                selectedChatGiftId = '';
+                updateChatGiftSelectionUi();
+                return;
+            }
+            chatGiftList.innerHTML = availableItems.map(item => `
+                <button type="button" class="chat-gift-item" data-chat-gift-id="${escapeHtml(item.id)}">
+                    <div class="chat-gift-thumb" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg>
+                    </div>
+                    <div class="chat-gift-main">
+                        <div class="chat-gift-badge">${escapeHtml(item.type === 'meal' ? '拼好饭' : item.type === 'romance' ? '拼情趣' : item.type === 'cut' ? '拼一刀' : '拼刀刀')}</div>
+                        <div class="chat-gift-title">${escapeHtml(item.title)}</div>
+                        <div class="chat-gift-meta">库存 ${escapeHtml(String(item.quantity))} 件 · 来自 ${escapeHtml(item.source || '拼刀刀订单')}</div>
+                    </div>
+                    <div class="chat-gift-side">
+                        <div class="chat-gift-price">¥${escapeHtml(item.price.toFixed(2))}</div>
+                        <div class="chat-gift-qty">可送 1 件</div>
+                        <div class="chat-gift-check" aria-hidden="true"></div>
+                    </div>
+                </button>
+            `).join('');
+            if (!availableItems.some(item => item.id === selectedChatGiftId)) {
+                selectedChatGiftId = availableItems[0]?.id || '';
+            }
+            updateChatGiftSelectionUi();
+        }
+
+        function openChatGiftPanel() {
+            selectedChatGiftId = '';
+            closeChatComposePanel();
+            closeChatTransferPanel();
+            closeChatLocationPanel();
+            renderChatGiftList();
+            if (chatGiftPanel) chatGiftPanel.style.display = 'flex';
+        }
+
+        function closeChatGiftPanel() {
+            selectedChatGiftId = '';
+            if (chatGiftPanel) chatGiftPanel.style.display = 'none';
+            if (btnSendGift) btnSendGift.disabled = false;
+        }
+
+        function decrementGiftInventoryItem(giftId = '') {
+            const giftIndex = pddGiftInventory.findIndex(item => String(item?.id || '') === String(giftId || ''));
+            if (giftIndex < 0) return null;
+            const normalized = normalizePddGiftInventoryItem(pddGiftInventory[giftIndex]);
+            if (normalized.quantity <= 0 || normalized.status !== 'available') return null;
+            const nextQuantity = normalized.quantity - 1;
+            if (nextQuantity <= 0) {
+                pddGiftInventory.splice(giftIndex, 1);
+            } else {
+                pddGiftInventory[giftIndex] = {
+                    ...normalized,
+                    quantity: nextQuantity
+                };
+            }
+            persistPddOrders();
+            renderPddOrders();
+            return normalized;
+        }
+
+        function createGiftMessageRecord(role, payload = {}) {
+            const giftItem = normalizePddGiftInventoryItem(payload.giftItem || payload.product || {});
+            return {
+                id: createMessageId(`${role === 'ai' ? 'ai' : 'user'}-gift`),
+                role: role === 'ai' ? 'ai' : 'user',
+                type: 'gift_item',
+                content: String(payload.content || `送你一个礼物：${giftItem.title}`).trim(),
+                giftItem,
+                product: giftItem,
+                kicker: clampStoredText(payload.kicker || '微信礼物', 12) || '微信礼物',
+                scene: clampStoredText(payload.scene || '', 120),
+                createdAt: Date.now()
+            };
+        }
+
+        async function sendSelectedGiftMessage() {
+            if (!currentChatFriend || !selectedChatGiftId) return;
+            const sentGift = decrementGiftInventoryItem(selectedChatGiftId);
+            if (!sentGift) {
+                await showAppDialog({ title: '无法赠送', message: '这件礼物已经不在库存里了，换一件再试。' });
+                renderChatGiftList();
+                return;
+            }
+            ensureFriendChatHistory(currentChatFriend);
+            const record = createGiftMessageRecord('user', {
+                giftItem: { ...sentGift, quantity: 1 },
+                content: `送你一个礼物：${sentGift.title}`,
+                kicker: '我送你的',
+                scene: '礼物已从我的库存发出，可以直接在聊天里看到。'
+            });
+            appendAndPersistChatRecord(record);
+            clearActiveQuote();
+            closeChatGiftPanel();
+            chatPlusPanel.style.display = 'none';
+            scrollToBottom();
+            renderFriendList();
+            await showAppDialog({ title: '赠送成功', message: `已把 ${sentGift.title} 送给 ${currentChatFriend}。礼物库存已同步扣减。` });
         }
 
         function createTransferMessageRecord(role, payload = {}) {
@@ -14166,6 +15144,7 @@
             currentTransferPayPassword = '';
             syncTransferPayPanelContent();
             closeTransferMethodSheet();
+            closeChatGiftPanel();
             if (chatTransferPayPanel) chatTransferPayPanel.style.display = 'none';
             chatTransferPanel.style.display = 'flex';
             setTimeout(() => chatTransferAmountInput?.focus(), 30);
@@ -14176,6 +15155,7 @@
             if (chatLocationDetailInput) chatLocationDetailInput.value = '';
             closeChatComposePanel();
             closeChatTransferPanel();
+            closeChatGiftPanel();
             if (chatLocationPanel) chatLocationPanel.style.display = 'flex';
             setTimeout(() => chatLocationNameInput?.focus(), 30);
         }
@@ -14312,6 +15292,13 @@
                 return;
             }
 
+            const giftItem = target?.closest('[data-action="open-gift"]');
+            if (giftItem) {
+                event.stopPropagation();
+                openChatGiftPanel();
+                return;
+            }
+
             const locationItem = target?.closest('[data-action="open-location"]');
             if (!locationItem) return;
             event.stopPropagation();
@@ -14329,6 +15316,8 @@
         bindTap(btnConfirmTransfer, openChatTransferPayPanel);
         bindTap(btnCancelLocation, closeChatLocationPanel);
         bindTap(btnSendLocation, sendLocationMessage);
+        bindTap(btnCancelGift, closeChatGiftPanel);
+        bindTap(btnSendGift, sendSelectedGiftMessage);
         bindTap(btnCloseTransferPay, returnToChatTransferPanel);
         bindTap(btnTransferMethodTrigger, () => {
             if (chatTransferMethodSheet?.classList.contains('open')) {
@@ -14357,6 +15346,11 @@
             if (target === chatLocationPanel) closeChatLocationPanel();
         }
 
+        function handleChatGiftOverlayClose(event) {
+            const target = getEventElementTarget(event);
+            if (target === chatGiftPanel) closeChatGiftPanel();
+        }
+
         function handleTransferMethodSelect(event) {
             const target = getEventElementTarget(event);
             const option = target?.closest('[data-transfer-method]');
@@ -14381,8 +15375,27 @@
         chatTransferPanel.addEventListener('touchend', handleChatTransferOverlayClose, { passive: false });
         chatLocationPanel.addEventListener('click', handleChatLocationOverlayClose);
         chatLocationPanel.addEventListener('touchend', handleChatLocationOverlayClose, { passive: false });
+        chatGiftPanel.addEventListener('click', handleChatGiftOverlayClose);
+        chatGiftPanel.addEventListener('touchend', handleChatGiftOverlayClose, { passive: false });
         chatTransferPayPanel.addEventListener('click', handleChatTransferPayOverlayClose);
         chatTransferPayPanel.addEventListener('touchend', handleChatTransferPayOverlayClose, { passive: false });
+        chatGiftList?.addEventListener('click', event => {
+            const target = getEventElementTarget(event);
+            const item = target?.closest('[data-chat-gift-id]');
+            if (!item) return;
+            event.stopPropagation();
+            selectedChatGiftId = item.getAttribute('data-chat-gift-id') || '';
+            updateChatGiftSelectionUi();
+        });
+        chatGiftList?.addEventListener('touchend', event => {
+            const target = getEventElementTarget(event);
+            const item = target?.closest('[data-chat-gift-id]');
+            if (!item) return;
+            event.preventDefault();
+            event.stopPropagation();
+            selectedChatGiftId = item.getAttribute('data-chat-gift-id') || '';
+            updateChatGiftSelectionUi();
+        }, { passive: false });
         chatTransferMethodSheet?.addEventListener('click', handleTransferMethodSelect);
         chatTransferMethodSheet?.addEventListener('touchend', handleTransferMethodSelect, { passive: false });
         chatTransferKeypad?.addEventListener('click', handleTransferKeypadPress);
@@ -14395,6 +15408,7 @@
             closeChatComposePanel();
             closeChatTransferPanel();
             closeChatLocationPanel();
+            closeChatGiftPanel();
             closeChatTransferPayPanel();
             closeMessageActionCard();
             clearActiveQuote();
@@ -14406,6 +15420,7 @@
             closeChatComposePanel();
             closeChatTransferPanel();
             closeChatLocationPanel();
+            closeChatGiftPanel();
             closeChatTransferPayPanel();
             closeMessageActionCard();
             updateChatSettingsLabels();
@@ -14544,6 +15559,13 @@
                 return remark
                     ? `[转账消息：金额${amount}，备注：${remark}${statusBlock}]`
                     : `[转账消息：金额${amount}${statusBlock}]`;
+            }
+            if (message.type === 'gift_item') {
+                const giftItem = normalizePddGiftInventoryItem(message.giftItem || {});
+                const priceText = giftItem.price > 0 ? `，价格：¥${giftItem.price.toFixed(2)}` : '';
+                return message.role === 'user'
+                    ? `[送礼消息：我送给你一个礼物，商品名：${giftItem.title}，数量：${giftItem.quantity}${priceText}]`
+                    : `[送礼消息：你送给我一个礼物，商品名：${giftItem.title}，数量：${giftItem.quantity}${priceText}]`;
             }
             return content;
         }
@@ -15745,7 +16767,8 @@
             const isTransferMessage = message.type === 'transfer' || message.type === 'transfer_preview';
             const isLocationMessage = message.type === 'location';
             const isPddMealShareMessage = message.type === 'pdd_meal_share';
-            const isRichBubble = Boolean(message.type === 'voice' || message.type === 'photo' || message.isHtml || isTransferMessage || isLocationMessage || isPddMealShareMessage);
+            const isGiftMessage = message.type === 'gift_item';
+            const isRichBubble = Boolean(message.type === 'voice' || message.type === 'photo' || message.isHtml || isTransferMessage || isLocationMessage || isPddMealShareMessage || isGiftMessage);
             let bubbleContent = message.isHtml ? text : escapeHtml(normalizedText);
             if (message.type === 'voice') {
                 bubbleContent = `<div class="msg-media-card"><div class="msg-voice-bubble" title="点击查看文字"><div class="msg-voice-wave"><span></span><span></span><span></span></div><div class="msg-voice-duration">${voiceDuration}''</div></div><div class="msg-voice-transcript">${escapeHtml(normalizedText)}</div></div>`;
@@ -15757,6 +16780,8 @@
                 bubbleContent = buildLocationCardMarkup(message);
             } else if (isPddMealShareMessage) {
                 bubbleContent = buildPddMealShareCardMarkup(message);
+            } else if (isGiftMessage) {
+                bubbleContent = buildGiftCardMarkup(message);
             }
             row.innerHTML = `
                 <div class="msg-select-check"></div>
@@ -15764,7 +16789,7 @@
                 <div class="msg-main">
                     ${shouldShowSenderName ? `<div class="msg-sender-name">${escapeHtml(displayName)}</div>` : ''}
                     ${quoteMarkup}
-                    <div class="msg-bubble${isRichBubble ? ' rich-content' : ''}${isTransferMessage ? ' transfer-card-bubble' : ''}${isLocationMessage ? ' location-card-bubble' : ''}${isPddMealShareMessage ? ' pdd-meal-share-bubble' : ''}">${bubbleContent}</div>
+                    <div class="msg-bubble${isRichBubble ? ' rich-content' : ''}${isTransferMessage ? ' transfer-card-bubble' : ''}${isLocationMessage ? ' location-card-bubble' : ''}${isPddMealShareMessage ? ' pdd-meal-share-bubble' : ''}${isGiftMessage ? ' gift-card-bubble' : ''}">${bubbleContent}</div>
                     <div class="msg-actions-card">
                         ${messageActionLabels.map(item => `<button type="button" class="msg-action-btn" data-action="${item.action}">${item.label}</button>`).join('')}
                     </div>
