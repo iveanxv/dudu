@@ -2176,6 +2176,22 @@
             font-size: 13px;
             font-weight: 800;
         }
+        .shop-subpage {
+            display: none;
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            overflow-y: auto;
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,0.94), rgba(255,255,255,0) 30%),
+                linear-gradient(180deg, #f5f8fc 0%, #edf2f7 100%);
+        }
+        .shop-subpage.active {
+            display: block;
+        }
+        #shop-app.is-subpage-open .shop-tabbar {
+            display: none;
+        }
         .shop-cart-empty {
             display: flex;
             flex-direction: column;
@@ -2436,6 +2452,530 @@
             font-size: 13px;
             line-height: 1.6;
             color: rgba(86, 100, 118, 0.76);
+        }
+        .shop-profile-page {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 100%;
+            padding: 0 0 18px;
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,0.95), rgba(255,255,255,0) 30%),
+                linear-gradient(180deg, #f5f8fc 0%, #eef3f8 100%);
+        }
+        .shop-profile-hero {
+            margin: 0 14px;
+            padding: 20px 18px 18px;
+            border-radius: 30px;
+            background:
+                radial-gradient(circle at top left, rgba(255,255,255,0.88), rgba(255,255,255,0) 32%),
+                linear-gradient(135deg, #dfeaf6 0%, #c8d8ea 48%, #f5f8fc 100%);
+            border: 1px solid rgba(201, 216, 231, 0.96);
+            box-shadow: 0 18px 34px rgba(85, 110, 136, 0.12);
+        }
+        .shop-profile-user {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .shop-profile-avatar {
+            flex: 0 0 60px;
+            width: 60px;
+            height: 60px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #6a7f98, #3f536c);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            box-shadow: 0 12px 24px rgba(63, 83, 108, 0.22);
+        }
+        .shop-profile-user-info {
+            min-width: 0;
+            flex: 1;
+        }
+        .shop-profile-name {
+            font-size: 20px;
+            line-height: 1.2;
+            font-weight: 900;
+            color: #32465d;
+        }
+        .shop-profile-id {
+            margin-top: 6px;
+            font-size: 12px;
+            color: rgba(73, 94, 118, 0.78);
+        }
+        .shop-profile-desc {
+            margin-top: 10px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: rgba(77, 95, 118, 0.84);
+        }
+        .shop-profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .shop-profile-stat {
+            padding: 12px 10px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.76);
+            border: 1px solid rgba(206, 220, 234, 0.98);
+            text-align: center;
+        }
+        .shop-profile-stat strong {
+            display: block;
+            font-size: 18px;
+            line-height: 1.1;
+            color: #3d5671;
+        }
+        .shop-profile-stat span {
+            display: block;
+            margin-top: 6px;
+            font-size: 11px;
+            color: #8a9aad;
+        }
+        .shop-profile-section {
+            margin: 0 14px;
+            padding: 16px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.96);
+            border: 1px solid rgba(219, 228, 238, 0.96);
+            box-shadow: 0 14px 28px rgba(64, 82, 103, 0.06);
+        }
+        .shop-profile-section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .shop-profile-section-title {
+            font-size: 17px;
+            line-height: 1.3;
+            font-weight: 900;
+            color: #3f536c;
+        }
+        .shop-profile-section-note {
+            font-size: 11px;
+            color: #95a2b2;
+        }
+        .shop-profile-entry-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .shop-profile-entry {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 14px 14px 12px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f9fbfd 0%, #f2f6fa 100%);
+            border: 1px solid rgba(225, 233, 241, 0.98);
+        }
+        .shop-profile-entry-icon {
+            flex: 0 0 42px;
+            width: 42px;
+            height: 42px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #7c95af, #4b627b);
+            color: #fff;
+            box-shadow: 0 10px 18px rgba(75, 98, 123, 0.16);
+        }
+        .shop-profile-entry-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .shop-profile-entry-body {
+            min-width: 0;
+            flex: 1;
+        }
+        .shop-profile-entry-title {
+            font-size: 15px;
+            line-height: 1.35;
+            font-weight: 800;
+            color: #41556e;
+        }
+        .shop-profile-entry-desc {
+            margin-top: 4px;
+            font-size: 12px;
+            line-height: 1.55;
+            color: #8a9aab;
+        }
+        .shop-profile-entry-side {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 0 0 auto;
+        }
+        .shop-profile-entry-tag {
+            display: inline-flex;
+            align-items: center;
+            min-height: 24px;
+            padding: 0 9px;
+            border-radius: 999px;
+            background: rgba(73, 94, 118, 0.1);
+            color: #4f637c;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .shop-profile-entry-arrow {
+            width: 18px;
+            height: 18px;
+            color: #a4b1be;
+        }
+        .shop-profile-entry-arrow svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .shop-wallet-page {
+            min-height: 100%;
+            padding: 18px 18px 28px;
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,0.92), rgba(255,255,255,0) 30%),
+                linear-gradient(180deg, #f4f8fc 0%, #edf2f7 100%);
+        }
+        .shop-wallet-balance-card {
+            position: relative;
+            overflow: hidden;
+            padding: 22px 20px 20px;
+            border-radius: 30px;
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,0.32), rgba(255,255,255,0) 34%),
+                linear-gradient(145deg, #6c8198 0%, #52677e 52%, #7f93aa 100%);
+            color: #f7fbff;
+            box-shadow: 0 22px 40px rgba(76, 99, 124, 0.22);
+        }
+        .shop-wallet-balance-card::after {
+            content: '';
+            position: absolute;
+            right: -28px;
+            top: -22px;
+            width: 124px;
+            height: 124px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+        }
+        .shop-wallet-label {
+            position: relative;
+            z-index: 1;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            font-weight: 900;
+            color: rgba(243, 249, 255, 0.78);
+        }
+        .shop-wallet-balance {
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+            font-size: 36px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+        }
+        .shop-wallet-balance small {
+            margin-right: 4px;
+            font-size: 18px;
+            letter-spacing: 0;
+        }
+        .shop-wallet-meta-row {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .shop-wallet-meta-pill {
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.15);
+            color: rgba(247, 251, 255, 0.92);
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .shop-wallet-actions {
+            position: relative;
+            z-index: 1;
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .shop-wallet-action {
+            min-height: 42px;
+            border: 0;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            transition: transform 0.16s ease, background 0.16s ease;
+        }
+        .shop-wallet-action:active {
+            transform: scale(0.985);
+        }
+        .shop-wallet-action.is-secondary {
+            background: rgba(255,255,255,0.12);
+            color: rgba(241, 247, 255, 0.92);
+        }
+        .shop-wallet-section {
+            margin-top: 14px;
+            padding: 16px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.96);
+            border: 1px solid rgba(218, 227, 237, 0.98);
+            box-shadow: 0 14px 26px rgba(81, 100, 123, 0.08);
+        }
+        .shop-wallet-section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .shop-wallet-section-title {
+            font-size: 16px;
+            font-weight: 900;
+            color: #41556e;
+        }
+        .shop-wallet-section-note {
+            font-size: 11px;
+            color: #91a0b1;
+        }
+        .shop-wallet-bill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .shop-wallet-bill-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #f8fbff 0%, #f1f6fb 100%);
+            border: 1px solid rgba(225, 233, 241, 0.98);
+        }
+        .shop-wallet-bill-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: #43566e;
+        }
+        .shop-wallet-bill-time {
+            margin-top: 5px;
+            font-size: 11px;
+            color: #96a3b2;
+        }
+        .shop-wallet-bill-amount {
+            flex: 0 0 auto;
+            font-size: 15px;
+            font-weight: 900;
+            color: #42576f;
+        }
+        .shop-wallet-bill-amount.is-expense {
+            color: #6d7f92;
+        }
+        .shop-wallet-bill-empty {
+            padding: 18px 12px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #f8fbff 0%, #f1f6fb 100%);
+            color: #8fa0b1;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .shop-orders-page {
+            min-height: 100%;
+            padding: 18px 18px 28px;
+            background:
+                radial-gradient(circle at top left, rgba(255,255,255,0.9), rgba(255,255,255,0) 34%),
+                linear-gradient(180deg, #f4f8fc 0%, #eef3f8 100%);
+        }
+        .shop-orders-hero {
+            padding: 22px 20px;
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,0.86), rgba(255,255,255,0) 36%),
+                linear-gradient(145deg, #dbe7f3 0%, #c9d8e8 52%, #eef4fa 100%);
+            border: 1px solid rgba(205, 219, 233, 0.98);
+            box-shadow: 0 18px 34px rgba(84, 106, 132, 0.12);
+        }
+        .shop-orders-kicker {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            color: #70859d;
+        }
+        .shop-orders-title {
+            margin-top: 8px;
+            font-size: 24px;
+            line-height: 1.15;
+            font-weight: 900;
+            color: #3d536c;
+        }
+        .shop-orders-desc {
+            margin-top: 8px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: #73879d;
+        }
+        .shop-orders-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+        .shop-orders-pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.68);
+            border: 1px solid rgba(204, 217, 231, 0.98);
+            color: #566c84;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .shop-orders-list {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .shop-order-card {
+            padding: 16px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.96);
+            border: 1px solid rgba(218, 227, 237, 0.98);
+            box-shadow: 0 14px 26px rgba(86, 106, 128, 0.08);
+        }
+        .shop-order-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .shop-order-kicker {
+            font-size: 11px;
+            font-weight: 900;
+            color: #7a91ab;
+        }
+        .shop-order-title {
+            margin-top: 6px;
+            font-size: 16px;
+            line-height: 1.45;
+            font-weight: 900;
+            color: #41566f;
+        }
+        .shop-order-status {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            height: 28px;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: rgba(87, 108, 130, 0.1);
+            color: #5f7590;
+            font-size: 11px;
+            font-weight: 900;
+        }
+        .shop-order-scene {
+            margin-top: 10px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: #7d90a4;
+        }
+        .shop-order-grid {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .shop-order-cell {
+            padding: 11px 12px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #f8fbff 0%, #f2f6fb 100%);
+            border: 1px solid rgba(226, 234, 242, 0.96);
+        }
+        .shop-order-cell-label {
+            font-size: 11px;
+            color: #93a2b1;
+        }
+        .shop-order-cell-value {
+            margin-top: 5px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #4a5f77;
+            line-height: 1.45;
+        }
+        .shop-order-price-row {
+            margin-top: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 12px;
+        }
+        .shop-order-price {
+            font-size: 24px;
+            line-height: 1;
+            font-weight: 900;
+            color: #42576f;
+        }
+        .shop-order-price small {
+            margin-right: 2px;
+            font-size: 13px;
+        }
+        .shop-order-origin {
+            margin-top: 5px;
+            font-size: 11px;
+            color: #99a7b6;
+        }
+        .shop-order-gift-note {
+            flex: 0 0 auto;
+            font-size: 11px;
+            font-weight: 800;
+            color: #6d839b;
+            text-align: right;
+            max-width: 108px;
+            line-height: 1.5;
+        }
+        .shop-orders-empty {
+            padding: 24px 18px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.82);
+            border: 1px dashed rgba(190, 205, 220, 0.98);
+            text-align: center;
+            color: #8193a6;
+        }
+        .shop-orders-empty strong {
+            display: block;
+            font-size: 16px;
+            color: #4b6078;
+        }
+        .shop-orders-empty p {
+            margin: 8px 0 0;
+            font-size: 13px;
+            line-height: 1.65;
         }
         .pdd-profile-page {
             display: flex;
@@ -5544,7 +6084,7 @@
                     <div class="app-icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg></div>
                     <span class="app-name">微信</span>
                 </div>
-                <div class="app-item" id="app-shop"><div class="app-icon"><svg viewBox="0 0 24 24"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/></svg></div><span class="app-name">商店</span></div>
+                <div class="app-item" id="app-shop"><div class="app-icon"><svg viewBox="0 0 24 24"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/></svg></div><span class="app-name">高端商店</span></div>
                 <div class="app-item"><div class="app-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><span class="app-name">情侣空间</span></div>
                 <div class="app-item"><div class="app-icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg></div><span class="app-name">论坛</span></div>
                 <div class="app-item" id="app-pdd"><div class="app-icon pdd-icon"><div class="pdd-bag-mark">拼</div></div><span class="app-name">拼刀刀</span></div>
@@ -5867,11 +6407,90 @@
                 </div>
             </div>
             <div class="shop-page" id="shop-page-profile">
-                <div class="shop-placeholder-page">
-                    <div class="shop-placeholder-card">
-                        <strong>我的</strong>
-                        <p>这里先保留账户页占位，后面再接订单、收藏和地址管理。</p>
+                <div class="shop-profile-page">
+                    <div class="shop-profile-hero">
+                        <div class="shop-profile-user">
+                            <div class="shop-profile-avatar">店</div>
+                            <div class="shop-profile-user-info">
+                                <div class="shop-profile-name">商店用户</div>
+                                <div class="shop-profile-id">ID: SHOP-2026-0514</div>
+                            </div>
+                        </div>
+                        <div class="shop-profile-desc">这里先做一个静态的“我的”页面版式，后面可以继续接钱包、我买到的、收藏、地址和会员等真实功能。</div>
                     </div>
+                    <div class="shop-profile-section">
+                        <div class="shop-profile-section-head">
+                            <div class="shop-profile-section-title">常用入口</div>
+                            <div class="shop-profile-section-note">先做页面样式</div>
+                        </div>
+                        <div class="shop-profile-entry-list">
+                            <div class="shop-profile-entry" id="shop-open-wallet-btn">
+                                <div class="shop-profile-entry-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M4 8h16"></path><path d="M6 6h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path><path d="M8 14h4"></path></svg>
+                                </div>
+                                <div class="shop-profile-entry-body">
+                                    <div class="shop-profile-entry-title">钱包</div>
+                                    <div class="shop-profile-entry-desc">后面这里可以查看余额、支付方式、账单和充值入口。</div>
+                                </div>
+                                <div class="shop-profile-entry-side">
+                                    <span class="shop-profile-entry-tag" id="shop-wallet-entry-balance">余额 ¥0.00</span>
+                                    <div class="shop-profile-entry-arrow" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="shop-profile-entry" id="shop-open-orders-btn">
+                                <div class="shop-profile-entry-icon" style="background: linear-gradient(135deg, #8aa1b8, #5a7189); box-shadow: 0 10px 18px rgba(90, 113, 137, 0.16);">
+                                    <svg viewBox="0 0 24 24"><path d="M7 8h10"></path><path d="M7 12h10"></path><path d="M7 16h7"></path><path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg>
+                                </div>
+                                <div class="shop-profile-entry-body">
+                                    <div class="shop-profile-entry-title">我买到的</div>
+                                    <div class="shop-profile-entry-desc">后面这里可以看已买商品、待收货订单和历史购买记录。</div>
+                                </div>
+                                <div class="shop-profile-entry-side">
+                                    <span class="shop-profile-entry-tag" id="shop-orders-entry-tag">订单 0</span>
+                                    <div class="shop-profile-entry-arrow" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-subpage" id="shop-subpage-wallet">
+                <div class="shop-wallet-page">
+                    <div class="shop-wallet-balance-card">
+                        <div class="shop-wallet-label">商店钱包余额</div>
+                        <div class="shop-wallet-balance"><small>¥</small><span id="shop-wallet-balance-value">0.00</span></div>
+                        <div class="shop-wallet-meta-row">
+                            <span class="shop-wallet-meta-pill">从微信零钱充值</span>
+                            <span class="shop-wallet-meta-pill">下单只记商店流水</span>
+                            <span class="shop-wallet-meta-pill">统一验证微信密码</span>
+                        </div>
+                        <div class="shop-wallet-actions">
+                            <button type="button" class="shop-wallet-action" id="btn-shop-wallet-recharge">充值</button>
+                            <button type="button" class="shop-wallet-action is-secondary" id="btn-shop-wallet-checkout-help">充值说明</button>
+                        </div>
+                    </div>
+                    <div class="shop-wallet-section">
+                        <div class="shop-wallet-section-head">
+                            <div class="shop-wallet-section-title">余额明细</div>
+                            <div class="shop-wallet-section-note">充值和购买都记这里</div>
+                        </div>
+                        <div class="shop-wallet-bill-list" id="shop-wallet-bill-list"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-subpage" id="shop-subpage-orders">
+                <div class="shop-orders-page">
+                    <div class="shop-orders-hero">
+                        <div class="shop-orders-kicker">SHOP ORDER ARCHIVE</div>
+                        <div class="shop-orders-title">我买到的</div>
+                        <div class="shop-orders-desc">商店支付完成的商品会收进这里，同时也会同步进礼物库存，后面可以在微信页面送给好友。</div>
+                        <div class="shop-orders-meta" id="shop-orders-meta"></div>
+                    </div>
+                    <div class="shop-orders-list" id="shop-orders-list"></div>
                 </div>
             </div>
         </div>
@@ -7282,6 +7901,10 @@
         });
 
         document.getElementById('shop-back-btn').addEventListener('click', () => {
+            if (activeShopSubpageId) {
+                closeShopSubpage();
+                return;
+            }
             shopApp.style.display = 'none';
         });
 
@@ -9402,6 +10025,8 @@
 
         const shopTabs = document.querySelectorAll('#shop-app .shop-tab');
         const shopPages = document.querySelectorAll('#shop-app .shop-page');
+        const shopTitleText = document.querySelector('#shop-app .app-title-text');
+        const shopSubpages = document.querySelectorAll('#shop-app .shop-subpage');
         const shopCategoryChips = document.querySelectorAll('#shop-app .shop-chip');
         const pddTabs = document.querySelectorAll('#pdd-app .shop-tab');
         const pddPages = document.querySelectorAll('#pdd-app .shop-page');
@@ -9480,6 +10105,17 @@
         const shopCartList = document.getElementById('shop-cart-list');
         const shopCartSummary = document.getElementById('shop-cart-summary');
         const shopCartTotalValue = document.getElementById('shop-cart-total-value');
+        const shopCheckoutButton = document.querySelector('#shop-page-cart .shop-checkout-btn');
+        const shopOpenWalletBtn = document.getElementById('shop-open-wallet-btn');
+        const shopOpenOrdersBtn = document.getElementById('shop-open-orders-btn');
+        const shopWalletEntryBalance = document.getElementById('shop-wallet-entry-balance');
+        const shopWalletBalanceValue = document.getElementById('shop-wallet-balance-value');
+        const shopWalletBillList = document.getElementById('shop-wallet-bill-list');
+        const shopOrdersEntryTag = document.getElementById('shop-orders-entry-tag');
+        const shopOrdersMeta = document.getElementById('shop-orders-meta');
+        const shopOrdersList = document.getElementById('shop-orders-list');
+        const btnShopWalletRecharge = document.getElementById('btn-shop-wallet-recharge');
+        const btnShopWalletCheckoutHelp = document.getElementById('btn-shop-wallet-checkout-help');
         const PDD_WHEEL_PRIZES = [
             { label: '三折券', note: '手气很猛，三折券到手，下一单可以狠狠干低价。' },
             { label: '五折券', note: '半价券算是今天的大运气，适合留给想拼的那单。' },
@@ -9574,6 +10210,9 @@
         const PDD_GIFT_INVENTORY_STORAGE_KEY = 'pdd_gift_inventory';
         const PDD_WALLET_STORAGE_KEY = 'pdd_wallet_balance';
         const PDD_WALLET_BILLS_STORAGE_KEY = 'pdd_wallet_bills';
+        const SHOP_ORDER_ITEMS_STORAGE_KEY = 'shop_order_items';
+        const SHOP_WALLET_STORAGE_KEY = 'shop_wallet_balance';
+        const SHOP_WALLET_BILLS_STORAGE_KEY = 'shop_wallet_bills';
         const SHOP_RECOMMEND_PRODUCTS_STORAGE_KEY = 'shop_recommend_products';
         const SHOP_TAKEOUT_PRODUCTS_STORAGE_KEY = 'shop_takeout_products';
         const SHOP_ROMANCE_PRODUCTS_STORAGE_KEY = 'shop_romance_products';
@@ -9830,6 +10469,8 @@
         let shopTakeoutProducts = parseStoredJson(SHOP_TAKEOUT_PRODUCTS_STORAGE_KEY, null);
         let shopRomanceProducts = parseStoredJson(SHOP_ROMANCE_PRODUCTS_STORAGE_KEY, null);
         let shopGeneratingCategory = '';
+        let activeShopSubpageId = '';
+        let shopSubpageHistory = [];
         if (!Array.isArray(shopRecommendProducts) || !shopRecommendProducts.length) {
             shopRecommendProducts = SHOP_DEFAULT_RECOMMEND_PRODUCTS.map(product => ({ ...product }));
         } else {
@@ -9847,6 +10488,21 @@
         }
         let shopCartItems = parseStoredJson('shop_cart_items', []);
         if (!Array.isArray(shopCartItems)) shopCartItems = [];
+        let shopOrderItems = parseStoredJson(SHOP_ORDER_ITEMS_STORAGE_KEY, []);
+        if (!Array.isArray(shopOrderItems)) shopOrderItems = [];
+        let shopWalletBalance = Number(parseStoredJson(SHOP_WALLET_STORAGE_KEY, 0)) || 0;
+        let shopWalletBills = parseStoredJson(SHOP_WALLET_BILLS_STORAGE_KEY, []);
+        if (!Array.isArray(shopWalletBills)) shopWalletBills = [];
+        shopWalletBills = shopWalletBills
+            .filter(item => item && typeof item === 'object')
+            .map(item => ({
+                id: String(item.id || `shop_bill_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`),
+                title: String(item.title || '余额变动').trim() || '余额变动',
+                amount: Number(item.amount) || 0,
+                balanceAfter: Number(item.balanceAfter) || 0,
+                createdAt: Number(item.createdAt) || Date.now(),
+                source: String(item.source || '').trim()
+            }));
 
         function formatShopPrice(value) {
             const amount = Number(value) || 0;
@@ -9887,7 +10543,7 @@
                 return {
                     category: 'romance',
                     displayName: '情趣',
-                    placeholder: '搜索私享好物，结果更克制也更高级……',
+                    placeholder: '搜索情趣好物，结果更高级……',
                     emptyTitle: '请输入情趣关键词',
                     emptyMessage: '先输入想找的方向，比如香氛礼盒、真丝睡袍、按摩油、双人礼物。',
                     configErrorTitle: '无法搜索情趣商品',
@@ -10227,6 +10883,398 @@
                 `;
             }).join('');
             shopCartTotalValue.textContent = formatShopPrice(total);
+        }
+
+        function persistShopOrders() {
+            safeSetJsonStorage(SHOP_ORDER_ITEMS_STORAGE_KEY, shopOrderItems.slice(0, 120));
+            safeSetJsonStorage(PDD_GIFT_INVENTORY_STORAGE_KEY, pddGiftInventory.slice(0, 160));
+        }
+
+        function getShopNumberPrice(value) {
+            if (typeof value === 'number' && Number.isFinite(value)) return value;
+            const normalized = Number(String(value || '').replace(/[￥¥元,\s]/g, ''));
+            return Number.isFinite(normalized) ? normalized : 0;
+        }
+
+        function normalizeShopOrderItem(item = {}, fallbackType = 'good') {
+            const quantity = Math.max(1, Number(item.quantity) || 1);
+            const price = Number(getShopNumberPrice(item.price).toFixed(2));
+            const originPrice = Number(getShopNumberPrice(item.originPrice).toFixed(2));
+            const rawType = String(item.type || fallbackType || 'good').trim() || 'good';
+            const type = rawType === 'recommend' || rawType === 'takeout' || rawType === 'romance' ? rawType : 'good';
+            const title = clampStoredText(item.title || item.name || '商店好物', 40) || '商店好物';
+            const scene = clampStoredText(item.scene || item.visual || item.desc || '商店下单成功，商品已收进我的订单。', 120) || '商店下单成功，商品已收进我的订单。';
+            const badge = clampStoredText(item.badge || (type === 'takeout' ? '精致外卖' : type === 'romance' ? '私享系列' : type === 'recommend' ? '买手推荐' : '商店好物'), 16) || '商店好物';
+            return {
+                id: String(item.id || createMessageId('shop_order')),
+                giftId: String(item.giftId || createMessageId('shop_gift')),
+                title,
+                scene,
+                badge,
+                type,
+                quantity,
+                price,
+                originPrice,
+                total: Number((price * quantity).toFixed(2)),
+                savedAmount: Number((Math.max(0, originPrice - price) * quantity).toFixed(2)),
+                status: clampStoredText(item.status || '待收货', 12) || '待收货',
+                createdAt: Number(item.createdAt) || Date.now(),
+                source: clampStoredText(item.source || '商店下单', 20) || '商店下单'
+            };
+        }
+
+        function formatShopOrderDate(timestamp) {
+            const date = new Date(timestamp || Date.now());
+            if (Number.isNaN(date.getTime())) return '刚刚下单';
+            return date.toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
+        }
+
+        function getShopOrdersSummary() {
+            return shopOrderItems.reduce((summary, item) => {
+                const quantity = Math.max(1, Number(item.quantity) || 1);
+                const total = Number(item.total) || Number(item.price || 0) * quantity;
+                const savedAmount = Number(item.savedAmount) || 0;
+                summary.orderCount += 1;
+                summary.itemCount += quantity;
+                summary.total += total;
+                summary.saved += savedAmount;
+                return summary;
+            }, { orderCount: 0, itemCount: 0, total: 0, saved: 0 });
+        }
+
+        function renderShopOrders() {
+            const summary = getShopOrdersSummary();
+            if (shopOrdersEntryTag) {
+                shopOrdersEntryTag.textContent = summary.itemCount ? `订单 ${summary.itemCount}` : '订单 0';
+            }
+            if (shopOrdersMeta) {
+                shopOrdersMeta.innerHTML = [
+                    `<span class="shop-orders-pill">共 ${summary.orderCount} 单</span>`,
+                    `<span class="shop-orders-pill">商品 ${summary.itemCount} 件</span>`,
+                    `<span class="shop-orders-pill">省下 ¥${summary.saved.toFixed(2)}</span>`
+                ].join('');
+            }
+            if (!shopOrdersList) return;
+            if (!shopOrderItems.length) {
+                shopOrdersList.innerHTML = '<div class="shop-orders-empty"><strong>还没有已买到的商品</strong><p>去商店挑点东西，使用商店钱包支付后，订单会自动收进这里，并同步进礼物库存。</p></div>';
+                return;
+            }
+            shopOrdersList.innerHTML = shopOrderItems.map(item => `
+                <article class="shop-order-card">
+                    <div class="shop-order-top">
+                        <div>
+                            <div class="shop-order-kicker">${escapeHtml(item.badge)}</div>
+                            <div class="shop-order-title">${escapeHtml(item.title)}</div>
+                        </div>
+                        <div class="shop-order-status">${escapeHtml(item.status)}</div>
+                    </div>
+                    <div class="shop-order-scene">${escapeHtml(item.scene)}</div>
+                    <div class="shop-order-grid">
+                        <div class="shop-order-cell">
+                            <div class="shop-order-cell-label">下单时间</div>
+                            <div class="shop-order-cell-value">${escapeHtml(formatShopOrderDate(item.createdAt))}</div>
+                        </div>
+                        <div class="shop-order-cell">
+                            <div class="shop-order-cell-label">商品件数</div>
+                            <div class="shop-order-cell-value">${escapeHtml(String(item.quantity))} 件</div>
+                        </div>
+                        <div class="shop-order-cell">
+                            <div class="shop-order-cell-label">订单来源</div>
+                            <div class="shop-order-cell-value">${escapeHtml(item.source)}</div>
+                        </div>
+                        <div class="shop-order-cell">
+                            <div class="shop-order-cell-label">礼物状态</div>
+                            <div class="shop-order-cell-value">已存入礼物库存</div>
+                        </div>
+                    </div>
+                    <div class="shop-order-price-row">
+                        <div class="shop-order-price-group">
+                            <div class="shop-order-price"><small>¥</small>${escapeHtml((Number(item.total) || 0).toFixed(2))}</div>
+                            ${Number(item.originPrice) > Number(item.price) ? `<div class="shop-order-origin">原价 ¥${escapeHtml((Number(item.originPrice) * Math.max(1, Number(item.quantity) || 1)).toFixed(2))}</div>` : ''}
+                        </div>
+                        <div class="shop-order-gift-note">可在微信页面赠送给好友</div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function storePaidShopItemsAsOrders(items = []) {
+            if (!Array.isArray(items) || !items.length) return 0;
+            const now = Date.now();
+            const nextOrders = [];
+            const nextGifts = [];
+            items.forEach((item, index) => {
+                const order = normalizeShopOrderItem({
+                    ...item,
+                    id: createMessageId(`shop_order_${index}`),
+                    giftId: createMessageId(`shop_gift_${index}`),
+                    createdAt: now + index,
+                    source: '商店下单',
+                    status: '待收货'
+                }, item.type || 'good');
+                nextOrders.push(order);
+                nextGifts.push(normalizePddGiftInventoryItem({
+                    id: order.giftId,
+                    orderId: order.id,
+                    title: order.title,
+                    badge: order.badge,
+                    type: order.type,
+                    quantity: order.quantity,
+                    price: order.price,
+                    priceText: `¥${order.price.toFixed(2)}`,
+                    originPrice: Number(order.originPrice) > 0 ? `¥${order.originPrice.toFixed(2)}` : '',
+                    scene: order.scene,
+                    meta: order.source,
+                    createdAt: order.createdAt,
+                    source: '商店订单入库',
+                    status: 'available'
+                }));
+            });
+            shopOrderItems = [...nextOrders.reverse(), ...shopOrderItems].slice(0, 120);
+            pddGiftInventory = [...nextGifts.reverse(), ...pddGiftInventory].slice(0, 160);
+            persistShopOrders();
+            renderShopOrders();
+            return nextOrders.length;
+        }
+
+        function formatShopWalletMoney(value = 0) {
+            return Number(value || 0).toFixed(2);
+        }
+
+        function formatShopWalletTime(timestamp) {
+            const date = new Date(timestamp || Date.now());
+            if (Number.isNaN(date.getTime())) return '刚刚';
+            return date.toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
+        }
+
+        function getShopWalletBillAmountText(value = 0) {
+            const amount = Number(value) || 0;
+            const sign = amount >= 0 ? '+' : '-';
+            return `${sign}¥${Math.abs(amount).toFixed(2)}`;
+        }
+
+        function persistShopWallet() {
+            safeSetStorage(SHOP_WALLET_STORAGE_KEY, clampWalletBalance(shopWalletBalance).toFixed(2));
+            safeSetJsonStorage(SHOP_WALLET_BILLS_STORAGE_KEY, shopWalletBills);
+        }
+
+        function renderShopWallet() {
+            const balanceText = formatShopWalletMoney(shopWalletBalance);
+            if (shopWalletEntryBalance) shopWalletEntryBalance.textContent = `余额 ¥${balanceText}`;
+            if (shopWalletBalanceValue) shopWalletBalanceValue.textContent = balanceText;
+            if (!shopWalletBillList) return;
+            if (!shopWalletBills.length) {
+                shopWalletBillList.innerHTML = '<div class="shop-wallet-bill-empty">还没有商店钱包明细。可以先从微信钱包充值，后续在商店下单的消费也会收进这里。</div>';
+                return;
+            }
+            shopWalletBillList.innerHTML = shopWalletBills.slice(0, 30).map(bill => `
+                <article class="shop-wallet-bill-item">
+                    <div>
+                        <div class="shop-wallet-bill-title">${escapeHtml(bill.title)}</div>
+                        <div class="shop-wallet-bill-time">${escapeHtml(formatShopWalletTime(bill.createdAt))} · 余额 ¥${escapeHtml(formatShopWalletMoney(bill.balanceAfter))}</div>
+                    </div>
+                    <div class="shop-wallet-bill-amount ${bill.amount < 0 ? 'is-expense' : ''}">${escapeHtml(getShopWalletBillAmountText(bill.amount))}</div>
+                </article>
+            `).join('');
+        }
+
+        function pushShopWalletBill(record = {}) {
+            const amount = Number(record.amount) || 0;
+            if (!amount) return null;
+            const bill = {
+                id: String(record.id || `shop_bill_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`),
+                title: String(record.title || '余额变动').trim() || '余额变动',
+                amount: Number(amount.toFixed(2)),
+                balanceAfter: Number((Number(record.balanceAfter) || 0).toFixed(2)),
+                createdAt: Number(record.createdAt) || Date.now(),
+                source: String(record.source || '').trim()
+            };
+            shopWalletBills.unshift(bill);
+            shopWalletBills = shopWalletBills.slice(0, 80);
+            persistShopWallet();
+            renderShopWallet();
+            return bill;
+        }
+
+        function addShopWalletIncome(amount, title, source = '') {
+            const safeAmount = Number(amount) || 0;
+            if (safeAmount <= 0) return;
+            shopWalletBalance = Number((shopWalletBalance + safeAmount).toFixed(2));
+            pushShopWalletBill({
+                title: String(title || '余额到账').trim() || '余额到账',
+                amount: safeAmount,
+                balanceAfter: shopWalletBalance,
+                createdAt: Date.now(),
+                source: String(source || '').trim()
+            });
+        }
+
+        function addShopWalletExpense(amount, title, source = '') {
+            const safeAmount = Number(amount) || 0;
+            if (safeAmount <= 0) return false;
+            if (safeAmount > shopWalletBalance) return false;
+            shopWalletBalance = Number((shopWalletBalance - safeAmount).toFixed(2));
+            pushShopWalletBill({
+                title: String(title || '商店消费').trim() || '商店消费',
+                amount: -safeAmount,
+                balanceAfter: shopWalletBalance,
+                createdAt: Date.now(),
+                source: String(source || '').trim()
+            });
+            return true;
+        }
+
+        async function verifyWechatWalletPasswordForShop() {
+            const existingPassword = String(localStorage.getItem('wallet_password') || '').trim();
+            if (!existingPassword) {
+                await showAppDialog({ title: '无法继续', message: '请先去微信的钱包里设置 6 位支付密码。' });
+                return false;
+            }
+            const inputPassword = await showAppDialog({
+                title: '验证微信支付密码',
+                message: '给商店钱包充值需要输入微信钱包的 6 位支付密码。',
+                mode: 'prompt',
+                placeholder: '请输入6位数字密码',
+                defaultValue: ''
+            });
+            if (inputPassword === null) return false;
+            if (String(inputPassword).trim() !== existingPassword) {
+                await showAppDialog({ title: '密码错误', message: '微信钱包支付密码不正确。' });
+                return false;
+            }
+            return true;
+        }
+
+        async function handleShopWalletRecharge() {
+            const inputValue = await showAppDialog({
+                title: '商店钱包充值',
+                message: '请输入要从微信钱包转入商店钱包的金额。',
+                mode: 'prompt',
+                placeholder: '例如 50 或 88.80'
+            });
+
+            if (inputValue === null) return;
+
+            const amount = normalizeWalletMoney(inputValue);
+            if (!Number.isFinite(amount) || amount <= 0) {
+                await showAppDialog({ title: '无法充值', message: '请输入大于 0 的数字金额。' });
+                return;
+            }
+
+            if (amount > walletBalance) {
+                await showAppDialog({ title: '无法充值', message: '微信钱包零钱余额不足。' });
+                return;
+            }
+
+            const passwordValid = await verifyWechatWalletPasswordForShop();
+            if (!passwordValid) return;
+
+            walletBalance = clampWalletBalance(walletBalance - amount);
+            persistWalletBalance();
+            renderWalletBalance();
+
+            const walletTransaction = normalizeWalletTransaction({
+                id: createMessageId('wallet'),
+                type: 'shop-recharge-out',
+                title: '充值到商店钱包',
+                amount: -amount,
+                balanceAfter: walletBalance,
+                createdAt: Date.now()
+            });
+            if (walletTransaction) {
+                walletTransactions.unshift(walletTransaction);
+                persistWalletTransactions();
+                renderWalletBills();
+            }
+
+            addShopWalletIncome(amount, '微信钱包充值', 'wechat-wallet');
+            await showAppDialog({ title: '充值成功', message: `已从微信钱包转入 ¥${amount.toFixed(2)} 到商店钱包。` });
+        }
+
+        function getShopCartSummaryStats() {
+            return shopCartItems.reduce((summary, item) => {
+                const quantity = Math.max(1, Number(item.quantity) || 1);
+                const price = Number(item.price) || 0;
+                summary.count += quantity;
+                summary.total += price * quantity;
+                return summary;
+            }, { count: 0, total: 0 });
+        }
+
+        async function handleShopCartCheckout() {
+            if (!Array.isArray(shopCartItems) || !shopCartItems.length) {
+                await showAppDialog({ title: '无法结算', message: '商店购物车还是空的。' });
+                return;
+            }
+
+            const summary = getShopCartSummaryStats();
+            const total = Number(summary.total.toFixed(2));
+            if (total <= 0) {
+                await showAppDialog({ title: '无法结算', message: '当前商店订单金额不正确。' });
+                return;
+            }
+
+            if (total > shopWalletBalance) {
+                await showAppDialog({ title: '余额不足', message: `商店钱包余额不足，还差 ¥${(total - shopWalletBalance).toFixed(2)}。先去商店钱包充值。` });
+                return;
+            }
+
+            const ok = await showAppDialog({
+                title: '确认商店结算',
+                message: `本次共 ${summary.count} 件，合计 ¥${total.toFixed(2)}。确认后将只在商店钱包记录消费明细。`,
+                mode: 'confirm',
+                confirmText: '确认支付'
+            });
+            if (!ok) return;
+
+            const paidItemsSnapshot = shopCartItems.map(item => ({ ...item }));
+            const paid = addShopWalletExpense(total, `商店下单 ${summary.count} 件`, 'shop-checkout');
+            if (!paid) {
+                await showAppDialog({ title: '支付失败', message: '商店钱包余额不足。' });
+                return;
+            }
+
+            const storedCount = storePaidShopItemsAsOrders(paidItemsSnapshot);
+            shopCartItems = [];
+            persistShopCart();
+            renderShopCart();
+            await showAppDialog({ title: '下单成功', message: `已用商店钱包支付 ¥${total.toFixed(2)}，共收进 ${storedCount} 条订单。这笔消费不会记到微信钱包流水，会只保留在商店钱包明细里。已存入礼物，可以在微信页面赠送给好友。` });
+        }
+
+        function openShopSubpage(subpageId, title, options = {}) {
+            shopSubpages.forEach(subpage => subpage.classList.remove('active'));
+            const targetSubpage = document.getElementById(subpageId);
+            if (!targetSubpage) return;
+            if (!options.skipHistory && activeShopSubpageId && activeShopSubpageId !== subpageId) {
+                shopSubpageHistory.push(activeShopSubpageId);
+            }
+            targetSubpage.classList.add('active');
+            activeShopSubpageId = subpageId;
+            shopApp.classList.add('is-subpage-open');
+            if (shopTitleText && title) shopTitleText.textContent = title;
+        }
+
+        function closeShopSubpage() {
+            const previousSubpageId = shopSubpageHistory.pop() || '';
+            shopSubpages.forEach(subpage => subpage.classList.remove('active'));
+            if (previousSubpageId) {
+                const previousSubpage = document.getElementById(previousSubpageId);
+                if (previousSubpage) {
+                    previousSubpage.classList.add('active');
+                    activeShopSubpageId = previousSubpageId;
+                    shopApp.classList.add('is-subpage-open');
+                    if (shopTitleText) {
+                        if (previousSubpageId === 'shop-subpage-wallet') shopTitleText.textContent = '商店钱包';
+                        else if (previousSubpageId === 'shop-subpage-orders') shopTitleText.textContent = '我买到的';
+                        else shopTitleText.textContent = '商店';
+                    }
+                    return;
+                }
+            }
+            activeShopSubpageId = '';
+            shopSubpageHistory = [];
+            shopApp.classList.remove('is-subpage-open');
+            if (shopTitleText) shopTitleText.textContent = '商店';
         }
 
         function persistPddCoupons() {
@@ -12278,6 +13326,7 @@
         shopTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 const target = tab.getAttribute('data-target');
+                closeShopSubpage();
                 shopTabs.forEach(item => item.classList.remove('active'));
                 shopPages.forEach(page => page.classList.remove('active'));
                 tab.classList.add('active');
@@ -12614,8 +13663,38 @@
             });
         }
 
+        if (shopOpenWalletBtn) {
+            shopOpenWalletBtn.addEventListener('click', () => {
+                renderShopWallet();
+                openShopSubpage('shop-subpage-wallet', '商店钱包');
+            });
+        }
+
+        if (shopOpenOrdersBtn) {
+            shopOpenOrdersBtn.addEventListener('click', () => {
+                renderShopOrders();
+                openShopSubpage('shop-subpage-orders', '我买到的');
+            });
+        }
+
+        if (btnShopWalletRecharge) {
+            btnShopWalletRecharge.addEventListener('click', handleShopWalletRecharge);
+        }
+
+        if (btnShopWalletCheckoutHelp) {
+            btnShopWalletCheckoutHelp.addEventListener('click', async () => {
+                await showAppDialog({ title: '充值说明', message: '商店钱包充值会先验证微信钱包支付密码，再从微信零钱扣款转入。之后在商店内下单，只记商店钱包明细。' });
+            });
+        }
+
+        if (shopCheckoutButton) {
+            shopCheckoutButton.addEventListener('click', handleShopCartCheckout);
+        }
+
         updateShopSearchPlaceholder();
         renderShopProducts();
+        renderShopOrders();
+        renderShopWallet();
         renderPddCouponList();
         renderPddWallet();
         renderPddOrders();
@@ -14701,7 +15780,7 @@
                     : '从你买到的库存里选一件，直接送给当前好友。';
             }
             if (!availableItems.length) {
-                chatGiftList.innerHTML = '<div class="chat-gift-empty">现在还没有可赠送的礼物。先去拼刀刀付款买点东西，库存就会出现在这里。</div>';
+                chatGiftList.innerHTML = '<div class="chat-gift-empty">现在还没有可赠送的礼物。先去商店或拼刀刀付款买点东西，库存就会出现在这里。</div>';
                 selectedChatGiftId = '';
                 updateChatGiftSelectionUi();
                 return;
@@ -14712,9 +15791,9 @@
                         <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg>
                     </div>
                     <div class="chat-gift-main">
-                        <div class="chat-gift-badge">${escapeHtml(item.type === 'meal' ? '拼好饭' : item.type === 'romance' ? '拼情趣' : item.type === 'cut' ? '拼一刀' : '拼刀刀')}</div>
+                        <div class="chat-gift-badge">${escapeHtml(item.badge || (item.type === 'meal' ? '拼好饭' : item.type === 'romance' ? '拼情趣' : item.type === 'cut' ? '拼一刀' : '拼刀刀'))}</div>
                         <div class="chat-gift-title">${escapeHtml(item.title)}</div>
-                        <div class="chat-gift-meta">库存 ${escapeHtml(String(item.quantity))} 件 · 来自 ${escapeHtml(item.source || '拼刀刀订单')}</div>
+                        <div class="chat-gift-meta">库存 ${escapeHtml(String(item.quantity))} 件 · 来自 ${escapeHtml(item.source || '订单入库')}</div>
                     </div>
                     <div class="chat-gift-side">
                         <div class="chat-gift-price">¥${escapeHtml(item.price.toFixed(2))}</div>
